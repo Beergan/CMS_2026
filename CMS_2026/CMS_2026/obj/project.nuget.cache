@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "onUklxkr6Ko=",
+  "dgSpecHash": "QYUfwC4uS0I=",
   "success": true,
-  "projectFilePath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+  "projectFilePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dh519\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
@@ -69,9 +69,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference System.Text.Json will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "projectPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "filePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "libraryId": "System.Text.Json",
       "targetGraphs": [
         "net10.0"
@@ -81,9 +81,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference System.Linq will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "projectPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "filePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "libraryId": "System.Linq",
       "targetGraphs": [
         "net10.0"

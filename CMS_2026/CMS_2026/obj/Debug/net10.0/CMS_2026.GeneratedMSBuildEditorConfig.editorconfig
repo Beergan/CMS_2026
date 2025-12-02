@@ -19,493 +19,493 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = CMS_2026
 build_property.RootNamespace = CMS_2026
-build_property.ProjectDir = D:\Iambee\update\CMS_2026\CMS_2026\CMS_2026\
+build_property.ProjectDir = C:\SLK\CMS_2026\CMS_2026\CMS_2026\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Iambee\update\CMS_2026\CMS_2026\CMS_2026
+build_property.MSBuildProjectDirectory = C:\SLK\CMS_2026\CMS_2026\CMS_2026
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Advise/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Advise/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWR2aXNlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Cache/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Cache/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2FjaGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Image.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Image.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcSW1hZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ChangePwd.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ChangePwd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2hhbmdlUHdkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/CKFinder/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/CKFinder/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ0tGaW5kZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Comment/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Comment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29tbWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Config/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Config/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29uZmlnXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Contact/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29udGFjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Contact/View.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Contact/View.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29udGFjdFxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Database/Build.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Database/Build.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGF0YWJhc2VcQnVpbGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ElFinder/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ElFinder/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWxGaW5kZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ForgotPwd.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ForgotPwd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRm9yZ290UHdkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cR3JvdXBcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cR3JvdXBcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Group/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cR3JvdXBcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGFuZ1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGFuZ1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Lang/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTGFuZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Login.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Order/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Order/View.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Order/View.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJcVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGFnZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGFnZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Page/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGFnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Permission/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Permission/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGVybWlzc2lvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUG9zdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUG9zdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Image.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Image.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUG9zdFxJbWFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Post/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUG9zdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Image.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Image.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxJbWFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Register/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Register/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVnaXN0ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ResetPwd.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/ResetPwd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVzZXRQd2QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Subscribe/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Subscribe/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3Vic2NyaWJlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Switch.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Switch.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3dpdGNoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/SwitchLang.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/SwitchLang.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3dpdGNoTGFuZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Sync.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Sync.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3luYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Create.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVmFyaWFudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Edit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVmFyaWFudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Image.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Variant/Image.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVmFyaWFudFxJbWFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Visit/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Visit/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVmlzaXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Visit/View.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Visit/View.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVmlzaXRcVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Who/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/Who/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cV2hvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Footer.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX0Zvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Layout.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_LeftSideBar.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_LeftSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX0xlZnRTaWRlQmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_RightSideBar.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_RightSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1JpZ2h0U2lkZUJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/MyHtml.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/MyHtml.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxNeUh0bWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminListLayout.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminListLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfQWRtaW5MaXN0TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminListTabs.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminListTabs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfQWRtaW5MaXN0VGFicy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminScripts.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_AdminScripts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfQWRtaW5TY3JpcHRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_Breadcrumb.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_Breadcrumb.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfQnJlYWRjcnVtYi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_DataTable.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_DataTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfRGF0YVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_DeleteConfirmation.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_DeleteConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfRGVsZXRlQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_FormHelpers.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_FormHelpers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfRm9ybUhlbHBlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ImagePickerList.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ImagePickerList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfSW1hZ2VQaWNrZXJMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_LanguageSwitch.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_LanguageSwitch.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfTGFuZ3VhZ2VTd2l0Y2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ListCombobox.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ListCombobox.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfTGlzdENvbWJvYm94LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_PostListRow.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_PostListRow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfUG9zdExpc3RSb3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ProductListRow.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_ProductListRow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfUHJvZHVjdExpc3RSb3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderArrayField.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderArrayField.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfUmVuZGVyQXJyYXlGaWVsZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderField.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderField.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfUmVuZGVyRmllbGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderSchema.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_Shared/_RenderSchema.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1NoYXJlZFxfUmVuZGVyU2NoZW1hLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_TopBar.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Admin/_TopBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1RvcEJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Add.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpXENhcnRcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Remove.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Remove.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpXENhcnRcUmVtb3ZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Update.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Cart/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpXENhcnRcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Subscribe.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Api/Subscribe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBpXFN1YnNjcmliZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Add.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Remove.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Remove.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxSZW1vdmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Update.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Cart/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydFxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Checkout/Process.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Checkout/Process.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hlY2tvdXRcUHJvY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/About.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/blog-list.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/blog-list.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xibG9nLWxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/blog-single.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/blog-single.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xibG9nLXNpbmdsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/cart.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xjYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/cartcount.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/cartcount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xjYXJ0Y291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/checkout-cart.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/checkout-cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xjaGVja291dC1jYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/contact.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xjb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/Home.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_footer.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xsYXlvdXRfZm9vdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_header.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xsYXlvdXRfaGVhZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_sidebar.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/layout_sidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xsYXlvdXRfc2lkZWJhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/login.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/myacount.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/myacount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xteWFjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/orderstatus.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/orderstatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xvcmRlcnN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/product-list.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/product-list.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xwcm9kdWN0LWxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/product-single.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/product-single.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xwcm9kdWN0LXNpbmdsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/register.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xyZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/search-all.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/search-all.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xzZWFyY2gtYWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/secces.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/secces.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xzZWNjZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/vietQR.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/vietQR.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1x2aWV0UVIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Components/vnpay.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Components/vnpay.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1x2bnBheS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Contact/Submit.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Contact/Submit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdFxTdWJtaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/DynamicPage.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/DynamicPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHluYW1pY1BhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Error.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Index.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Login/Process.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Login/Process.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cUHJvY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/MyAccount/ChangePassword.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/MyAccount/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2NvdW50XENoYW5nZVBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/MyAccount/UpdateInfo.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/MyAccount/UpdateInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlBY2NvdW50XFVwZGF0ZUluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Privacy.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Register/Process.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Register/Process.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJcUHJvY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Sitemap.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Sitemap.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2l0ZW1hcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/VNPay/Return.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/VNPay/Return.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVk5QYXlcUmV0dXJuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/_Footer.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0Zvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/_Header.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/_Layout.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/_ViewImports.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/_ViewStart.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Iambee/update/CMS_2026/CMS_2026/CMS_2026/Pages/Shared/_Layout.cshtml]
+[C:/SLK/CMS_2026/CMS_2026/CMS_2026/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-jijta8jscs

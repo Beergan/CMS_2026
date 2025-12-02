@@ -3,6 +3,34 @@
   "WorkspaceRootPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\user\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\user\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -95,10 +123,6 @@
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\contact\\submit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\myaccount\\updateinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\myaccount\\updateinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -170,14 +194,6 @@
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\product-single.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckfinder\\config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckfinder\\config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -225,47 +241,125 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\Home.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\Home.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\Home.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Components\\Home.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-01T07:26:02.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_Header.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Header.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\_Header.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-27T06:44:34.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Layout.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\_Layout.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-27T06:44:33.368Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewImports.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-27T06:44:32.71Z"
+              "Title": "HomeViewModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "RelativeToolTip": "CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "ViewState": "AgIAAPcAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T07:25:39.147Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T07:23:51.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-01T07:23:50.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAF8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:49:02.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAYwLUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:49:09.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:21:30.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AboutViewModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "RelativeToolTip": "CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T10:51:37.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\About.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Components\\About.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T10:51:26.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewStart.cshtml",
@@ -278,55 +372,68 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAF8AAAAOAAAAAAAAAA==",
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T09:49:02.555Z"
+              "WhenOpened": "2025-11-27T06:44:32.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAYwLUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T09:49:09.072Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
-              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T10:21:30.319Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "_Footer.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Footer.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Footer.cshtml",
               "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Footer.cshtml",
               "RelativeToolTip": "CMS_2026\\Pages\\_Footer.cshtml",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-26T09:15:50.675Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 6,
+              "Title": "Process.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Login\\Process.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Login\\Process.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:07.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Layout.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_Layout.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:33.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Header.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:34.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "MyHtml.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
@@ -338,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Program.cs",
@@ -350,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "DynamicPage.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\DynamicPage.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\DynamicPage.cshtml",
@@ -362,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "BasePageModel.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\BasePageModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\BasePageModel.cs",
@@ -374,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "_ListCombobox.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
@@ -386,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "Error.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Error.cshtml",
@@ -398,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "_PostListRow.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
@@ -410,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 21,
               "Title": "HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
@@ -422,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 20,
               "Title": "_FormHelpers.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
@@ -434,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "doc.min.js",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
@@ -446,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "Subscribe.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Subscribe.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Subscribe.cshtml",
@@ -458,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Cart\\Add.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Cart\\Add.cshtml",
@@ -470,7 +577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "Process.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Checkout\\Process.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Checkout\\Process.cshtml",
@@ -482,7 +589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 28,
               "Title": "Submit.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml",
@@ -494,7 +601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 29,
               "Title": "Submit.cshtml.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
@@ -506,19 +613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Process.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Login\\Process.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\Login\\Process.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T09:16:07.015Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "UpdateInfo.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
@@ -530,7 +625,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
@@ -542,7 +637,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 32,
               "Title": "Process.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Register\\Process.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Register\\Process.cshtml",
@@ -554,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -566,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 34,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_Layout.cshtml",
@@ -578,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 36,
               "Title": "Sitemap.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Sitemap.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Sitemap.cshtml",
@@ -590,7 +685,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 37,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Privacy.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Privacy.cshtml",
@@ -602,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 35,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Index.cshtml",
@@ -614,7 +709,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 38,
               "Title": "BaseAdminPageModel.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
@@ -626,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 40,
               "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
@@ -636,7 +731,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 43,
               "Title": "_LeftSideBar.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
@@ -648,7 +743,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 44,
               "Title": "ElFinderController.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Controllers\\ElFinderController.cs",
@@ -660,7 +755,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 39,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
@@ -672,7 +767,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 41,
               "Title": "CMS_2026.csproj",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
               "RelativeDocumentMoniker": "CMS_2026\\CMS_2026.csproj",
@@ -684,7 +779,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 42,
               "Title": "BAO_CAO_CAU_HINH_PAGE.md",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
               "RelativeDocumentMoniker": "CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
@@ -696,7 +791,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 45,
               "Title": "CKFinderController.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Controllers\\CKFinderController.cs",
@@ -708,7 +803,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 47,
               "Title": "product-single.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\product-single.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\product-single.cshtml",
@@ -720,7 +815,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 46,
               "Title": "ProductListViewModel.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\ProductListViewModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\ProductListViewModel.cs",
@@ -732,31 +827,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "AboutViewModel.cs",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\AboutViewModel.cs",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
-              "RelativeToolTip": "CMS_2026\\ViewModels\\AboutViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T10:51:37.092Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
-              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\About.cshtml",
-              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
-              "RelativeToolTip": "CMS_2026\\Pages\\Components\\About.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T10:51:26.19Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 48,
               "Title": "config.js",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
@@ -768,7 +839,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 49,
               "Title": "ckeditor5.css.map",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
@@ -780,7 +851,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 50,
               "Title": "ckeditor5-init.js",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
@@ -792,7 +863,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 51,
               "Title": "ckeditor5-wrapper.js",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
@@ -804,7 +875,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 52,
               "Title": "ckeditor5-content.css",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
@@ -816,7 +887,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 53,
               "Title": "ckeditor5-editor.css",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
@@ -828,7 +899,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 54,
               "Title": "ckeditor5.js",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
@@ -840,7 +911,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "Add.cshtml.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
@@ -852,7 +923,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
@@ -864,7 +935,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 57,
               "Title": "ComponentAttribute.cs",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\ComponentAttribute.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Attributes\\ComponentAttribute.cs",

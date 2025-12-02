@@ -141,18 +141,38 @@
                                 continue;
                             }
                             var comptSchema = JsonConvert.DeserializeObject<ObjectSchema>(compt.JsonSchema ?? "{}") ?? new ObjectSchema();
-                            var config = Model.Configs.FirstOrDefault(t => t.ConfigKey == compt.ComptKey);
-                            var comptData = config?.JsonContent != null ? JsonConvert.DeserializeObject<Dictionary<string, object>>(config.JsonContent) ?? new Dictionary<string, object>()
-                                    : JsonConvert.DeserializeObject<Dictionary<string, object>>(compt.JsonDefault ?? "{}") ?? new Dictionary<string, object>();
+
+                            var config = Model.Configs.FirstOrDefault(t => t.ConfigKey == compt.ComptKey && t.LangId == Model.LangIdCompose)
+                            ?? Model.Configs.FirstOrDefault(t => t.ConfigKey == compt.ComptKey);
+                            //Loading config dataPage(devCuong)
+                            Dictionary<string, object> comptData;
+                            if (config?.JsonContent != null && !string.IsNullOrEmpty(config.JsonContent))
+                            {
+                                comptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(config.JsonContent);
+                            }
+                            else if (!string.IsNullOrEmpty(compt.JsonDefault))
+                            {
+                                comptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(compt.JsonDefault);
+                            }
+                            else
+                            {
+                                comptData = new Dictionary<string, object>();
+                            }
+
+                            if (comptData == null)
+                            {
+                                comptData = new Dictionary<string, object>();
+                            }
                             bool hasConfigured = config?.JsonContent != null;
                             bool isEmptyCompt = comptSchema.SingleFieldTypes.Count == 0
-                                                && comptSchema.ArrayFieldTypes.Count == 0
-                                                && comptSchema.SingleObjectTypes.Count == 0
-                                                && comptSchema.ArrayObjectTypes.Count == 0;
+                            && comptSchema.ArrayFieldTypes.Count == 0
+                            && comptSchema.SingleObjectTypes.Count == 0
+                            && comptSchema.ArrayObjectTypes.Count == 0;
                             if (isEmptyCompt && hasConfigured)
                             {
                                 continue;
                             }
+                            //
                             <div class="card">
                                 <div class="card-header">
                                     @compt.ComptName@(!hasConfigured ? " (Chưa cấu hình)" : "") <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@compt.ComptKey"><i class="fa fa-chevron-down pull-right"></i></button>

@@ -3752,11 +3752,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "projectUniqueName": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "projectName": "CMS_2026",
-      "projectPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+      "projectPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
       "packagesPath": "C:\\Users\\dh519\\.nuget\\packages\\",
-      "outputPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\obj\\",
+      "outputPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
