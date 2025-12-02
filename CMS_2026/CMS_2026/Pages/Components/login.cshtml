@@ -1,0 +1,53 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+}
+
+@{
+    var loginError = TempData.Peek("LoginError") as string;
+    var loginSuccess = TempData.Peek("LoginSuccess") as string;
+}
+
+<section class="login-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Đăng nhập</h2>
+                @if (!string.IsNullOrEmpty(loginError))
+                {
+                    <div class="alert alert-danger">@loginError</div>
+                }
+                @if (!string.IsNullOrEmpty(loginSuccess))
+                {
+                    <div class="alert alert-success">@loginSuccess</div>
+                }
+                <form method="post" action="/login/process">
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input type="email" name="Email" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" name="Password" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="/register">Chưa có tài khoản? Đăng ký ngay</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

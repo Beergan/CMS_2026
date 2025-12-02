@@ -1,0 +1,177 @@
+@using CMS_2026.Models
+@using CMS_2026.Data.Entities
+@using System.Collections.Generic
+@using System.Reflection
+@model dynamic
+
+@{
+    ObjectSchema schema = new ObjectSchema();
+    string path = "";
+    IDictionary<string, object> data = new Dictionary<string, object>();
+    
+    // Xử lý anonymous object bằng reflection
+    if (Model != null)
+    {
+        try
+        {
+            var modelType = Model.GetType();
+            
+            // Anonymous objects có properties với [CompilerGenerated] attribute
+            var properties = modelType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            
+            foreach (var prop in properties)
+            {
+                var propValue = prop.GetValue(Model);
+                var propName = prop.Name;
+                
+                if (propName == "Schema")
+                {
+                    if (propValue is ObjectSchema objSchema)
+                    {
+                        schema = objSchema;
+                    }
+                }
+                else if (propName == "Path")
+                {
+                    if (propValue is string pathValue)
+                    {
+                        path = pathValue;
+                    }
+                }
+                else if (propName == "Data")
+                {
+                    if (propValue is IDictionary<string, object> dataValue)
+                    {
+                        data = dataValue;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Fallback: thử truy cập như dynamic
+            try
+            {
+                schema = (Model?.Schema as ObjectSchema) ?? new ObjectSchema();
+                path = (Model?.Path as string) ?? "";
+                data = (Model?.Data as IDictionary<string, object>) ?? new Dictionary<string, object>();
+            }
+            catch
+            {
+                // Ignore errors
+            }
+        }
+    }
+    
+    var guid = Guid.NewGuid();
+}
+
+@if (path == "config")
+{
+    <div class="card @(schema.SingleFieldTypes.Count == 0 ? "d-none" : "")">
+        <div class="card-header">
+            Cấu hình chung <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@(path)-singleFields"><i class="fa fa-chevron-down pull-right"></i></button>
+        </div>
+        <div class="card-body card-body-singleFields collapse show" id="@(path)-singleFields">
+            @foreach (var singleFieldType in schema.SingleFieldTypes)
+            {
+                @await Html.PartialAsync("_Shared/_RenderField", new { Field = singleFieldType, Data = data })
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="card-body-singleFields">
+        @foreach (var singleFieldType in schema.SingleFieldTypes)
+        {
+            @await Html.PartialAsync("_Shared/_RenderField", new { Field = singleFieldType, Data = data })
+        }
+    </div>
+}
+
+@foreach (var arrayFieldType in schema.ArrayFieldTypes)
+{
+    <div class="card">
+        <div class="card-header">
+            @arrayFieldType.FieldTitle
+            <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@(path)-arrayField-@arrayFieldType.FieldId"><i class="fa fa-chevron-down pull-right"></i></button>
+        </div>
+        <div class="card-body card-body-arrayField collapse" id="@(path)-arrayField-@arrayFieldType.FieldId" originId="@arrayFieldType.FieldId">
+            @await Html.PartialAsync("_Shared/_RenderArrayField", new { Field = arrayFieldType, Data = data })
+        </div>
+    </div>
+}
+
+@foreach (var singleObjType in schema.SingleObjectTypes)
+{
+    var singleObjData = (data.ContainsKey(singleObjType.PropName ?? "") ? data[singleObjType.PropName ?? ""] : null) as IDictionary<string, object>;
+    <div class="card">
+        <div class="card-header">
+            @(singleObjType.Title ?? singleObjType.PropName) <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@(path)-singleObj-@singleObjType.PropName"><i class="fa fa-chevron-down pull-right"></i></button>
+        </div>
+        <div class="card-body card-body-singleObj collapse" id="@(path)-singleObj-@singleObjType.PropName" originId="@singleObjType.PropName">
+            @await Html.PartialAsync("_Shared/_RenderSchema", new { Schema = singleObjType, Path = $"{path}-singleObj-{singleObjType.PropName}", Data = singleObjData })
+        </div>
+    </div>
+}
+
+@foreach (var arrObjType in schema.ArrayObjectTypes)
+{
+    var arrayData = (data != null && data.ContainsKey(arrObjType.PropName ?? "") ? data[arrObjType.PropName ?? ""] ?? new List<object>() : new List<object>()) as List<object>;
+    if (arrayData == null) arrayData = new List<object>();
+
+    <div class="card">
+        <div class="card-header">
+            @(arrObjType.Title ?? arrObjType.PropName) <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@(path)-arrObjType-@arrObjType.PropName" aria-expanded="false"><i class="fa fa-chevron-down pull-right"></i></button>
+        </div>
+        <div class="card-body card-body-arrObjType collapse" id="@(path)-arrObjType-@arrObjType.PropName" originId="@arrObjType.PropName">
+
+            <div class="card-template">
+                <div class="card-header">
+                    @(arrObjType.ChildTitle ?? arrObjType.PropName)
+                    <div class="form-group mb-0 button-card-body-arrObjType float-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning btn-move-up-arrObjDataItem waves-effect"><i class="mdi mdi-minus-circle"></i> Lên</button>
+                            <button type="button" class="btn btn-danger btn-delete-arrObjDataItem waves-effect"><i class="mdi mdi-minus-circle"></i> Xóa</button>
+                            <button type="button" class="btn btn-info float-right btn-card-header-arrObjType collapsed" data-toggle="collapse" data-target="#@(path)-arrObj-@arrObjType.PropName"><i class="fa fa-chevron-down pull-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body card-body-template card-body-arrObjItem collapse" id="@(path)-arrObj-@arrObjType.PropName">
+                    @await Html.PartialAsync("_Shared/_RenderSchema", new { Schema = arrObjType, Path = $"{path}-arrObjType-{arrObjType.PropName}", Data = (IDictionary<string, object>?)null })
+                </div>
+            </div>
+
+            @foreach (var arrayItem in arrayData)
+            {
+                var itemGuid = Guid.NewGuid();
+                var arrObjData = arrayItem as IDictionary<string, object>;
+
+                <div class="card card-arrayItem">
+                    <div class="card-header">
+                        @(arrObjData?.ContainsKey("Title") == true ? arrObjData["Title"]?.ToString() : arrObjType.ChildTitle ?? arrObjType.PropName)
+
+                        <div class="form-group mb-0 button-card-body-arrObjType float-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-warning btn-move-up-arrObjDataItem waves-effect"><i class="mdi mdi-arrow-up-drop-circle"></i> Lên</button>
+                                <button type="button" class="btn btn-danger btn-delete-arrObjDataItem waves-effect"><i class="mdi mdi-minus-circle"></i> Xóa</button>
+                                <button type="button" class="btn btn-info collapsed" data-toggle="collapse" data-target="#@(path)-arrObj-@arrObjType.PropName-@itemGuid"><i class="fa fa-chevron-down pull-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body card-body-arrObjItem collapse" id="@(path)-arrObj-@arrObjType.PropName-@itemGuid">
+                        @await Html.PartialAsync("_Shared/_RenderSchema", new { Schema = arrObjType, Path = $"{path}-arrObj-{arrObjType.PropName}-{itemGuid}", Data = arrObjData })
+                    </div>
+                </div>
+            }
+
+            <div class="form-group mb-0 button-card-body-arrObjType" style="text-align:right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-light waves-effect btn-insert-arrObjDataItem"><i class="mdi mdi-plus-circle"></i> Thêm bản ghi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

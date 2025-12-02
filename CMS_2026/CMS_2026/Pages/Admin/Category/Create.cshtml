@@ -1,0 +1,89 @@
+@page
+@model CMS_2026.Pages.Admin.Category.CreateModel
+@{
+    ViewData["Title"] = "Tạo chuyên mục mới";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Tạo chuyên mục mới</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="NodeType" value="@Model.NodeType" />
+                    
+                    <div class="form-group">
+                        <label>Chuyên mục cha</label>
+                        <select name="ParentId" class="form-control">
+                            <option value="0">-- Không có --</option>
+                            @foreach (var cat in Model.GroupSelector)
+                            {
+                                <option value="@cat.Key">@cat.Value</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tiêu đề <span class="text-danger">*</span></label>
+                        <input type="text" name="Title" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Đường dẫn <span class="text-danger">*</span></label>
+                        <input type="text" name="CategoryPath" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trang danh sách <span class="text-danger">*</span></label>
+                        <select name="PageId" class="form-control" required>
+                            <option value="0">-- Chọn trang --</option>
+                            @foreach (var pageItem in Model.PageSelections)
+                            {
+                                <option value="@pageItem.Key">@pageItem.Value</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trang chi tiết</label>
+                        <select name="PageIdItem" class="form-control">
+                            <option value="0">-- Chọn trang --</option>
+                            @foreach (var pageItem in Model.PageItemSelections)
+                            {
+                                <option value="@pageItem.Key">@pageItem.Value</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hình ảnh</label>
+                        <input type="text" name="ImageUrl" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea name="MetaDescription" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Keywords</label>
+                        <input type="text" name="MetaKeywords" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Tạo</button>
+                        <a href="/admin/category?type=@Model.NodeType" class="btn btn-secondary">Hủy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

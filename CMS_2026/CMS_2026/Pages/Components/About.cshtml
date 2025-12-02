@@ -1,0 +1,187 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.ViewModels
+@using CMS_2026.Data.Entities
+@using Microsoft.Extensions.Caching.Memory
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@using Newtonsoft.Json
+@inject RootService Root
+@inject IDataService Db
+@inject IMemoryCache Cache
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    
+    // Load AboutViewModel from config
+    var data = ViewHelper.LoadData<AboutViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-About", setup: (model) =>
+    {
+        if (model == null)
+        {
+            model = new AboutViewModel
+            {
+                Title = Model?.Title ?? "Giới thiệu",
+                MetaDescription = Model?.MetaDescription ?? config.WebDescription,
+                MetaKeywords = Model?.MetaKeywords ?? ""
+            };
+        }
+        else if (Model != null)
+        {
+            // Override with page data if available
+            if (string.IsNullOrEmpty(model.Title)) model.Title = Model.Title;
+            if (string.IsNullOrEmpty(model.MetaDescription)) model.MetaDescription = Model.MetaDescription;
+            if (string.IsNullOrEmpty(model.MetaKeywords)) model.MetaKeywords = Model.MetaKeywords;
+        }
+        
+        return model;
+    });
+    
+    ViewData["Title"] = data?.Title ?? "Giới thiệu";
+    ViewData["Description"] = data?.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = data?.MetaKeywords ?? "";
+}
+
+<main id="content" class="wrapper layout-page">
+    @if (data?._About != null)
+    {
+        <section class="pb-14 py-lg-18">
+            <div class="container container-xxl">
+                <div class="row">
+                    @if (!string.IsNullOrEmpty(data._About.Image))
+                    {
+                        <div class="col-lg-6">
+                            <div class="card border-0 hover-zoom-in">
+                                <div class="image-box-4">
+                                    <img class="lazy-image img-fluid lazy-image" src="@data._About.Image" width="960" height="640" alt="@data._About.Title">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-lg-6 px-xxl-18 mt-12 mt-lg-0">
+                        @if (!string.IsNullOrEmpty(data._About.Title))
+                        {
+                            <h2 class="mb-8">@data._About.Title</h2>
+                        }
+                        @if (!string.IsNullOrEmpty(data._About.Content))
+                        {
+                            @Html.Raw(data._About.Content)
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    
+    @if (data?._About2 != null)
+    {
+        <section>
+            <div class="container container-xxl">
+                <div class="text-center pb-11 pb-lg-14">
+                    @if (!string.IsNullOrEmpty(data._About2.Titleabout2))
+                    {
+                        <h2 class="fs-3 w-lg-40 w-auto mx-auto pb-7">@data._About2.Titleabout2</h2>
+                    }
+                    @if (!string.IsNullOrEmpty(data._About2.Content))
+                    {
+                        <p class="mw-lg-50 mx-auto">@data._About2.Content</p>
+                    }
+                </div>
+                @if (data._About2._MilestoneSection != null && data._About2._MilestoneSection.Any())
+                {
+                    <div class="row gy-30px">
+                        @foreach (AboutViewModel.About2.MilestoneSection item in (data._About2._MilestoneSection ?? Array.Empty<AboutViewModel.About2.MilestoneSection>()).Take(3))
+                        {
+                            <div class="col-md-4">
+                                <div class="">
+                                    @if (!string.IsNullOrEmpty(item.Iamge))
+                                    {
+                                        <div class="d-flex justify-content-center">
+                                            <img class="lazy-image dark-mode-img img-fluid" src="@item.Iamge" width="102" height="118" alt="@item.Title">
+                                        </div>
+                                    }
+                                    <div class="card-body text-center pt-7 mt-3">
+                                        @if (!string.IsNullOrEmpty(item.Title))
+                                        {
+                                            <h3 class="fs-4 mb-6">@item.Title</h3>
+                                        }
+                                        @if (!string.IsNullOrEmpty(item.Content))
+                                        {
+                                            <p class="mb-0 px-lg-6">@item.Content</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+    }
+    
+    @if (data?._Team != null)
+    {
+        <section class="pt-5 pt-md-12 pb-12 pt-lg-14">
+            <div class="container container-xxl">
+                @if (!string.IsNullOrEmpty(data._Team.Titleteam))
+                {
+                    <h2 class="text-center mb-8">@data._Team.Titleteam</h2>
+                }
+                @if (!string.IsNullOrEmpty(data._Team.Content2))
+                {
+                    <p class="text-center mb-10">@data._Team.Content2</p>
+                }
+                @if (data._Team._List != null && data._Team._List.Any())
+                {
+                    <div class="row gy-30px">
+                        @foreach (AboutViewModel.Team.List member in (data._Team._List ?? Array.Empty<AboutViewModel.Team.List>()))
+                        {
+                            <div class="col-md-4">
+                                <div class="card border-0 text-center">
+                                    @if (!string.IsNullOrEmpty(member.Image))
+                                    {
+                                        <img class="card-img-top img-fluid" src="@member.Image" alt="@member.Title">
+                                    }
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(member.Position))
+                                        {
+                                            <p class="text-muted mb-2">@member.Position</p>
+                                        }
+                                        @if (!string.IsNullOrEmpty(member.Title))
+                                        {
+                                            <h5 class="card-title">@member.Title</h5>
+                                        }
+                                        @if (!string.IsNullOrEmpty(member.Content))
+                                        {
+                                            <p class="card-text">@member.Content</p>
+                                        }
+                                        <div class="social-links">
+                                            @if (!string.IsNullOrEmpty(member.Twitter) && member.Twitter != "#")
+                                            {
+                                                <a href="@member.Twitter" target="_blank" class="me-2"><i class="fab fa-twitter"></i></a>
+                                            }
+                                            @if (!string.IsNullOrEmpty(member.Facebook) && member.Facebook != "#")
+                                            {
+                                                <a href="@member.Facebook" target="_blank" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                                            }
+                                            @if (!string.IsNullOrEmpty(member.Instagram) && member.Instagram != "#")
+                                            {
+                                                <a href="@member.Instagram" target="_blank" class="me-2"><i class="fab fa-instagram"></i></a>
+                                            }
+                                            @if (!string.IsNullOrEmpty(member.Youtube) && member.Youtube != "#")
+                                            {
+                                                <a href="@member.Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+    }
+</main>
+

@@ -1,0 +1,705 @@
+@page
+@model CMS_2026.Pages.Admin.Group.EditModel
+@{
+    ViewData["Title"] = "Chỉnh sửa nhóm phân quyền";
+    ViewData["CurrentBreadcrumb"] = "Chỉnh sửa nhóm phân quyền";
+    Layout = "_Layout";
+}
+
+@section head {
+    <style>
+        body {
+            background-color: #f5f7fa;
+        }
+        
+        .permission-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 0;
+            margin-bottom: 24px;
+        }
+        
+        .permission-module {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #e8ecef;
+            position: relative;
+        }
+        
+        .permission-module-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-bottom: 2px solid #e8ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .permission-module-header:hover {
+            background: linear-gradient(135deg, #f0f2f5 0%, #f8f9fa 100%);
+        }
+        
+        .permission-module-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .module-title-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 0;
+        }
+        
+        .module-status-badge {
+            margin-left: auto;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-all-selected {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-partial {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .status-none {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .progress-summary {
+            display: flex;
+            gap: 24px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .progress-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .progress-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .progress-value.completed {
+            color: #10b981;
+        }
+        
+        .progress-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .stat-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .stat-learning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .stat-total {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .permission-items {
+            padding: 20px 24px;
+            background: #f9fafb;
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .permission-items.show {
+            display: block;
+            max-height: 5000px;
+        }
+        
+        .permission-module.active .permission-items {
+            display: block;
+            max-height: 5000px;
+        }
+        
+        .permission-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s ease;
+        }
+        
+        .permission-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .permission-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .permission-checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+        
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark {
+            background: #10b981;
+            border-color: #10b981;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            background: white;
+            transition: all 0.2s ease;
+            padding:9px  0!important;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .permission-label {
+            font-size: 14px;
+            color: #374151;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .permission-status-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: default;
+        }
+        
+        .status-btn-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-btn-learning {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .collapse-toggle {
+            margin-left: auto;
+            color: #9ca3af;
+            transition: transform 0.3s ease;
+            font-size: 20px;
+        }
+        
+        .permission-module-header[aria-expanded="true"] .collapse-toggle,
+        .permission-module.active .permission-module-header .collapse-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .btn-action {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-select-all {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-select-all:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-deselect-all {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-deselect-all:hover {
+            background: #4b5563;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+    </style>
+}
+
+<div class="container-fluid" style="padding: 24px; background: #f5f7fa; min-height: 100vh;">
+    @await Html.PartialAsync("_Shared/_Breadcrumb")
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="permission-container">
+                <div style="padding: 24px; border-bottom: 1px solid #e8ecef;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h4 class="mb-1" style="color: #2d3748; font-weight: 700;">Chỉnh sửa nhóm phân quyền</h4>
+                            <p class="mb-0" style="color: #6b7280; font-size: 14px;">Nhóm: <strong>@Model.Group?.RoleName</strong></p>
+        </div>
+    </div>
+
+                    <form id="editForm" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Id" value="@Model.Group?.Id" />
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="Name" class="form-label" style="font-weight: 600; color: #374151; margin-bottom: 8px;">
+                                    Tên nhóm <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" 
+                                       id="Name" 
+                                       name="Name" 
+                                       class="form-control" 
+                                       value="@Model.Group?.RoleName" 
+                                       required 
+                                       maxlength="200"
+                                       style="border-radius: 8px; border: 1px solid #d1d5db; padding: 10px 14px;" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Description" class="form-label" style="font-weight: 600; color: #374151; margin-bottom: 8px;">Mô tả</label>
+                                <textarea id="Description" 
+                                          name="Description" 
+                                          class="form-control" 
+                                          rows="3"
+                                          style="border-radius: 8px; border: 1px solid #d1d5db; padding: 10px 14px;">@Model.Group?.Description</textarea>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+
+                <div style="padding: 24px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 style="color: #2d3748; font-weight: 700; margin: 0;">
+                            <i class="mdi mdi-shield-key me-2" style="color: #667eea;"></i>
+                            Phân quyền
+                        </h5>
+                        <div class="action-buttons">
+                            <button type="button" class="btn-action btn-select-all" id="selectAll">
+                                <i class="mdi mdi-check-all me-1"></i> Chọn tất cả
+                            </button>
+                            <button type="button" class="btn-action btn-deselect-all" id="deselectAll">
+                                <i class="mdi mdi-close-box me-1"></i> Bỏ chọn tất cả
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="permissions-list">
+                        @{
+                            int moduleIndex = 0;
+                        }
+                        @foreach (var feature in Model.Permissions)
+                        {
+                            var featureId = $"module_{moduleIndex}";
+                            var featurePermissions = feature.Value.ToList();
+                            var selectedCount = featurePermissions.Count(p => Model.SelectedPermissions.Contains(p.Item1));
+                            var totalCount = featurePermissions.Count;
+                            var progressPercent = totalCount > 0 ? (int)((selectedCount * 100.0) / totalCount) : 0;
+                            var isCompleted = selectedCount == totalCount && totalCount > 0;
+                            var isInProgress = selectedCount > 0 && selectedCount < totalCount;
+                            var isExpanded = moduleIndex == 0;
+                            
+                            <div class="permission-module @(isExpanded ? "active" : "")" data-module-id="@featureId">
+                                <div class="permission-module-header module-toggle" 
+                                     data-target="@featureId"
+                                     aria-expanded="@isExpanded.ToString().ToLower()">
+                                    <div class="permission-module-title">
+                                        <div class="module-icon">
+                                            <i class="mdi mdi-folder-account"></i>
+                                        </div>
+                                        <h5 class="module-title-text">@feature.Key.TextVi</h5>
+                                        @if (isCompleted)
+                                        {
+                                            <span class="module-status-badge status-all-selected">
+                                                <i class="mdi mdi-check-circle me-1"></i> Đã chọn đủ
+                                            </span>
+                                        }
+                                        else if (isInProgress)
+                                        {
+                                            <span class="module-status-badge status-partial">
+                                                <i class="mdi mdi-check-circle-outline me-1"></i> Đã chọn một phần
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="module-status-badge status-none">
+                                                <i class="mdi mdi-circle-outline me-1"></i> Chưa chọn
+                                            </span>
+                                        }
+                                        <i class="mdi mdi-chevron-down collapse-toggle"></i>
+                                    </div>
+                                    
+                                    <div class="progress-summary">
+                                        <div class="progress-item">
+                                            <span class="progress-label">Tỷ lệ</span>
+                                            <span class="progress-value @(isCompleted ? "completed" : "")">@progressPercent%</span>
+                                        </div>
+                                        <div class="progress-item">
+                                            <span class="progress-label">Quyền đã chọn</span>
+                                            <span class="progress-value">@selectedCount / @totalCount</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="progress-stats">
+                                        <span class="stat-badge stat-completed">
+                                            Đã chọn: @selectedCount
+                                        </span>
+                                        <span class="stat-badge stat-learning">
+                                            Chưa chọn: @(totalCount - selectedCount)
+                                        </span>
+                                        <span class="stat-badge stat-total">
+                                            Tổng: @totalCount
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div id="@featureId" class="permission-items @(isExpanded ? "show" : "")">
+                                    @if (featurePermissions.Count == 0)
+                                    {
+                                        <div class="empty-state">
+                                            <div class="empty-state-icon">
+                                                <i class="mdi mdi-information-outline"></i>
+                                            </div>
+                                            <p>Không có quyền nào trong module này</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var permission in featurePermissions)
+                                        {
+                                            var isChecked = Model.SelectedPermissions.Contains(permission.Item1);
+                                            <div class="permission-item">
+                                                <div class="permission-checkbox-wrapper">
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" 
+                                                               name="Permissions" 
+                                                               value="@permission.Item1" 
+                                                               class="permission-checkbox" 
+                                                               id="perm_@feature.Key.Name@permission.Item1"
+                                                               @Html.Raw(isChecked ? "checked=\"checked\"" : "") />
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <label class="permission-label" for="perm_@feature.Key.Name@permission.Item1">
+                                                @permission.Item3
+                                            </label>
+                                        </div>
+                                                @if (isChecked)
+                                                {
+                                                    <span class="permission-status-btn status-btn-completed">
+                                                        <i class="mdi mdi-check-circle me-1"></i> Đã chọn
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="permission-status-btn status-btn-learning">
+                                                        <i class="mdi mdi-circle-outline me-1"></i> Chưa chọn
+                                                    </span>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            moduleIndex++;
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 mt-4 pt-4" style="border-top: 1px solid #e8ecef;">
+                        <a href="/admin/group" class="btn btn-secondary" style="border-radius: 8px; padding: 10px 24px; font-weight: 600;">
+                            <i class="mdi mdi-close me-1"></i>
+                            Hủy
+                        </a>
+                        <button type="submit" form="editForm" class="btn btn-primary" style="border-radius: 8px; padding: 10px 24px; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                            <i class="mdi mdi-content-save me-1"></i>
+                            Lưu thay đổi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        (function() {
+            function initPermissions() {
+                if (typeof jQuery === 'undefined') {
+                    setTimeout(initPermissions, 100);
+                    return;
+                }
+                
+                var $ = jQuery;
+                
+                $(document).ready(function() {
+                    // Toggle module collapse
+                    $(document).on('click', '.module-toggle', function(e) {
+                        e.preventDefault();
+                        var $this = $(this);
+                        var targetId = $this.data('target');
+                        var $module = $this.closest('.permission-module');
+                        var $items = $('#' + targetId);
+                        var isExpanded = $this.attr('aria-expanded') === 'true';
+                        
+                        if (isExpanded) {
+                            $items.removeClass('show');
+                            $module.removeClass('active');
+                            $this.attr('aria-expanded', 'false');
+                        } else {
+                            // Close other modules if needed (accordion behavior)
+                            $('.permission-module').not($module).removeClass('active');
+                            $('.permission-items').not($items).removeClass('show');
+                            $('.module-toggle').not($this).attr('aria-expanded', 'false');
+                            
+                            $items.addClass('show');
+                            $module.addClass('active');
+                            $this.attr('aria-expanded', 'true');
+                        }
+                    });
+                    
+                    // Update module stats when checkbox changes
+                    $(document).on('change', '.permission-checkbox', function() {
+                        var $this = $(this);
+                        var $module = $this.closest('.permission-module');
+                        var $items = $module.find('.permission-items');
+                        var total = $items.find('.permission-checkbox').length;
+                        var checked = $items.find('.permission-checkbox:checked').length;
+                        var progressPercent = total > 0 ? Math.round((checked * 100) / total) : 0;
+                        
+                        // Update progress value
+                        $module.find('.progress-value').first().text(progressPercent + '%');
+                        $module.find('.progress-value').eq(1).text(checked + ' / ' + total);
+                        
+                        // Update stats
+                        $module.find('.stat-completed').text('Đã chọn: ' + checked);
+                        $module.find('.stat-learning').text('Chưa chọn: ' + (total - checked));
+                        
+                        // Update status badge
+                        var $badge = $module.find('.module-status-badge');
+                        var $statusBtn = $this.closest('.permission-item').find('.permission-status-btn');
+                        
+                        if (checked === total && total > 0) {
+                            $badge.removeClass('status-partial status-none').addClass('status-all-selected')
+                                .html('<i class="mdi mdi-check-circle me-1"></i> Đã chọn đủ');
+                            $statusBtn.removeClass('status-btn-learning').addClass('status-btn-completed')
+                                .html('<i class="mdi mdi-check-circle me-1"></i> Đã chọn');
+                            $module.find('.progress-value').first().addClass('completed');
+                        } else if (checked > 0) {
+                            $badge.removeClass('status-all-selected status-none').addClass('status-partial')
+                                .html('<i class="mdi mdi-check-circle-outline me-1"></i> Đã chọn một phần');
+                            $statusBtn.removeClass('status-btn-completed').addClass('status-btn-learning')
+                                .html('<i class="mdi mdi-circle-outline me-1"></i> Chưa chọn');
+                            $module.find('.progress-value').first().removeClass('completed');
+                        } else {
+                            $badge.removeClass('status-all-selected status-partial').addClass('status-none')
+                                .html('<i class="mdi mdi-circle-outline me-1"></i> Chưa chọn');
+                            $statusBtn.removeClass('status-btn-completed').addClass('status-btn-learning')
+                                .html('<i class="mdi mdi-circle-outline me-1"></i> Chưa chọn');
+                            $module.find('.progress-value').first().removeClass('completed');
+                        }
+                        
+                        // Update individual item status
+                        $items.find('.permission-item').each(function() {
+                            var $item = $(this);
+                            var $checkbox = $item.find('.permission-checkbox');
+                            var $btn = $item.find('.permission-status-btn');
+                            
+                            if ($checkbox.is(':checked')) {
+                                $btn.removeClass('status-btn-learning').addClass('status-btn-completed')
+                                    .html('<i class="mdi mdi-check-circle me-1"></i> Đã chọn');
+                            } else {
+                                $btn.removeClass('status-btn-completed').addClass('status-btn-learning')
+                                    .html('<i class="mdi mdi-circle-outline me-1"></i> Chưa chọn');
+                            }
+                        });
+                    });
+
+                    // Select all
+                    $('#selectAll').on('click', function() {
+                        $('.permission-checkbox').prop('checked', true).trigger('change');
+                    });
+
+                    // Deselect all
+                    $('#deselectAll').on('click', function() {
+                        $('.permission-checkbox').prop('checked', false).trigger('change');
+                    });
+
+                    // Form submit
+                    $('#editForm').on('submit', function(e) {
+                        e.preventDefault();
+                        
+                        var formData = $(this).serialize();
+                        var $submitBtn = $(this).find('button[type="submit"]');
+                        var originalText = $submitBtn.html();
+                        
+                        $submitBtn.prop('disabled', true).html('<i class="mdi mdi-loading mdi-spin me-1"></i> Đang lưu...');
+                        
+                        $.ajax({
+                            url: '/admin/group/edit?id=@Model.Group?.Id',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                if (response && response.success) {
+                                    if (typeof toastr !== 'undefined') {
+                                        toastr.success(response.message || 'Cập nhật thành công!');
+                                    } else {
+                                        alert(response.message || 'Cập nhật thành công!');
+                                    }
+                                    setTimeout(function() {
+                                        window.location.href = response.redirect || '/admin/group';
+                                    }, 1000);
+                                } else {
+                                    if (typeof toastr !== 'undefined') {
+                                        toastr.error(response ? response.message : 'Có lỗi xảy ra!');
+                                    } else {
+                                        alert(response ? response.message : 'Có lỗi xảy ra!');
+                                    }
+                                    $submitBtn.prop('disabled', false).html(originalText);
+                                }
+                            },
+                            error: function(xhr) {
+                                var errorMsg = 'Có lỗi xảy ra khi cập nhật!';
+                                if (xhr.responseJSON && xhr.responseJSON.message) {
+                                    errorMsg = xhr.responseJSON.message;
+                                }
+                                if (typeof toastr !== 'undefined') {
+                                    toastr.error(errorMsg);
+                                } else {
+                                    alert(errorMsg);
+                                }
+                                $submitBtn.prop('disabled', false).html(originalText);
+                            }
+                        });
+                    });
+                });
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPermissions);
+            } else {
+                initPermissions();
+            }
+        })();
+    </script>
+}

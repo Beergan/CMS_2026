@@ -1,0 +1,53 @@
+@page
+@model CMS_2026.Pages.Admin.SyncModel
+@{
+    ViewData["Title"] = "Đồng bộ Component";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Đồng bộ Component</h4>
+                    <p class="text-muted">Quét các ViewModel trong thư mục ViewModels và tạo JSON schema cho các component.</p>
+                    
+                    @if (!string.IsNullOrEmpty(Model.Message))
+                    {
+                        <div class="alert alert-@(Model.Success ? "success" : "danger")">
+                            @Model.Message
+                        </div>
+                    }
+
+                    <form method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-primary">
+                            <i class="mdi mdi-sync"></i> Đồng bộ Component
+                        </button>
+                    </form>
+
+                    @if (Model.SyncedComponents != null && Model.SyncedComponents.Any())
+                    {
+                        <div class="mt-4">
+                            <h5>Đã đồng bộ @Model.SyncedComponents.Count component:</h5>
+                            <ul class="list-group">
+                                @foreach (var compt in Model.SyncedComponents)
+                                {
+                                    <li class="list-group-item">
+                                        <strong>@compt.ComptKey</strong> - @compt.ComptName
+                                        @if (!string.IsNullOrEmpty(compt.ComptType))
+                                        {
+                                            <span class="badge badge-info">@compt.ComptType</span>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

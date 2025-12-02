@@ -1,0 +1,22 @@
+[
+  {
+    "ContainingType": "CMS_2026.Controllers.ElFinderController",
+    "Method": "Connector",
+    "RelativePath": "admin/elfinder/connector",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_2026.Controllers.ElFinderController",
+    "Method": "Connector",
+    "RelativePath": "admin/elfinder/connector",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

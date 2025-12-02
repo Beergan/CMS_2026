@@ -1,0 +1,54 @@
+@using CMS_2026.Models
+@using System.Collections.Generic
+@model dynamic
+
+@{
+    var field = Model?.Field as ComponentField ?? new ComponentField();
+    var data = Model?.Data as IDictionary<string, object> ?? new Dictionary<string, object>();
+    object? value = null;
+
+    if (data.ContainsKey(field.FieldId))
+    {
+        value = data[field.FieldId];
+    }
+
+    var array = value != null ? value as System.Collections.ArrayList : new System.Collections.ArrayList();
+    if (array == null) array = new System.Collections.ArrayList();
+}
+
+@foreach (var item in array)
+{
+    <div class="input-group mb-3">
+        <input class="form-control"
+               type="@field.ControlType"
+               @(field.Required ? "required" : "")
+               parsley-type="@field.ControlType"
+               @(!string.IsNullOrEmpty(field.InputMask) ? $"data-toggle=input-mask data-mask-format={field.InputMask}" : "")
+               name="@field.FieldId"
+               id="@field.FieldId"
+               originid="@field.FieldId"
+               placeholder="@field.PlaceHolder"
+               value="@(item ?? string.Empty)"
+               tabindex="-1">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-danger btn-delete-arrFieldItem" tabindex="-1"><i class="fe-x-circle"></i></button>
+        </div>
+    </div>
+}
+
+<div class="input-group mb-3">
+    <input class="form-control"
+           type="@field.ControlType"
+           @(field.Required ? "required" : "")
+           parsley-type="@field.ControlType"
+           @(!string.IsNullOrEmpty(field.InputMask) ? $"data-toggle=input-mask data-mask-format={field.InputMask}" : "")
+           name="@field.FieldId"
+           id="@field.FieldId"
+           originid="@field.FieldId"
+           placeholder="@field.PlaceHolder"
+           tabindex="-1">
+    <div class="input-group-append">
+        <button type="button" class="btn btn-primary btn-insert-arrFieldItem" tabindex="-1"><i class="fe-plus-circle"></i></button>
+    </div>
+</div>
+

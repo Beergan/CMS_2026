@@ -1,0 +1,35 @@
+@page "/DynamicPage"
+@model CMS_2026.Pages.DynamicPageModel
+@using Microsoft.Extensions.Logging
+@{
+    Layout = "_Layout";
+}
+
+@if (Model.ComponentPath != null && Model.PageData != null)
+{
+    @try
+    {
+        // Convert ~/Pages/Components/About.cshtml to Components/About for PartialAsync
+        var componentPath = Model.ComponentPath
+            .Replace("~/Pages/", "")
+            .Replace("~/", "")
+            .Replace(".cshtml", "");
+        @await Html.PartialAsync(componentPath, Model.PageData)
+    }
+    catch (Exception ex)
+    {
+        <div class="container">
+            <h1>Component not found</h1>
+            <p>The component @Model.ComponentPath could not be loaded.</p>
+            <p>Error: @ex.Message</p>
+        </div>
+    }
+}
+else
+{
+    <div class="container">
+        <h1>Page not found</h1>
+        <p>The requested page could not be found.</p>
+    </div>
+}
+

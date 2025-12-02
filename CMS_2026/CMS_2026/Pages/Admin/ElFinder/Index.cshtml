@@ -1,0 +1,70 @@
+@page
+@model CMS_2026.Pages.Admin.ElFinder.IndexModel
+@{
+    Layout = null;
+    var targetId = Request.Query["target"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <title>elFinder - File Manager</title>
+    
+    <!-- elFinder CSS -->
+    <link rel="stylesheet" href="/admin/elfinder/css/elfinder.min.css">
+    <link rel="stylesheet" href="/admin/elfinder/css/theme.css">
+    
+    <!-- Require JS -->
+    <script data-main="/admin/elfinder/main.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+        // Override elFinder config for popup mode
+        define('elFinderConfig', {
+            defaultOpts: {
+                url: '/admin/elfinder/connector',
+                lang: 'vi',
+                width: '100%',
+                height: '100%',
+                resizable: true,
+                commandsOptions: {
+                    getfile: {
+                        onlyURL: false,
+                        multiple: false,
+                        folders: false,
+                        oncomplete: 'close'
+                    }
+                },
+                getFileCallback: function(files, fm) {
+                    // Send selected file to parent window
+                    if (window.opener && window.opener.postMessage) {
+                        window.opener.postMessage({
+                            command: 'elfinder-select',
+                            target: '@targetId',
+                            files: files
+                        }, '*');
+                    }
+                }
+            },
+            managers: {
+                'elfinder': {}
+            }
+        });
+    </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #elfinder {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="elfinder"></div>
+</body>
+</html>
+

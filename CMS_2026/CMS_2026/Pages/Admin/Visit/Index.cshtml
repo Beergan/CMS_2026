@@ -1,0 +1,57 @@
+@page
+@model CMS_2026.Pages.Admin.Visit.IndexModel
+@{
+    ViewData["Title"] = "Lịch sử truy cập";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Lịch sử truy cập</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>IP</th>
+                            <th>Thiết bị</th>
+                            <th>Trình duyệt</th>
+                            <th>Thời gian ở lại</th>
+                            <th>Số lượt click</th>
+                            <th>Ngày</th>
+                            <th style="width:1%;min-width:80px;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var visit in Model.Visits)
+                        {
+                            <tr>
+                                <td>@visit.SessionId</td>
+                                <td>@visit.Ip</td>
+                                <td>@visit.Device</td>
+                                <td>@visit.Browser</td>
+                                <td>@visit.StayTime giây</td>
+                                <td>@visit.ClickCount</td>
+                                <td>@visit.Date</td>
+                                <td align="center">
+                                    <div class="btn-group btn-group-sm">
+                                        <a title="Xem chi tiết" href="/admin/visit/view?id=@visit.Id" type="button" class="btn btn-info">
+                                            <span class="fa fa-eye"></span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,288 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.Data.Entities
+@using CMS_2026.Common
+@inject RootService Root
+@inject IDataService Db
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var nodeSlug = Context.Items["NodeSlug"]?.ToString() ?? Context.Request.Query["slug"].FirstOrDefault() ?? "";
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    
+    var post = Db.GetOne<PP_Node>(t => t.NodePath == nodeSlug && t.LangId == langId && t.NodeType == "post");
+    if (post == null)
+    {
+        <div class="container">
+            <h1>@(langId == "en" ? "Post not found" : "Bài viết không tồn tại")</h1>
+        </div>
+        return;
+    }
+
+    var category = post.CategoryId.HasValue ? Db.GetOne<PP_Category>(post.CategoryId.Value) : null;
+    var categoryIds = category != null && RootService.CategoryIndexes.ContainsKey(category.Id)
+        ? RootService.CategoryIndexes[category.Id].ToList()
+        : post.CategoryId.HasValue ? new List<int> { post.CategoryId.Value } : new List<int>();
+
+    var recentItems = Db.GetList<PP_Node>(t => 
+        t.NodeType == "post" && 
+        t.LangId == langId && 
+        categoryIds.Contains(t.CategoryId ?? 0) && 
+        t.Id != post.Id)
+        .OrderByDescending(b => b.CreatedTime)
+        .Take(5)
+        .ToList();
+
+    var allCategories = Db.GetList<PP_Category>(t => t.NodeType == "post" && t.LangId == langId).ToList();
+
+    var previousPost = Db.GetList<PP_Node>(t => 
+        t.NodeType == "post" && 
+        t.LangId == langId && 
+        t.CreatedTime < post.CreatedTime)
+        .OrderByDescending(t => t.CreatedTime)
+        .FirstOrDefault();
+
+    var nextPost = Db.GetList<PP_Node>(t => 
+        t.NodeType == "post" && 
+        t.LangId == langId && 
+        t.CreatedTime > post.CreatedTime)
+        .OrderBy(t => t.CreatedTime)
+        .FirstOrDefault();
+
+    ViewData["Title"] = post.Title;
+    ViewData["Description"] = post.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = post.MetaKeywords ?? "";
+}
+
+<main id="content" class="wrapper layout-page">
+    <section class="z-index-2 position-relative pb-2 mb-12">
+        <div class="bg-body-secondary mb-3">
+            <div class="container">
+                <nav class="py-4 lh-30px" aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center py-1">
+                        @if (config.MainMenus != null && config.MainMenus.Any())
+                        {
+                            <li class="breadcrumb-item"><a href="@config.MainMenus.First().Href">@config.MainMenus.First().Title</a></li>
+                        }
+                        <li class="breadcrumb-item active" aria-current="page">@post.Title</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-10 pb-16 pb-lg-18">
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-4">
+                    <div class="position-sticky top-0">
+                        <aside class="primary-sidebar mt-12 pt-2 mt-lg-0 pt-lg-0 pe-xl-9 me-xl-2">
+                            <div class="widget widget-search">
+                                <h4 class="widget-title fs-5 mb-6">@(langId == "en" ? "Search" : "Tìm kiếm")</h4>
+                                <form action="@(config.Link?.PageBlog ?? "/blog")">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-text bg-transparent px-4 border-0 position-absolute z-index-4 text-body-emphasis fs-5 start-0 top-0 bottom-0 m-auto">
+                                            <svg class="icon icon-magnifying-glass-light">
+                                                <use xlink:href="#icon-magnifying-glass-light"></use>
+                                            </svg>
+                                        </button>
+                                        <input name="keyword" type="search" value="@Context.Request.Query["keyword"]" class="form-control ps-11" placeholder="@(langId == "en" ? "Search" : "Tìm kiếm")">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="widget widget-category">
+                                <h4 class="widget-title fs-5 mb-6">@(langId == "en" ? "Category" : "Danh mục")</h4>
+                                <ul class="navbar-nav navbar-nav-cate" id="widget_category">
+                                    @foreach (var item in allCategories.EmptyIfNull())
+                                    {
+                                        <li class="nav-item">
+                                            <a href="/@item.CategoryPath" title="@item.Title" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center">
+                                                <span class="text-hover-underline">@item.Title</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="widget widget-post">
+                                <h4 class="widget-title fs-5 mb-6">@(langId == "en" ? "Recent posts" : "Bài viết liên quan")</h4>
+                                <ul class="list-unstyled mb-0 row gy-7 gx-0">
+                                    @if (recentItems.Any())
+                                    {
+                                        @foreach (var item in recentItems)
+                                        {
+                                            var itemCategory = item.CategoryId.HasValue ? Db.GetOne<PP_Category>(item.CategoryId.Value) : null;
+                                            <li class="col-12">
+                                                <div class="card border-0 flex-row">
+                                                    <figure class="flex-shrink-0 mb-0 me-7">
+                                                        <a href="/@item.NodePath" class="d-block" title="@item.Title">
+                                                            <img data-src="@item.ImageUrl" class="img-fluid lazy-image" alt="@item.Title" width="60" height="80" src="#">
+                                                        </a>
+                                                    </figure>
+                                                    <div class="card-body p-0">
+                                                        @if (itemCategory != null)
+                                                        {
+                                                            <h5 class="card-text fw-semibold ls-1 text-uppercase fs-13px mb-3 text-body text-primary-hover">
+                                                                <a class="text-decoration-none text-reset" href="/@itemCategory.CategoryPath" title="@itemCategory.Title">@itemCategory.Title</a>
+                                                            </h5>
+                                                        }
+                                                        <h4 class="card-title mb-0 text-body-emphasis fs-15px lh-base text-primary-hover">
+                                                            <a class="text-decoration-none text-reset" href="/@item.NodePath" title="@item.Title">@item.Title</a>
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li class="col-12">
+                                            <p>@(langId == "en" ? "No recent posts" : "Hiện chưa có bài viết mới")</p>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            @if (config._Protomo != null)
+                            {
+                                <div class="widget widget-banner">
+                                    <div class="card border-0">
+                                        @if (!string.IsNullOrEmpty(config._Protomo.BanerNew))
+                                        {
+                                            <img class="card-img img-fluid lazy-image" data-src="@config._Protomo.BanerNew" alt="@config._Protomo.TitleNew" width="340" height="343" src="#">
+                                            <div class="card-img-overlay pt-8 pb-7 px-xl-14 d-flex flex-column align-items-center justify-content-between">
+                                                @if (!string.IsNullOrEmpty(config._Protomo.TitleNew))
+                                                {
+                                                    <h2 class="fw-semibold text-uppercase fs-30px lh-12 text-white text-center">@config._Protomo.TitleNew</h2>
+                                                }
+                                                @if (!string.IsNullOrEmpty(config._Protomo.LinkNews))
+                                                {
+                                                    <a href="@config._Protomo.LinkNews" target="_blank" class="btn btn-white shadow-none">
+                                                        @(langId == "en" ? "Explore More" : "Xem thêm")
+                                                    </a>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </aside>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="text-center mb-13">
+                        @if (category != null)
+                        {
+                            <a href="/@category.CategoryPath" class="btn btn-light btn-hover-bg-dark btn-hover-border-dark btn-hover-text-light shadow-none py-0 px-6 mb-6">
+                                @category.Title
+                            </a>
+                        }
+                        <h2 class="px-6 text-body-emphasis border-0 fw-500 mb-4 fs-3">@post.Title</h2>
+                    </div>
+                    <div class="post-content">
+                    @if (!string.IsNullOrEmpty(post.ImageUrl))
+                    {
+                            <img data-src="@post.ImageUrl" width="770" height="470" alt="@post.Title" class="lazy-image mb-12 img-fluid" src="#">
+                    }
+                        @Html.Raw(post.Content)
+                    </div>
+                    <div class="row no-gutters pt-11 justify-content-sm-between">
+                        <div class="col-sm-6 mb-4 mb-sm-0"></div>
+                        <div class="col-sm-6 d-flex justify-content-sm-end">
+                            <label class="text-secondary fw-semibold me-7 mb-0">@(langId == "en" ? "Share:" : "Chia sẻ:")</label>
+                            @{
+                                var currentUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+                                var encodedUrl = System.Web.HttpUtility.UrlEncode(currentUrl);
+                            }
+                            <ul class="list-inline mb-0 lh-1">
+                                <li class="list-inline-item me-7">
+                                    <a href="https://twitter.com/intent/tweet?url=@encodedUrl" target="_blank" class="fs-18px lh-14 fw-normal">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item me-7">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=@encodedUrl" target="_blank" class="fs-18px lh-14 fw-normal">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 mt-5 mb-7">
+                            <div class="border-bottom"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="ml-8">
+                                @if (previousPost != null)
+                                {
+                                    <a href="/@previousPost.NodePath" class="fs-15px fw-semibold position-relative px-8">
+                                        <i class="far fa-chevron-left mt-2 position-absolute start-0 top-0"></i>@previousPost.Title
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-sm-end">
+                            <div class="mr-8 text-right">
+                                @if (nextPost != null)
+                                {
+                                    <a href="/@nextPost.NodePath" class="fs-15px text-start text-sm-end fw-semibold position-relative px-8">
+                                        @nextPost.Title<i class="far fa-chevron-right mt-2 position-absolute end-0 top-0"></i>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (recentItems.Any())
+                    {
+                        <div class="pt-14 pb-13 pb-lg-15 pt-lg-18 mx-n5" id="post_related">
+                            <div class="container">
+                                <div class="text-center"><h2 class="mb-6 fs-3">@(langId == "en" ? "Related articles" : "Bài viết liên quan")</h2></div>
+                            </div>
+                            <div class="container container-xxl mt-10 pt-3">
+                                <div class="slick-slider" data-slick-options='{"arrows":false,"dots":false,"responsive":[{"breakpoint":1200,"settings":{"slidesToShow":3}},{"breakpoint":992,"settings":{"dots":true,"slidesToShow":2}},{"breakpoint":768,"settings":{"dots":true,"slidesToShow":1}}],"slidesToShow":3}'>
+                                    @foreach (var item in recentItems.Take(6))
+                                    {
+                                        <div>
+                                            <article class="card card-post-grid-3 bg-transparent border-0" data-animate="fadeInUp">
+                                                <figure class="card-img-top mb-8 position-relative">
+                                                    <a href="/@item.NodePath" class="hover-shine hover-zoom-in d-block" title="@item.Title">
+                                                        <img data-src="@item.ImageUrl" class="img-fluid lazy-image w-100" alt="@item.Title" width="370" height="240" src="#">
+                                                    </a>
+                                                </figure>
+                                                <div class="card-body p-0">
+                                                    @if (item.CategoryId.HasValue)
+                                                    {
+                                                        var itemCategory = Db.GetOne<PP_Category>(item.CategoryId.Value);
+                                                        if (itemCategory != null)
+                                                        {
+                                                            <h5 class="card-text fw-semibold ls-1 text-uppercase fs-13px mb-3 text-body text-primary-hover">
+                                                                <a class="text-decoration-none text-reset" href="/@itemCategory.CategoryPath" title="@itemCategory.Title">@itemCategory.Title</a>
+                                                            </h5>
+                                                        }
+                                                    }
+                                                    <h4 class="card-title fs-5 lh-base mt-5 pt-2 mb-0">
+                                                        <a class="text-decoration-none" href="/@item.NodePath" title="@item.Title">@item.Title</a>
+                                                    </h4>
+                                                    @if (!string.IsNullOrEmpty(item.Summary))
+                                                    {
+                                                        <p class="card-text mt-4 mb-9">@(item.Summary.Length > 100 ? item.Summary.Substring(0, 100) + "..." : item.Summary)</p>
+                                                    }
+                                                    <a class="btn-link border-bottom text-decoration-none text-capitalize" href="/@item.NodePath" title="@item.Title">
+                                                        @(langId == "en" ? "Read more" : "Xem thêm")
+                                                        <svg class="icon icon-arrow-right">
+                                                            <use xlink:href="#icon-arrow-right"></use>
+                                                        </svg>
+                                                    </a>
+                    </div>
+                </article>
+            </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+

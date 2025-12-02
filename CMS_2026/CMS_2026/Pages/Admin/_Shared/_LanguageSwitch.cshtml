@@ -1,0 +1,66 @@
+@using CMS_2026.Services
+@using CMS_2026.Common
+@using CMS_2026.Data.Entities
+@inject RootService RootService
+@model dynamic
+@{
+    var langIdCompose = Model?.LangIdCompose?.ToString() ?? ViewData["LangIdCompose"]?.ToString() ?? "vi";
+    var showInputLanguage = Model?.ShowInputLanguage as bool? ?? ViewData["ShowInputLanguage"] as bool? ?? false;
+    var showButtonDropdown = Model?.ShowButtonDropdown as bool? ?? ViewData["ShowButtonDropdown"] as bool? ?? false;
+    var currentLang = Root.Langs.ContainsKey(langIdCompose) 
+        ? Root.Langs[langIdCompose] 
+        : null;
+}
+
+@* ComposeLanguageSwitch - Input language selector *@
+@if (showInputLanguage)
+{
+    <div class="form-group row">
+        <label for="LangIdCompose"
+               class="col-12 col-md-2 col-form-label">
+            Ngôn ngữ nhập
+        </label>
+        <div class="col-12 col-md-10">
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       id="LangIdCompose"
+                       value="@($"{langIdCompose} ({currentLang?.Title ?? ""})")" disabled="disabled" />
+                <div class="input-group-append">
+                    @{
+                        var redirectUrl = Context.Request.QueryString.HasValue 
+                            ? $"{Context.Request.Path}{Context.Request.QueryString}" 
+                            : Context.Request.Path.Value ?? "";
+                    }
+                    <a href="@Constants.Admin_Url/switch?lang=@langIdCompose&redirect=@redirectUrl"
+                       class="btn btn-primary"
+                       type="button">
+                        <i class="fa-exchange"></i> Thay đổi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@* ComposeLanguageSwitch2 - Button dropdown language selector *@
+@if (showButtonDropdown)
+{
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">@(currentLang?.Title ?? langIdCompose)</button>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="mdi mdi-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu">
+            @foreach (var lang in Root.Langs.Values)
+            {
+                if (lang.LangId == langIdCompose || !lang.Enabled) { continue; }
+                var redirectUrl2 = Context.Request.QueryString.HasValue 
+                    ? $"{Context.Request.Path}{Context.Request.QueryString}" 
+                    : Context.Request.Path.Value ?? "";
+                <a class="dropdown-item" href="@Constants.Admin_Url/switch?lang=@lang.LangId&redirect=@redirectUrl2">@lang.Title</a>
+            }
+        </div>
+    </div>
+}
+

@@ -1,0 +1,91 @@
+@*
+    Partial view cho Delete Confirmation với SweetAlert
+    Usage: @await Html.PartialAsync("_Shared/_DeleteConfirmation", new { 
+        DeleteUrl = "/admin/product?handler=Delete", 
+        FunctionName = "deleteProduct",
+        ItemType = "sản phẩm"
+    })
+*@
+@using CMS_2026.Common
+
+@{
+    var deleteUrl = ViewData["DeleteUrl"] as string ?? "";
+    var functionName = ViewData["FunctionName"] as string ?? "deleteItem";
+    var itemType = ViewData["ItemType"] as string ?? "mục";
+    var confirmTitle = ViewData["ConfirmTitle"] as string ?? "Hãy xác nhận?";
+    var confirmText = ViewData["ConfirmText"] as string ?? "Thao tác xóa không thể hoàn tác";
+    var successTitle = ViewData["SuccessTitle"] as string ?? "Chúc mừng!";
+    var errorTitle = ViewData["ErrorTitle"] as string ?? "Thôi xong!";
+}
+
+@* 
+    LƯU Ý: Partial view này cần được đặt trong @section head và @section scripts
+    Usage trong @section head:
+        @await Html.PartialAsync("_Shared/_DeleteConfirmation", new { IsHead = true, ... })
+    Usage trong @section scripts:
+        @await Html.PartialAsync("_Shared/_DeleteConfirmation", new { IsHead = false, ... })
+*@
+@{
+    var isHead = (bool)(ViewData["IsHead"] ?? false);
+}
+
+@if (isHead)
+{
+    <link href="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+}
+else
+{
+    <script src="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script>
+        function @(functionName)(id, title) {
+            Swal.fire({
+                title: '@Html.Raw(confirmTitle)',
+                text: '@Html.Raw(confirmText)',
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: 'Được',
+                cancelButtonText: 'Khoan!',
+                confirmButtonClass: "btn btn-success mt-2",
+                cancelButtonClass: "btn btn-danger ml-2 mt-2",
+                buttonsStyling: false
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: "@deleteUrl",
+                        type: "POST",
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        data: { 
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(), 
+                            Id: id 
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    title: '@Html.Raw(successTitle)',
+                                    text: response.message,
+                                    type: "success"
+                                }).then(function () { 
+                                    location.reload(); 
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '@Html.Raw(errorTitle)',
+                                    text: response.message,
+                                    type: "error"
+                                });
+                            }
+                        },
+                        error: function (errormessage) {
+                            Swal.fire({
+                                title: '@Html.Raw(errorTitle)',
+                                text: errormessage.responseText || 'Có lỗi xảy ra!',
+                                type: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}
+

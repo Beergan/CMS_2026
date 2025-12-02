@@ -1,0 +1,115 @@
+@page
+@model CMS_2026.Pages.Admin.Group.IndexModel
+@{
+    ViewData["Title"] = "Nhóm phân quyền";
+    ViewData["CurrentBreadcrumb"] = "Nhóm phân quyền";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    @await Html.PartialAsync("_Shared/_Breadcrumb")
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="mdi mdi-account-group me-2"></i>
+                        Quản lý nhóm phân quyền
+                    </h5>
+                    <a href="/admin/group/create" class="btn btn-light btn-sm">
+                        <i class="mdi mdi-plus-circle me-1"></i>
+                        Tạo nhóm mới
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if (Model.Groups.Any())
+                    {
+                        <div class="table-responsive">
+                            <table id="groupsTable" class="table table-hover table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th width="5%">#</th>
+                                        <th>Tên nhóm</th>
+                                        <th>Mô tả</th>
+                                        <th width="15%" class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int index = 1;
+                                    }
+                                    @foreach (var group in Model.Groups)
+                                    {
+                                        <tr>
+                                            <td>@index</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-shield-account text-primary me-2"></i>
+                                                    <strong>@group.RoleName</strong>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(group.Description))
+                                                {
+                                                    <span class="text-muted">@group.Description</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted fst-italic">Chưa có mô tả</span>
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-group" role="group">
+                                                    <a href="/admin/group/edit?id=@group.Id" 
+                                                       class="btn btn-sm btn-warning" 
+                                                       title="Chỉnh sửa">
+                                                        <i class="mdi mdi-pencil"></i>
+                                                    </a>
+                                                    <a href="/admin/permission?roleid=@group.Id" 
+                                                       class="btn btn-sm btn-info" 
+                                                       title="Phân quyền">
+                                                        <i class="mdi mdi-shield-key"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        index++;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="mdi mdi-account-group-outline" style="font-size: 64px; color: #ccc;"></i>
+                            <p class="text-muted mt-3">Chưa có nhóm phân quyền nào</p>
+                            <a href="/admin/group/create" class="btn btn-primary">
+                                <i class="mdi mdi-plus-circle me-1"></i>
+                                Tạo nhóm đầu tiên
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $('#groupsTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/vi.json'
+                },
+                order: [[1, 'asc']],
+                pageLength: 25,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+        });
+    </script>
+}
+

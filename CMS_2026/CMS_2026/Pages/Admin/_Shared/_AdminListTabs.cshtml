@@ -1,0 +1,73 @@
+@*
+    Partial view cho Admin List Tabs Navigation
+    Usage: @await Html.PartialAsync("_Shared/_AdminListTabs", new {
+        Tabs = new[] {
+            new { Text = "Danh sách", Icon = "fas fa-list-ol", Url = "#list", Active = true },
+            new { Text = "Tạo mới", Icon = "fas fa-plus-circle", Url = "/admin/product/create", Active = false }
+        }
+    })
+*@
+@using CMS_2026.Common
+
+@{
+    var tabs = ViewData["Tabs"] as dynamic[] ?? new dynamic[0];
+    var showCategories = (bool)(ViewData["ShowCategories"] ?? false);
+    var categoryType = ViewData["CategoryType"] as string ?? "product";
+    var showAllItems = (bool)(ViewData["ShowAllItems"] ?? true);
+    var allItemsText = ViewData["AllItemsText"] as string ?? "Tất cả";
+    var allItemsUrl = ViewData["AllItemsUrl"] as string ?? "";
+    var currentCategory = ViewData["CurrentCategory"] as dynamic;
+    var createUrl = ViewData["CreateUrl"] as string ?? "";
+    var createText = ViewData["CreateText"] as string ?? "Tạo mới";
+}
+
+<ul class="nav nav-tabs">
+    @if (showCategories)
+    {
+        <li class="nav-item">
+            <a href="@Constants.Admin_Url/category?type=@categoryType" aria-expanded="false" class="nav-link">
+                <i class="fe-folder"></i> Các chuyên mục
+            </a>
+        </li>
+    }
+    
+    @if (showAllItems && !string.IsNullOrEmpty(allItemsUrl))
+    {
+        <li class="nav-item">
+            <a href="@allItemsUrl" aria-expanded="true" class="nav-link @(currentCategory == null ? "active" : "")">
+                <i class="fas fa-list-ol"></i> @allItemsText
+            </a>
+        </li>
+    }
+    
+    @if (currentCategory != null)
+    {
+        <li class="nav-item">
+            <a href="#list" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                <i class="fas fa-list-ol"></i> @currentCategory.Title
+            </a>
+        </li>
+    }
+    
+    @foreach (var tab in tabs)
+    {
+        <li class="nav-item">
+            <a href="@tab.Url" 
+               data-toggle="@(tab.Url.StartsWith("#") ? "tab" : "")" 
+               aria-expanded="@tab.Active.ToString().ToLower()" 
+               class="nav-link @(tab.Active ? "active" : "")">
+                <i class="@tab.Icon"></i> @tab.Text
+            </a>
+        </li>
+    }
+    
+    @if (!string.IsNullOrEmpty(createUrl))
+    {
+        <li class="nav-item">
+            <a href="@createUrl" aria-expanded="false" class="nav-link">
+                <i class="fas fa-plus-circle"></i> @createText
+            </a>
+        </li>
+    }
+</ul>
+

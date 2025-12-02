@@ -1,0 +1,89 @@
+@page
+@model CMS_2026.Pages.Admin.Variant.EditModel
+@{
+    ViewData["Title"] = "Hiệu chỉnh biến thể sản phẩm";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Hiệu chỉnh biến thể: @Model.Product?.Title</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <form method="post" id="variantForm">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Id" value="@Model.Variant?.Id" />
+                    
+                    <div class="form-group">
+                        <label>Mã SKU</label>
+                        <input type="text" name="IDSKD" class="form-control" value="@Model.Variant?.IDSKD" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Giá <span class="text-danger">*</span></label>
+                        <input type="number" name="Price" class="form-control" step="0.01" value="@Model.Variant?.Price" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Giảm giá</label>
+                        <input type="number" name="Discount" class="form-control" step="0.01" value="@Model.Variant?.Discount" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trọng lượng/Tồn kho <span class="text-danger">*</span></label>
+                        <input type="number" name="Stock" class="form-control" value="@Model.Variant?.Stock" required min="1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hình ảnh</label>
+                        <input type="text" name="Image" class="form-control" id="imageUrl" value="@Model.Variant?.Image" />
+                        <button type="button" class="btn btn-sm btn-secondary mt-2" onclick="openImagePicker()">Chọn hình</button>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-gradient">Xác nhận</button>
+                        <a href="/admin/product" class="btn btn-light ml-1">Quay lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        document.getElementById('variantForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message);
+                    if (result.redirect) {
+                        window.location.href = result.redirect;
+                    }
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                alert('Có lỗi xảy ra');
+            }
+        });
+
+        function openImagePicker() {
+            alert('Chức năng chọn hình sẽ được tích hợp với CKFinder');
+        }
+    </script>
+}
+

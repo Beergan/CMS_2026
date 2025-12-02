@@ -1,0 +1,189 @@
+@page
+@model CMS_2026.Pages.Admin.Product.EditModel
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@{
+    ViewData["Title"] = Model.Text["Modify a product", "Hiệu chỉnh sản phẩm"];
+    ViewData["CurrentBreadcrumb"] = "Hiệu chỉnh sản phẩm";
+    Layout = "_Layout";
+}
+
+@{
+    var category = Model.Product?.CategoryId > 0 
+        ? Model.Db.GetOne<CMS_2026.Data.Entities.PP_Category>(Model.Product.CategoryId.Value) 
+        : null;
+    var nodePathValue = !string.IsNullOrEmpty(Model.Product?.NodePath) 
+        ? StringHelper.GetBefore(StringHelper.GetAfterLast(Model.Product.NodePath, "/"), ".") 
+        : "";
+    
+    var field = new FieldExtractor<CMS_2026.Data.Entities.PP_Product>();
+    var productModel = Model.Product ?? new CMS_2026.Data.Entities.PP_Product();
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <partial name="_Shared/_Breadcrumb" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/category?type=product" aria-expanded="false" class="nav-link">
+                            <i class="fe-folder"></i> @Model.Text["Categories", "Các chuyên mục"]
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/product" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> @Model.Text["All of products", "Tất cả sản phẩm"]
+                        </a>
+                    </li>
+                    @if (category != null)
+                    {
+                        <li class="nav-item">
+                            <a href="@Constants.Admin_Url/product?categoryId=@category.Id" aria-expanded="true" class="nav-link">
+                                <i class="fas fa-list-ol"></i> @category.Title
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a href="#edit" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fe-edit"></i> @Model.Text["Modify a product", "Hiệu chỉnh sản phẩm"]
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="edit">
+                        <div class="card">
+                            <div class="card-header">
+                                Thông tin cơ bản 
+                                <button type="button" class="btn btn-info float-right" data-toggle="collapse" aria-expanded="true" data-target="#main">
+                                    <i class="fa fa-chevron-down pull-right"></i>
+                                </button>
+                            </div>
+                            <div class="card-body collapse show" id="main">
+                                <form class="form-horizontal validable" role="form" method="post" style="margin-bottom: 20px;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="Id" value="@Model.Product?.Id" />
+
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                        </div>
+                                    }
+
+                                    @* Language (disabled) *@
+                                    <div class="form-group row">
+                                        <label for="LangId" class="col-12 col-md-2 col-form-label">
+                                            @Model.Text["Language", "Ngôn ngữ"]
+                                        </label>
+                                        <div class="col-12 col-md-10">
+                                            @{
+                                                var langIdValue = Model.Product?.LangId ?? "";
+                                                var langTitle = CMS_2026.Services.RootService.Langs.TryGetValue(langIdValue, out var lang) ? lang.Title : "";
+                                            }
+                                            <input class="form-control" type="text" disabled 
+                                                   name="LangId" id="LangId" 
+                                                   value="@langIdValue (@langTitle)" />
+                                        </div>
+                                    </div>
+
+                                    @Html.ComboboxFor(field[t => t.CategoryId], options: Model.GroupSelector, value: (productModel.CategoryId ?? 0).ToString())
+                                    @Html.TextBoxFor(field[t => t.Title], value: productModel.Title ?? "", required: true)
+                                    @Html.TextBoxFor(field[t => t.NodePath], value: nodePathValue, required: true)
+                                    @Html.TextAreaFor(field[t => t.Content], value: productModel.Content ?? "", required: false, useRichText: true)
+                                    @Html.TextAreaFor(field[t => t.Des], value: productModel.Des ?? "", required: false, useRichText: true)
+                                    @Html.TextAreaFor(field[t => t.Note], value: productModel.Note ?? "", required: false, useRichText: true)
+                                    @Html.NumberBoxFor(field[t => t.Price], value: productModel.Price, required: true)
+                                    @Html.NumberBoxFor(field[t => t.PromotionPrice], value: productModel.PromotionPrice, required: false)
+                                    @Html.RadioFor(field[t => t.PromotionEnabled], value: productModel.PromotionEnabled == true)
+                                    @Html.RadioFor(field[t => t.BestSeller], value: productModel.BestSeller == true)
+                                    @Html.TextBoxFor(field[t => t.ProductCode], value: productModel.ProductCode ?? "")
+                                    @Html.NumberBoxFor(field[t => t.StockQty], value: productModel.StockQty, required: false)
+                                    @Html.NumberBoxFor(field[t => t.Weight], value: productModel.Weight, required: false)
+                                    @Html.TextAreaFor(field[t => t.MetaDescription], value: productModel.MetaDescription ?? "", required: false, useRichText: false)
+                                    @Html.TagsInputFor(field[t => t.MetaKeywords], value: productModel.MetaKeywords ?? "")
+                                    @Html.ImagePickerFor(field[t => t.ImageUrl], value: productModel.ImageUrl ?? "")
+
+                                    <hr />
+
+                                    <div class="form-group mb-0">
+                                        <div>
+                                            <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                @Model.Text["Submit", "Xác nhận"]
+                                            </button>
+                                            <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                                @Model.Text["Back", "Quay lại"]
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head {
+    <!-- CKEditor 5 CSS -->
+    <link href="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // String to slug
+            $("#Title").stringToSlug({
+                getPut: '#NodePath',
+            });
+
+            // Parsley validation
+            $(".validable").parsley();
+
+            // Ensure CKEditor 5 is initialized after a delay
+            setTimeout(function() {
+                if (typeof initializeAllCKEditor5 === 'function') {
+                    initializeAllCKEditor5();
+                } else if (window.ClassicEditor) {
+                    // Fallback: manually initialize if function not available
+                    $('.myckeditor').each(function() {
+                        var elementId = $(this).attr('id');
+                        if (elementId && !window.ckeditor5Instances[elementId]) {
+                            if (typeof initializeCKEditor5 === 'function') {
+                                initializeCKEditor5(elementId);
+                            }
+                        }
+                    });
+                }
+            }, 1000);
+
+            // Update CKEditor 5 data before form submit
+            $(".validable").on('submit', function(e) {
+                // Get all CKEditor 5 instances and update their textarea values
+                if (window.ckeditor5Instances) {
+                    for (const elementId in window.ckeditor5Instances) {
+                        const editor = window.ckeditor5Instances[elementId];
+                        if (editor && editor.getData) {
+                            const textarea = document.getElementById(elementId);
+                            if (textarea) {
+                                textarea.value = editor.getData();
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}

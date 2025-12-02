@@ -1,0 +1,157 @@
+@using CMS_2026.Models
+@using System.Collections.Generic
+@model (ComponentField Field, Dictionary<string, string>? Options, IDictionary<string, object>? Data)
+
+@{
+    var field = Model.Field;
+    var options = Model.Options ?? new Dictionary<string, string>();
+    var data = Model.Data ?? new Dictionary<string, object>();
+    object? value = null;
+
+    if (data.ContainsKey(field.FieldId))
+    {
+        value = data[field.FieldId];
+    }
+
+    var ids = !string.IsNullOrEmpty(value?.ToString())
+        ? value.ToString()!.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+        : new string[] { };
+}
+
+<div id="comboboxlist-@field.FieldId">
+    @for (var i = 0; i < ids.Length; i++)
+    {
+        <div class="form-group row comboboxlist">
+            <label originId="@field.FieldId"
+                   class="col-12 col-md-2 col-form-label"
+                   for="@field.FieldId-@i">
+                @field.FieldTitle
+            </label>
+            <div class="col-12 col-md-9">
+                <select class="form-control"
+                        originId="@field.FieldId"
+                        id="@field.FieldId-@i"
+                        name="@field.FieldId">
+                    @foreach (var item in options)
+                    {
+                        var isSelected = item.Key == ids[i];
+                        if (isSelected)
+                        {
+                            <option value="@item.Key" selected>@item.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-1">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteCat(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+            </div>
+        </div>
+    }
+
+    @if (ids.Length == 0)
+    {
+        <div class="form-group row comboboxlist">
+            <label originId="@field.FieldId"
+                   class="col-12 col-md-2 col-form-label"
+                   for="@field.FieldId">
+                @field.FieldTitle
+            </label>
+            <div class="col-12 col-md-10">
+                <select class="form-control"
+                        originId="@field.FieldId"
+                        id="@field.FieldId"
+                        name="@field.FieldId">
+                    @foreach (var item in options)
+                    {
+                        var isSelected = item.Key == value?.ToString();
+                        if (isSelected)
+                        {
+                            <option value="@item.Key" selected>@item.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+            </div>
+            <div class="col-md-1">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteCat(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-primary" onclick="addCat('@field.FieldId', '@field.FieldTitle', '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(options).Replace("\"", "&quot;"))')">Thêm mục</button>
+    </div>
+</div>
+
+<script>
+    function addCat(fieldId, fieldTitle, optionsJson) {
+        var options = JSON.parse(optionsJson.replace(/&quot;/g, '"'));
+        var container = document.getElementById('comboboxlist-' + fieldId);
+        var newIndex = container.querySelectorAll('.comboboxlist').length;
+        
+        var newItem = document.createElement('div');
+        newItem.className = 'form-group row comboboxlist';
+        newItem.innerHTML = `
+            <label originId="${fieldId}"
+                   class="col-12 col-md-2 col-form-label"
+                   for="${fieldId}-${newIndex}">
+                ${fieldTitle}
+            </label>
+            <div class="col-12 col-md-9">
+                <select class="form-control"
+                        originId="${fieldId}"
+                        id="${fieldId}-${newIndex}"
+                        name="${fieldId}">
+                    ${Object.keys(options).map(key => `<option value="${key}">${options[key]}</option>`).join('')}
+                </select>
+            </div>
+            <div class="col-md-1">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteCat(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        container.appendChild(newItem);
+        
+        var rowDiv = document.createElement('div');
+        rowDiv.className = 'row';
+        rowDiv.innerHTML = '<div class="col-md-11"></div>';
+        container.appendChild(rowDiv);
+    }
+
+    function deleteCat(btn) {
+        var item = $(btn).closest('.comboboxlist');
+        var row = item.next('.row');
+        item.remove();
+        if (row.length) {
+            row.remove();
+        }
+    }
+</script>
+

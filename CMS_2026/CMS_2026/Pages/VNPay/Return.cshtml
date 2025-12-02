@@ -1,0 +1,44 @@
+@page
+@model CMS_2026.Pages.VNPay.ReturnModel
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    Layout = "_Layout";
+    var langId = Request.Cookies["LangId"] ?? "vi";
+    ViewData["Title"] = langId == "en" ? "VNPay Payment Result" : "Kết quả thanh toán VNPay";
+}
+
+<section class="vnpay-return-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header @(Model.IsSuccess ? "bg-success" : "bg-danger") text-white">
+                        <h3 class="mb-0">
+                            @(Model.IsSuccess 
+                                ? (langId == "en" ? "Payment Successful" : "Thanh toán thành công") 
+                                : (langId == "en" ? "Payment Failed" : "Thanh toán thất bại"))
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        @if (!string.IsNullOrEmpty(Model.OrderCode))
+                        {
+                            <p><strong>@(langId == "en" ? "Order Code" : "Mã đơn hàng"):</strong> @Model.OrderCode</p>
+                        }
+                        <p>@Model.Message</p>
+                        <div class="mt-3">
+                            <a href="/" class="btn btn-primary">@(langId == "en" ? "Back to Home" : "Về trang chủ")</a>
+                            @if (!string.IsNullOrEmpty(Model.OrderCode))
+                            {
+                                <a href="/orderstatus?code=@Model.OrderCode" class="btn btn-secondary">
+                                    @(langId == "en" ? "View Order Status" : "Xem trạng thái đơn hàng")
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

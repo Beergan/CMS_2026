@@ -1,0 +1,100 @@
+@page
+@model CMS_2026.Pages.Admin.Product.IndexModel
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Danh sách sản phẩm</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#list" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="fas fa-list-ol"></i> Danh sách sản phẩm
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/product/create" aria-expanded="false" class="nav-link">
+                            <i class="fas fa-plus-circle"></i> Tạo sản phẩm mới
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="list">
+                        <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu đề</th>
+                                    <th>Giá</th>
+                                    <th>Danh mục</th>
+                                    <th>Ngày tạo</th>
+                                    <th style="width:1%;min-width:80px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var product in Model.Products)
+                                {
+                                    <tr>
+                                        <td>@product.Title</td>
+                                        <td>@product.Price.ToString("#,##0") đ</td>
+                                        <td>@product.CategoryName</td>
+                                        <td>@product.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                        <td align="center">
+                                            <div class="btn-group btn-group-sm">
+                                                <a title="Hiệu chỉnh" href="/admin/product/edit?id=@product.Id" type="button" class="btn btn-warning">
+                                                    <span class="mdi mdi-pencil"></span>
+                                                </a>
+                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteProduct(@product.Id, '@product.Title')">
+                                                    <span class="mdi mdi-delete"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function deleteProduct(id, title) {
+            if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm "' + title + '"?')) {
+                return;
+            }
+
+            $.ajax({
+                url: '/admin/product?delete',
+                type: 'POST',
+                data: {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    Id: id
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra!');
+                }
+            });
+        }
+    </script>
+}
+

@@ -1,0 +1,39 @@
+@*
+    Partial view cho Admin List Layout - Wrapper cho admin list pages
+    Usage: 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                @await Html.PartialAsync("_Shared/_AdminListLayout", new {
+                    Title = "Danh sách sản phẩm",
+                    ShowBreadcrumb = true
+                })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box table-responsive">
+                    <!-- Tabs và Table content ở đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+*@
+@using CMS_2026.Common
+
+@{
+    var title = ViewData["Title"] as string ?? "";
+    var showBreadcrumb = (bool)(ViewData["ShowBreadcrumb"] ?? true);
+    var breadcrumbText = ViewData["BreadcrumbText"] as string ?? title;
+}
+
+@if (showBreadcrumb)
+{
+    ViewData["CurrentBreadcrumb"] = breadcrumbText;
+    <partial name="_Shared/_Breadcrumb" />
+}
+else
+{
+    <h4 class="page-title">@title</h4>
+}
+

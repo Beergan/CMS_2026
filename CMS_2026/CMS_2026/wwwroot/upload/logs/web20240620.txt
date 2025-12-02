@@ -1,0 +1,433 @@
+2024-06-20 08:59:10.989 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 08:59:10.989 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 08:59:10.989 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 08:59:10.989 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:27:31.355 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:27:31.355 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:27:31.370 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:27:31.370 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:28:13.479 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:28:13.479 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:28:13.494 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:28:13.744 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:34:52.641 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:34:52.641 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:34:52.657 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:34:52.657 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:37:47.184 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:37:47.184 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:37:47.215 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:37:47.215 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:39:51.118 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:39:51.118 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:39:51.134 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 09:39:51.134 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 10:35:24.524 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 10:58:05.461 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 11:00:45.582 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 11:04:45.748 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 13:09:10.775 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 13:17:11.108 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 13:17:31.107 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 13:19:11.183 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 13:35:51.925 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 13:45:52.348 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 14:03:53.151 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 14:25:53.417 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:25:53.417 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:25:53.432 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:25:53.432 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:32:44.751 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:32:44.766 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:32:44.766 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:32:44.766 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:39:28.866 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/16x16.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:39:28.882 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/loaders/32x32.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:39:28.882 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolder.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:39:28.882 +07:00 [ERR] /admin/ckfinder/skins/kama/http:/everflor.webmau.pro/admin/ckfinder/skins/kama/images/ckffolderopened.gif?t=C3491PA&t=C3491PA
+System.Web.HttpException (0x80004005): A potentially dangerous Request.Path value was detected from the client (:).
+   at System.Web.HttpRequest.ValidateInputIfRequiredByConfig()
+   at System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)
+2024-06-20 14:44:03.625 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 14:44:26.843 +07:00 [ERR] /admin/order
+System.Web.HttpCompileException (0x80004005): C:\IIS\overlof\admin\order\index.cshtml(93): error CS0117: 'GHTK_ADAPTER' does not contain a definition for 'Cancel'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-20 14:45:06.405 +07:00 [ERR] /admin/order
+System.Web.HttpCompileException (0x80004005): C:\IIS\overlof\admin\order\index.cshtml(93): error CS0117: 'GHTK_ADAPTER' does not contain a definition for 'Cancel'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-20 14:46:35.981 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 14:46:35.997 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 't0kslbjmuetpgqqpy5zvsb0d' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 14:48:28.244 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 14:48:28.306 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 14:48:45.853 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-06-20 14:48:45.915 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-06-20 15:15:47.861 +07:00 [ERR] /san-pham/nhuom-everflor-len-mau-chuan-100ml-bm-01.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.Execute() in C:\IIS\overlof\_compt\product_item.cshtml:line 333
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-20 15:15:53.799 +07:00 [ERR] /san-pham/nhuom-everflor-len-mau-chuan-100ml-bm-01.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.Execute() in C:\IIS\overlof\_compt\product_item.cshtml:line 333
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-20 15:15:57.299 +07:00 [ERR] /san-pham/nhuom-everflor-len-mau-chuan-100ml-bm-01.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.Execute() in C:\IIS\overlof\_compt\product_item.cshtml:line 333
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-20 15:47:02.723 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 't0kslbjmuetpgqqpy5zvsb0d' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 15:56:22.975 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'qoqpkrk00mlcgcnwihuc3tnw' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 16:01:23.218 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 16:02:43.466 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 16:04:43.369 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-20 16:46:40.060 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-20 17:23:01.446 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'hxmmlthqw5dft0fqnqp0xv3q' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125

@@ -1,0 +1,882 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\basepagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\basepagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\dynamicpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\dynamicpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\post\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\post\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\post\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\post\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\post\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\post\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\assets\\js\\doc.min.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\assets\\js\\doc.min.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_shared\\_formhelpers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_shared\\_formhelpers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_shared\\huong_dan_tai_su_dung_bo_cuc.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_shared\\huong_dan_tai_su_dung_bo_cuc.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_shared\\myhtml.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_shared\\myhtml.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_shared\\_postlistrow.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_shared\\_postlistrow.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_shared\\_listcombobox.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_shared\\_listcombobox.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\api\\subscribe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\api\\subscribe.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\cart\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\cart\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\checkout\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\checkout\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\contact\\submit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\contact\\submit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\contact\\submit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\contact\\submit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\login\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\myaccount\\updateinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\myaccount\\updateinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\myaccount\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\myaccount\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\register\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\register\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\sitemap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\sitemap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\baseadminpagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\baseadminpagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\bao_cao_cau_hinh_page.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\bao_cao_cau_hinh_page.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\admin\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\admin\\_leftsidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\controllers\\elfindercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\controllers\\elfindercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\controllers\\ckfindercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\controllers\\ckfindercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\viewmodels\\productlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\viewmodels\\productlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\product-single.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\product-single.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\viewmodels\\aboutviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckfinder\\config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckfinder\\config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\api\\cart\\add.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\api\\cart\\add.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\pages\\api\\cart\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\api\\cart\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|d:\\iambee\\update\\cms_2026\\cms_2026\\cms_2026\\attributes\\componentattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\attributes\\componentattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Header.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:34.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Layout.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_Layout.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:33.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:32.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewStart.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewStart.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-27T06:44:31.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAF8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:49:02.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAYwLUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:49:09.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T10:21:30.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Footer.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Footer.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Footer.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Footer.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\_Footer.cshtml",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:50.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MyHtml.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:42.288Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Program.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
+              "RelativeToolTip": "CMS_2026\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJEAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T04:42:06.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DynamicPage.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\DynamicPage.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\DynamicPage.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\DynamicPage.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\DynamicPage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:44.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BasePageModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\BasePageModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\BasePageModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\BasePageModel.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\BasePageModel.cs",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T09:15:38.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_ListCombobox.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:49.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Error.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:37.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_PostListRow.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:54.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAAL8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-26T09:16:58.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_FormHelpers.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
+              "ViewState": "AgIAALoAAAAAAAAAAAAAACcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:18:15.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "doc.min.js",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-26T09:21:05.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Subscribe.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Subscribe.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Subscribe.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Subscribe.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Api\\Subscribe.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:26.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Cart\\Add.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Cart\\Add.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Cart\\Add.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Cart\\Add.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:24.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Process.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Checkout\\Process.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Checkout\\Process.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Checkout\\Process.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Checkout\\Process.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:22.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Submit.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Contact\\Submit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:15.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Submit.cshtml.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T09:16:08.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Process.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Login\\Process.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Login\\Process.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:07.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UpdateInfo.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:04.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ChangePassword.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:04.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Process.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Register\\Process.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Register\\Process.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Register\\Process.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Register\\Process.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:16:02.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:59.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:58.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Sitemap.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Sitemap.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Sitemap.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Sitemap.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Sitemap.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:37.102Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Privacy.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Privacy.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:35.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Index.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Index.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T09:15:34.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "BaseAdminPageModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T09:15:21.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ViewState": "AgIAAPcBAAAAAAAAAAAIwAMCAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-11-26T05:17:42.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "_LeftSideBar.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAHoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T05:12:04.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ElFinderController.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\ElFinderController.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
+              "RelativeToolTip": "CMS_2026\\Controllers\\ElFinderController.cs",
+              "ViewState": "AgIAALEBAAAAAAAAAAApwGkBAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T05:10:31.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAKMAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T08:11:27.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "CMS_2026.csproj",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+              "RelativeDocumentMoniker": "CMS_2026\\CMS_2026.csproj",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+              "RelativeToolTip": "CMS_2026\\CMS_2026.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-26T05:17:55.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "BAO_CAO_CAU_HINH_PAGE.md",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
+              "RelativeDocumentMoniker": "CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
+              "RelativeToolTip": "CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-26T05:19:50.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CKFinderController.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\CKFinderController.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
+              "RelativeToolTip": "CMS_2026\\Controllers\\CKFinderController.cs",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAqwJ0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T03:21:51.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "product-single.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\product-single.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\product-single.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\product-single.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Components\\product-single.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T10:52:02.918Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ProductListViewModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\ProductListViewModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\ProductListViewModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\ProductListViewModel.cs",
+              "RelativeToolTip": "CMS_2026\\ViewModels\\ProductListViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T10:51:43.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AboutViewModel.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "RelativeToolTip": "CMS_2026\\ViewModels\\AboutViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T10:51:37.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\About.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Components\\About.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T10:51:26.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "config.js",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
+              "ViewState": "AgIAABgAAAAAAAAAAIBJwCUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-25T10:19:49.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ckeditor5.css.map",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-25T09:59:03.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ckeditor5-init.js",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-25T09:58:10.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "ckeditor5-wrapper.js",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAowAwAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-25T09:57:58.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "ckeditor5-content.css",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-25T09:57:39.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ckeditor5-editor.css",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-25T09:57:15.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "ckeditor5.js",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
+              "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
+              "RelativeToolTip": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-25T09:57:08.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Add.cshtml.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T09:45:04.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
+              "RelativeToolTip": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-25T09:45:03.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "ComponentAttribute.cs",
+              "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\ComponentAttribute.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\ComponentAttribute.cs",
+              "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\ComponentAttribute.cs",
+              "RelativeToolTip": "CMS_2026\\Attributes\\ComponentAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T09:44:55.198Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

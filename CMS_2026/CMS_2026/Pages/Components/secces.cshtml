@@ -1,0 +1,76 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    Layout = "_Layout";
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var orderCode = Context.Session.GetString("numbermakeOrder");
+    var orderJson = Context.Session.GetString("pendingOrder");
+
+    CMS_2026.Data.Entities.PP_Order? order = null;
+    if (!string.IsNullOrEmpty(orderJson))
+    {
+        try
+        {
+            order = System.Text.Json.JsonSerializer.Deserialize<CMS_2026.Data.Entities.PP_Order>(orderJson);
+        }
+        catch { }
+    }
+
+    if (string.IsNullOrEmpty(orderCode) || order == null)
+    {
+        Context.Response.Redirect("/");
+        return;
+    }
+
+    ViewData["Title"] = langId == "en" ? "Order Success" : "Đặt hàng thành công";
+}
+
+<section class="order-complete-area bg-gray pt-5 pb-5">
+    <div class="container text-center">
+        <div class="order-complete-title mb-4">
+            <h3 class="text-success">
+                @(langId == "en"
+                    ? "Thank you, your order has been created successfully!"
+                    : "Cảm ơn bạn, đơn hàng đã được tạo thành công!")
+            </h3>
+        </div>
+        <div class="order-product-details">
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                    <thead class="table-success">
+                        <tr>
+                            <th>@(langId == "en" ? "Order Code" : "Mã đơn hàng")</th>
+                            <th>@(langId == "en" ? "Date" : "Ngày")</th>
+                            <th>@(langId == "en" ? "Total" : "Tổng tiền")</th>
+                            <th>@(langId == "en" ? "Payment" : "Thanh toán")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@orderCode</td>
+                            <td>@order.CreatedTime.ToString("dd/MM/yyyy")</td>
+                            <td>@order.TotalAmount.ToString("#,##0") ₫</td>
+                            <td>@(order.PayMethod ?? "COD")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mb-1">
+                @(langId == "en"
+                    ? "We have sent the order confirmation to your email."
+                    : "Chúng tôi đã gửi xác nhận đơn hàng tới email của bạn.")
+            </p>
+            <p class="mb-4">
+                @(langId == "en"
+                    ? "We will contact you to confirm the delivery details soon."
+                    : "Chúng tôi sẽ liên hệ để xác nhận thông tin giao hàng trong thời gian sớm nhất.")
+            </p>
+            <a href="@config.Link?.PageShop ?? "/"" class="btn btn-primary">
+                @(langId == "en" ? "Continue shopping" : "Tiếp tục mua sắm")
+            </a>
+        </div>
+    </div>
+</section>
+

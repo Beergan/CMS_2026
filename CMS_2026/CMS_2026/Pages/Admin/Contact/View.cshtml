@@ -1,0 +1,34 @@
+@page
+@model CMS_2026.Pages.Admin.Contact.ViewModel
+@{
+    ViewData["Title"] = "Chi tiết liên hệ";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Chi tiết liên hệ</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Thông tin liên hệ</h5>
+                <p><strong>Tên:</strong> @Model.Contact?.Name</p>
+                <p><strong>Email:</strong> @Model.Contact?.Email</p>
+                <p><strong>Điện thoại:</strong> @Model.Contact?.Phone</p>
+                <p><strong>Trạng thái:</strong> @Model.Contact?.Status</p>
+                <p><strong>Ngày tạo:</strong> @Model.Contact?.CreatedTime.ToString("dd/MM/yyyy HH:mm")</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Nội dung</h5>
+                <p>@Model.Contact?.Message</p>
+            </div>
+        </div>
+    </div>
+</div>
+

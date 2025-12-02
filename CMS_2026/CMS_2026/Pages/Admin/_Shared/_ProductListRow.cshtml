@@ -1,0 +1,52 @@
+@*
+    Partial view cho Product List Row - Có thể tái sử dụng
+    Usage: @foreach (var product in Model.Products) {
+        @await Html.PartialAsync("_Shared/_ProductListRow", product)
+    }
+*@
+@using CMS_2026.Common
+@model dynamic
+
+@{
+    var product = Model;
+    var showImage = (bool)(ViewData["ShowImage"] ?? true);
+    var showViewButton = (bool)(ViewData["ShowViewButton"] ?? true);
+    var editUrl = ViewData["EditUrl"] as string ?? $"/admin/product/edit?id={product.Id}";
+    var imageUrl = ViewData["ImageUrl"] as string ?? $"/admin/product/image?id={product.Id}";
+    var viewUrl = ViewData["ViewUrl"] as string ?? $"/{product.NodePath}";
+}
+
+<tr>
+    <td>@product.Title</td>
+    @if (showImage)
+    {
+        <td align="center">
+            <a href="@imageUrl">
+                <img src="@(product.ImageUrl ?? "")" 
+                     border="0" 
+                     onerror="this.onerror=null;this.src='@Constants.Admin_Url/assets/images/not_available.png';" 
+                     height="50">
+            </a>
+        </td>
+    }
+    <td>@product.Price.ToString("#,##0") đ</td>
+    <td>@(product.CategoryName ?? "")</td>
+    <td>@product.CreatedTime.ToString("dd/MM/yyyy")</td>
+    <td align="center">
+        <div class="btn-group btn-group-sm">
+            @if (showViewButton && !string.IsNullOrEmpty(product.NodePath))
+            {
+                <a title="Xem" target="_blank" href="@viewUrl" type="button" class="btn btn-warning">
+                    <span class="fa fa-eye"></span>
+                </a>
+            }
+            <a title="Hiệu chỉnh" href="@editUrl" type="button" class="btn btn-warning">
+                <span class="mdi mdi-pencil"></span>
+            </a>
+            <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteProduct(@product.Id, '@product.Title')">
+                <span class="mdi mdi-delete"></span>
+            </button>
+        </div>
+    </td>
+</tr>
+

@@ -1,0 +1,62 @@
+@page
+@model CMS_2026.Pages.Admin.Order.ViewModel
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Chi tiết đơn hàng</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Thông tin khách hàng</h5>
+                <p><strong>Tên:</strong> @Model.Order?.CustomerName</p>
+                <p><strong>Email:</strong> @Model.Order?.Email</p>
+                <p><strong>Điện thoại:</strong> @Model.Order?.Phone</p>
+                <p><strong>Địa chỉ:</strong> @Model.Order?.DeliveryAddress</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Thông tin đơn hàng</h5>
+                <p><strong>Mã đơn:</strong> @Model.Order?.OrderCode</p>
+                <p><strong>Trạng thái:</strong> @Model.Order?.OrderStatus</p>
+                <p><strong>Tổng tiền:</strong> @Model.Order?.TotalAmount.ToString("#,##0") đ</p>
+                <p><strong>Ngày tạo:</strong> @Model.Order?.CreatedTime.ToString("dd/MM/yyyy HH:mm")</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <h5>Cập nhật trạng thái</h5>
+                <form method="post" asp-page-handler="UpdateStatus">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Order?.Id" />
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="NEW" selected="@(Model.Order?.OrderStatus == "NEW")">Mới</option>
+                            <option value="DELIVERING" selected="@(Model.Order?.OrderStatus == "DELIVERING")">Đang giao</option>
+                            <option value="SUCCESS" selected="@(Model.Order?.OrderStatus == "SUCCESS")">Thành công</option>
+                            <option value="CANCELLED" selected="@(Model.Order?.OrderStatus == "CANCELLED")">Hủy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ghi chú</label>
+                        <textarea name="note" class="form-control" rows="3">@Model.Order?.Note</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

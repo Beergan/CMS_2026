@@ -1,0 +1,25 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+    Layout = "_Layout";
+}
+
+<section class="error-area ptb-100">
+    <div class="container">
+        <div class="error-content" style="text-align:center;">
+            <img src="/assets/img/404-page-animation-example.gif" alt="Error" style="width:50%;" />
+            <h3>Ooops! Có lỗi xảy ra</h3>
+            <p style="color:#ff0000;">
+                Đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau!
+            </p>
+            @if (Model.ShowRequestId)
+            {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+            }
+            <a href="/" class="btn btn-outline-warning">Quay về trang chủ</a>
+        </div>
+    </div>
+</section>

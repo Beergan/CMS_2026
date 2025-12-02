@@ -1,0 +1,169 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@inject ShoppingCartService CartService
+@inject RootService Root
+@{
+    Layout = null;
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var cartLines = CartService.GetCartLines();
+}
+
+<div class="offcanvas-header fs-4">
+    <h4 class="offcanvas-title fw-semibold">
+        @(langId == "en" ? "Shopping Bag" : "Giỏ hàng")
+    </h4>
+    <button type="button" class="btn-close btn-close-bg-none" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="far fa-times"></i>
+    </button>
+</div>
+<div class="offcanvas-body me-xl-auto pt-0 mb-2 mb-xl-0">
+    <div class="table-responsive-md shopping-cart pb-8 pb-lg-10">
+        <table class="table table-borderless">
+            <tbody>
+                @if (!cartLines.Any())
+                {
+                    <tr>
+                        <td class="text-center py-5">
+                            @(langId == "en" ? "Your cart is empty." : "Giỏ hàng đang trống.")
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in cartLines)
+                    {
+                        <tr class="position-relative">
+                            <td class="align-middle text-center">
+                                <button type="button" 
+                                        class="btn btn-link text-danger p-0 remove-cart-item" 
+                                        data-product-id="@item.Product.Id" 
+                                        data-variation="@item.Variation">
+                                    <i class="far fa-times"></i>
+                                </button>
+                            </td>
+                            <td class="shop-product">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <img src="@item.Product.ImageUrl"
+                                             width="60"
+                                             height="80"
+                                             alt="@item.Product.Title" />
+                                    </div>
+                                    <div>
+                                        <p class="card-text mb-1">
+                                            @if (item.Product.PromotionEnabled && item.Product.PromotionPrice.HasValue)
+                                            {
+                                                <span class="fs-13px fw-500 text-decoration-line-through pe-3">
+                                                    @item.Product.Price.ToString("#,##0") ₫
+                                                </span>
+                                                <span class="fs-15px fw-bold text-body-emphasis">
+                                                    @item.Quantity x @item.Product.PromotionPrice.Value.ToString("#,##0") ₫
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="fs-15px fw-bold text-body-emphasis">
+                                                    @item.Quantity x @item.Product.Price.ToString("#,##0") ₫
+                                                </span>
+                                            }
+                                        </p>
+                                        <p class="fw-500 text-body-emphasis mb-0">
+                                            @item.Product.Title
+                                            @if (!string.IsNullOrEmpty(item.Variation))
+                                            {
+                                                <span>- @item.Variation</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="offcanvas-footer flex-wrap">
+    <div class="d-flex align-items-center justify-content-between w-100 mb-4">
+        <span class="text-body-emphasis">
+            @(langId == "en" ? "Total price" : "Tổng tiền")
+        </span>
+        <span class="cart-total fw-bold text-body-emphasis">
+            @CartService.GetTotal().ToString("#,##0") ₫
+        </span>
+    </div>
+    <a href="@config.Link?.PageMakeOrder ?? "/checkout"" class="btn btn-dark w-100 mb-3">
+        @(langId == "en" ? "Check Out" : "Thanh toán")
+    </a>
+    <a href="@config.Link?.PageCart ?? "/cart"" class="btn btn-outline-dark w-100">
+        @(langId == "en" ? "View shopping cart" : "Xem giỏ hàng")
+    </a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle remove cart item
+        document.querySelectorAll('.remove-cart-item').forEach(button => {
+            button.addEventListener('click', async function() {
+                const productId = this.getAttribute('data-product-id');
+                const variation = this.getAttribute('data-variation');
+                
+                const formData = new FormData();
+                formData.append('productId', productId);
+                if (variation) {
+                    formData.append('variation', variation);
+                }
+                
+                try {
+                    const response = await fetch('/Api/Cart/Remove', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Remove the row from table
+                        const row = this.closest('tr');
+                        row.remove();
+                        
+                        // Update cart total
+                        const cartTotalEl = document.querySelector('.cart-total');
+                        if (cartTotalEl) {
+                            cartTotalEl.textContent = result.cartTotal.toLocaleString('vi-VN') + ' ₫';
+                        }
+                        
+                        // Update cart count in header
+                        const cartCountEl = document.querySelector('.cart-count');
+                        if (cartCountEl) {
+                            cartCountEl.textContent = result.cartCount;
+                        }
+                        
+                        // Check if cart is empty
+                        const tbody = document.querySelector('.shopping-cart tbody');
+                        if (tbody && tbody.querySelectorAll('tr').length === 0) {
+                            tbody.innerHTML = '<tr><td class="text-center py-5">@(langId == "en" ? "Your cart is empty." : "Giỏ hàng đang trống.")</td></tr>';
+                        }
+                        
+                        // Show success message
+                        if (typeof Toastify !== 'undefined') {
+                            Toastify({
+                                text: result.message || '@(langId == "en" ? "Item removed from cart" : "Đã xóa khỏi giỏ hàng")',
+                                duration: 3000,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#28a745"
+                            }).showToast();
+                        }
+                    } else {
+                        alert(result.message || '@(langId == "en" ? "Error removing item" : "Lỗi khi xóa sản phẩm")');
+                    }
+                } catch (error) {
+                    alert('@(langId == "en" ? "Error removing item" : "Lỗi khi xóa sản phẩm")');
+                }
+            });
+        });
+    });
+</script>
+

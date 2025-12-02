@@ -1,0 +1,35 @@
+@* 
+    MyHtml Helper - Wrapper để sử dụng MyHtmlHelper extension methods
+    Sử dụng với BaseAdminPageModel
+*@
+@using CMS_2026.Utils
+@using CMS_2026.Common
+@using System.Collections.Generic
+
+@{
+    // Create a wrapper object that exposes Html extension methods as MyHtml methods
+    var MyHtml = new
+    {
+        ComposeLanguageSwitch = new Func<Microsoft.AspNetCore.Html.IHtmlContent>(() => Html.ComposeLanguageSwitch()),
+        TextBoxFor = new Func<Field, int, string, bool, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required, pattern, disabled) => Html.TextBoxFor(field, index, value, required, pattern, disabled)),
+        TextAreaFor = new Func<Field, int, string, bool, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required, useRichText) => Html.TextAreaFor(field, index, value, required, useRichText)),
+        RadioFor = new Func<Field, int, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value) => Html.RadioFor(field, index, value)),
+        ComboboxFor = new Func<Field, int, Dictionary<string, string>, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, options, value, disabled) => Html.ComboboxFor(field, index, options, value, disabled)),
+        ListComboboxFor = new Func<Field, Dictionary<string, string>, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, options, value, disabled) => Html.ListComboboxFor(field, options, value, disabled)),
+        NumberBoxFor = new Func<Field, int, object, bool, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required, pattern, disabled) => Html.NumberBoxFor(field, index, value, required, pattern, disabled)),
+        DateTimeFor = new Func<Field, int, DateTime?, bool, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required, pattern, disabled) => Html.DateTimeFor(field, index, value, required, pattern, disabled)),
+        TagsInputFor = new Func<Field, int, string, bool, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required, disabled) => Html.TagsInputFor(field, index, value, required, disabled)),
+        ImagePickerFor = new Func<Field, int, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, index, value, required) => Html.ImagePickerFor(field, index, value, required)),
+        ImagePickerForlist = new Func<Field, string, bool, Microsoft.AspNetCore.Html.IHtmlContent>(
+            (field, value, required) => Html.ImagePickerForlist(field, value, required))
+    };
+}

@@ -1,0 +1,178 @@
+@using CMS_2026.Models
+@using System.Collections.Generic
+@model (ComponentField Field, IDictionary<string, object>? Data)
+
+@{
+    var field = Model.Field;
+    var data = Model.Data ?? new Dictionary<string, object>();
+    object? value = null;
+
+    if (data.ContainsKey(field.FieldId))
+    {
+        value = data[field.FieldId];
+    }
+
+    var imageUrls = !string.IsNullOrEmpty(value?.ToString())
+        ? value.ToString()!.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+        : new string[] { };
+}
+
+<div id="image-picker-container-@field.FieldId">
+    @for (var i = 0; i < imageUrls.Length; i++)
+    {
+        <div class="form-group row image-picker-item">
+            <label for="@field.FieldId-@i"
+                   class="col-12 col-md-2 col-form-label">
+                @field.FieldTitle
+            </label>
+            <div class="col-12 col-md-8">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control ckfinder-input"
+                           name="@field.FieldId"
+                           id="@field.FieldId-@i"
+                           value="@imageUrls[i]"
+                           readonly />
+                    <div class="input-group-append">
+                        <button originid="@field.FieldId"
+                                target="@field.FieldId-@i"
+                                class="btn btn-primary waves-effect waves-light btn-ckfinder-popup"
+                                type="button"
+                                onclick="openCKFinder(this)">
+                            <i class="fe-upload"></i> Duyệt file
+                        </button>
+                    </div>
+                </div>
+                <img id="img-@field.FieldId-@i" originid="@field.FieldId" src="@imageUrls[i]" class="image-preview" style="margin-top:10px; max-height: 250px; max-width: 100%" />
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm move-up-btn" onclick="moveUpImage(this)">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm move-down-btn" onclick="moveDownImage(this)">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteImage(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (imageUrls.Length == 0)
+    {
+        <div class="form-group row image-picker-item">
+            <label for="@field.FieldId"
+                   class="col-12 col-md-2 col-form-label">
+                @field.FieldTitle
+            </label>
+            <div class="col-12 col-md-8">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control ckfinder-input"
+                           name="@field.FieldId"
+                           id="@field.FieldId"
+                           value=""
+                           readonly />
+                    <div class="input-group-append">
+                        <button originid="@field.FieldId"
+                                target="@field.FieldId"
+                                class="btn btn-primary waves-effect waves-light btn-ckfinder-popup"
+                                type="button"
+                                onclick="openCKFinder(this)">
+                            <i class="fe-upload"></i> Duyệt file
+                        </button>
+                    </div>
+                </div>
+                <img id="img-@field.FieldId" originid="@field.FieldId" src="/assets/images/no-image.jpg" class="image-preview" style="margin-top:10px; max-height: 250px; max-width: 100%" />
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm move-up-btn" onclick="moveUpImage(this)">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm move-down-btn" onclick="moveDownImage(this)">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteImage(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<button type="button" class="btn btn-primary" onclick="addImagePicker('@field.FieldId', '@field.FieldTitle')">Thêm hình ảnh</button>
+
+<script>
+    function addImagePicker(fieldId, fieldTitle) {
+        var container = document.getElementById('image-picker-container-' + fieldId);
+        var newIndex = container.querySelectorAll('.image-picker-item').length;
+        
+        var newItem = document.createElement('div');
+        newItem.className = 'form-group row image-picker-item';
+        newItem.innerHTML = `
+            <label for="${fieldId}-${newIndex}"
+                   class="col-12 col-md-2 col-form-label">
+                ${fieldTitle}
+            </label>
+            <div class="col-12 col-md-8">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control ckfinder-input"
+                           name="${fieldId}"
+                           id="${fieldId}-${newIndex}"
+                           value=""
+                           readonly />
+                    <div class="input-group-append">
+                        <button originid="${fieldId}"
+                                target="${fieldId}-${newIndex}"
+                                class="btn btn-primary waves-effect waves-light btn-ckfinder-popup"
+                                type="button"
+                                onclick="openCKFinder(this)">
+                            <i class="fe-upload"></i> Duyệt file
+                        </button>
+                    </div>
+                </div>
+                <img id="img-${fieldId}-${newIndex}" originid="${fieldId}" src="/assets/images/no-image.jpg" class="image-preview" style="margin-top:10px; max-height: 250px; max-width: 100%" />
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm move-up-btn" onclick="moveUpImage(this)">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-info btn-sm move-down-btn" onclick="moveDownImage(this)">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm delete-btn" onclick="deleteImage(this)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        container.appendChild(newItem);
+    }
+
+    function deleteImage(btn) {
+        $(btn).closest('.image-picker-item').remove();
+    }
+
+    function moveUpImage(btn) {
+        var item = $(btn).closest('.image-picker-item');
+        var prev = item.prev('.image-picker-item');
+        if (prev.length) {
+            item.insertBefore(prev);
+        }
+    }
+
+    function moveDownImage(btn) {
+        var item = $(btn).closest('.image-picker-item');
+        var next = item.next('.image-picker-item');
+        if (next.length) {
+            item.insertAfter(next);
+        }
+    }
+</script>
+

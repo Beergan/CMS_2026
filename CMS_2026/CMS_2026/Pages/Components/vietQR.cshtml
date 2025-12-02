@@ -1,0 +1,72 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    Layout = "_Layout";
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var orderJson = Context.Session.GetString("pendingOrder");
+    var qrCodeUrl = Context.Session.GetString("qrCodeUrl");
+    var orderCode = Context.Session.GetString("numbermakeOrder");
+
+    CMS_2026.Data.Entities.PP_Order? order = null;
+    if (!string.IsNullOrEmpty(orderJson))
+    {
+        try
+        {
+            order = System.Text.Json.JsonSerializer.Deserialize<CMS_2026.Data.Entities.PP_Order>(orderJson);
+        }
+        catch { }
+    }
+
+    if (order == null || string.IsNullOrEmpty(qrCodeUrl))
+    {
+        Context.Response.Redirect("/error");
+        return;
+    }
+
+    ViewData["Title"] = langId == "en" ? "Order Confirmation" : "Xác nhận đơn hàng";
+}
+
+<section class="section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="checkout-area">
+                    <h2>@(langId == "en" ? "Order Confirmation" : "Xác nhận đơn hàng")</h2>
+                    <div class="order-confirmation">
+                        <p><strong>@(langId == "en" ? "Order Code" : "Mã đơn hàng"):</strong> @orderCode</p>
+                        <p><strong>@(langId == "en" ? "Total Amount" : "Tổng tiền"):</strong> @order.TotalAmount.ToString("#,##0") ₫</p>
+                        <p><strong>@(langId == "en" ? "Payment Method" : "Phương thức thanh toán"):</strong> VietQR</p>
+                        <p><strong>@(langId == "en" ? "Delivery Option" : "Phương thức nhận hàng"):</strong>
+                            @(order.OrderStatus == "delivery"
+                                ? (langId == "en" ? "Home Delivery" : "Giao hàng tận nơi")
+                                : (langId == "en" ? "Direct Pickup" : "Nhận tại cửa hàng"))
+                        </p>
+                        @if (order.OrderStatus == "delivery")
+                        {
+                            <p><strong>@(langId == "en" ? "Delivery Address" : "Địa chỉ giao hàng"):</strong>
+                                @order.DeliveryAddress, @order.Ward, @order.District, @order.Province
+                            </p>
+                        }
+                        <div class="qr-code text-center mt-4">
+                            <p><strong>@(langId == "en" ? "Scan QR Code to Pay" : "Quét mã QR để thanh toán"):</strong></p>
+                            <img src="@qrCodeUrl" alt="VietQR Code" style="max-width: 220px;" />
+                            <p class="mt-2">
+                                @(langId == "en"
+                                    ? "Use your banking app to scan the QR code and finish the payment."
+                                    : "Vui lòng dùng ứng dụng ngân hàng để quét mã và hoàn tất thanh toán.")
+                            </p>
+                        </div>
+                        <div class="checkout-btn mt-4 text-center">
+                            <a href="@config.Link?.PageShop ?? "/"" class="btn btn-primary">
+                                @(langId == "en" ? "Back to shop" : "Quay lại cửa hàng")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

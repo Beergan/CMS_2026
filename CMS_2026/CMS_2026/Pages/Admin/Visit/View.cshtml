@@ -1,0 +1,39 @@
+@page
+@model CMS_2026.Pages.Admin.Visit.ViewModel
+@{
+    ViewData["Title"] = "Chi tiết truy cập";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Chi tiết truy cập</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Thông tin truy cập</h5>
+                <p><strong>Session ID:</strong> @Model.Visit?.SessionId</p>
+                <p><strong>IP:</strong> @Model.Visit?.Ip</p>
+                <p><strong>Thiết bị:</strong> @Model.Visit?.Device</p>
+                <p><strong>Trình duyệt:</strong> @Model.Visit?.Browser</p>
+                <p><strong>Thời gian ở lại:</strong> @Model.Visit?.StayTime giây</p>
+                <p><strong>Số lượt click:</strong> @Model.Visit?.ClickCount</p>
+                <p><strong>Ngày:</strong> @Model.Visit?.Date</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-box">
+                <h5>Chi tiết truy cập</h5>
+                @if (!string.IsNullOrEmpty(Model.Visit?.JsonDetails))
+                {
+                    <pre>@Model.Visit.JsonDetails</pre>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

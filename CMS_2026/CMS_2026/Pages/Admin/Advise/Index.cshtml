@@ -1,0 +1,80 @@
+@page
+@model CMS_2026.Pages.Admin.Advise.IndexModel
+@{
+    ViewData["Title"] = "Danh sách tư vấn";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Danh sách tư vấn</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="?new" aria-expanded="true" class="nav-link @(Model.Status == "NEW" || string.IsNullOrEmpty(Model.Status) ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Tư vấn mới
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?processing" aria-expanded="true" class="nav-link @(Model.Status == "PROCESSING" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đang xử lý
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?cancelled" aria-expanded="true" class="nav-link @(Model.Status == "CANCELLED" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đã hủy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?success" aria-expanded="true" class="nav-link @(Model.Status == "SUCCESS" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Xử lý thành công
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="list">
+                        <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Ngày tạo</th>
+                                    <th>Người liên hệ</th>
+                                    <th>Nội dung</th>
+                                    <th>Trạng thái</th>
+                                    <th style="width:1%;min-width:80px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var advise in Model.Advises)
+                                {
+                                    <tr>
+                                        <td>@advise.CreatedTime.ToString("yyyy-MM-dd")</td>
+                                        <td>
+                                            <h5 class="mt-0">@advise.Name</h5>
+                                            <div><u>Điện thoại:</u> @advise.Phone</div>
+                                        </td>
+                                        <td>@(advise.Content?.Length > 100 ? advise.Content.Substring(0, 100) + "..." : advise.Content)</td>
+                                        <td>@advise.Status</td>
+                                        <td align="center">
+                                            <div class="btn-group btn-group-sm">
+                                                <a title="Xem" href="/admin/advise/view?id=@advise.Id" type="button" class="btn btn-info">
+                                                    <span class="fa fa-eye"></span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

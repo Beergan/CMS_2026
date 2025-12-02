@@ -1,0 +1,127 @@
+@page
+@model CMS_2026.Pages.Admin.ForgotPwdModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>QUÊN MẬT KHẨU - ADMIN PAGE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="~/admin/assets/images/favicon.ico">
+    <link href="~/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        html, body {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            touch-action: pan-x pan-y;
+        }
+        .my-container {
+            text-align: center;
+            display: block;
+            height: 100%;
+            position: relative;
+            z-index: 1000;
+        }
+        .my-container::before,
+        .my-container .box {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: left;
+        }
+        .my-container::before {
+            content: '';
+            width: 0;
+            height: 100%;
+        }
+        .video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="authentication-bg bg-gradient">
+    <video class="video" autoplay muted loop>
+        <source src="~/admin/assets/videos/Indian-Tea.mp4" type="video/mp4">
+    </video>
+    
+    @if (Model.IsSuccess)
+    {
+        <div class="my-container">
+            <div class="box">
+                <div class="card" style="min-width:350px">
+                    <div class="card-body">
+                        <div class="text-center w-75 m-auto">
+                            <a href="/admin">
+                                <span><img src="~/admin/assets/images/logo-slk.png" alt="" height="100"></span>
+                            </a>
+                            <h5 class="text-uppercase text-center font-bold mb-2">ĐẶT LẠI MẬT KHẨU</h5>
+                        </div>
+                        <div class="form-group mt-3 mb-0">
+                            <label style="color:#3ec396">@Model.Message</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="my-container">
+            <div class="box">
+                <div class="card" style="min-width: 350px">
+                    <div class="card-body">
+                        <div class="text-center w-75 m-auto">
+                            <a href="/admin">
+                                <span><img src="~/admin/assets/images/logo-slk.png" alt="" height="100"></span>
+                            </a>
+                            <h5 class="text-uppercase text-center font-bold mb-2">QUÊN MẬT KHẨU</h5>
+                        </div>
+
+                        <form method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group mb-3">
+                                <label for="UserId">Tên đăng nhập</label>
+                                <input class="form-control" type="text" required id="UserId" name="UserId" value="@Model.UserId">
+                            </div>
+
+                            @if (!ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <div asp-validation-summary="All"></div>
+                                </div>
+                            }
+
+                            <div class="form-group mb-0 text-center">
+                                <button class="btn btn-gradient btn-block" type="submit">Xác nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
+    <script src="~/admin/assets/js/vendor.min.js"></script>
+    <script src="~/admin/assets/js/app.min.js"></script>
+</body>
+</html>
+

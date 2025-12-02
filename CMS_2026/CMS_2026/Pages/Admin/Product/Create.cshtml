@@ -1,0 +1,327 @@
+@page
+@model CMS_2026.Pages.Admin.Product.CreateModel
+@using CMS_2026.Common
+@{
+    ViewData["Title"] = Model.Text["CREATE A PRODUCT", "TẠO MỚI SẢN PHẨM"];
+    ViewData["CurrentBreadcrumb"] = "Tạo sản phẩm mới";
+    Layout = "_Layout";
+}
+
+@{
+    var categoryId = Request.Query["CategoryId"].FirstOrDefault();
+    var category = !string.IsNullOrEmpty(categoryId) && int.TryParse(categoryId, out var catId) 
+        ? Model.Db.GetOne<CMS_2026.Data.Entities.PP_Category>(catId) 
+        : null;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <partial name="_Shared/_Breadcrumb" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/category?type=product" aria-expanded="false" class="nav-link">
+                            <i class="fe-folder"></i> @Model.Text["Categories", "Các chuyên mục"]
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/product@(!string.IsNullOrEmpty(categoryId) ? $"?categoryId={categoryId}" : "")" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> @Model.Text["All of products", "Tất cả sản phẩm"]
+                        </a>
+                    </li>
+                    @if (category != null)
+                    {
+                        <li class="nav-item">
+                            <a href="@Constants.Admin_Url/product@(!string.IsNullOrEmpty(categoryId) ? $"?categoryId={categoryId}" : "")" aria-expanded="true" class="nav-link">
+                                <i class="fas fa-list-ol"></i> @category.Title
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a href="#create" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fas fa-plus-circle"></i> @Model.Text["Create new product", "Thêm sản phẩm mới"]
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="create">
+                        <form class="form-horizontal validable" role="form" method="post">
+                            @Html.AntiForgeryToken()
+
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                </div>
+                            }
+
+                            @* Language Switch *@
+                            <div class="form-group row">
+                                <label for="LangIdCompose" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Input language", "Ngôn ngữ nhập"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="LangIdCompose" 
+                                               value="@($"{Model.LangIdCompose} ({Model.LangCompose?.Title ?? ""})")" disabled="disabled" />
+                                        <div class="input-group-append">
+                                            <a href="@Constants.Admin_Url/i18n" class="btn btn-primary" type="button">
+                                                <i class="fa-exchange"></i> @Model.Text["Change", "Thay đổi"]
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @* Category *@
+                            <div class="form-group row">
+                                <label for="CategoryId" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Category", "Chuyên mục"]
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <select class="form-control" id="CategoryId" name="CategoryId" required>
+                                        <option value="0">-- Chọn chuyên mục --</option>
+                                        @foreach (var cat in Model.GroupSelector)
+                                        {
+                                            var isSelected = cat.Key == categoryId;
+                                            <option value="@cat.Key" selected="@isSelected">@cat.Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            @* Title *@
+                            <div class="form-group row">
+                                <label for="Title" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Title", "Tiêu đề"]
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="text" required parsley-type="text" 
+                                           name="Title" id="Title" placeholder="" value="" />
+                                </div>
+                            </div>
+
+                            @* NodePath (Alias) *@
+                            <div class="form-group row">
+                                <label for="NodePath" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Alias", "Đường dẫn"]
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="text" required parsley-type="text" 
+                                           name="NodePath" id="NodePath" placeholder="" value="" />
+                                </div>
+                            </div>
+
+                            @* Content *@
+                            <div class="form-group row">
+                                <label for="Content" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Content", "Nội dung"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <textarea class="form-control myckeditor" parsley-type="text" 
+                                              name="Content" id="Content" placeholder="" rows="7" myckeditor></textarea>
+                                </div>
+                            </div>
+
+                            @* Des *@
+                            <div class="form-group row">
+                                <label for="Des" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Description", "Mô tả ngắn"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <textarea class="form-control myckeditor" parsley-type="text" 
+                                              name="Des" id="Des" placeholder="" rows="7" myckeditor></textarea>
+                                </div>
+                            </div>
+
+                            @* Note *@
+                            <div class="form-group row">
+                                <label for="Note" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Note", "Ghi chú"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <textarea class="form-control myckeditor" parsley-type="text" 
+                                              name="Note" id="Note" placeholder="" rows="7" myckeditor></textarea>
+                                </div>
+                            </div>
+
+                            @* Price *@
+                            <div class="form-group row">
+                                <label for="Price" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Price", "Giá"]
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="number" step="0.01" required parsley-type="number" 
+                                           name="Price" id="Price" placeholder="" value="0" />
+                                </div>
+                            </div>
+
+                            @* PromotionPrice *@
+                            <div class="form-group row">
+                                <label for="PromotionPrice" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Promotion Price", "Giá khuyến mãi"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="number" step="0.01" parsley-type="number" 
+                                           name="PromotionPrice" id="PromotionPrice" placeholder="" value="" />
+                                </div>
+                            </div>
+
+                            @* PromotionEnabled *@
+                            <div class="form-group row">
+                                <label for="PromotionEnabled" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Enable Promotion", "Kích hoạt khuyến mãi"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input type="checkbox" name="PromotionEnabled" id="PromotionEnabled" value="true" 
+                                           data-plugin="switchery" data-color="#3ec396" />
+                                </div>
+                            </div>
+
+                            @* BestSeller *@
+                            <div class="form-group row">
+                                <label for="BestSeller" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Best Seller", "Sản phẩm bán chạy"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input type="checkbox" name="BestSeller" id="BestSeller" value="true" 
+                                           data-plugin="switchery" data-color="#3ec396" />
+                                </div>
+                            </div>
+
+                            @* ProductCode *@
+                            <div class="form-group row">
+                                <label for="ProductCode" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Product Code", "Mã sản phẩm"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="text" parsley-type="text" 
+                                           name="ProductCode" id="ProductCode" placeholder="" value="" />
+                                </div>
+                            </div>
+
+                            @* StockQty *@
+                            <div class="form-group row">
+                                <label for="StockQty" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Stock Quantity", "Số lượng tồn kho"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="number" parsley-type="number" 
+                                           name="StockQty" id="StockQty" placeholder="" value="0" />
+                                </div>
+                            </div>
+
+                            @* Weight *@
+                            <div class="form-group row">
+                                <label for="Weight" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Weight", "Trọng lượng (gram)"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="number" parsley-type="number" 
+                                           name="Weight" id="Weight" placeholder="" value="0" />
+                                </div>
+                            </div>
+
+                            @* Meta Description *@
+                            <div class="form-group row">
+                                <label for="MetaDescription" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Meta Description", "Mô tả SEO"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <textarea class="form-control" name="MetaDescription" id="MetaDescription" 
+                                              placeholder="" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            @* Meta Keywords *@
+                            <div class="form-group row">
+                                <label for="MetaKeywords" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Meta Keywords", "Từ khóa SEO"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <input class="form-control" type="text" data-role="tagsinput" 
+                                           name="MetaKeywords" id="MetaKeywords" placeholder="" value="" />
+                                </div>
+                            </div>
+
+                            @* ImageUrl *@
+                            <div class="form-group row">
+                                <label for="ImageUrl" class="col-12 col-md-2 col-form-label">
+                                    @Model.Text["Image", "Hình ảnh"]
+                                </label>
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="ImageUrl" id="ImageUrl" 
+                                               value="" readonly />
+                                        <div class="input-group-append">
+                                            <button originid="ImageUrl" target="ImageUrl"
+                                                    class="btn btn-primary waves-effect waves-light btn-ckfinder-popup"
+                                                    type="button">
+                                                <i class="fe-upload"></i> @Model.Text["Browse files ..", "Duyệt file .."]
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <img id="img-ImageUrl" originid="ImageUrl" 
+                                         src="/assets/images/no-image.jpg" 
+                                         style="margin-top:10px; max-height: 250px; max-width: 100%" />
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        @Model.Text["Continue", "Tiếp tục"]
+                                    </button>
+                                    <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                        @Model.Text["Back", "Quay lại"]
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head {
+    <!-- CKEditor 5 CSS -->
+    <link rel="stylesheet" href="@Constants.Admin_Url/ckeditor5/ckeditor5.css">
+    <link href="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/ckeditor5/ckeditor5.umd.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-wrapper.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-init.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // String to slug
+            $("#Title").stringToSlug({
+                getPut: '#NodePath',
+            });
+
+            // Parsley validation
+            $(".validable").parsley();
+        });
+    </script>
+}

@@ -1,0 +1,90 @@
+@page
+@model CMS_2026.Pages.Admin.Order.IndexModel
+@{
+    ViewData["Title"] = "Danh sách đơn hàng";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Danh sách đơn hàng</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="?new" aria-expanded="true" class="nav-link @(Model.Status == "NEW" || string.IsNullOrEmpty(Model.Status) ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đơn hàng mới
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?delivering" aria-expanded="true" class="nav-link @(Model.Status == "DELIVERING" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đơn đang giao
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?cancelled" aria-expanded="true" class="nav-link @(Model.Status == "CANCELLED" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đơn hủy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?success" aria-expanded="true" class="nav-link @(Model.Status == "SUCCESS" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Đơn thành công
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?all" aria-expanded="true" class="nav-link @(Model.Status == "all" ? "active" : "")">
+                            <i class="fas fa-list-ol"></i> Tất cả đơn hàng
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="list">
+                        <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn</th>
+                                    <th>Khách hàng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ngày tạo</th>
+                                    <th style="width:1%;min-width:80px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>@order.OrderCode</td>
+                                        <td>@order.CustomerName</td>
+                                        <td>@order.TotalAmount.ToString("#,##0") đ</td>
+                                        <td>@order.OrderStatus</td>
+                                        <td>@order.CreatedTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td align="center">
+                                            <div class="btn-group btn-group-sm">
+                                                <a title="Xem chi tiết" href="/admin/order/view?id=@order.Id" type="button" class="btn btn-info">
+                                                    <span class="fa fa-eye"></span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Order management scripts
+    </script>
+}
+

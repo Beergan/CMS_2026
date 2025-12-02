@@ -1,0 +1,11 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    Layout = null;
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+}
+
+@await Html.PartialAsync("_Header", config)
+

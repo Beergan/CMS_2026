@@ -1,0 +1,158 @@
+@using CMS_2026.Services
+@using CMS_2026.Models
+@using CMS_2026.Data.Entities
+@inject PermissionService PermissionService
+@inject IDataService Db
+@{
+    var userId = AuthenticationService.GetUserIdInt(Context);
+    var contacts = Db.GetList<PP_Contact>(x => x.Status == "NEW").Count;
+    var comment = Db.GetList<PP_Comment>(x => x.Status == "NEW").Count;
+    var registers = Db.GetList<PP_Register>(x => x.Status == "NEW").Count;
+    var currentPage = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+}
+
+<div id="sidebar-menu">
+    <ul class="metismenu" id="side-menu">
+        <li class="menu-title">QUẢN TRỊ WEBSITE</li>
+
+        <!-- Dashboard & Thống kê -->
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionDashboard.Dashboard_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/who" class="@(currentPage.Contains("who") ? "active" : "")">
+                    <i class="fe-airplay"></i>
+                    <span>Ai đang online</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionVisitorHistory.VisitorHistory_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/visit" class="@(currentPage.Contains("visit") ? "active" : "")">
+                    <i class="fe-activity"></i>
+                    <span>Lịch sử truy cập</span>
+                </a>
+            </li>
+        }
+
+        <!-- Nội dung website -->
+        <li class="menu-title">Nội dung Website</li>
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionPage.Page_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/page" class="@(currentPage.Contains("page") ? "active" : "")">
+                    <i class="fe-book-open"></i>
+                    <span>Danh sách trang</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionCategory.Category_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/category" class="@(currentPage.Contains("category") ? "active" : "")">
+                    <i class="fe-folder"></i>
+                    <span>Danh sách chuyên mục</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionProduct.Product_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/product" class="@(currentPage.Contains("product") ? "active" : "")">
+                    <i class="fe-box"></i>
+                    <span>Danh sách sản phẩm</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionPost.Post_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/post" class="@(currentPage.Contains("post") ? "active" : "")">
+                    <i class="fe-file-text"></i>
+                    <span>Danh sách bài viết</span>
+                </a>
+            </li>
+        }
+
+        <!-- Khách hàng & Giao dịch -->
+        <li class="menu-title">Khách hàng & Giao dịch</li>
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionOrder.Order_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/order" class="@(currentPage.Contains("order") ? "active" : "")">
+                    <i class="fe-shopping-cart"></i>
+                    <span>Quản lý đơn hàng</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionRegistration.Register_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/register" class="@(currentPage.Contains("register") ? "active" : "")">
+                    <i class="fe-edit"></i>
+                    <span class="badge badge-danger badge-pill float-right">@registers</span>
+                    <span>Danh sách đăng ký</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionContact.Contact_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/contact" class="@(currentPage.Contains("contact") ? "active" : "")">
+                    <i class="fe-phone"></i>
+                    <span class="badge badge-danger badge-pill float-right">@contacts</span>
+                    <span>Danh sách liên hệ</span>
+                </a>
+            </li>
+        }
+
+        <!-- Cấu hình hệ thống -->
+        <li class="menu-title">Cấu hình hệ thống</li>
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionSetting.Setting_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/config" class="@(currentPage.Contains("config") ? "active" : "")">
+                    <i class="fe-settings"></i>
+                    <span>Cấu hình chung</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionMedia.Media_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/ElFinder" target="_blank">
+                    <i class="fe-image"></i>
+                    <span>Thư viện hình ảnh</span>
+                </a>
+            </li>
+        }
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionLanguage.Language_View, userId.Value))
+        {
+            <li>
+                <a href="/admin/lang" class="@(currentPage.Contains("lang") ? "active" : "")">
+                    <i class="fe-globe"></i>
+                    <span>Danh sách ngôn ngữ</span>
+                </a>
+            </li>
+        }
+
+        <!-- Quản trị tài khoản -->
+        @if (userId.HasValue && PermissionService.CheckPermission(Management.PermissionAccount.Management, userId.Value))
+        {
+            <li class="menu-title">Quản trị</li>
+            <li>
+                <a href="/admin/group" class="@(currentPage.Contains("group") ? "active" : "")">
+                    <i class="fe-lock"></i>
+                    <span>Nhóm phân quyền</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/user" class="@(currentPage.Contains("user") ? "active" : "")">
+                    <i class="fe-users"></i>
+                    <span>Tài khoản</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+

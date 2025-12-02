@@ -1,0 +1,141 @@
+@page
+@model CMS_2026.Pages.Admin.Page.CreateModel
+@using CMS_2026.Common
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    ViewData["Title"] = "Tạo trang mới";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Tạo trang mới</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/page" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> Danh sách trang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#create" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fas fa-plus-circle"></i> Tạo trang mới
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="create">
+                        <form class="form-horizontal validable" role="form" method="post">
+                            @Html.AntiForgeryToken()
+                            @if (ViewData.ModelState.ErrorCount > 0)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                </div>
+                            }
+                                <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Ngôn ngữ</label>
+                                <div class="col-12 col-md-10">
+                                    <div class="input-group">
+                                        @{
+                                            var langIdCompose = Model.LangIdCompose;
+                                            var langCompose = Model.LangCompose;
+                                        }
+                                        <input type="text" class="form-control" id="LangIdCompose" value="@langIdCompose @(langCompose?.Title ?? "")" disabled />
+                                        <div class="input-group-append">
+                                            <a href="@Constants.Admin_Url/i18n" class="btn btn-primary">
+                                                <i class="fa-exchange"></i> Thay đổi
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Component <span class="text-danger">*</span></label>
+                                <div class="col-12 col-md-10">
+                                    <select class="form-control" name="ComptKey" required>
+                                        <option value="">-- Chọn component --</option>
+                                        @foreach (var compt in Model.PageTemplates)
+                                        {
+                                            <option value="@compt.Key">@compt.Value</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                <div class="col-12 col-md-10">
+                                    <input type="text" class="form-control" name="Title" id="Title" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Đường dẫn <span class="text-danger">*</span></label>
+                                <div class="col-12 col-md-10">
+                                    <input type="text" class="form-control" name="PathPattern" id="PathPattern" required />
+                                    <small class="form-text text-muted">Ví dụ: home, about-us</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Meta Description</label>
+                                <div class="col-12 col-md-10">
+                                    <textarea name="MetaDescription" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-md-2 col-form-label">Meta Keywords</label>
+                                <div class="col-12 col-md-10">
+                                    <input type="text" name="MetaKeywords" class="form-control" data-role="tagsinput" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        Tiếp tục
+                                    </button>
+                                    <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                        Quay lại
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head{
+    <!-- CKEditor 5 CSS -->
+    <link rel="stylesheet" href="@Constants.Admin_Url/ckeditor5/ckeditor5.css">
+}
+
+@section scripts{
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/ckeditor5/ckeditor5.umd.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-wrapper.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-init.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Title").stringToSlug({
+                getPut: '#PathPattern',
+            });
+
+            $(".validable").parsley();
+        });
+    </script>
+}
+

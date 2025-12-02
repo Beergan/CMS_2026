@@ -1,0 +1,45 @@
+@using CMS_2026.Services
+@{
+    var displayName = AuthenticationService.GetDisplayName(Context);
+    var userId = AuthenticationService.GetUserId(Context);
+}
+
+<div class="navbar-custom">
+    <ul class="list-unstyled topnav-menu float-right mb-0">
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <img src="/admin/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                <span class="ml-1">@displayName<i class="mdi mdi-chevron-down"></i> </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                <!-- item-->
+                <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Welcome !</h6>
+                </div>
+                <!-- item-->
+                <a href="/admin/ChangePwd" class="dropdown-item notify-item">
+                    <i class="fe-user"></i>
+                    <span>Đổi mật khẩu</span>
+                </a>
+                <a href="/admin/Logout" class="dropdown-item notify-item">
+                    <i class="fe-log-out"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </li>
+    </ul>
+    <!-- LOGO -->
+    <div class="logo-box">
+        <a href="/admin" class="logo text-center">
+            <img src="/admin/assets/images/logo-sm.png" style="width: 55px;" />
+        </a>
+    </div>
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+        <li>
+            <button class="button-menu-mobile waves-effect waves-light">
+                <i class="fe-menu"></i>
+            </button>
+        </li>
+    </ul>
+</div>
+

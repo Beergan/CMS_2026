@@ -1,0 +1,262 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@using CMS_2026.Utils
+@using CMS_2026.Models
+@using System.Text.Json
+@inject IDataService Db
+@inject RootService Root
+@{
+    Layout = "_Layout";
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var customerId = Context.Session.GetCustomerId();
+
+    if (customerId == null)
+    {
+        Context.Response.Redirect("/login");
+        return;
+    }
+
+    var customer = Db.GetOne<CMS_2026.Data.Entities.PP_Register>(customerId.Value);
+    if (customer == null)
+    {
+        Context.Response.Redirect("/login");
+        return;
+    }
+
+    var orders = Db.GetList<CMS_2026.Data.Entities.PP_Order>(o => o.Email == customer.Email)
+        .OrderByDescending(o => o.CreatedTime)
+        .Take(20)
+        .ToList();
+
+    ViewData["Title"] = langId == "en" ? "My Account" : "Tài khoản của tôi";
+    
+    var successMessage = TempData["Success"]?.ToString();
+    var errorMessage = TempData["Error"]?.ToString();
+}
+
+@section head {
+    <style>
+        .account-settings-links .list-group-item.active {
+            font-weight: bold !important;
+            background: transparent !important;
+        }
+        .account-settings-links .list-group-item {
+            padding: 0.85rem 1.5rem;
+            border-color: rgba(24, 28, 33, 0.03) !important;
+        }
+        .account-settings-links .list-group-item.active {
+            color: #4e5155 !important;
+        }
+        .order-complete-area {
+            background-color: #f7f7f7;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .status-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .status-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .status-step.active .status-icon {
+            background-color: #28a745;
+        }
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 10px;
+        }
+    </style>
+}
+
+<section class="section-ptb">
+    <div class="container">
+        @if (!string.IsNullOrEmpty(successMessage))
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @successMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @errorMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="card overflow-hidden">
+            <div class="row no-gutters">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account-general">
+                            @(langId == "en" ? "Account Information" : "Thông tin")
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password">
+                            @(langId == "en" ? "Change Password" : "Đổi mật khẩu")
+                        </a>
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-info">
+                            @(langId == "en" ? "Orders" : "Đơn hàng")
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="account-general">
+                            <div class="card-body">
+                                <h4 class="mb-3">@(langId == "en" ? "Account Information" : "Thông tin tài khoản")</h4>
+                                <form method="post" asp-page="/MyAccount/UpdateInfo">
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "Full Name" : "Họ và tên") <span class="text-danger">*</span></label>
+                                        <input type="text" name="Name" class="form-control" value="@customer.Name" required />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" value="@customer.Email" disabled />
+                                        <small class="form-text text-muted">@(langId == "en" ? "Email cannot be changed." : "Email không thể thay đổi.")</small>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "Phone" : "Số điện thoại")</label>
+                                        <input type="tel" name="Phone" class="form-control" value="@customer.Phone" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "Address" : "Địa chỉ")</label>
+                                        <input type="text" name="Address" class="form-control" value="@customer.Address" />
+                                    </div>
+                                    <div class="text-right mt-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            @(langId == "en" ? "Save" : "Lưu")
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="password">
+                            <div class="card-body">
+                                <h4 class="mb-3">@(langId == "en" ? "Change Password" : "Đổi mật khẩu")</h4>
+                                <form method="post" asp-page="/MyAccount/ChangePassword">
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "Current Password" : "Mật khẩu cũ") <span class="text-danger">*</span></label>
+                                        <input type="password" name="CurrentPassword" class="form-control" required />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "New Password" : "Mật khẩu mới") <span class="text-danger">*</span></label>
+                                        <input type="password" name="NewPassword" class="form-control" required />
+                                        <small class="form-text text-muted">@(langId == "en" ? "Password must be at least 6 characters." : "Mật khẩu phải có ít nhất 6 ký tự.")</small>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>@(langId == "en" ? "Confirm Password" : "Nhập lại mật khẩu") <span class="text-danger">*</span></label>
+                                        <input type="password" name="ConfirmPassword" class="form-control" required />
+                                    </div>
+                                    <div class="text-right mt-3">
+                                        <button type="submit" class="btn btn-primary">
+                                            @(langId == "en" ? "Save" : "Lưu")
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-info">
+                            <div class="card-body">
+                                <h4 class="mb-3">@(langId == "en" ? "Order History" : "Lịch sử đơn hàng")</h4>
+                                @if (!orders.Any())
+                                {
+                                    <p>@(langId == "en" ? "You haven't placed any orders yet." : "Bạn chưa có đơn hàng nào.")</p>
+                                }
+                                else
+                                {
+                                    @foreach (var order in orders)
+                                    {
+                                        List<OrderLine>? orderLines = null;
+                                        if (!string.IsNullOrEmpty(order.JsonData))
+                                        {
+                                            try
+                                            {
+                                                orderLines = JsonSerializer.Deserialize<List<OrderLine>>(order.JsonData);
+                                            }
+                                            catch { }
+                                        }
+
+                                        <div class="order-complete-area mb-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h5>@(langId == "en" ? "Order Code" : "Mã đơn hàng"): @order.OrderCode</h5>
+                                                <span class="badge bg-@(order.OrderStatus == "SUCCESS" ? "success" : order.OrderStatus == "CANCELLED" ? "danger" : "warning")">
+                                                    @order.OrderStatus
+                                                </span>
+                                            </div>
+                                            
+                                            <div class="status-container">
+                                                <div class="status-step @(order.OrderStatus == "NEW" ? "active" : "")">
+                                                    <div class="status-icon"></div>
+                                                    <div class="status-title">@(langId == "en" ? "Processing" : "Đang xử lý")</div>
+                                                </div>
+                                                <div class="status-step @(order.OrderStatus == "DELIVERING" ? "active" : "")">
+                                                    <div class="status-icon"></div>
+                                                    <div class="status-title">@(langId == "en" ? "Delivering" : "Đang giao")</div>
+                                                </div>
+                                                <div class="status-step @(order.OrderStatus == "SUCCESS" ? "active" : "")">
+                                                    <div class="status-icon"></div>
+                                                    <div class="status-title">@(langId == "en" ? "Delivered" : "Đã giao")</div>
+                                                </div>
+                                            </div>
+
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>@(langId == "en" ? "Product" : "Sản phẩm")</th>
+                                                        <th>@(langId == "en" ? "Variation" : "Biến thể")</th>
+                                                        <th>@(langId == "en" ? "Price" : "Đơn giá")</th>
+                                                        <th>@(langId == "en" ? "Quantity" : "Số lượng")</th>
+                                                        <th>@(langId == "en" ? "Total" : "Tổng")</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @if (orderLines != null && orderLines.Any())
+                                                    {
+                                                        @foreach (var item in orderLines)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.Title</td>
+                                                                <td>@(string.IsNullOrEmpty(item.Variation) ? (langId == "en" ? "N/A" : "Không có") : item.Variation)</td>
+                                                                <td>@item.Price.ToString("#,##0") ₫</td>
+                                                                <td>@item.Quantity</td>
+                                                                <td>@item.RowTotal.ToString("#,##0") ₫</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="4" class="text-end"><strong>@(langId == "en" ? "Total" : "Tổng cộng"):</strong></td>
+                                                        <td><strong>@order.TotalAmount.ToString("#,##0") ₫</strong></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            
+                                            <div class="mt-2">
+                                                <small class="text-muted">
+                                                    @(langId == "en" ? "Date" : "Ngày"): @order.CreatedTime.ToString("dd/MM/yyyy HH:mm") | 
+                                                    @(langId == "en" ? "Payment" : "Thanh toán"): @order.PayMethod
+                                                </small>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

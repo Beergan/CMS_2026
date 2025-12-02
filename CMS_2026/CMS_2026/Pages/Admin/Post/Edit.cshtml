@@ -1,0 +1,212 @@
+@page
+@model CMS_2026.Pages.Admin.Post.EditModel
+@using CMS_2026.Common
+@{
+    ViewData["Title"] = Model.Text["Modify a post", "Hiệu chỉnh bài viết"];
+    ViewData["CurrentBreadcrumb"] = "Hiệu chỉnh bài viết";
+    Layout = "_Layout";
+}
+
+@using CMS_2026.Utils
+@{
+    var category = Model.Post?.CategoryId > 0 
+        ? Model.Db.GetOne<CMS_2026.Data.Entities.PP_Category>(Model.Post.CategoryId.Value) 
+        : null;
+    var nodePathValue = !string.IsNullOrEmpty(Model.Post?.NodePath) 
+        ? StringHelper.GetBefore(StringHelper.GetAfterLast(Model.Post.NodePath, "/"), ".") 
+        : "";
+    
+    var field = new FieldExtractor<CMS_2026.Data.Entities.PP_Node>();
+    var postModel = Model.Post ?? new CMS_2026.Data.Entities.PP_Node { NodeType = "post", NodeStatus = "CREATED" };
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <partial name="_Shared/_Breadcrumb" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/category?type=post" aria-expanded="false" class="nav-link">
+                            <i class="fe-folder"></i> @Model.Text["Categories", "Các chuyên mục"]
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/post" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> @Model.Text["All of posts", "Tất cả bài viết"]
+                        </a>
+                    </li>
+                    @if (category != null)
+                    {
+                        <li class="nav-item">
+                            <a href="@Constants.Admin_Url/post?categoryId=@category.Id" aria-expanded="true" class="nav-link">
+                                <i class="fas fa-list-ol"></i> @category.Title
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a href="#edit" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fe-edit"></i> @Model.Text["Modify a post", "Hiệu chỉnh bài viết"]
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="edit">
+                        <div class="card">
+                            <div class="card-header">
+                                Thông tin cơ bản 
+                                <button type="button" class="btn btn-info float-right" data-toggle="collapse" aria-expanded="true" data-target="#main">
+                                    <i class="fa fa-chevron-down pull-right"></i>
+                                </button>
+                            </div>
+                            <div class="card-body collapse show" id="main">
+                                <form class="form-horizontal validable" role="form" method="post" style="margin-bottom: 20px;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="Id" value="@Model.Post?.Id" />
+
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                        </div>
+                                    }
+
+                                    @* Language (disabled) *@
+                                    <div class="form-group row">
+                                        <label for="LangId" class="col-12 col-md-2 col-form-label">
+                                            @Model.Text["Language", "Ngôn ngữ"]
+                                        </label>
+                                        <div class="col-12 col-md-10">
+                                            @{
+                                                var langIdValue = Model.Post?.LangId ?? "";
+                                                var langTitle = CMS_2026.Services.RootService.Langs.TryGetValue(langIdValue, out var lang) ? lang.Title : "";
+                                            }
+                                            <input class="form-control" type="text" disabled 
+                                                   name="LangId" id="LangId" 
+                                                   value="@langIdValue (@langTitle)" />
+                                        </div>
+                                    </div>
+
+                                    @Html.ComboboxFor(field[t => t.CategoryId], options: Model.GroupSelector, value: (postModel.CategoryId ?? 0).ToString())
+                                    @Html.TextBoxFor(field[t => t.Title], value: postModel.Title ?? "", required: true)
+                                    @Html.TextBoxFor(field[t => t.NodePath], value: nodePathValue, required: true)
+                                    @Html.TextAreaFor(field[t => t.Summary], value: postModel.Summary ?? "", required: false, useRichText: true)
+                                    @Html.TextAreaFor(field[t => t.Content], value: postModel.Content ?? "", required: false, useRichText: true)
+                                    @Html.RadioFor(field[t => t.Featured], value: postModel.Featured == true)
+                                    @Html.TextBoxFor(field[t => t.MetaDescription], value: postModel.MetaDescription ?? "")
+                                    @Html.TagsInputFor(field[t => t.MetaKeywords], value: postModel.MetaKeywords ?? "")
+                                    @Html.ImagePickerFor(field[t => t.ImageUrl], value: postModel.ImageUrl ?? "")
+
+                                    <hr />
+
+                                    <div class="form-group mb-0">
+                                        <div>
+                                            <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                @Model.Text["Submit", "Xác nhận"]
+                                            </button>
+                                            <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                                @Model.Text["Back", "Quay lại"]
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head {
+    <!-- CKEditor 5 CSS -->
+
+    <link href="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+
+  
+}
+
+@section scripts {
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script>
+        console.log(window.CKEditor);
+        $(document).ready(function() {
+            // String to slug
+            $("#Title").stringToSlug({
+                getPut: '#NodePath',
+            });
+
+          
+
+            
+        });
+    </script>
+    <script type="text/javascript">
+
+        CKEDITOR.replace('@field.GetName(t => t.Summary)',
+            {
+                toolbar: [['Source','Format','FontSize','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','Outdent','Indent',
+                    '-','Bold','Italic','Underline','Strike',
+                    '-','TextColor','BGColor','NumberedList','BulletedList',
+                    '-','Link','Image','Table','RemoveFormat','Maximize']],
+                filebrowserBrowseUrl: "@Constants.Admin_Url/ckfinder/",
+                entities_latin: false,
+                htmlEncodeOutput: true,
+                resize_dir: "vertical",
+                width: "100%",
+                padding: "0px !important"
+            });
+
+        CKEDITOR.replace('@field.GetName(t => t.Content)',
+            {
+                toolbar: [['Source','Format','FontSize','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','Outdent','Indent',
+                    '-','Bold','Italic','Underline','Strike',
+                    '-','TextColor','BGColor','NumberedList','BulletedList',
+                    '-','Link','Image','Table','RemoveFormat','Maximize']],
+                filebrowserBrowseUrl: "@Constants.Admin_Url/ckfinder/",
+                entities_latin: false,
+                htmlEncodeOutput: true,
+                resize_dir: "vertical",
+                width: "100%",
+                padding: "0px !important"
+            });
+
+        $(document).ready(function() {
+            $(document).on("click",".btn-ckfinder-popup",function(e) {
+                event.preventDefault();
+                var targetId=$(this).attr('target');
+
+                window["callback_"+targetId]=function(fileUrl) {
+                    var url = new URL(fileUrl);
+                    $('#'+targetId).val(url.pathname);
+                    $('#img-'+targetId).attr("src", url.pathname);
+                }
+
+                CKFinder.popup({
+                    chooseFiles: true,
+                    width: 800,
+                    height: 600,
+                    selectActionFunction: window["callback_"+targetId]
+                });
+            });
+
+            $("#@field.GetName(t => t.Title)").stringToSlug({
+                getPut: '#@field.GetName(t => t.NodePath)',
+            });
+
+            $(".validable").parsley();
+        });
+
+    </script>
+}

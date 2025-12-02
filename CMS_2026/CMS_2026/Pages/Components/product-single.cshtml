@@ -1,0 +1,485 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.Data.Entities
+@using CMS_2026.Common
+@inject RootService Root
+@inject IDataService Db
+@inject ShoppingCartService CartService
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var nodeSlug = Context.Items["NodeSlug"]?.ToString() ?? Context.Request.Query["slug"].FirstOrDefault() ?? "";
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    
+    var product = Db.GetOne<PP_Product>(t => t.NodePath == nodeSlug && t.LangId == langId);
+    if (product == null)
+    {
+        <div class="container">
+            <h1>@(langId == "en" ? "Product not found" : "Sản phẩm không tồn tại")</h1>
+        </div>
+        return;
+    }
+
+    var category = product.CategoryId.HasValue ? Db.GetOne<PP_Category>(product.CategoryId.Value) : null;
+    var categoryIds = category != null && RootService.CategoryIndexes.ContainsKey(category.Id)
+        ? RootService.CategoryIndexes[category.Id].ToList()
+        : product.CategoryId.HasValue ? new List<int> { product.CategoryId.Value } : new List<int>();
+
+    var recentItems = Db.GetList<PP_Product>(t => 
+        t.LangId == langId && 
+        categoryIds.Contains(t.CategoryId ?? 0) && 
+        t.Id != product.Id)
+        .OrderByDescending(b => b.CreatedTime)
+        .Take(6)
+        .ToList();
+
+    var allCategories = Db.GetList<PP_Category>(t => t.NodeType == "product" && t.LangId == langId).ToList();
+
+    var previousProduct = Db.GetList<PP_Product>(t => 
+        t.LangId == langId && 
+        t.CreatedTime < product.CreatedTime)
+        .OrderByDescending(t => t.CreatedTime)
+        .FirstOrDefault();
+
+    var nextProduct = Db.GetList<PP_Product>(t => 
+        t.LangId == langId && 
+        t.CreatedTime > product.CreatedTime)
+        .OrderBy(t => t.CreatedTime)
+        .FirstOrDefault();
+
+    var comments = Db.GetList<PP_Comment>(t => t.idproduct == product.Id && t.Status == "SUCCESS").ToList();
+
+    var images = new List<string>();
+    if (!string.IsNullOrEmpty(product.ImagesJson))
+    {
+        images = product.ImagesJson
+            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Trim())
+            .Distinct()
+            .ToList();
+    }
+    if (!string.IsNullOrEmpty(product.ImageUrl))
+    {
+        if (images.Contains(product.ImageUrl))
+        {
+            images.Remove(product.ImageUrl);
+        }
+        images.Insert(0, product.ImageUrl);
+    }
+    if (images.Count == 0 && !string.IsNullOrEmpty(product.ImageUrl))
+    {
+        images.Add(product.ImageUrl);
+    }
+
+    ViewData["Title"] = product.Title;
+    ViewData["Description"] = product.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = product.MetaKeywords ?? "";
+}
+
+@section head {
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org/",
+      "@@type": "Product",
+      "name": "@product.Title",
+      "image": [@Html.Raw(string.Join(",", images.Select(i => $"\"{i}\"")))],
+      "description": "@(product.Des ?? product.Content ?? "")",
+      "sku": "@(string.IsNullOrEmpty(product.ProductCode) ? "01" : product.ProductCode)",
+      "brand": {
+        "@@type": "Organization",
+        "name": "@config.Company.CompanyName"
+      },
+      "offers": {
+        "@@type": "Offer",
+        "url": "@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}")",
+        "priceCurrency": "VND",
+        "price": "@(product.PromotionEnabled && product.PromotionPrice.HasValue ? product.PromotionPrice.Value : product.Price)",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/@(product.StockQty > 0 ? "InStock" : "OutOfStock")"
+      }
+    }
+    </script>
+    <style>
+        p img {
+            height: auto !important;
+            width: 100% !important;
+        }
+    </style>
+}
+
+<main id="content" class="wrapper layout-page">
+    <section class="z-index-2 position-relative pb-2 mb-12">
+        <div class="bg-body-secondary mb-3">
+    <div class="container">
+                <nav class="py-4 lh-30px" aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center py-1 mb-0">
+                        @if (config.MainMenus != null && config.MainMenus.Any())
+                        {
+                            <li class="breadcrumb-item"><a href="@config.MainMenus.First().Href">@config.MainMenus.First().Title</a></li>
+                        }
+                        @if (category != null)
+                        {
+                            <li class="breadcrumb-item"><a title="@category.Title" href="/@category.CategoryPath">@category.Title</a></li>
+                        }
+                        <li class="breadcrumb-item active" aria-current="page">@product.Title</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <section class="container container-xxl pt-6 pb-13 pb-lg-20">
+        <div class="row">
+            <div class="col-md-6 pe-lg-13">
+                <div class="position-sticky top-0">
+                    <div class="row">
+                        @if (images.Count > 1)
+                        {
+                            <div class="col-xl-2 pe-xl-0 order-1 order-xl-0 mt-5 mt-xl-0">
+                                <div id="slide-thumb-5" class="slick-slider slick-slider-thumb ps-1 ms-n3 me-n4 mx-xl-0" data-slick-options='{"arrows":false,"asNavFor":"#slide-5","dots":false,"focusOnSelect":true,"responsive":[{"breakpoint":1260,"settings":{"vertical":false}}],"slidesToShow":4,"vertical":true}'>
+                                    @foreach (var item in images)
+                                    {
+                                        <img src="#" data-src="@item" class="cursor-pointer lazy-image h-auto mx-3 mx-xl-0 px-0 mb-xl-7" width="540" height="720" alt="@product.Title">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-xl-10 ps-xl-8 pe-xl-0 order-0 order-xl-1">
+                                <div id="slide-5" class="slick-slider slick-slider-arrow-inside slick-slider-dots-inside slick-slider-dots-light g-0" data-slick-options='{"arrows":false,"asNavFor":"#slide-thumb-5","dots":false,"slidesToShow":1,"vertical":true}'>
+                                    @foreach (var item in images)
+                                    {
+                                        <a href="@item" data-gallery="gallery5" data-thumb-src="@item">
+                                            <img src="#" data-src="@item" class="h-auto lazy-image" width="540" height="720" alt="@product.Title">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12">
+                                <img src="@product.ImageUrl" alt="@product.Title" class="img-fluid w-100" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pt-md-0 pt-10">
+                <p class="d-flex align-items-center mb-6">
+                    @if (product.PromotionEnabled && product.PromotionPrice.HasValue)
+                    {
+                        var percent = (1 - (product.PromotionPrice.Value / product.Price)) * 100;
+                        <span class="text-decoration-line-through">@product.Price.ToString("#,##0") đ</span>
+                        <span class="fs-18px text-body-emphasis ps-6 fw-bold">@product.PromotionPrice.Value.ToString("#,##0") đ</span>
+                        <span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3">@percent.ToString("0")%</span>
+                    }
+                    else
+                    {
+                        <span class="fs-18px text-body-emphasis ps-6 fw-bold">@product.Price.ToString("#,##0") đ</span>
+                    }
+                </p>
+                <h1 class="mb-4 pb-2 fs-4">@product.Title</h1>
+                @if (!string.IsNullOrEmpty(product.Des))
+                {
+                    <p class="fs-15px mb-6">@Html.Raw(product.Des)</p>
+                }
+
+                <form method="post" id="addToCartForm" class="pb-8">
+                    <input type="hidden" name="productId" value="@product.Id" />
+                    @if (!string.IsNullOrEmpty(product.AttrbValues) && product.AttrbEnabled == true)
+                    {
+                        var att = product.AttrbValues.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                        <div class="form-group shop-swatch mb-7 mb-3 align-items-center">
+                            <span class="fw-semibold text-body-emphasis me-7">@(langId == "en" ? "Variation" : "Mã màu"): </span>
+                            <ul class="list-inline d-flex justify-content-start mb-0">
+                                @foreach (var (item, index) in att.Select((x, y) => (x, y)))
+                                {
+                                    <li class="list-inline-item me-4 fw-semibold">
+                                        <input type="radio" id="radio@(index + 1)" value="@item" name="variation" class="product-info-size d-none" @(index == 0 ? "checked" : "") required>
+                                        <label for="radio@(index + 1)" class="fs-14px p-4 d-block rounded text-decoration-none border cursor-pointer" data-var="@item">@item</label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="row align-items-end">
+                        <div class="form-group col-sm-4">
+                            <label class="text-body-emphasis fw-semibold fs-15px pb-6" for="quantity">@(langId == "en" ? "Quantity" : "Số lượng"): </label>
+                            <div class="input-group position-relative w-100 input-group-lg">
+                                <button type="button" class="btn btn-link position-absolute translate-middle-y top-50 start-0 ps-7 product-info-2-minus border-0 bg-transparent"><i class="far fa-minus"></i></button>
+                                <input id="quantity" name="quantity" type="number" class="product-info-2-quantity form-control w-100 px-6 text-center" value="1" min="1" max="@product.StockQty" required>
+                                <button type="button" class="btn btn-link position-absolute translate-middle-y top-50 end-0 pe-7 product-info-2-plus border-0 bg-transparent">
+                                    <i class="far fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-7">
+                            <div class="col-sm-6 pt-9 pro-details-buy-now mt-2 mt-sm-0 pt-sm-0">
+                                <button type="button" id="buyNowBtn" class="btn-hover-bg-primary btn-hover-border-primary btn btn-lg btn-dark w-100">
+                                    @(langId == "en" ? "Buy Now" : "Mua ngay")
+                                </button>
+                            </div>
+                            <div class="col-sm-6 pt-9 pro-details-add-to-cart mt-2 mt-sm-0 pt-sm-0">
+                                <button type="submit" class="btn-hover-bg-primary btn-hover-border-primary btn btn-lg btn-outline-dark w-100">
+                                    @(langId == "en" ? "Add to Cart" : "Thêm vào giỏ")
+                                </button>
+                            </div>
+                </div>
+                </div>
+                </form>
+
+                @if (!string.IsNullOrEmpty(product.Content))
+                {
+                    <div class="product-content mt-8">
+                        <h3 class="mb-4">@(langId == "en" ? "Description" : "Mô tả sản phẩm")</h3>
+                    @Html.Raw(product.Content)
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    @if (recentItems.Any())
+    {
+        <section class="pt-lg-15 pt-12 pb-lg-15 pb-lg-12">
+            <div class="container container-xxl">
+                <div class="text-center mb-13">
+                    <h2 class="mb-6 fs-3">@(langId == "en" ? "Related Products" : "Sản phẩm liên quan")</h2>
+                </div>
+                <div class="slick-slider" data-slick-options='{"arrows":false,"dots":false,"responsive":[{"breakpoint":1200,"settings":{"slidesToShow":3}},{"breakpoint":992,"settings":{"dots":true,"slidesToShow":2}},{"breakpoint":768,"settings":{"dots":true,"slidesToShow":1}}],"slidesToShow":4}'>
+                    @foreach (var item in recentItems)
+                    {
+                        <div>
+                            <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
+                                <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                    <a href="/@item.NodePath" class="hover-zoom-in d-block" title="@item.Title">
+                                        <img src="@item.ImageUrl" data-src="@item.ImageUrl" class="img-fluid lazy-image w-100" alt="@item.Title" width="450" height="600">
+                                    </a>
+                                    <div class="position-absolute d-flex z-index-2 product-actions horizontal">
+                                        @if (item.AttrbEnabled == true && !string.IsNullOrEmpty(item.AttrbValues))
+                                        {
+                                            var att = item.AttrbValues.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                                            if (att.Length > 0)
+                                            {
+                                                <div class="product-action-cart-variation dropup mt-3">
+                                                    <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        @(langId == "en" ? "Add to cart" : "Thêm vào giỏ")
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var v in att)
+                                                        {
+                                                            <li>
+                                                                <a class="dropdown-item action-cart-add" href="javascript:void(0)" data-product-id="@item.Id" data-variation="@v">@v</a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a data-product-id="@item.Id" data-product-title="@item.Title"
+                                               class="action-cart-add text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm"
+                                               href="javascript:void(0)"
+                                               data-bs-title="Add To Cart">
+                                                <svg class="icon icon-shopping-bag-open-light">
+                                                    <use xlink:href="#icon-shopping-bag-open-light"></use>
+                                                </svg>
+                                            </a>
+                                        }
+                                    </div>
+                                </figure>
+                                <div class="card-body text-center p-0">
+                                    <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                        @if (item.PromotionEnabled && item.PromotionPrice.HasValue)
+                                        {
+                                            <del class="text-body fw-500 me-4 fs-13px">@item.Price.ToString("#,##0") đ</del>
+                                            <ins class="text-decoration-none">@item.PromotionPrice.Value.ToString("#,##0") đ</ins>
+                                        }
+                                        else
+                                        {
+                                            <ins class="text-decoration-none">@item.Price.ToString("#,##0") đ</ins>
+                                        }
+                                    </span>
+                                    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                        <a class="text-decoration-none text-reset" href="/@item.NodePath">@item.Title</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+</main>
+                
+                    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Quantity controls
+        const quantityInput = document.getElementById('quantity');
+        const minusBtn = document.querySelector('.product-info-2-minus');
+        const plusBtn = document.querySelector('.product-info-2-plus');
+
+        if (minusBtn) {
+            minusBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value) || 1;
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+        }
+
+        if (plusBtn) {
+            plusBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value) || 1;
+                const maxValue = parseInt(quantityInput.getAttribute('max')) || 999;
+                if (currentValue < maxValue) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+        }
+
+        // Add to cart form
+        const addToCartForm = document.getElementById('addToCartForm');
+        if (addToCartForm) {
+            addToCartForm.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+                const formData = new FormData(addToCartForm);
+                const button = addToCartForm.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+                button.disabled = true;
+                button.textContent = '@(langId == "en" ? "Adding..." : "Đang thêm...")';
+
+                            try {
+                                const response = await fetch('/Api/Cart/Add', {
+                                    method: 'POST',
+                                    body: formData
+                                });
+                                const result = await response.json();
+                    
+                                if (result.success) {
+                                    const cartCountEl = document.querySelector('.cart-count');
+                                    if (cartCountEl) {
+                                        cartCountEl.textContent = result.cartCount;
+                                    }
+                        
+                        if (typeof Toastify !== 'undefined') {
+                            Toastify({
+                                text: result.message || '@(langId == "en" ? "Added to cart" : "Đã thêm vào giỏ hàng")',
+                                duration: 3000,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#28a745"
+                            }).showToast();
+                        } else {
+                            alert(result.message || '@(langId == "en" ? "Added to cart" : "Đã thêm vào giỏ hàng")');
+                        }
+                    } else {
+                        alert(result.message || '@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                    }
+                } catch (error) {
+                    alert('@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                } finally {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Buy now button
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        if (buyNowBtn) {
+            buyNowBtn.addEventListener('click', async function() {
+                const formData = new FormData(addToCartForm);
+                const button = this;
+                const originalText = button.textContent;
+                button.disabled = true;
+                button.textContent = '@(langId == "en" ? "Processing..." : "Đang xử lý...")';
+
+                try {
+                    const response = await fetch('/Api/Cart/Add', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        window.location.href = '@(config.Link?.PageMakeOrder ?? "/checkout")';
+                                } else {
+                        alert(result.message || '@(langId == "en" ? "Error" : "Lỗi")');
+                        button.disabled = false;
+                        button.textContent = originalText;
+                                }
+                            } catch (error) {
+                    alert('@(langId == "en" ? "Error" : "Lỗi")');
+                    button.disabled = false;
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Variation selection
+        document.querySelectorAll('input[name="variation"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.querySelectorAll('label[data-var]').forEach(label => {
+                    label.classList.remove('border-primary', 'bg-primary', 'text-white');
+                });
+                const selectedLabel = document.querySelector(`label[for="${this.id}"]`);
+                if (selectedLabel) {
+                    selectedLabel.classList.add('border-primary', 'bg-primary', 'text-white');
+                }
+            });
+        });
+
+        // Initialize first variation as selected
+        const firstVariation = document.querySelector('input[name="variation"]:checked');
+        if (firstVariation) {
+            const firstLabel = document.querySelector(`label[for="${firstVariation.id}"]`);
+            if (firstLabel) {
+                firstLabel.classList.add('border-primary', 'bg-primary', 'text-white');
+            }
+        }
+
+        // Related products add to cart
+        document.querySelectorAll('.action-cart-add').forEach(button => {
+            button.addEventListener('click', async function() {
+                const productId = this.getAttribute('data-product-id');
+                const variation = this.getAttribute('data-variation');
+                const formData = new FormData();
+                formData.append('productId', productId);
+                if (variation) {
+                    formData.append('variation', variation);
+                }
+                
+                try {
+                    const response = await fetch('/Api/Cart/Add', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        const cartCountEl = document.querySelector('.cart-count');
+                        if (cartCountEl) {
+                            cartCountEl.textContent = result.cartCount;
+                        }
+                        
+                        if (typeof Toastify !== 'undefined') {
+                            Toastify({
+                                text: result.message || '@(langId == "en" ? "Added to cart" : "Đã thêm vào giỏ hàng")',
+                                duration: 3000,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#28a745"
+                            }).showToast();
+                        }
+                    } else {
+                        alert(result.message || '@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                    }
+                } catch (error) {
+                    alert('@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                }
+            });
+        });
+    });
+</script>

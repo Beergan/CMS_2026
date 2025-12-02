@@ -1,0 +1,55 @@
+@page
+@model CMS_2026.Pages.Admin.Who.IndexModel
+@{
+    ViewData["Title"] = "Ai đang online";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Ai đang online</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <p>Tổng số người đang online: <strong>@Model.OnlineCount</strong></p>
+                <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>IP</th>
+                            <th>Thiết bị</th>
+                            <th>Trình duyệt</th>
+                            <th>URL hiện tại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var session in Model.OnlineSessions)
+                        {
+                            <tr>
+                                <td>@session.SessionId</td>
+                                <td>@session.Ip</td>
+                                <td>@session.Device</td>
+                                <td>@session.Browser</td>
+                                <td>@session.LastUrl</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Auto refresh every 30 seconds
+        setInterval(function() {
+            location.reload();
+        }, 30000);
+    </script>
+}
+

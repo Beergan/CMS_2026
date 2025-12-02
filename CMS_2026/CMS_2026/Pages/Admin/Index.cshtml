@@ -1,0 +1,60 @@
+@page
+@model CMS_2026.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-box">
+                <h4 class="header-title">Thống kê truy cập trong tuần</h4>
+                <canvas id="transactions-chart" height="100" class="mt-4"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="card-box">
+                <h4 class="header-title mb-3">Thống kê truy cập trong ngày</h4>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Đường link</th>
+                                <th style="text-align:center">Lượt truy cập</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int index = 1;
+                            }
+                            @foreach (var stat in Model.UrlStats.Take(10))
+                            {
+                                <tr>
+                                    <td>@index</td>
+                                    <td>@stat.Key</td>
+                                    <td style="text-align:center">@stat.Value</td>
+                                </tr>
+                                index++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Chart initialization code here
+    </script>
+}
+

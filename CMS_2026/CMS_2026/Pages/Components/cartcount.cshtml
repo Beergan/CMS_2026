@@ -1,0 +1,16 @@
+@model CMS_2026.Data.Entities.PP_Page?
+@using CMS_2026.Services
+@inject ShoppingCartService CartService
+@inject RootService Root
+@{
+    Layout = null;
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var count = CartService.GetCartLines().Count;
+}
+
+<span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1 card-count"
+      style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+    @count
+</span>
+

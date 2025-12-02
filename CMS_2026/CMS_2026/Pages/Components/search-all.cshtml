@@ -1,0 +1,109 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.Data.Entities
+@using CMS_2026.Utils
+@inject RootService Root
+@inject IDataService Db
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var keyword = Context.Request.Query["keyword"].FirstOrDefault() ?? "";
+    var currentPage = int.TryParse(Context.Request.Query["page"].FirstOrDefault(), out var p) ? p : 1;
+    var pageSize = 9;
+
+    var slug = EncodeHelper.SanitizeString(keyword);
+    var allPosts = new List<PP_Node>();
+    var posts = new List<PP_Node>();
+    var totalPages = 1;
+
+    if (!string.IsNullOrEmpty(slug))
+    {
+        allPosts = Db.GetList<PP_Node>(t => t.LangId == langId && t.NodeType == "post" && 
+            (t.NodePath.Contains(slug) || t.Title.Contains(keyword)))
+            .OrderByDescending(t => t.CreatedTime)
+            .ToList();
+        
+        totalPages = (int)Math.Ceiling((double)allPosts.Count / pageSize);
+        posts = allPosts
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+    }
+
+    ViewData["Title"] = string.IsNullOrEmpty(keyword) ? 
+        (langId == "en" ? "Search" : "Tìm kiếm") : 
+        $"{keyword} - {(langId == "en" ? "Search Results" : "Kết quả tìm kiếm")}";
+}
+
+<div class="main-content">
+    <!-- Breadcrumbs Start -->
+    <div class="rs-breadcrumbs breadcrumbs-overlay">
+        <div class="breadcrumbs-img">
+            <img src="/assets/images/breadcrumbs/1.jpg" alt="Breadcrumbs Image" style="width: 100%">
+        </div>
+        <div class="breadcrumbs-text" style="padding: 12px 0 0 12px">
+            <h4 style="color: black!important" class="page-title">
+                @(langId == "en" ? "Search Results" : "Kết quả tìm kiếm"): 
+                <span style="font-size: 18px">@posts.Count @(langId == "vi" ? "kết quả" : "results")</span>
+            </h4>
+        </div>
+    </div>
+    <!-- Breadcrumbs End -->
+
+    <!-- Search Results Section Start -->
+    <div class="rs-popular-courses style1 course-view-style orange-color rs-inner-blog white-bg pt-100 pb-100 md-pt-70 md-pb-70">
+        <div class="container">
+            <div class="row">
+                @if (!string.IsNullOrEmpty(slug) && posts.Count == 0)
+                {
+                    <div class="col-lg-12 mb-50">
+                        <div class="w-100 search-null">
+                            @(langId == "vi" ? "Rất tiếc, không tìm thấy kết quả nào phù hợp với từ khóa: " : "Sorry, we couldn't find any results for your keyword: ")<b>"@keyword"</b>
+                        </div>
+                    </div>
+                }
+                <div class="col-12 col-lg-12 pr-50 md-pr-15">
+                    <div class="row search-all">
+                        @foreach (var item in posts)
+                        {
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
+                                <div class="card p-30 h-100">
+                                    <div class="img-part">
+                                        <img src="@(item.ImageUrl ?? "/assets/images/courses/1.jpg")" alt="@item.Title" style="width: 100%">
+                                    </div>
+                                    <div class="content-part">
+                                        <h3 class="title">
+                                            <a href="/@item.NodePath">@item.Title</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    @if (posts.Count > 0 && totalPages > 1)
+                    {
+                        <div class="paging text-center mt-30 md-mt-0">
+                            @for (int idx = 1; idx <= totalPages; idx++)
+                            {
+                                <span class="@(currentPage == idx ? "active" : "")">
+                                    <a href="/search-all?keyword=@keyword&page=@idx">@idx</a>
+                                </span>
+                            }
+                            @if (currentPage < totalPages)
+                            {
+                                <span>
+                                    <a style="color: black" href="/search-all?keyword=@keyword&page=@(currentPage + 1)">
+                                        @(langId == "en" ? "Next" : "Tiếp") <i class="fa fa-long-arrow-right"></i>
+                                    </a>
+                                </span>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Results Section End -->
+</div>
+

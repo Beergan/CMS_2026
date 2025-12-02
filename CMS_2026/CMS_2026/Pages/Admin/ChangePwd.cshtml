@@ -1,0 +1,51 @@
+@page
+@model CMS_2026.Pages.Admin.ChangePwdModel
+@{
+    ViewData["Title"] = "Đổi mật khẩu";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Đổi mật khẩu</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <form method="post">
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group">
+                        <label>Mật khẩu hiện tại <span class="text-danger">*</span></label>
+                        <input type="password" name="CurrentPassword" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" name="NewPassword" class="form-control" required />
+                        <small class="form-text text-muted">Mật khẩu phải gồm ít nhất 6 ký tự</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Xác nhận mật khẩu mới <span class="text-danger">*</span></label>
+                        <input type="password" name="ConfirmationPassword" class="form-control" required />
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">@Model.ErrorMessage</div>
+                    }
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                        <a href="/admin" class="btn btn-secondary">Hủy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

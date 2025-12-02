@@ -1,0 +1,136 @@
+@page
+@model CMS_2026.Pages.Admin.Post.CreateModel
+@using CMS_2026.Common
+@{
+    ViewData["Title"] = Model.Text["CREATE A POST", "THÊM BÀI VIẾT MỚI"];
+    ViewData["CurrentBreadcrumb"] = "Thêm bài viết mới";
+    Layout = "_Layout";
+}
+
+@{
+    var categoryId = Request.Query["CategoryId"].FirstOrDefault();
+    var category = !string.IsNullOrEmpty(categoryId) && int.TryParse(categoryId, out var catId) 
+        ? Model.Db.GetOne<CMS_2026.Data.Entities.PP_Category>(catId) 
+        : null;
+    
+    var field = new FieldExtractor<CMS_2026.Data.Entities.PP_Node>();
+    var postModel = new CMS_2026.Data.Entities.PP_Node { NodeType = "post", NodeStatus = "CREATED" };
+}
+
+@using CMS_2026.Utils
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <partial name="_Shared/_Breadcrumb" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/category?type=post" aria-expanded="false" class="nav-link">
+                            <i class="fe-folder"></i> @Model.Text["Categories", "Các chuyên mục"]
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/post@(!string.IsNullOrEmpty(categoryId) ? $"?categoryId={categoryId}" : "")" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> @Model.Text["All of posts", "Tất cả bài viết"]
+                        </a>
+                    </li>
+                    @if (category != null)
+                    {
+                        <li class="nav-item">
+                            <a href="@Constants.Admin_Url/post@(!string.IsNullOrEmpty(categoryId) ? $"?categoryId={categoryId}" : "")" aria-expanded="true" class="nav-link">
+                                <i class="fas fa-list-ol"></i> @category.Title
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a href="#create" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fas fa-plus-circle"></i> @Model.Text["Create new post", "Thêm bài viết mới"]
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="create">
+                        <form class="form-horizontal validable" role="form" method="post">
+                            @Html.AntiForgeryToken()
+
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                </div>
+                            }
+
+                            @Html.ComposeLanguageSwitch()
+                            @Html.ComboboxFor(field[t => t.CategoryId], options: Model.GroupSelector, value: (postModel.CategoryId ?? 0).ToString())
+                            @Html.TextBoxFor(field[t => t.Title], value: postModel.Title, required: true)
+                            @Html.TextBoxFor(field[t => t.NodePath], value: postModel.NodePath, required: true)
+                            @Html.TextAreaFor(field[t => t.Summary], value: postModel.Summary ?? "", required: true, useRichText: true)
+                            @Html.TextAreaFor(field[t => t.Content], value: postModel.Content ?? "", required: true, useRichText: true)
+                            @Html.RadioFor(field[t => t.Featured], value: postModel.Featured)
+                            @Html.TextBoxFor(field[t => t.MetaDescription], value: postModel.MetaDescription)
+                            @Html.TagsInputFor(field[t => t.MetaKeywords], value: postModel.MetaKeywords)
+                            @Html.ImagePickerFor(field[t => t.ImageUrl], value: postModel.ImageUrl)
+
+                            <hr />
+
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        @Model.Text["Continue", "Tiếp tục"]
+                                    </button>
+                                    <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                        @Model.Text["Back", "Quay lại"]
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head {
+    <link href="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            // String to slug
+            $("#Title").stringToSlug({
+                getPut: '#NodePath',
+            });
+
+            // Parsley validation
+            $(".validable").parsley();
+            
+            // Re-initialize Editor.js after page is fully loaded
+            // This ensures CDN scripts are loaded
+            setTimeout(function() {
+                console.log('DEBUG: Checking for Editor.js elements...');
+                const editorElements = document.querySelectorAll('.editorjs');
+                console.log('DEBUG: Found', editorElements.length, 'elements with class .editorjs');
+                
+                if (typeof initEditorJS === 'function') {
+                    console.log('Re-initializing Editor.js from Create.cshtml');
+                    initEditorJS();
+                } else {
+                    console.error('ERROR: initEditorJS function not found!');
+                    console.log('Available window functions:', Object.keys(window).filter(k => k.toLowerCase().includes('editor')));
+                }
+            }, 2000);
+        });
+    </script>
+}

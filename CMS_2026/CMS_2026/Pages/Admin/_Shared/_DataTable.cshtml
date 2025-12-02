@@ -1,0 +1,70 @@
+@* 
+    Partial view cho DataTable có thể tái sử dụng
+    Usage: @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", Columns = columns, Data = data })
+*@
+@using CMS_2026.Common
+
+@{
+    var tableId = ViewData["TableId"] as string ?? "datatable";
+    var columns = ViewData["Columns"] as List<object> ?? new List<object>();
+    var pageLength = (int)(ViewData["PageLength"] ?? 100);
+    var lengthChange = (bool)(ViewData["LengthChange"] ?? false);
+    var showSearch = (bool)(ViewData["ShowSearch"] ?? true);
+    var showPaging = (bool)(ViewData["ShowPaging"] ?? true);
+    var showInfo = (bool)(ViewData["ShowInfo"] ?? true);
+}
+
+@* 
+    LƯU Ý: Partial view này cần được đặt trong @section head và @section scripts
+    Usage trong @section head:
+        @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", IsHead = true })
+    Usage trong @section scripts:
+        @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", IsHead = false })
+*@
+@{
+    var isHead = (bool)(ViewData["IsHead"] ?? false);
+}
+
+@if (isHead)
+{
+    <!-- DataTables CSS -->
+    <link href="@Constants.Admin_Url/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="@Constants.Admin_Url/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="@Constants.Admin_Url/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+}
+else
+{
+    <!-- DataTables JS -->
+    <script src="@Constants.Admin_Url/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/datatables/dataTables.responsive.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Custom sort for formatted numbers
+            jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+                "formatted-num-pre": function (a) {
+                    a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                    return parseFloat(a);
+                },
+                "formatted-num-asc": function (a, b) {
+                    return a - b;
+                },
+                "formatted-num-desc": function (a, b) {
+                    return b - a;
+                }
+            });
+
+            $('#@tableId').DataTable({
+                "aaSorting": [],
+                "pageLength": @pageLength,
+                "lengthChange": @lengthChange.ToString().ToLower(),
+                "searching": @showSearch.ToString().ToLower(),
+                "paging": @showPaging.ToString().ToLower(),
+                "info": @showInfo.ToString().ToLower(),
+                "responsive": true
+            });
+        });
+    </script>
+}
+

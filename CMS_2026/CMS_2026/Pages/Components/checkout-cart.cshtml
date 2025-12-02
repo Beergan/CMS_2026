@@ -1,0 +1,106 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+}
+
+@inject ShoppingCartService CartService
+@{
+    var checkoutError = TempData.Peek("CheckoutError") as string;
+    var checkoutSuccess = TempData.Peek("CheckoutSuccess") as string;
+    var cartLines = CartService.GetOrderLines();
+}
+
+<section class="checkout-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Thông tin đặt hàng</h2>
+                @if (!string.IsNullOrEmpty(checkoutError))
+                {
+                    <div class="alert alert-danger">@checkoutError</div>
+                }
+                @if (!string.IsNullOrEmpty(checkoutSuccess))
+                {
+                    <div class="alert alert-success">@checkoutSuccess</div>
+                }
+                <form method="post" action="/checkout/process">
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group">
+                        <label>Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text" name="CustomerName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input type="email" name="Email" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Điện thoại <span class="text-danger">*</span></label>
+                        <input type="tel" name="Phone" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ <span class="text-danger">*</span></label>
+                        <input type="text" name="Address" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phương thức thanh toán</label>
+                        <select name="PaymentMethod" class="form-control">
+                            <option value="cod">Thanh toán khi nhận hàng</option>
+                            <option value="vnpay">VNPay</option>
+                            <option value="vietqr">VietQR</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ghi chú</label>
+                        <textarea name="Note" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Đặt hàng</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h2>Đơn hàng của bạn</h2>
+                @if (!cartLines.Any())
+                {
+                    <p>Giỏ hàng trống.</p>
+                }
+                else
+                {
+                    <div class="order-summary">
+                        <ul class="list-group mb-3">
+                            @foreach (var item in cartLines)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>@item.Title</span>
+                                    <span class="badge bg-secondary">@item.Quantity x @item.Price.ToString("#,##0") ₫</span>
+                                </li>
+                            }
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Tạm tính</strong>
+                                <span>@CartService.GetSubTotal().ToString("#,##0") ₫</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Phí ship</strong>
+                                <span>@CartService.ShipFee.ToString("#,##0") ₫</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>Tổng cộng</strong>
+                                <span>@CartService.GetTotal().ToString("#,##0") ₫</span>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

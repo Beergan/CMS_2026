@@ -1,0 +1,105 @@
+@page
+@model CMS_2026.Pages.Admin.Page.IndexModel
+@{
+    ViewData["Title"] = "Danh sách trang";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Danh sách trang</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#list" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="fas fa-list-ol"></i> Danh sách trang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/page/create" aria-expanded="false" class="nav-link">
+                            <i class="fas fa-plus-circle"></i> Tạo trang mới
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="list">
+                        <table id="datatable" class="table table-striped table-bordered dt-responsive">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 230px; width: 40%;">Tiêu đề</th>
+                                    <th>Đường dẫn</th>
+                                    <th>Tên component</th>
+                                    <th style="width:1%;min-width:80px;">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Pages.Count; i++)
+                                {
+                                    var pageItem = Model.Pages[i];
+                                    <tr>
+                                        <td style="min-width: 230px; width: 40%;">
+                                            <b>@(i + 1)</b> <a href="/admin/page/edit?id=@pageItem.Id">@pageItem.Title</a>
+                                        </td>
+                                        <td>/@pageItem.PathPattern.Replace("{0}", "*")</td>
+                                        <td>@pageItem.ComptName</td>
+                                        <td align="center">
+                                            <div class="btn-group btn-group-sm">
+                                                <a title="Xem" target="_blank" href="/@pageItem.PathPattern" 
+                                                   type="button" class="btn btn-warning @(pageItem.PathPattern.EndsWith("/{0}") || pageItem.PathPattern.EndsWith("/{0}.html") ? "disabled" : "")">
+                                                    <span class="fa fa-eye"></span>
+                                                </a>
+                                                <a title="Hiệu chỉnh" href="/admin/page/edit?id=@pageItem.Id" type="button" class="btn btn-warning">
+                                                    <span class="mdi mdi-pencil"></span>
+                                                </a>
+                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deletePage(@pageItem.Id, '@pageItem.Title')">
+                                                    <span class="mdi mdi-delete"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function deletePage(id, title) {
+            if (!confirm('Bạn có chắc chắn muốn xóa trang "' + title + '"?')) {
+                return;
+            }
+
+            $.ajax({
+                url: '/admin/page?delete',
+                type: 'POST',
+                data: {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    Id: id
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Có lỗi xảy ra!');
+                }
+            });
+        }
+    </script>
+}
+

@@ -1,0 +1,318 @@
+@using CMS_2026.Models
+@using System.Collections.Generic
+@using System.Reflection
+@model dynamic
+
+@{
+    ComponentField field = new ComponentField();
+    IDictionary<string, object> data = new Dictionary<string, object>();
+    
+    // Xử lý anonymous object bằng reflection
+    if (Model != null)
+    {
+        try
+        {
+            var modelType = Model.GetType();
+            var properties = modelType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            
+            foreach (var prop in properties)
+            {
+                var propValue = prop.GetValue(Model);
+                var propName = prop.Name;
+                
+                if (propName == "Field")
+                {
+                    if (propValue is ComponentField fieldValue)
+                    {
+                        field = fieldValue;
+                    }
+                }
+                else if (propName == "Data")
+                {
+                    if (propValue is IDictionary<string, object> dataValue)
+                    {
+                        data = dataValue;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            // Fallback: thử truy cập như dynamic
+            try
+            {
+                field = (Model?.Field as ComponentField) ?? new ComponentField();
+                data = (Model?.Data as IDictionary<string, object>) ?? new Dictionary<string, object>();
+            }
+            catch
+            {
+                // Ignore errors
+            }
+        }
+    }
+    
+    object? value = null;
+    if (field != null && !string.IsNullOrEmpty(field.FieldId) && data != null && data.ContainsKey(field.FieldId))
+    {
+        value = data[field.FieldId];
+    }
+    var fieldGuid = Guid.NewGuid();
+}
+
+@if (field.ControlType == "richtextbox")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <textarea class="form-control myckeditor"
+                      @(field.Required ? "required" : "")
+                      originid="@field.FieldId"
+                      name="@field.FieldId-@fieldGuid"
+                      id="@field.FieldId-@fieldGuid"
+                      placeholder="@field.PlaceHolder" rows="7" myckeditor>@Html.Raw(value ?? string.Empty)</textarea>
+        </div>
+    </div>
+}
+else if (field.ControlType == "textarea")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <textarea class="form-control"
+                      @(field.Required ? "required" : "")
+                      originid="@field.FieldId"
+                      name="@field.FieldId-@fieldGuid"
+                      id="@field.FieldId-@fieldGuid"
+                      placeholder="@field.PlaceHolder" rows="7">@Html.Raw(value ?? string.Empty)</textarea>
+        </div>
+    </div>
+}
+else if (field.ControlType == "combobox")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <select class="form-control"
+                    originid="@field.FieldId"
+                    id="@field.FieldId-@fieldGuid"
+                    name="@field.FieldId-@fieldGuid">
+                @if (field.Options != null)
+                {
+                    foreach (var item in field.Options)
+                    {
+                        var isSelected = item == value?.ToString();
+                        if (isSelected)
+                        {
+                            <option value="@item" selected="selected">@item</option>
+                        }
+                        else
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+}
+else if (field.ControlType == "checkbox")
+{
+    <div class="form-group row">
+        <label originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label"
+               for="@field.FieldId-@fieldGuid">
+            @field.FieldTitle
+        </label>
+        <div class="col-12 col-md-10">
+                @{
+                    var isChecked = CMS_2026.Services.RootService.IsTrueValue(value);
+                }
+                <input type="checkbox"
+                   originid="@field.FieldId"
+                   name="@field.FieldId-@fieldGuid"
+                   id="@field.FieldId-@fieldGuid"
+                   value="true" @(isChecked ? "checked" : "")
+                   data-plugin="switchery"
+                   data-color="#3ec396" mycheckbox />
+        </div>
+    </div>
+}
+else if (field.ControlType == "image")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       @(field.Required ? "required" : "")
+                       parsley-type="@field.ControlType"
+                       @(!string.IsNullOrEmpty(field.InputMask) ? $"data-toggle=input-mask data-mask-format={field.InputMask}" : "")
+                       name="@field.FieldId-@fieldGuid"
+                       id="@field.FieldId-@fieldGuid"
+                       originid="@field.FieldId"
+                       placeholder="@field.PlaceHolder"
+                       value="@(value ?? string.Empty)"
+                       readonly />
+                <div class="input-group-append">
+                    <button originid="@field.FieldId"
+                            class="btn btn-primary"
+                            type="button" onclick="javascript:$('#@field.FieldId-@fieldGuid').val('')">
+                        Xóa
+                    </button>
+                    <button target="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+                            class="btn btn-primary waves-effect waves-light btn-ckfinder-popup"
+                            type="button">
+                        <i class="fe-upload"></i> Duyệt file ..
+                    </button>
+                </div>
+            </div>
+            <img id="img-@field.FieldId-@fieldGuid" originid="@field.FieldId" src="@(string.IsNullOrEmpty(value?.ToString()) ? "/assets/images/no-image.jpg" : value)" style="margin-top:10px; max-height: 250px; max-width: 100%" />
+        </div>
+    </div>
+}
+else if (field.ControlType == "link")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <div class="input-group">
+                <input class="form-control"
+                       type="text"
+                       @(field.Required ? "required" : "")
+                       parsley-type="text"
+                       @(!string.IsNullOrEmpty(field.InputMask) ? $"data-toggle=input-mask data-mask-format={field.InputMask}" : "")
+                       name="@field.FieldId-@fieldGuid"
+                       id="@field.FieldId-@fieldGuid"
+                       originid="@field.FieldId"
+                       placeholder="@field.PlaceHolder"
+                       value="@(value ?? string.Empty)">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertLinkModal" data-insertback="@field.FieldId-@fieldGuid">Chọn link ..</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (field.ControlType == "icon")
+{
+    var iconValue = string.IsNullOrWhiteSpace(value?.ToString()) ? "bi bi-bootstrap" : value.ToString();
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <div class="input-group">
+                <input class="form-control"
+                       type="text"
+                       @(field.Required ? "required" : "")
+                       name="@field.FieldId-@fieldGuid"
+                       id="@field.FieldId-@fieldGuid"
+                       originid="@field.FieldId"
+                       placeholder="@(field.PlaceHolder ?? "Chọn một icon...")"
+                       value="@iconValue"
+                       readonly>
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="@iconValue"></i>
+                    </span>
+                    <button type="button" class="btn btn-primary btn-icon-picker"
+                            data-insertback="@field.FieldId-@fieldGuid">
+                        Chọn icon ..
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (field.ControlType == "tagsinput")
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <input class="form-control"
+                   type="text"
+                   @(field.Required ? "required" : "")
+                   data-role="tagsinput"
+                   parsley-type="text"
+                   name="@field.FieldId-@fieldGuid"
+                   id="@field.FieldId-@fieldGuid"
+                   originid="@field.FieldId"
+                   placeholder="@field.PlaceHolder"
+                   value="@(value ?? string.Empty)">
+        </div>
+    </div>
+}
+else
+{
+    <div class="form-group row">
+        <label for="@field.FieldId-@fieldGuid" originid="@field.FieldId"
+               class="col-12 col-md-2 col-form-label">
+            @field.FieldTitle
+            @if (field.Required)
+            {
+                <span class="text-danger">*</span>
+            }
+        </label>
+        <div class="col-12 col-md-10">
+            <input class="form-control"
+                   type="@(field.ControlType == "number" ? "number" : "text")"
+                   @(field.Required || field.ControlType == "number" ? "required" : "")
+                   parsley-type="@field.ControlType"
+                   @(!string.IsNullOrEmpty(field.InputMask) ? $"data-toggle=input-mask data-mask-format={field.InputMask}" : "")
+                   name="@field.FieldId-@fieldGuid"
+                   id="@field.FieldId-@fieldGuid"
+                   originid="@field.FieldId"
+                   placeholder="@field.PlaceHolder"
+                   value="@(value ?? string.Empty)">
+        </div>
+    </div>
+}
+

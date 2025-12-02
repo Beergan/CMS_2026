@@ -1,0 +1,406 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.ViewModels
+@using CMS_2026.Data.Entities
+@using Microsoft.Extensions.Caching.Memory
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@using Newtonsoft.Json
+@inject RootService Root
+@inject IDataService Db
+@inject IMemoryCache Cache
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    var nodeSlug = Context.Items["NodeSlug"]?.ToString() ?? Context.Request.Query["slug"].FirstOrDefault() ?? "";
+    var currentPage = int.TryParse(Context.Request.Query["page"].FirstOrDefault(), out var p) ? p : 1;
+    var pageSize = 12;
+    var sortby = Context.Request.Query["sortby"].FirstOrDefault();
+
+    // Load ProductListViewModel from config
+    var data = ViewHelper.LoadData<ProductListViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-ProductList-{nodeSlug}-{currentPage}-{sortby}", setup: (model) =>
+    {
+        if (model == null)
+        {
+            model = new ProductListViewModel
+            {
+                Title = Model?.Title ?? "Danh sách sản phẩm",
+                MetaDescription = Model?.MetaDescription ?? config.WebDescription,
+                MetaKeywords = Model?.MetaKeywords ?? "",
+                CurrentPage = currentPage
+            };
+        }
+        else if (Model != null)
+        {
+            if (string.IsNullOrEmpty(model.Title)) model.Title = Model.Title;
+            if (string.IsNullOrEmpty(model.MetaDescription)) model.MetaDescription = Model.MetaDescription;
+            if (string.IsNullOrEmpty(model.MetaKeywords)) model.MetaKeywords = Model.MetaKeywords;
+        }
+
+        var page = Db.GetOne<PP_Page>(pageId);
+        if (page != null)
+        {
+            model.Title = page.Title;
+            model.MetaDescription = page.MetaDescription;
+            model.MetaKeywords = page.MetaKeywords;
+        }
+
+    var category = Db.GetOne<PP_Category>(t => t.CategoryPath == nodeSlug && t.LangId == langId);
+        if (category == null)
+        {
+            return model;
+        }
+
+        model.BannerProduct = category.ImageUrl;
+        model.CategoryPath = category.CategoryPath;
+
+        var arrCategory = RootService.CategoryIndexes.ContainsKey(category.Id)
+            ? RootService.CategoryIndexes[category.Id].ToList() 
+            : new List<int> { category.Id };
+
+        // Load categories
+        model.Categories = Db.GetList<PP_Category>(t => t.NodeType == "product" && t.LangId == langId).ToList();
+
+        // Load comments
+        model.Comments = Db.GetList<PP_Comment>(t => t.Status == "SUCCESS").ToList();
+
+        // Load products
+        var query = Db.GetList<PP_Product>(t => 
+            t.LangId == langId && 
+            arrCategory.Contains(t.CategoryId ?? 0))
+            .OrderByDescending(b => b.CreatedTime)
+            .ToList();
+
+        // Apply sorting
+        if (!string.IsNullOrEmpty(sortby))
+        {
+            switch (sortby.ToLower())
+            {
+                case "best-selling":
+                    query = query.OrderByDescending(x => x.BestSeller).ToList();
+                    break;
+                case "title-ascending":
+                    query = query.OrderBy(x => x.Title).ToList();
+                    break;
+                case "title-descending":
+                    query = query.OrderByDescending(x => x.Title).ToList();
+                    break;
+                case "price-ascending":
+                    query = query.OrderBy(x => x.PromotionEnabled ? x.PromotionPrice : x.Price).ToList();
+                    break;
+                case "price-descending":
+                    query = query.OrderByDescending(x => x.PromotionEnabled ? x.PromotionPrice : x.Price).ToList();
+                    break;
+                case "created-ascending":
+                    query = query.OrderBy(x => x.CreatedTime).ToList();
+                    break;
+                case "created-descending":
+                default:
+                    query = query.OrderByDescending(x => x.CreatedTime).ToList();
+                    break;
+            }
+        }
+
+        model.Count = query;
+        var totalCount = query.Count;
+        model.TotalPages = (long)Math.Ceiling((decimal)totalCount / pageSize);
+        model.CurrentPage = currentPage;
+
+        model.Items = query
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        return model;
+    });
+
+    ViewData["Title"] = data?.Title ?? "Danh sách sản phẩm";
+    ViewData["Description"] = data?.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = data?.MetaKeywords ?? "";
+}
+
+<style>
+    #ajax-loading .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border: 0.3em solid #ccc;
+        border-top-color: #007bff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @@keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .fadeInUp {
+        animation: fadeInUp 0.6s ease-in-out;
+        opacity: 1 !important;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<main id="content" class="wrapper layout-page">
+    <section class="page-title z-index-2 position-relative">
+        <div class="bg-body-secondary">
+            <div class="container">
+                <nav class="py-4 lh-30px" aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center py-1">
+                        @if (config.MainMenus != null && config.MainMenus.Any())
+                        {
+                            <li class="breadcrumb-item"><a href="@config.MainMenus.First().Href">@config.MainMenus.First().Title</a></li>
+                        }
+                        <li class="breadcrumb-item active" aria-current="page">@data?.Title</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="text-center py-13">
+    <div class="container">
+                <h2 class="mb-0">@data?.Title</h2>
+            </div>
+        </div>
+    </section>
+    <section class="container container-xxl">
+        <div class="tool-bar mb-11 align-items-center justify-content-between d-lg-flex">
+            <div class="tool-bar-left mb-6 mb-lg-0 fs-18px">
+                <span class="text-body-emphasis fw-semibold">@(data?.Count?.Count() ?? 0)</span> @(langId == "en" ? "products available for you" : "Sản phẩm có sẵn cho bạn")
+            </div>
+            <div class="tool-bar-right align-items-center d-lg-flex">
+                <ul class="list-unstyled d-flex align-items-center list-inline mb-0">
+                    <li class="list-inline-item me-0 w-100 w-lg-auto">
+                        <select class="form-select w-100 w-lg-auto" name="sortby" id="SortBy">
+                            @{
+                                var isSelectedFeatured = string.IsNullOrEmpty(sortby);
+                                var isSelectedBestSelling = sortby == "best-selling";
+                                var isSelectedTitleAsc = sortby == "title-ascending";
+                                var isSelectedTitleDesc = sortby == "title-descending";
+                                var isSelectedPriceAsc = sortby == "price-ascending";
+                                var isSelectedPriceDesc = sortby == "price-descending";
+                                var isSelectedCreatedAsc = sortby == "created-ascending";
+                                var isSelectedCreatedDesc = sortby == "created-descending";
+                            }
+                            <option value="" selected="@isSelectedFeatured">@(langId == "en" ? "Featured" : "Ưu tiên")</option>
+                            <option value="best-selling" selected="@isSelectedBestSelling">@(langId == "en" ? "Best Selling" : "Bán chạy nhất")</option>
+                            <option value="title-ascending" selected="@isSelectedTitleAsc">@(langId == "en" ? "Alphabetically, A-Z" : "Theo bảng chữ cái, A-Z")</option>
+                            <option value="title-descending" selected="@isSelectedTitleDesc">@(langId == "en" ? "Alphabetically, Z-A" : "Theo bảng chữ cái, Z-A")</option>
+                            <option value="price-ascending" selected="@isSelectedPriceAsc">@(langId == "en" ? "Price, low to high" : "Giá từ thấp đến cao")</option>
+                            <option value="price-descending" selected="@isSelectedPriceDesc">@(langId == "en" ? "Price, high to low" : "Giá từ cao đến thấp")</option>
+                            <option value="created-ascending" selected="@isSelectedCreatedAsc">@(langId == "en" ? "Date, old to new" : "Ngày, cũ đến mới")</option>
+                            <option value="created-descending" selected="@isSelectedCreatedDesc">@(langId == "en" ? "Date, new to old" : "Ngày, mới đến cũ")</option>
+                        </select>
+                    </li>
+                    <li class="list-inline-item d-none d-lg-block ms-7">
+                        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" class="btn btn-hover-border-primary btn-hover-bg-primary btn-hover-text-light btn-dark">
+                            <svg class="icon icon-SlidersHorizontal fs-4 me-4">
+                                <use xlink:href="#icon-SlidersHorizontal"></use>
+                            </svg> @(langId == "en" ? "Categories" : "Danh mục")
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fs-3" id="offcanvasExampleLabel">@(langId == "en" ? "Filters" : "Bộ lọc")</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <aside class="primary-sidebar">
+                <div class="widget widget-product-category">
+                    <h4 class="widget-title fs-5 mb-6">@(langId == "en" ? "Product Categories" : "Loại Sản phẩm")</h4>
+                    <ul class="navbar-nav navbar-nav-cate" id="widget_product_category">
+                        @if (data?.Categories != null)
+                        {
+                            @foreach (var item in data.Categories.Where(x => x.NodeType == "product"))
+                            {
+                                <li class="nav-item">
+                                    <a href="/@item.CategoryPath" title="@item.Title" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center text-uppercase fs-14px fw-semibold letter-spacing-5">
+                                        <span class="text-hover-underline">@item.Title</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div class="container container-xxl pb-16 pb-lg-18 mb-lg-3 collection-category">
+        <div id="ajax-loading" style="display:none; text-align:center; padding:20px;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="row gy-50px" id="product-list">
+            @if (data?.Items != null && data.Items.Any())
+            {
+                @foreach (var item in data.Items)
+                {
+                    <div class="col-sm-6 col-lg-4 col-xl-3">
+                        <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
+                            <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                <a href="/@item.NodePath" class="hover-zoom-in d-block" title="@item.Title">
+                                    <img src="@item.ImageUrl" data-src="@item.ImageUrl" class="img-fluid lazy-image w-100" alt="@item.Title" width="450" height="600">
+                                </a>
+                                <div class="position-absolute d-flex z-index-2 product-actions horizontal">
+                                    @if (item.AttrbEnabled == true && !string.IsNullOrEmpty(item.AttrbValues))
+                                    {
+                                        var att = item.AttrbValues.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                                        if (att.Length > 0)
+                                        {
+                                            <div class="product-action-cart-variation dropup mt-3">
+                                                <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    @(langId == "en" ? "Add to cart" : "Thêm vào giỏ")
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    @foreach (var v in att)
+                                                    {
+                                                        <li>
+                                                            <a class="dropdown-item action-cart-add" href="javascript:void(0)" data-product-id="@item.Id" data-variation="@v">@v</a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a data-product-id="@item.Id" data-product-title="@item.Title"
+                                           class="action-cart-add text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm"
+                                           href="javascript:void(0)"
+                                           data-bs-title="Add To Cart">
+                                            <svg class="icon icon-shopping-bag-open-light">
+                                                <use xlink:href="#icon-shopping-bag-open-light"></use>
+                                            </svg>
+                                        </a>
+                                    }
+                                </div>
+                            </figure>
+                            <div class="card-body text-center p-0">
+                                <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                    @if (item.PromotionEnabled && item.PromotionPrice.HasValue)
+                                    {
+                                        <del class="text-body fw-500 me-4 fs-13px">@item.Price.ToString("#,##0") đ</del>
+                                        <ins class="text-decoration-none">@item.PromotionPrice.Value.ToString("#,##0") đ</ins>
+                                }
+                                else
+                                {
+                                        <ins class="text-decoration-none">@item.Price.ToString("#,##0") đ</ins>
+                                }
+                                </span>
+                                <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                    <a class="text-decoration-none text-reset" href="/@item.NodePath">@item.Title</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p class="text-center">@(langId == "en" ? "No products found." : "Không tìm thấy sản phẩm nào.")</p>
+                </div>
+            }
+        </div>
+        <nav class="d-flex mt-13 pt-3 justify-content-center" aria-label="pagination" data-animate="fadeInUp">
+            @if (data?.Items != null && data.Items.Any() && data.TotalPages > 1)
+            {
+                <ul class="pagination m-0">
+                    <li class="page-item @(data.CurrentPage == 1 ? "disabled" : "")">
+                        <a class="page-link rounded-circle d-flex align-items-center justify-content-center"
+                           href="@(data.CurrentPage > 1 ? $"/{data.CategoryPath}?page={data.CurrentPage - 1}{(string.IsNullOrEmpty(sortby) ? "" : "&sortby=" + sortby)}" : "#")"
+                           aria-label="Previous">
+                            <svg class="icon">
+                                <use xlink:href="#icon-angle-double-left"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= data.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == data.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="/@data.CategoryPath?page=@i@(string.IsNullOrEmpty(sortby) ? "" : "&sortby=" + sortby)">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(data.CurrentPage == data.TotalPages ? "disabled" : "")">
+                        <a class="page-link rounded-circle d-flex align-items-center justify-content-center"
+                           href="@(data.CurrentPage < data.TotalPages ? $"/{data.CategoryPath}?page={data.CurrentPage + 1}{(string.IsNullOrEmpty(sortby) ? "" : "&sortby=" + sortby)}" : "#")"
+                           aria-label="Next">
+                            <svg class="icon">
+                                <use xlink:href="#icon-angle-double-right"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            }
+        </nav>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle add to cart
+        document.querySelectorAll('.action-cart-add').forEach(button => {
+            button.addEventListener('click', async function() {
+                const productId = this.getAttribute('data-product-id');
+                const variation = this.getAttribute('data-variation');
+                const productTitle = this.getAttribute('data-product-title');
+                
+                const formData = new FormData();
+                formData.append('productId', productId);
+                if (variation) {
+                    formData.append('variation', variation);
+                }
+                
+                try {
+                    const response = await fetch('/Api/Cart/Add', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Update cart count
+                        const cartCountEl = document.querySelector('.cart-count');
+                        if (cartCountEl) {
+                            cartCountEl.textContent = result.cartCount;
+                        }
+                        
+                        // Show success message
+                        if (typeof Toastify !== 'undefined') {
+                            Toastify({
+                                text: result.message || '@(langId == "en" ? "Added to cart" : "Đã thêm vào giỏ hàng")',
+                                duration: 3000,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#28a745"
+                            }).showToast();
+                        }
+                    } else {
+                        alert(result.message || '@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                    }
+                } catch (error) {
+                    alert('@(langId == "en" ? "Error adding to cart" : "Lỗi khi thêm vào giỏ hàng")');
+                }
+            });
+        });
+    });
+</script>
+

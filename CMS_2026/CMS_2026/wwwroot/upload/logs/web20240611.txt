@@ -1,0 +1,208 @@
+2024-06-11 15:39:15.475 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 15:45:46.587 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host '10.10.0.101' for user 'root' using method 'mysql_native_password' failed with message: Reading from the stream has failed. ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Reading from the stream has failed. ---> System.IO.EndOfStreamException: Attempted to read past the end of the stream.
+   at MySql.Data.MySqlClient.MySqlStream.ReadFully(Stream stream, Byte[] buffer, Int32 offset, Int32 count)
+   at MySql.Data.MySqlClient.MySqlStream.LoadPacket()
+   at MySql.Data.MySqlClient.MySqlStream.LoadPacket()
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   at MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at PetaPoco.Database.OpenSharedConnection() in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 273
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:04:11.588 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'ynfofepo5xpz0l2pkxguyd4y' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:04:11.729 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:09:04.679 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:09:06.571 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 16:10:35.771 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:10:36.409 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 16:35:02.006 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 16:35:02.022 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 16:36:20.027 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:21:21.439 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:21:22.667 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:31:01.279 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:31:01.279 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:31:01.460 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 17:31:01.539 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:31:01.539 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:31:01.539 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.062 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.063 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.066 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.070 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.070 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.070 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.070 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:16.067 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-11 17:54:17.285 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'rq5x3vr2bmpg2qlwoqvtfq2i' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 17:54:17.504 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'mcxd5ukmemkmnl32fuqiq4df' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-11 17:58:36.714 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92

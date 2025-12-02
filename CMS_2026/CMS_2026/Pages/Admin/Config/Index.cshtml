@@ -1,0 +1,528 @@
+@page
+@model CMS_2026.Pages.Admin.Config.IndexModel
+@using CMS_2026.Models
+@using CMS_2026.Data.Entities
+@using CMS_2026.Services
+@using CMS_2026.Common
+@using Newtonsoft.Json
+@inject RootService Root
+@{
+    ViewData["Title"] = "Cấu hình chung";
+    Layout = "_Layout";
+
+    var rootSchema = ComponentSynchronizer.GetObjectSchema(typeof(Config));
+    Dictionary<string, object> rootComptData;
+    
+    if (Model.RootConfig?.JsonContent != null && !string.IsNullOrEmpty(Model.RootConfig.JsonContent))
+    {
+        rootComptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(Model.RootConfig.JsonContent);
+    }
+    else
+    {
+        rootComptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(JsonConvert.SerializeObject(new Config()));
+    }
+    
+    // Đảm bảo rootComptData không null
+    if (rootComptData == null)
+    {
+        rootComptData = new Dictionary<string, object>();
+    }
+}
+
+<div class="modal fade" id="insertLinkModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach (var link in Model.LinkOptions)
+                {
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@link.Item1</span>
+                        </div>
+                        <input type="text" class="form-control" value="@link.Item2" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="javascript:insertLink('@link.Item2')">Chọn link</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Cấu hình chung</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#config" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fe-settings"></i> Cấu hình chung
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="config">
+
+                        <div class="card">
+                            <div class="card-header">
+                                Cấu hình chung <button type="button" class="btn btn-info float-right" data-toggle="collapse" aria-expanded="true" data-target="#main"><i class="fa fa-chevron-down pull-right"></i></button>
+                            </div>
+                            <div class="card-body collapse show" id="main">
+                                @Html.AntiForgeryToken()
+                                @if (ViewData.ModelState.ErrorCount > 0)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                    </div>
+                                }
+                                    @{
+                                    var rootRenderModel = new { Schema = rootSchema, Path = "config", Data = rootComptData };
+                                }
+                                @await Html.PartialAsync("_Shared/_RenderSchema", rootRenderModel)
+                                <div class="form-group mb-0">
+                                    <form class="form-horizontal validable subform" role="form" method="post" asp-page-handler="UpdateConfig" style="margin-bottom: 20px;">
+                                        <input type="hidden" name="JsonData" />
+                                        <div>
+                                            <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                Cập nhật
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        @foreach (var compt in Model.LayoutCompts)
+                        {
+                            var comptSchema = JsonConvert.DeserializeObject<ObjectSchema>(compt.JsonSchema ?? "{}") ?? new ObjectSchema();
+                            // Match ConfigKey: có thể là ComptKey hoặc layout_ComptKey
+                            var config = Model.LayoutConfigs.FirstOrDefault(t => 
+                                t.ConfigKey == compt.ComptKey || 
+                                t.ConfigKey == $"layout_{compt.ComptKey}" ||
+                                (compt.ComptKey != null && t.ConfigKey != null && t.ConfigKey.EndsWith($"_{compt.ComptKey}")));
+                            
+                            Dictionary<string, object> comptData;
+                            if (config?.JsonContent != null && !string.IsNullOrEmpty(config.JsonContent))
+                            {
+                                comptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(config.JsonContent);
+                            }
+                            else if (!string.IsNullOrEmpty(compt.JsonDefault))
+                            {
+                                comptData = CMS_2026.Pages.Admin.Config.JsonHelper.DeserializeToDictionary(compt.JsonDefault);
+                            }
+                            else
+                            {
+                                comptData = new Dictionary<string, object>();
+                            }
+                            
+                            // Đảm bảo comptData không null
+                            if (comptData == null)
+                            {
+                                comptData = new Dictionary<string, object>();
+                            }
+
+                            bool hasConfigured = config?.JsonContent != null;
+                            bool isEmptyCompt = comptSchema.SingleFieldTypes.Count == 0
+                                                && comptSchema.ArrayFieldTypes.Count == 0
+                                                && comptSchema.SingleObjectTypes.Count == 0
+                                                && comptSchema.ArrayObjectTypes.Count == 0;
+
+                            if (isEmptyCompt && hasConfigured)
+                            {
+                                continue;
+                            }
+
+                            <div class="card">
+                                <div class="card-header">
+                                    @compt.ComptName@(!hasConfigured ? " (Chưa cấu hình)" : "") <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@compt.ComptKey"><i class="fa fa-chevron-down pull-right"></i></button>
+                                </div>
+                                <div class="card-body collapse" id="@compt.ComptKey">
+                                        @if (comptData.ContainsKey("Phrases"))
+                                    {
+                                        var phrases = comptData["Phrases"] as IDictionary<string, object>;
+                                        var langIdCompose = Model.LangIdCompose;
+                                        if (phrases != null && phrases.Count > 0 && langIdCompose != "vi" && langIdCompose != "en")
+                                        {
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Dịch thuật <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#phrases"><i class="fa fa-chevron-down pull-right"></i></button>
+                                                </div>
+                                                <div class="card-body collapse" id="phrases">
+                                                    @foreach (var f in phrases)
+                                                    {
+                                                        <div class="form-group row">
+                                                            <label class="col-12 col-md-2 col-form-label">Dịch sang @(Model.LangCompose?.Title ?? "") <@f.Key></label>
+                                                            <div class="col-12 col-md-10">
+                                                                <input type="text" class="form-control" value="@f.Value" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                    @{
+                                        var renderModel = new { Schema = comptSchema, Path = compt.ComptKey ?? "", Data = comptData };
+                                    }
+                                    @await Html.PartialAsync("_Shared/_RenderSchema", renderModel)
+
+                                    <div class="form-group mb-0">
+                                        <form class="form-horizontal subform" role="form" method="post" asp-page-handler="UpdateCompt">
+                    @Html.AntiForgeryToken()
+                                            <input type="hidden" name="LangId" value="@Model.LangIdCompose" />
+                                            <input type="hidden" name="ComptKey" value="@compt.ComptKey" />
+                                            <input type="hidden" name="JsonData" />
+                                            <div>
+                                                <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                    Cập nhật [@compt.ComptName]
+                                                </button>
+
+                                                <button type="button" class="btn btn-danger reset">
+                                                    Reset
+                                                </button>
+                    </div>
+                </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head{
+    <link href="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- CKEditor 5 CSS -->
+    <link rel="stylesheet" href="@Constants.Admin_Url/ckeditor5/ckeditor5.css">
+    <style>
+        .card-header {
+            background-color: #eee;
+            line-height: 40px;
+            font-weight: bold;
+        }
+
+        .card-template {
+            display: none;
+        }
+
+        .card-header .fa {
+            transition: .3s transform ease-in-out;
+        }
+
+        .card-header .collapsed .fa {
+            transform: rotate(90deg);
+        }
+    </style>
+}
+
+@section scripts{
+    <script src="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/ckeditor5/ckeditor5.umd.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-wrapper.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-init.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script>
+        var insertLinkTarget = '';
+        function create_UUID() {
+            var dt = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (dt + Math.random() * 16) % 16 | 0;
+                dt = Math.floor(dt / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
+        }
+
+        function getJsonData(context) {
+            var jsondata = {}
+
+            // Lấy singleFields - chỉ children trực tiếp
+            $(context).children(".card-body-singleFields").each(function () {
+                $('input, select, textarea', this).each(function () {
+                    var originId = this.getAttribute('originId');
+                    if (!originId) return;
+
+                    var value = '';
+                    if ($(this).hasAttr("myckeditor")) {
+                        var elementId = $(this).attr('id');
+                        if (CKEDITOR.instances[elementId]) {
+                            value = CKEDITOR.instances[elementId].getData();
+                        } else {
+                            value = $(this).val() || '';
+                        }
+                    } else if ($(this).hasAttr("mycheckbox")) {
+                        value = $(this).is(':checked');
+                    } else {
+                        value = $(this).val();
+                        if (value !== undefined && value !== null) {
+                            value = value.trim();
+                        } else {
+                            value = '';
+                        }
+                    }
+                    jsondata[originId] = value;
+                });
+            });
+
+            // Lấy arrayField - chỉ children trực tiếp
+            $("> .card > .card-body-arrayField", context).each(function () {
+                var originId = this.getAttribute('originId');
+                if (!originId) return;
+
+                var arrayField = [];
+                $('input, select, textarea', this).each(function () {
+                    var value = $(this).val();
+                    if (value) {
+                        arrayField.push(value.trim());
+                    }
+                });
+                jsondata[originId] = arrayField;
+            });
+
+            // Lấy singleObj - chỉ children trực tiếp
+            $("> .card > .card-body-singleObj", context).each(function () {
+                var originId = this.getAttribute('originId');
+                if (originId) {
+                    var singleObj = getJsonData(this);
+                    jsondata[originId] = singleObj;
+                }
+            });
+
+            // Lấy arrObjType - chỉ children trực tiếp
+            $("> .card > .card-body-arrObjType", context).each(function () {
+                var originId = this.getAttribute('originId');
+                if (!originId) return;
+
+                var arrObj = [];
+                $("> .card > .card-body-arrObjItem:not(.card-body-template)", this).each(function () {
+                    var arrObjItem = getJsonData(this);
+                    arrObj.push(arrObjItem);
+                });
+                jsondata[originId] = arrObj;
+            });
+
+            return jsondata;
+        }
+
+        $(document).ready(function () {
+
+            $.fn.hasAttr = function (name) {
+                var attr = $(this).attr(name);
+                return typeof attr !== typeof undefined && attr !== false;
+            };
+
+            $(document).on("click", ".btn-delete-arrFieldItem", function (e) {
+                e.preventDefault();
+                $(this).closest(".input-group").remove();
+            })
+
+            $(document).on("click", ".btn-insert-arrFieldItem", function (e) {
+                var item = $(this).closest(".input-group");
+                var newItem = item.clone();
+                newItem.find("button")
+                    .removeClass("btn-insert-arrFieldItem")
+                    .addClass("btn-delete-arrFieldItem")
+                    .removeClass("btn-primary")
+                    .addClass("btn-danger");
+                newItem.find("button > i")
+                   .removeClass("fe-plus-circle")
+                   .addClass("fe-x-circle");
+                newItem.insertBefore(item);
+                $(item).find("input").val(null);
+            })
+
+            $(document).on("click", ".btn-delete-arrObjDataItem", function (e) {
+                e.preventDefault();
+                $(this).closest(".card").remove();
+            })
+
+            $(document).on("click", ".btn-insert-arrObjDataItem", function (e) {
+            e.preventDefault();
+                var guid = create_UUID();
+                var cardBody = $(this).closest(".card-body-arrObjType");
+                var template = $(cardBody).children(".card-template").clone();
+                template.removeClass("card-template").addClass("card").show();
+
+                var btn_card_header_arrObjType = template.find(".btn-card-header-arrObjType");
+                btn_card_header_arrObjType.attr("data-target", btn_card_header_arrObjType.attr("data-target") + "-" + guid)
+
+                var card_body_arrObjItem = template.find(".card-body-arrObjItem");
+                card_body_arrObjItem.attr("id", card_body_arrObjItem.attr("id") + "-" + guid)
+                card_body_arrObjItem.removeClass("card-body-template");
+
+                $("> div > .card-body-singleFields > div", template).each(function () {
+                    var subGuid = create_UUID();
+                    $(this).find('input, checkbox, select, textarea, button').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("name")) {
+                            $(this).attr('name', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("data-insertback")) {
+                            $(this).attr('data-insertback', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("id")) {
+                            $(this).attr('id', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("value")) {
+                            $(this).val('')
+                        }
+                    });
+                    $(this).find('label').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("for")) {
+                            $(this).attr('for', originId + '-' + subGuid);
+                        }
+                    });
+                    $(this).find('button').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("target")) {
+                            $(this).attr('target', originId + '-' + subGuid);
+                        }
+                    });
+                    $(this).find('img').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("id")) {
+                            $(this).attr('id', "img-" + originId + '-' + subGuid);
+                        }
+                    });
+                });
+
+                template.insertBefore($(this).parents(".button-card-body-arrObjType"));
+            });
+
+            function submit_subform(form, act) {
+                var card = $(form).parents(".card-body");
+                var jsondata = getJsonData(card);
+                $("input[name='JsonData']", form).val(JSON.stringify(jsondata, null, 0));
+                
+                // Kiểm tra xem là form root config hay form layout component
+                // Form root config không có input LangId và ComptKey
+                var hasComptKey = $("input[name='ComptKey']", form).length > 0;
+                var hasLangId = $("input[name='LangId']", form).length > 0;
+                var isUpdateConfig = !hasComptKey && !hasLangId;
+                
+                var ajaxUrl, ajaxData;
+                // Tìm token: trong form trước, sau đó tìm trong parent .card-body, cuối cùng tìm global
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                if (!token) {
+                    token = $('input[name="__RequestVerificationToken"]', card).val();
+                }
+                if (!token) {
+                    token = $('input[name="__RequestVerificationToken"]').first().val();
+                }
+                
+                if (isUpdateConfig) {
+                    // Form root config
+                    ajaxUrl = "@Constants.Admin_Url/config?handler=UpdateConfig";
+                    ajaxData = {
+                        __RequestVerificationToken: token,
+                        JsonData: JSON.stringify(jsondata, null, 0)
+                    };
+                } else {
+                    // Form layout component
+                    var langId = $("input[name='LangId']", form).val();
+                    var comptKey = $("input[name='ComptKey']", form).val();
+                    ajaxUrl = "@Constants.Admin_Url/config?handler=UpdateCompt";
+                    ajaxData = {
+                        __RequestVerificationToken: token,
+                        LangId: langId,
+                        ComptKey: comptKey,
+                        action: act,
+                        JsonData: JSON.stringify(jsondata, null, 0)
+                    };
+                }
+            
+            $.ajax({
+                    url: ajaxUrl,
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: ajaxData,
+                    success: function (result) {
+                        var message = 'Cập nhật thành công!';
+                        if (result && typeof result === 'object') {
+                            message = result.message || result.success || message;
+                        } else if (result) {
+                            message = result;
+                        }
+                        Swal.fire({
+                            title: 'Chúc mừng!',
+                            text: message,
+                            icon: "success"
+                        }).then(function (t) { location.reload(); })
+                    },
+                    error: function (errormessage) {
+                        var errorText = 'Có lỗi xảy ra';
+                        if (errormessage.responseJSON && errormessage.responseJSON.message) {
+                            errorText = errormessage.responseJSON.message;
+                        } else if (errormessage.responseText) {
+                            errorText = errormessage.responseText;
+                        }
+                        Swal.fire({
+                            title: 'Thôi xong!',
+                            text: errorText,
+                            icon: "error"
+                        })
+                    }
+                });
+            }
+
+            $('.subform .reset').click(function (event) {
+                submit_subform($(this).closest("form"), 'reset');
+            });
+
+            $('.subform').on('submit', function (event) {
+                event.preventDefault();
+                var card = $(this).parents(".card-body");
+                var jsondata = getJsonData(card);
+                $("input[name='JsonData']", this).val(JSON.stringify(jsondata, null, 0));
+                submit_subform(this, 'update');
+            });
+
+            $(document).on("click", ".btn-ckfinder-popup", function (e) {
+                e.preventDefault();
+                var targetId = $(this).attr('target');
+                window["callback_" + targetId] = function (fileUrl) {
+                    var url = new URL(fileUrl);
+                    $('#' + targetId).val(url.pathname);
+                    $('#img-' + targetId).attr("src", url.pathname);
+                }
+                CKFinder.popup({
+                    chooseFiles: true,
+                    width: 800,
+                    height: 600,
+                    selectActionFunction: window["callback_" + targetId]
+                });
+            });
+
+            // CKEditor 5 is initialized automatically by ckeditor5-init.js
+            // No need for manual initialization
+
+            $('#insertLinkModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                insertLinkTarget = button.data('insertback');
+            })
+        });
+
+        function insertLink(link) {
+            $('#' + insertLinkTarget).val(link);
+        }
+    </script>
+}

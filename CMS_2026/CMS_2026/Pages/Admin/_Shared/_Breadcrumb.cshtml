@@ -1,0 +1,26 @@
+@using CMS_2026.Common
+@using CMS_2026.Services
+@using CMS_2026.Utils
+@inject RootService RootService
+@{
+    var currentBreadcrumb = ViewData["CurrentBreadcrumb"] as string ?? "";
+    var langIdCompose = ViewData["LangIdCompose"]?.ToString() ?? 
+                       (ViewContext.HttpContext.Request.Cookies["LangIdCompose"] ?? "vi");
+}
+
+<div class="page-title-box">
+    <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="@Constants.Admin_Url">Admin</a></li>
+            @if (!string.IsNullOrEmpty(currentBreadcrumb))
+            {
+                <li class="breadcrumb-item active">@currentBreadcrumb</li>
+            }
+        </ol>
+    </div>
+    <h4 class="page-title">
+        @await Html.PartialAsync("_Shared/_LanguageSwitch", new { LangIdCompose = langIdCompose, ShowInputLanguage = false, ShowButtonDropdown = true })
+        @currentBreadcrumb
+    </h4>
+</div>
+

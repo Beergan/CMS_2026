@@ -1,0 +1,148 @@
+@model CMS_2026.Models.Config
+@using CMS_2026.Services
+@inject RootService Root
+@inject ShoppingCartService CartService
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var cartCount = CartService.GetItemCount();
+    var advertisement = Model.Advertisemant ?? "";
+}
+
+<header id="header" class="header header-sticky header-sticky-smart disable-transition-all z-index-5">
+    @if (!string.IsNullOrEmpty(advertisement))
+    {
+        <div class="topbar bg-primary">
+            <div class="container-wide container">
+                <p class="mb-0 text-white text-center p-4 fs-6 fw-semibold">@advertisement</p>
+            </div>
+        </div>
+    }
+    <div class="sticky-area">
+        <div class="main-header nav navbar bg-body navbar-light navbar-expand-xl py-6 py-xl-0">
+            <div class="container-wide container flex-nowrap">
+                <div class="w-72px d-flex d-xl-none">
+                    <button class="navbar-toggler align-self-center border-0 shadow-none px-0 canvas-toggle p-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasNavBar" aria-controls="offCanvasNavBar" aria-expanded="false" aria-label="Toggle Navigation">
+                        <span class="fs-24 toggle-icon"></span>
+                    </button>
+                </div>
+                <a href="/" class="navbar-brand px-8 py-4 mx-auto">
+                    <img class="light-mode-img" style="max-height:55px;" src="@Model.Logo" alt="@Model.WebTitle">
+                </a>
+                <div class="d-none d-xl-flex justify-content-center w-xl-100">
+                    <ul class="navbar-nav">
+                        @if (Model.MainMenus != null)
+                        {
+                            @foreach (var item in Model.MainMenus)
+                            {
+                                @if (item.SubMenus != null && item.SubMenus.Any())
+                                {
+                                    <li class="nav-item transition-all-xl-1 py-11 me-xl-10 dropdown dropdown-hover dropdown-fullwidth">
+                                        <a class="nav-link d-flex justify-content-between position-relative py-0 px-0 text-uppercase fw-semibold ls-1 fs-14px dropdown-toggle" href="@item.Href" data-bs-toggle="dropdown" id="menu-item-@item.Title.Replace(" ", "-")" aria-haspopup="true" aria-expanded="false">@item.Title</a>
+                                        <div class="dropdown-menu mega-menu start-0 py-6" aria-labelledby="menu-item-@item.Title.Replace(" ", "-")">
+                                            <div class="megamenu-home container py-8 px-12">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <ul class="list-unstyled">
+                                                            @foreach (var submenu in item.SubMenus)
+                                                            {
+                                                                <li>
+                                                                    <a href="@submenu.Href" class="border-hover text-decoration-none py-3 d-block">
+                                                                        <span class="border-hover-target">@submenu.Title</span>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item transition-all-xl-1 py-11 me-xl-10">
+                                        <a class="nav-link d-flex justify-content-between position-relative py-0 px-0 text-uppercase fw-semibold ls-1 fs-14px" href="@item.Href">@item.Title</a>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+
+                <div class="icons-actions d-flex justify-content-end w-xl-20 fs-28px text-body-emphasis">
+                    <div class="px-xl-5 d-inline-block">
+                        <a class="lh-1 color-inherit text-decoration-none" href="#" data-bs-toggle="offcanvas" data-bs-target="#searchModal" aria-controls="searchModal" aria-expanded="false">
+                            <svg class="icon icon-magnifying-glass-light">
+                                <use xlink:href="#icon-magnifying-glass-light"></use>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="px-5 d-none d-xl-inline-block">
+                        <a class="amount position-relative lh-1 color-inherit text-decoration-none" href="#" data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" aria-controls="shoppingCart" aria-expanded="false">
+                            <svg class="icon icon-star-light">
+                                <use xlink:href="#icon-shopping-bag-open-light"></use>
+                            </svg>
+                            <span class="badge bg-dark text-white position-absolute top-0 start-100 translate-middle mt-4 rounded-circle fs-13px p-0 square cart-count" style="--square-size: 18px">@cartCount</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Search Modal -->
+<div class="offcanvas offcanvas-top" tabindex="-1" id="searchModal" aria-labelledby="searchModalLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="searchModalLabel">@(langId == "en" ? "Search" : "Tìm kiếm")</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form action="/search-all" method="get" class="search-form">
+            <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="@(langId == "en" ? "Search products..." : "Tìm kiếm sản phẩm...")" required>
+                <button class="btn btn-primary" type="submit">
+                    <svg class="icon icon-magnifying-glass-light">
+                        <use xlink:href="#icon-magnifying-glass-light"></use>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Mobile Menu Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasNavBar" aria-labelledby="offCanvasNavBarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offCanvasNavBarLabel">@Model.WebTitle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav">
+            @if (Model.MainMenus != null)
+            {
+                @foreach (var item in Model.MainMenus)
+                {
+                    @if (item.SubMenus != null && item.SubMenus.Any())
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">@item.Title</a>
+                            <ul class="dropdown-menu">
+                                @foreach (var submenu in item.SubMenus)
+                                {
+                                    <li><a class="dropdown-item" href="@submenu.Href">@submenu.Title</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@item.Href">@item.Title</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>

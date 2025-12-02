@@ -1,0 +1,30 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@inject RootService Root
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var order = Context.Session.GetString("pendingOrder");
+    var orderCode = Context.Session.GetString("numbermakeOrder");
+}
+
+<section class="vnpay-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Thanh toán VNPay</h2>
+                @if (!string.IsNullOrEmpty(orderCode))
+                {
+                    <p>Mã đơn hàng: <strong>@orderCode</strong></p>
+                    <p>Vui lòng hoàn tất thanh toán trên trang VNPay.</p>
+                }
+                else
+                {
+                    <p>Không tìm thấy thông tin đơn hàng.</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

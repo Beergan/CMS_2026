@@ -1,0 +1,538 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.ViewModels
+@using CMS_2026.Data.Entities
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@using Microsoft.Extensions.Caching.Memory
+@inject RootService Root
+@inject IDataService Db
+@inject IMemoryCache Cache
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    
+    // Load HomeViewModel from config
+    var data = ViewHelper.LoadData<HomeViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-Home", setup: (model) =>
+    {
+        if (model == null)
+        {
+            model = new HomeViewModel
+            {
+                Title = Model?.Title ?? config.WebTitle,
+                MetaDescription = Model?.MetaDescription ?? config.WebDescription,
+                MetaKeywords = Model?.MetaKeywords ?? "",
+                Banners = Array.Empty<HomeViewModel.Banner>(),
+                _Product = new HomeViewModel.Product { Count = 8 },
+                _Advertisement = new HomeViewModel.Advertisement(),
+                _Service = new HomeViewModel.Service(),
+                _ProductBestseller = new HomeViewModel.ProductBestseller { Count = 9 },
+                _Discover = new HomeViewModel.Discover { _listImage = Array.Empty<HomeViewModel.Discover.listImage>() },
+                _AlbumIamge = Array.Empty<HomeViewModel.AlbumImage>()
+            };
+        }
+
+        // Load products into _modelVMProduct (similar to old structure)
+        if (model._Product != null && !string.IsNullOrEmpty(model._Product.Link))
+        {
+            var link = model._Product.Link.TrimStart('/');
+            var category = Db.GetOne<PP_Category>(t => t.CategoryPath == link && t.LangId == langId);
+            
+            if (category != null && RootService.CategoryIndexes.TryGetValue(category.Id, out var categoryIds))
+            {
+                model.CategoryPath = category.CategoryPath;
+                var arrCategory = categoryIds.ToList();
+                
+                // Get all products
+                var allProducts = Db.GetList<PP_Product>(t => t.LangId == langId);
+                var allCategories = Db.GetList<PP_Category>(t => t.NodeType == "product" && t.LangId == langId);
+                
+                var queryproduct = (
+                    from product in allProducts
+                    join cat in allCategories on product.CategoryId equals cat.Id
+                    where arrCategory.Contains(product.CategoryId ?? 0)
+                    select new VM_Product
+                    {
+                        JsonContent = product.Content,
+                        Title = product.Title,
+                        Path = product.NodePath,
+                        Summary = product.Content,
+                        ImageUrl = product.ImageUrl,
+                        CreatedTime = product.CreatedTime,
+                        CategoryId = cat.Id,
+                        CategoryName = cat.Title,
+                        CategoryPath = cat.CategoryPath,
+                        BestSeller = product.BestSeller,
+                        Price = product.Price,
+                        idnode = product.Id,
+                        NodePath = product.NodePath,
+                        PromotionPrice = product.PromotionPrice,
+                        PromotionEnabled = product.PromotionEnabled,
+                        AttrbValues = product.AttrbValues,
+                        AttrbEnabled = product.AttrbEnabled,
+                    })
+                    .OrderByDescending(b => b.CreatedTime)
+                    .ToArray();
+                
+                model._modelVMProduct = queryproduct;
+            }
+        }
+        
+        // Update page metadata from Model
+        if (Model != null)
+        {
+            model.Title = Model.Title ?? model.Title;
+            model.MetaDescription = Model.MetaDescription ?? model.MetaDescription;
+            model.MetaKeywords = Model.MetaKeywords ?? model.MetaKeywords;
+        }
+
+        return model;
+    });
+
+    ViewData["Title"] = data?.Title ?? config.WebTitle;
+    ViewData["Description"] = data?.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = data?.MetaKeywords ?? "";
+}
+
+<main id="content" class="wrapper layout-page">
+    @* Banner Slider Section *@
+    @if (data?._Banner != null && data._Banner.Length > 0)
+    {
+        <section>
+            <div class="slick-slider hero hero-header-01" data-slick-options='{"arrows":false,"autoplay":true,"cssEase":"ease-in-out","dots":false,"fade":true,"infinite":true,"slidesToShow":1,"speed":600}'>
+                @foreach (var banner in data._Banner)
+                {
+                    <div class="vh-100 d-flex align-items-center row">
+                        <div class="z-index-2 container col-lg-12 order-2 order-sm-1 container-xxl py-lg-21 py-2 pt-xl-10 pb-xl-11">
+                            <div class="hero-content text-start">
+                                <div data-animate="fadeInDown">
+                                    @if (!string.IsNullOrEmpty(banner.TitleSub))
+                                    {
+                                        <p class="text-body-emphasis mb-8 text-uppercase fw-semibold fs-15px">@banner.TitleSub</p>
+                                    }
+                                    <h1 class="mb-7 hero-title">@banner.Title</h1>
+                                    <p class="hero-desc text-body-calculate fs-18px mb-11">@banner.Content</p>
+                                </div>
+                                @if (!string.IsNullOrEmpty(banner.Link))
+                                {
+                                    <a href="@banner.Link" data-animate="fadeInUp" class="btn btn-lg btn-dark btn-hover-bg-primary btn-hover-border-primary">
+                                        @(banner.TitleButton ?? (langId == "en" ? "See more" : "Xem thêm"))
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(banner.Iamge))
+                        {
+                            <div class="lazy-bg bg-overlay col-lg-12 position-absolute z-index-1 w-100 h-100 d-lg-block d-none light-mode-img" data-bg-src="@banner.Iamge"></div>
+                        }
+                        @if (!string.IsNullOrEmpty(banner.IamgeMobile))
+                        {
+                            <div class="m-0 p-0 col-lg-12 order-1 w-100 h-100 d-block d-lg-none light-mode-img">
+                                <img src="@banner.IamgeMobile" alt="@banner.Title" class="w-100 h-100 object-fit-cover" />
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    @* Products Section *@
+    @if (data?._Product != null && data._modelVMProduct != null && data._modelVMProduct.Any())
+    {
+        <section>
+            <div class="container container-xxl py-lg-17 pt-14 pb-16">
+                <div class="mb-13 pb-3 text-center" data-animate="fadeInUp">
+                    <h2 class="mb-5">@data._Product.title</h2>
+                    <p class="fs-18px mb-0">@data._Product.Content</p>
+                </div>
+
+                <div class="slick-slider" data-slick-options='{"arrows":true,"dots":false,"responsive":[{"breakpoint":1560,"settings":{"arrows":false,"dots":true}},{"breakpoint":1200,"settings":{"arrows":false,"dots":true,"slidesToShow":3}},{"breakpoint":992,"settings":{"arrows":false,"dots":true,"slidesToShow":2}},{"breakpoint":576,"settings":{"arrows":false,"dots":true,"slidesToShow":1}}],"slidesToShow":4}'>
+                    @foreach (var item in data._modelVMProduct.EmptyIfNull().Take(data._Product.Count))
+                    {
+                        <div>
+                            <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
+                                <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                    <a href="/@item.NodePath" class="hover-zoom-in d-block" title="@item.Title">
+                                        <img src="@item.ImageUrl" data-src="@item.ImageUrl" class="img-fluid lazy-image w-100" alt="@item.Title" width="450" height="600">
+                                    </a>
+                                    <div class="position-absolute d-flex z-index-2 product-actions horizontal">
+                                        @if (item.AttrbEnabled == true && !string.IsNullOrEmpty(item.AttrbValues))
+                                        {
+                                            var att = item.AttrbValues.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                                            if (att.Length > 0)
+                                            {
+                                                <div class="product-action-cart-variation dropup mt-3">
+                                                    <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        @(langId == "en" ? "Add to cart" : "Thêm vào giỏ")
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach (var v in att)
+                                                        {
+                                                            <li>
+                                                                <a class="dropdown-item" href="javascript:void(0)" data-product-id="@item.idnode">@v</a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a data-product-id="@item.idnode" data-product-title="@item.Title"
+                                               class="action-cart-add text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm"
+                                               href="javascript:void(0)"
+                                               data-bs-title="Add To Cart">
+                                                <svg class="icon icon-shopping-bag-open-light">
+                                                    <use xlink:href="#icon-shopping-bag-open-light"></use>
+                                                </svg>
+                                            </a>
+                                        }
+                                    </div>
+                                </figure>
+                                <div class="card-body text-center p-0">
+                                    <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                        @if (item.PromotionEnabled && item.PromotionPrice.HasValue)
+                                        {
+                                            <del class="text-body fw-500 me-4 fs-13px">@item.Price.ToString("#,##0") đ</del>
+                                            <ins class="text-decoration-none">@item.PromotionPrice.Value.ToString("#,##0") đ</ins>
+                                        }
+                                        else
+                                        {
+                                            <ins class="text-decoration-none">@item.Price.ToString("#,##0") đ</ins>
+                                        }
+                                    </span>
+                                    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                        <a class="text-decoration-none text-reset" href="/@item.NodePath">@item.Title</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* Advertisement Section *@
+    @if (data?._Advertisement != null)
+    {
+        <section class="container container-xxl">
+            <div class="row gy-30px">
+                @if (!string.IsNullOrEmpty(data._Advertisement.Iamge))
+                {
+                    <div class="col-lg-6" data-animate="fadeInUp">
+                        <div class="card border-0 rounded-0 banner-01 hover-zoom-in hover-shine">
+                            <img class="lazy-image dark-mode-img object-fit-cover card-img" src="#" data-src="@data._Advertisement.Iamge" width="690" height="420" alt="@data._Advertisement.title">
+                            <div class="card-img-overlay d-inline-flex flex-column p-md-12 m-md-2 p-8">
+                                @if (!string.IsNullOrEmpty(data._Advertisement.Titlesub))
+                                {
+                                    <h6 class="card-subtitle ls-1 fs-15px mb-5 fw-semibold text-body-calculate">@data._Advertisement.Titlesub</h6>
+                                }
+                                <h3 class="card-title lh-45px mw-md-60 pe-xl-15 fs-3 pe-0">@data._Advertisement.title</h3>
+                                @if (!string.IsNullOrEmpty(data._Advertisement.Link))
+                                {
+                                    <div class="mt-7">
+                                        <a href="@data._Advertisement.Link" class="btn btn-white px-6 shadow-sm">@(langId == "en" ? "Explore More" : "Xem thêm")</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(data._Advertisement.Iamge2))
+                {
+                    <div class="col-lg-6" data-animate="fadeInUp">
+                        <div class="card border-0 rounded-0 banner-01 hover-zoom-in hover-shine">
+                            <img class="lazy-image dark-mode-img object-fit-cover card-img" src="#" data-src="@data._Advertisement.Iamge2" width="690" height="420" alt="@data._Advertisement.Title2">
+                            <div class="card-img-overlay d-inline-flex flex-column p-md-12 m-md-2 p-8">
+                                <h6 class="card-subtitle ls-1 fs-15px mb-5 fw-semibold text-body-calculate">@data._Advertisement.Content</h6>
+                                <h3 class="card-title lh-45px mw-md-60 pe-xl-15 fs-3 pe-0">@data._Advertisement.Title2</h3>
+                                @if (!string.IsNullOrEmpty(data._Advertisement.Link2))
+                                {
+                                    <div class="mt-7">
+                                        <a href="@data._Advertisement.Link2" class="btn btn-white px-6 shadow-sm">@(langId == "en" ? "Explore More" : "Xem thêm")</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    @* Service Section *@
+    @if (data?._Service != null)
+    {
+        <section class="pt-12 pb-lg-13 pb-13">
+            <div class="container container-xxl">
+        <div class="row">
+                    @if (!string.IsNullOrEmpty(data._Service.Title))
+                    {
+                        <div class="col-xl-3 col-md-6" data-animate="fadeInUp">
+                            <div class="icon-box icon-box-style-1 card border-0 text-center">
+                                <div class="icon-box-icon card-img fs-70px text-primary">
+                                    <svg class="icon"><use xlink:href="#icon-box-01"></use></svg>
+                                </div>
+                                <div class="icon-box-content card-body pt-4">
+                                    <h3 class="icon-box-title card-title fs-5 mb-4 pb-2">@data._Service.Title</h3>
+                                    <p class="icon-box-desc card-text fs-18px mb-0">@data._Service.Content1</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(data._Service.Title2))
+                    {
+                        <div class="col-xl-3 col-md-6" data-animate="fadeInUp">
+                            <div class="icon-box icon-box-style-1 card border-0 text-center">
+                                <div class="icon-box-icon card-img fs-70px text-primary">
+                                    <svg class="icon"><use xlink:href="#icon-box-02"></use></svg>
+                                </div>
+                                <div class="icon-box-content card-body pt-4">
+                                    <h3 class="icon-box-title card-title fs-5 mb-4 pb-2">@data._Service.Title2</h3>
+                                    <p class="icon-box-desc card-text fs-18px mb-0">@data._Service.Content2</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(data._Service.Title3))
+                    {
+                        <div class="col-xl-3 col-md-6" data-animate="fadeInUp">
+                            <div class="icon-box icon-box-style-1 card border-0 text-center">
+                                <div class="icon-box-icon card-img fs-70px text-primary">
+                                    <svg class="icon"><use xlink:href="#icon-box-03"></use></svg>
+                                </div>
+                                <div class="icon-box-content card-body pt-4">
+                                    <h3 class="icon-box-title card-title fs-5 mb-4 pb-2">@data._Service.Title3</h3>
+                                    <p class="icon-box-desc card-text fs-18px mb-0">@data._Service.Content3</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(data._Service.Title4))
+                    {
+                        <div class="col-xl-3 col-md-6" data-animate="fadeInUp">
+                            <div class="icon-box icon-box-style-1 card border-0 text-center">
+                                <div class="icon-box-icon card-img fs-70px text-primary">
+                                    <svg class="icon"><use xlink:href="#icon-box-04"></use></svg>
+                                </div>
+                                <div class="icon-box-content card-body pt-4">
+                                    <h3 class="icon-box-title card-title fs-5 mb-4 pb-2">@data._Service.Title4</h3>
+                                    <p class="icon-box-desc card-text fs-18px mb-0">@data._Service.Content4</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* Best Seller Products Section *@
+    @if (data?._ProductBestseller != null && data._modelVMProduct != null && data._modelVMProduct.Any())
+    {
+        <section>
+            <div class="container container-xxl pt-lg-4 pt-3 mb-2">
+                <div class="mb-11 mt-2 pt-1 pb-3 text-center" data-animate="fadeInUp">
+                    <h2 class="mb-5">@data._ProductBestseller.title</h2>
+                    <p class="fs-18px mb-0 mw-xl-30 mw-lg-50 mw-md-75 ms-auto me-auto">@data._ProductBestseller.Content</p>
+                </div>
+
+                <div class="row">
+                    @if (!string.IsNullOrEmpty(data._ProductBestseller.Iamge))
+                    {
+                        <div class="col-lg-5 mb-10 mb-lg-0" data-animate="fadeInUp">
+                            <div class="card border-0 rounded-0 hover-zoom-in hover-shine">
+                                <img class="lazy-image dark-mode-img w-100 img-fluid card-img object-fit-cover banner-02" src="#" data-src="@data._ProductBestseller.Iamge" width="570" height="913" alt="@data._ProductBestseller.Titleiamge">
+                                <div class="card-img-overlay p-12 m-2 d-inline-flex flex-column justify-content-end">
+                                    <h3 class="card-title mb-0 fs-2 text-white">@data._ProductBestseller.Titleiamge</h3>
+                                    <p class="card-text mb-0 fs-18px text-white mt-5">@data._ProductBestseller.ContentImage</p>
+                                    @if (!string.IsNullOrEmpty(data._ProductBestseller.Link))
+                                    {
+                                        <div class="mt-10 pt-2">
+                                            <a href="@data._ProductBestseller.Link" class="btn btn-white">@(langId == "en" ? "Explore More" : "Xem thêm")</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="@(string.IsNullOrEmpty(data._ProductBestseller.Iamge) ? "col-lg-12" : "col-lg-7")">
+                        <div class="row gy-11">
+                            @foreach (var item in data._modelVMProduct.EmptyIfNull().OrderByDescending(x => x.BestSeller).Take(data._ProductBestseller.Count == 0 ? 9 : data._ProductBestseller.Count))
+                            {
+                                <div class="col-md-4 col-sm-6 col-12">
+                                    <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
+                                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                            <a href="/@item.NodePath" class="hover-zoom-in d-block" title="@item.Title">
+                                                <img src="@item.ImageUrl" data-src="@item.ImageUrl" class="img-fluid lazy-image w-100" alt="@item.Title" width="450" height="600">
+                                            </a>
+                                            <div class="position-absolute d-flex z-index-2 product-actions horizontal">
+                                                @if (item.AttrbEnabled == true && !string.IsNullOrEmpty(item.AttrbValues))
+                                                {
+                                                    var att = item.AttrbValues.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                                                    if (att.Length > 0)
+                                                    {
+                                                        <div class="product-action-cart-variation dropup mt-3">
+                                                            <button class="btn btn-sm btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                @(langId == "en" ? "Add to cart" : "Thêm vào giỏ")
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                @foreach (var v in att)
+                                                                {
+                                                                    <li>
+                                                                        <a class="dropdown-item" href="javascript:void(0)" data-product-id="@item.idnode">@v</a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a data-product-id="@item.idnode" data-product-title="@item.Title"
+                                                       class="action-cart-add text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm"
+                                                       href="javascript:void(0)"
+                                                       data-bs-title="Add To Cart">
+                                                        <svg class="icon icon-shopping-bag-open-light">
+                                                            <use xlink:href="#icon-shopping-bag-open-light"></use>
+                                                        </svg>
+                                                    </a>
+                                                }
+                                            </div>
+                                        </figure>
+                                        <div class="card-body text-center p-0">
+                                            <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                                @if (item.PromotionEnabled && item.PromotionPrice.HasValue)
+                                                {
+                                                    <del class="text-body fw-500 me-4 fs-13px">@item.Price.ToString("#,##0") đ</del>
+                                                    <ins class="text-decoration-none">@item.PromotionPrice.Value.ToString("#,##0") đ</ins>
+                                                }
+                                                else
+                                                {
+                                                    <ins class="text-decoration-none">@item.Price.ToString("#,##0") đ</ins>
+                                                }
+                                            </span>
+                                            <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                                <a class="text-decoration-none text-reset" href="/@item.NodePath">@item.Title</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+            </div>
+        </div>
+    </div>
+</section>
+    }
+
+    @* Discover/Promotion Section *@
+    @if (data?._Discover != null && data._Discover._listImage != null && data._Discover._listImage.Length > 0)
+    {
+        <section class="pt-lg-15 pt-12 pb-lg-15 pb-lg-12">
+            <div class="container container-xxl">
+                <div class="text-center" data-animate="fadeInUp">
+                    <h2 class="mb-6">@data._Discover.title</h2>
+                    <p class="fs-18px w-lg-60 w-xl-40 mx-md-16 mx-lg-auto mb-13">@data._Discover.Content</p>
+                </div>
+
+        <div class="row">
+                    @foreach (var item in data._Discover._listImage)
+                    {
+                        <div class="col-md-6 mb-8 mb-md-0" data-animate="fadeInUp">
+                            <div class="card border-0">
+                                <div class="image-box-4">
+                                    <img class="lazy-image dark-mode-img img-fluid" src="#" data-src="@item.Image" width="960" height="640" alt="@(item.title ?? "")">
+                                </div>
+                                <div class="card-body text-body-emphasis text-center pt-9 mt-2">
+                                    <h5 class="card-title fs-4 mb-4 d-block fw-semibold">
+                                        <a class="color-inherit text-decoration-none" href="@item.Link">@(item.title ?? "")</a>
+                                    </h5>
+                                    @if (!string.IsNullOrEmpty(item.Link))
+                                    {
+                                        <a href="@item.Link" title="Shop now" class="btn btn-link fw-semibold text-body-emphasis">
+                                            @(langId == "en" ? "See more" : "Xem thêm") <i class="far fa-arrow-right fs-14px ps-2 ms-1"></i>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+    @* Album Images Section *@
+    @if (data?._AlbumIamge != null && data._AlbumIamge.Length > 0)
+    {
+        <section class="pb-10">
+            <div class="container-fluid">
+                <div class="px-md-6">
+                    <div class="mx-n6 slick-slider" data-slick-options='{"slidesToShow":5,"infinite":false,"autoplay":false,"dots":false,"arrows":false,"responsive":[{"breakpoint":1366,"settings":{"slidesToShow":5}},{"breakpoint":992,"settings":{"slidesToShow":2}},{"breakpoint":768,"settings":{"slidesToShow":3}},{"breakpoint":576,"settings":{"slidesToShow":2}}]}'>
+                        @foreach (var item in data._AlbumIamge)
+                        {
+                            <div class="px-6" data-animate="fadeInUp">
+                                <a href="@item.Image" title="@item.Title" data-gallery="instagram" class="hover-zoom-in hover-shine card-img-overlay-hover d-block">
+                                    <img class="lazy-image img-fluid w-100" width="314" height="314" data-src="@item.Image" alt="@item.Title" src="#">
+                                    <span class="card-img-overlay bg-dark bg-opacity-30"></span>
+                                </a>
+                            </div>
+                        }
+            </div>
+        </div>
+    </div>
+</section>
+    }
+</main>
+
+@functions {
+    private T? LoadData<T>(string key, Func<T?, T?>? setup = null) where T : class
+    {
+        var cache = Context.RequestServices.GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>();
+        if (cache == null) return null;
+
+        if (cache.TryGetValue(key, out T? cached))
+        {
+            return cached;
+        }
+
+        T? data = null;
+        var config = RootService.Configs.Values
+            .FirstOrDefault(t => t.LangId == (Context.Items["LangId"]?.ToString() ?? "vi") &&
+                                (t.PageId == ((int)(Context.Items["PageId"] ?? 0)) || t.PageId == 0) &&
+                                t.ConfigKey == "Home");
+
+        if (config != null && !string.IsNullOrEmpty(config.JsonContent))
+        {
+            try
+            {
+                data = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(config.JsonContent);
+            }
+            catch
+            {
+                // Ignore deserialization errors
+            }
+        }
+
+        if (setup != null)
+        {
+            data = setup(data);
+        }
+
+        if (data != null)
+        {
+            using (var entry = cache.CreateEntry(key))
+            {
+                entry.Value = data;
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(20);
+            }
+        }
+
+        return data;
+    }
+}

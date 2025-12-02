@@ -1,0 +1,575 @@
+2024-06-16 14:55:31.434 +07:00 [ERR] /tin-tuc/tin-tuc
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_post_list_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\post_list.cshtml:line 184
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 15:07:00.829 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 15:24:50.252 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 15:25:01.395 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 15:43:20.771 +07:00 [ERR] /san-pham/san-pham
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_list_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\product_list.cshtml:line 149
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 15:44:33.798 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 15:59:41.629 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 16:00:22.422 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 16:04:34.402 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:05:31.842 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:05:34.326 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:05:35.003 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:05:36.895 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:05:44.651 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:06:15.967 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:06:32.940 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:06:50.416 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_home_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\home.cshtml:line 100
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:07:21.707 +07:00 [ERR] /
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\home.cshtml(97): error CS0103: The name 'category' does not exist in the current context
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 16:09:59.123 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 16:19:30.135 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'z2mp55leptsff2m5r0duelb3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 16:19:46.354 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 16:20:06.672 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 16:22:28.496 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 17:00:25.198 +07:00 [ERR] /san-pham/dau-hap-dac-tri-toc-hu-ton-everflor.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\product_item.cshtml:line 184
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 17:01:03.260 +07:00 [ERR] /san-pham/dau-hap-dac-tri-toc-hu-ton-everflor.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\product_item.cshtml:line 184
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 17:09:59.210 +07:00 [ERR] /san-pham/dau-hap-dac-tri-toc-hu-ton-everflor.html
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\product_item.cshtml(132): error CS0029: Cannot implicitly convert type 'PP_Category' to 'System.Collections.Generic.List<PP_Category>'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 17:12:36.090 +07:00 [ERR] /san-pham/dau-hap-dac-tri-toc-hu-ton-everflor.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_product_item_cshtml.<Execute>b__9_0(ViewModel model)
+   at MyWebPage.LoadData[T](String key, Func`2 setup) in D:\SLK\web_winlink\web_winlink\App_Code\MyWebPage.cs:line 168
+   at ASP._Page__compt_product_item_cshtml.Execute()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-16 17:12:43.542 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'iubuscvoaeetzfokqww5vjxf' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 21:53:05.895 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'v2bzv5mjwabljmy4m14brhg1' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 21:55:01.055 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'v2bzv5mjwabljmy4m14brhg1' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 21:58:05.181 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'v2bzv5mjwabljmy4m14brhg1' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 22:07:42.898 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:10:02.860 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:32:18.000 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 22:56:30.261 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:56:33.447 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 22:56:36.335 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:58:21.026 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:58:21.071 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:58:21.093 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:58:36.373 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:58:36.425 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:59:32.549 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:59:32.612 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 22:59:32.634 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 23:12:46.966 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:16:59.515 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'tz0wpchne14bnp4kaz2uiswn' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:16:59.594 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:16:59.688 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'wdegxlafdfavbdnjz3ewfngt' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:20:08.404 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 23:20:08.476 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:20:08.477 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 23:20:15.096 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 23:27:42.718 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-16 23:27:46.446 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:55:30.257 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'tz0wpchne14bnp4kaz2uiswn' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:55:30.405 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-16 23:55:30.513 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '120fv1jgji0rv3vtsvzn5bbe' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125

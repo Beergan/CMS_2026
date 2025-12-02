@@ -1,0 +1,107 @@
+@model CMS_2026.Data.Entities.PP_Page
+@using CMS_2026.Pages
+@using CMS_2026.Services
+@using CMS_2026.ViewModels
+@using CMS_2026.Data.Entities
+@using Microsoft.Extensions.Caching.Memory
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@using Newtonsoft.Json
+@inject RootService Root
+@inject IDataService Db
+@inject IMemoryCache Cache
+@{
+    var langId = Context.Request.Cookies["LangId"] ?? "vi";
+    var config = Root.GetConfig(langId);
+    var pageId = (int)(Context.Items["PageId"] ?? 0);
+    
+    // Load RegisterViewModel from config
+    var data = ViewHelper.LoadData<RegisterViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-Register", setup: (model) =>
+    {
+        if (model == null)
+        {
+            model = new RegisterViewModel
+            {
+                Title = Model?.Title ?? "Đăng ký",
+                MetaDescription = Model?.MetaDescription ?? config.WebDescription,
+                MetaKeywords = Model?.MetaKeywords ?? ""
+            };
+        }
+        else if (Model != null)
+        {
+            // Override with page data if available
+            if (string.IsNullOrEmpty(model.Title)) model.Title = Model.Title;
+            if (string.IsNullOrEmpty(model.MetaDescription)) model.MetaDescription = Model.MetaDescription;
+            if (string.IsNullOrEmpty(model.MetaKeywords)) model.MetaKeywords = Model.MetaKeywords;
+        }
+        
+        return model;
+    });
+    
+    ViewData["Title"] = data?.Title ?? "Đăng ký";
+    ViewData["Description"] = data?.MetaDescription ?? config.WebDescription;
+    ViewData["Keywords"] = data?.MetaKeywords ?? "";
+    
+    var registerError = TempData.Peek("RegisterError") as string;
+    var registerSuccess = TempData.Peek("RegisterSuccess") as string;
+}
+
+<section class="register-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>@(data?.contact?.Title ?? "Đăng ký")</h2>
+                @if (!string.IsNullOrEmpty(data?.contact?.Content))
+                {
+                    <div class="mb-4">@Html.Raw(data.contact.Content)</div>
+                }
+                @if (!string.IsNullOrEmpty(registerError))
+                {
+                    <div class="alert alert-danger">@registerError</div>
+                }
+                @if (!string.IsNullOrEmpty(registerSuccess))
+                {
+                    <div class="alert alert-success">@registerSuccess</div>
+                }
+                <form method="post" action="/register/process" class="@(langId == "en" ? "signup-form" : "")">
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group">
+                        <label>Họ và tên <span class="text-danger">*</span></label>
+                        <input type="text" name="FullName" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input type="email" name="Email" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Điện thoại</label>
+                        <input type="tel" name="Phone" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" name="Password" class="form-control" required />
+                        <small class="form-text text-muted">Mật khẩu phải gồm ít nhất 6 ký tự</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" name="ConfirmPassword" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="/login">Đã có tài khoản? Đăng nhập</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

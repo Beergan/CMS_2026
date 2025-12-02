@@ -1,0 +1,576 @@
+@page
+@model CMS_2026.Pages.Admin.Page.EditModel
+@using CMS_2026.Models
+@using CMS_2026.Data.Entities
+@using CMS_2026.Services
+@using CMS_2026.Common
+@using CMS_2026.Utils
+@using Newtonsoft.Json
+@inject RootService Root
+@{
+    ViewData["Title"] = "Hiệu chỉnh trang";
+    Layout = "_Layout";
+
+    if (Model.Page == null) return;
+    
+    var lang = RootService.Langs.ContainsKey(Model.Page.LangId) ? RootService.Langs[Model.Page.LangId] : null;
+}
+
+<div class="modal fade" id="insertLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach (var link in Model.LinkOptions)
+                {
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@link.Item1</span>
+                        </div>
+                        <input type="text" class="form-control" value="@link.Item2" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="insertLink('@link.Item2')">Chọn link</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="page-title">Hiệu chỉnh trang</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="@Constants.Admin_Url/page" aria-expanded="true" class="nav-link">
+                            <i class="fas fa-list-ol"></i> Danh sách trang
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#edit" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                            <i class="fe-edit"></i> Hiệu chỉnh trang
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="edit">
+                        <div class="card">
+                            <div class="card-header">
+                                @Model.Page.Title <button type="button" class="btn btn-info float-right" data-toggle="collapse" aria-expanded="true" data-target="#main"><i class="fa fa-chevron-down pull-right"></i></button>
+                            </div>
+                            <div class="card-body collapse" id="main">
+                                <form class="form-horizontal validable" role="form" method="post" asp-page-handler="UpdatePage" style="margin-bottom: 20px;">
+                    @Html.AntiForgeryToken()
+                                    @if (ViewData.ModelState.ErrorCount > 0)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                        </div>
+                                    }
+                                    <input type="hidden" name="Id" value="@Model.Page.Id" />
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Ngôn ngữ</label>
+                                        <div class="col-12 col-md-10">
+                                            <input type="text" class="form-control" value="@Model.Page.LangId @(lang?.Title)" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Component</label>
+                                        <div class="col-12 col-md-10">
+                                            <select class="form-control" name="ComptKey" disabled>
+                                                @foreach (var compt in Model.PageTemplates)
+                                                {
+                                                    <option value="@compt.Key" selected="@(Model.Page.ComptKey == compt.Key)">@compt.Value</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                        <div class="col-12 col-md-10">
+                                            <input type="text" class="form-control" name="Title" value="@Model.Page.Title" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Đường dẫn <span class="text-danger">*</span></label>
+                                        <div class="col-12 col-md-10">
+                                            <input type="text" class="form-control" name="PathPattern" value="@(Model.Page.PathPattern?.GetBeforeLast("/")?.GetAfter("/") ?? "root")" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Meta Description</label>
+                                        <div class="col-12 col-md-10">
+                                            <textarea class="form-control" name="MetaDescription" rows="3">@Model.Page.MetaDescription</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-12 col-md-2 col-form-label">Meta Keywords</label>
+                                        <div class="col-12 col-md-10">
+                                            <input type="text" class="form-control" name="MetaKeywords" data-role="tagsinput" value="@Model.Page.MetaKeywords" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group mb-0">
+                                        <div>
+                                            <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                Xác nhận
+                                            </button>
+                                            <button type="button" class="btn btn-light waves-effect ml-1" onclick="window.history.back()">
+                                                Quay lại
+                                            </button>
+                    </div>
+                    </div>
+                                </form>
+                    </div>
+                    </div>
+                        @foreach (var compt in Model.Components)
+                        {
+                            if (compt.PageType == "item")
+                            {
+                                continue;
+                            }
+                            var comptSchema = JsonConvert.DeserializeObject<ObjectSchema>(compt.JsonSchema ?? "{}") ?? new ObjectSchema();
+                            var config = Model.Configs.FirstOrDefault(t => t.ConfigKey == compt.ComptKey);
+                            var comptData = config?.JsonContent != null ? JsonConvert.DeserializeObject<Dictionary<string, object>>(config.JsonContent) ?? new Dictionary<string, object>()
+                                    : JsonConvert.DeserializeObject<Dictionary<string, object>>(compt.JsonDefault ?? "{}") ?? new Dictionary<string, object>();
+                            bool hasConfigured = config?.JsonContent != null;
+                            bool isEmptyCompt = comptSchema.SingleFieldTypes.Count == 0
+                                                && comptSchema.ArrayFieldTypes.Count == 0
+                                                && comptSchema.SingleObjectTypes.Count == 0
+                                                && comptSchema.ArrayObjectTypes.Count == 0;
+                            if (isEmptyCompt && hasConfigured)
+                            {
+                                continue;
+                            }
+                            <div class="card">
+                                <div class="card-header">
+                                    @compt.ComptName@(!hasConfigured ? " (Chưa cấu hình)" : "") <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#@compt.ComptKey"><i class="fa fa-chevron-down pull-right"></i></button>
+                                </div>
+                                <div class="card-body collapse" id="@compt.ComptKey">
+                                    @if (comptData.ContainsKey("Phrases"))
+                                    {
+                                        var phrases = comptData["Phrases"] as IDictionary<string, object>;
+                                        var langIdCompose = Model.LangIdCompose;
+                                        if (phrases != null && phrases.Count > 0 && langIdCompose != "vi" && langIdCompose != "en")
+                                        {
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    Dịch thuật <button type="button" class="btn btn-info float-right collapsed" data-toggle="collapse" data-target="#phrases"><i class="fa fa-chevron-down pull-right"></i></button>
+                                                </div>
+                                                <div class="card-body collapse" id="phrases">
+                                                    @foreach (var f in phrases)
+                                                    {
+                                                        <div class="form-group row">
+                                                            <label class="col-12 col-md-2 col-form-label">Dịch sang @(Model.LangCompose?.Title ?? "") <@f.Key></label>
+                                                            <div class="col-12 col-md-10">
+                                                                <input type="text" class="form-control" value="@f.Value" />
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    @await Html.PartialAsync("_Shared/_RenderSchema", new { Schema = comptSchema, Path = compt.ComptKey, Data = comptData })
+                                    <hr />
+                                    <div class="form-group mb-0">
+                                        <form class="form-horizontal subform" role="form" method="post" asp-page-handler="UpdateCompt">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="LangId" value="@Model.LangIdCompose" />
+                                            <input type="hidden" name="Id" value="@Model.Page.Id" />
+                                            <input type="hidden" name="ComptKey" value="@compt.ComptKey" />
+                                            <input type="hidden" name="JsonData" />
+                                            <div>
+                                                <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                                    Cập nhật [@compt.ComptName]
+                                                </button>
+                                                <button type="button" class="btn btn-danger reset">
+                                                    Reset
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section head {
+    <link href="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- CKEditor 5 CSS -->
+    <link rel="stylesheet" href="@Constants.Admin_Url/ckeditor5/ckeditor5.css">
+    <link href="@Constants.Admin_Url/assets/css/mmenu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <style>
+        .card-header {
+            background-color: #eee;
+            line-height: 40px;
+            font-weight: bold;
+        }
+
+        .card-template {
+            display: none;
+        }
+
+        .card-header .fa {
+            transition: .3s transform ease-in-out;
+        }
+
+        .card-header .collapsed .fa {
+            transform: rotate(90deg);
+        }
+
+        .icon-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .icon-list .icon-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            padding: 10px;
+            text-align: center;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .icon-list .icon-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .icon-list .icon-item.selected {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .icon-list .icon-item i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        [data-icon]::before {
+            content: "" !important
+        }
+
+        .close-modal {
+            border: 0 !important;
+        }
+    </style>
+}
+
+<div id="insertIconModal" class="custom-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);">
+    <div style="background:#fff;max-width:600px;margin:60px auto;padding:20px;position:relative;">
+        <button type="button" class="close-modal" style="position:absolute;top:10px;right:10px;">&times;</button>
+        <input type="text" id="iconSearch" class="form-control mb-3" placeholder="Tìm kiếm icon...">
+        <div class="icon-list d-flex flex-wrap gap-2"></div>
+        <div class="mt-3 text-right">
+            <button type="button" class="btn btn-secondary close-modal">Đóng</button>
+            <button type="button" class="btn btn-primary" id="confirmIcon">Chọn</button>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="@Constants.Admin_Url/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <!-- CKEditor 5 -->
+    <script src="@Constants.Admin_Url/ckeditor5/ckeditor5.umd.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-wrapper.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/js/ckeditor5-init.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="@Constants.Admin_Url/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/speakingurl/speakingurl.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/stringtoslug/jquery.stringtoslug.min.js"></script>
+    <script src="@Constants.Admin_Url/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script>
+        var insertLinkTarget = '';
+        var ckeditorInstances = {};
+        var currentIconInputId = '';
+
+        const bootstrapIcons = [
+            'bi bi-house', 'bi bi-star-fill', 'bi bi-play-fill', 'bi bi-pause-fill',
+            'bi bi-bootstrap', 'bi bi-arrow-right', 'bi bi-arrow-left', 'bi bi-heart-fill',
+            'bi bi-person', 'bi bi-cart', 'bi bi-envelope', 'bi bi-gear',
+            'bi bi-search', 'bi bi-bell', 'bi bi-calendar', 'bi bi-clock',
+            'bi bi-download', 'bi bi-upload', 'bi bi-trash', 'bi bi-edit',
+            'bi bi-check', 'bi bi-x', 'bi bi-plus', 'bi bi-minus',
+            'bi bi-info', 'bi bi-warning', 'bi bi-question', 'bi bi-exclamation',
+            'bi bi-phone', 'bi bi-laptop', 'bi bi-tablet', 'bi bi-mobile',
+            'bi bi-wifi', 'bi bi-bluetooth', 'bi bi-battery', 'bi bi-power',
+            'bi bi-volume-up', 'bi bi-volume-down', 'bi bi-volume-mute',
+            'bi bi-music-note', 'bi bi-headphones', 'bi bi-camera', 'bi bi-image',
+            'bi bi-folder', 'bi bi-file', 'bi bi-printer', 'bi bi-save',
+            'bi bi-share', 'bi bi-bookmark', 'bi bi-tag', 'bi bi-tags',
+            'bi bi-star', 'bi bi-bookmark-star', 'bi bi-heart', 'bi bi-chat',
+            'bi bi-message', 'bi bi-envelope-open', 'bi bi-lock', 'bi bi-unlock',
+            'bi bi-shield', 'bi bi-eye', 'bi bi-eye-slash', 'bi bi-map',
+            'bi bi-globe', 'bi bi-diagram-3', 'bi bi-graph-up', 'bi bi-pie-chart',
+            'bi bi-bar-chart', 'bi bi-activity', 'bi bi-speedometer', 'bi bi-award',
+            'bi bi-trophy', 'bi bi-gift', 'bi bi-lightbulb', 'bi bi-tools',
+            'bi bi-wrench', 'bi bi-hammer', 'bi bi-scissors', 'bi bi-palette',
+            'bi bi-brush', 'bi bi-pencil', 'bi bi-pen', 'bi bi-eraser',
+            'bi bi-cloud', 'bi bi-cloud-download', 'bi bi-cloud-upload',
+            'bi bi-star-half', 'bi bi-flag', 'bi bi-flag-fill',
+            'bi bi-bag', 'bi bi-bag-check', 'bi bi-bag-plus',
+            'bi bi-cash', 'bi bi-credit-card', 'bi bi-receipt',
+            'bi bi-person-plus', 'bi bi-person-dash', 'bi bi-people', 'bi bi-truck', 'bi bi-archive', 'bi bi-leaf','bi bi-arrow-repeat'
+        ];
+
+        function create_UUID() {
+            var dt = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (dt + Math.random() * 16) % 16 | 0;
+                dt = Math.floor(dt / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid;
+        }
+
+        function getJsonData(context) {
+            var jsondata = {};
+
+            $(context).find(".card-body-singleFields input, .card-body-singleFields select, .card-body-singleFields textarea").each(function () {
+                var originId = this.getAttribute('originId');
+                if (!originId) return;
+
+                var value = '';
+                if ($(this).hasAttr("myckeditor")) {
+                    var elementId = $(this).attr('id');
+                    if (CKEDITOR.instances[elementId]) {
+                        value = CKEDITOR.instances[elementId].getData();
+                    } else {
+                        value = $(this).val() || '';
+                    }
+                } else if ($(this).hasAttr("mycheckbox")) {
+                    value = $(this).is(':checked');
+                } else {
+                    value = $(this).val();
+                    if (value !== undefined && value !== null) {
+                        value = value.trim();
+                    } else {
+                        value = '';
+                    }
+                }
+                jsondata[originId] = value;
+            });
+
+            $(context).find(".card-body-arrayField").each(function () {
+                var originId = this.getAttribute('originId');
+                if (!originId) return;
+
+                var arrayField = [];
+                $(this).find('input, select, textarea').each(function () {
+                    var value = $(this).val();
+                    if (value && value.trim()) {
+                        arrayField.push(value.trim());
+                    }
+                });
+                jsondata[originId] = arrayField;
+            });
+
+            $(context).find(".card-body-singleObj").each(function () {
+                var originId = this.getAttribute('originId');
+                if (originId) {
+                    var singleObj = getJsonData(this);
+                    jsondata[originId] = singleObj;
+                }
+            });
+
+            $(context).find(".card-body-arrObjType").each(function () {
+                var originId = this.getAttribute('originId');
+                if (!originId) return;
+
+                var arrObj = [];
+                $(this).find(".card-body-arrObjItem:not(.card-body-template)").each(function () {
+                    var arrObjItem = getJsonData(this);
+                    arrObj.push(arrObjItem);
+                });
+                jsondata[originId] = arrObj;
+            });
+
+            return jsondata;
+        }
+
+        function submit_subform(form, act) {
+            var card = $(form).parents(".card-body");
+            var langId = $("input[name='LangId']", form).val();
+            var comptKey = $("input[name='ComptKey']", form).val();
+            var pageId = $("input[name='Id']", form).val();
+            var jsondata = getJsonData(card);
+            $("input[name='JsonData']", form).val(JSON.stringify(jsondata, null, 0));
+
+            $.ajax({
+                url: "@Constants.Admin_Url/page/edit?handler=UpdateCompt",
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]', form).val(),
+                    LangId: langId,
+                    Id: pageId,
+                    ComptKey: comptKey,
+                    action: act,
+                    JsonData: JSON.stringify(jsondata, null, 0)
+                },
+                success: function (result) {
+                    Swal.fire({
+                        title: 'Chúc mừng!',
+                        text: result.message || result,
+                        icon: "success"
+                    }).then(function (t) { location.reload(); })
+                },
+                error: function (errormessage) {
+                    Swal.fire({
+                        title: 'Thôi xong!',
+                        text: errormessage.responseText || errormessage.responseJSON?.message || 'Có lỗi xảy ra',
+                        icon: "error"
+                    })
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $.fn.hasAttr = function (name) {
+                var attr = $(this).attr(name);
+                return typeof attr !== typeof undefined && attr !== false;
+            };
+
+            $(document).on("click", ".btn-delete-arrFieldItem", function (e) {
+                e.preventDefault();
+                $(this).closest(".input-group").remove();
+            })
+
+            $(document).on("click", ".btn-insert-arrFieldItem", function (e) {
+                var item = $(this).closest(".input-group");
+                var newItem = item.clone();
+                newItem.find("button")
+                    .removeClass("btn-insert-arrFieldItem")
+                    .addClass("btn-delete-arrFieldItem")
+                    .removeClass("btn-primary")
+                    .addClass("btn-danger");
+                newItem.find("button > i")
+                   .removeClass("fe-plus-circle")
+                   .addClass("fe-x-circle");
+                newItem.insertBefore(item);
+                $(item).find("input").val(null);
+            })
+
+            $(document).on("click", ".btn-delete-arrObjDataItem", function (e) {
+                e.preventDefault();
+                $(this).closest(".card").remove();
+            })
+
+            $(document).on("click", ".btn-insert-arrObjDataItem", function (e) {
+                e.preventDefault();
+                var guid = create_UUID();
+                var cardBody = $(this).closest(".card-body-arrObjType");
+                var template = $(cardBody).children(".card-template").clone();
+                template.removeClass("card-template").addClass("card").show();
+
+                var btn_card_header_arrObjType = template.find(".btn-card-header-arrObjType");
+                btn_card_header_arrObjType.attr("data-target", btn_card_header_arrObjType.attr("data-target") + "-" + guid)
+
+                var card_body_arrObjItem = template.find(".card-body-arrObjItem");
+                card_body_arrObjItem.attr("id", card_body_arrObjItem.attr("id") + "-" + guid)
+                card_body_arrObjItem.removeClass("card-body-template");
+
+                $("> div > .card-body-singleFields > div", template).each(function () {
+                    var subGuid = create_UUID();
+                    $(this).find('input, checkbox, select, textarea, button').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("name")) {
+                            $(this).attr('name', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("data-insertback")) {
+                            $(this).attr('data-insertback', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("id")) {
+                            $(this).attr('id', originId + '-' + subGuid);
+                        }
+                        if ($(this).hasAttr("value")) {
+                            $(this).val('')
+                        }
+                    });
+                    $(this).find('label').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("for")) {
+                            $(this).attr('for', originId + '-' + subGuid);
+                        }
+                    });
+                    $(this).find('button').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("target")) {
+                            $(this).attr('target', originId + '-' + subGuid);
+                        }
+                    });
+                    $(this).find('img').each(function () {
+                        var originId = $(this).attr('originId');
+                        if ($(this).hasAttr("id")) {
+                            $(this).attr('id', "img-" + originId + '-' + subGuid);
+                        }
+                    });
+                });
+
+                template.insertBefore($(this).parents(".button-card-body-arrObjType"));
+            });
+
+            $('.subform .reset').click(function (event) {
+                submit_subform($(this).closest("form"), 'reset');
+            });
+
+            $('.subform').on('submit', function (event) {
+                event.preventDefault();
+                submit_subform(this, 'update');
+            });
+
+            $(document).on("click", ".btn-ckfinder-popup", function (e) {
+                e.preventDefault();
+                var targetId = $(this).attr('target');
+                window["callback_" + targetId] = function (fileUrl) {
+                    var url = new URL(fileUrl);
+                    $('#' + targetId).val(url.pathname);
+                    $('#img-' + targetId).attr("src", url.pathname);
+                }
+                CKFinder.popup({
+                    chooseFiles: true,
+                    width: 800,
+                    height: 600,
+                    selectActionFunction: window["callback_" + targetId]
+                });
+            });
+
+            // CKEditor 5 is initialized automatically by ckeditor5-init.js
+            // No need for manual initialization
+
+            $('#insertLinkModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                insertLinkTarget = button.data('insertback');
+            })
+
+            $(".validable").parsley();
+        });
+
+        function insertLink(link) {
+            $('#' + insertLinkTarget).val(link);
+        }
+    </script>
+}
