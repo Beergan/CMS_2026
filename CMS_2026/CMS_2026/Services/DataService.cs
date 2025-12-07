@@ -1,21 +1,34 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using CMS_2026.Data;
 using CMS_2026.Data.Entities;
 using CMS_2026.Data.Models;
+using CMS_2026.Services;
 
 namespace CMS_2026.Services
 {
     public class DataService : IDataService
     {
         private readonly ApplicationDbContext _context;
+        private readonly RootService? _rootService;
+        private readonly ILogger<DataService>? _logger;
+        private readonly IHttpContextAccessor? _httpContextAccessor;
 
-        public DataService(ApplicationDbContext context)
+        public DataService(
+            ApplicationDbContext context,
+            RootService? rootService = null,
+            ILogger<DataService>? logger = null,
+            IHttpContextAccessor? httpContextAccessor = null)
         {
             _context = context;
+            _rootService = rootService;
+            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public bool Exists<T>(object key) where T : class
@@ -72,15 +85,34 @@ namespace CMS_2026.Services
 
         public T? Insert<T>(T model) where T : class
         {
+            var entityType = typeof(T).Name;
             _context.Set<T>().Add(model);
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                _logger?.LogInformation("[Cache] Database INSERT: {EntityType} - Cache version will be incremented", entityType);
+
+                SaveDatabaseLog("INSERT", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
+            }
+
             return model;
         }
 
         public T? Update<T>(T model) where T : class
         {
+            var entityType = typeof(T).Name;
             _context.Set<T>().Update(model);
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                _logger?.LogInformation("[Cache] Database UPDATE: {EntityType} - Cache version will be incremented", entityType);
+
+                SaveDatabaseLog("UPDATE", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
+
+            }
+
             return model;
         }
 
@@ -90,14 +122,33 @@ namespace CMS_2026.Services
             if (entity == null)
                 return false;
 
+            var entityType = typeof(T).Name;
+            var entityId = GetEntityId(entity);
             _context.Set<T>().Remove(entity);
-            _context.SaveChanges();
-            return true;
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                _logger?.LogInformation("[Cache] Database DELETE: {EntityType} (Key: {Key}) - Cache version will be incremented", entityType, key);
+
+                SaveDatabaseLog("DELETE", entityType, entityId, _httpContextAccessor?.HttpContext);
+            }
+
+            return result > 0;
         }
 
         public int SaveChanges()
         {
-            return _context.SaveChanges();
+            var result = _context.SaveChanges();
+
+            if (result > 0)
+            {
+                _logger?.LogInformation("[Cache] Database SaveChanges: {Count} changes - Cache version will be incremented", result);
+                SaveDatabaseLog("SAVECHANGES", "Multiple", null, _httpContextAccessor?.HttpContext, $"Total changes: {result}");
+                _rootService?.IncrementCacheVersion();
+            }
+
+            return result;
         }
 
         public List<CategoryIndexer> GetCategoryIndexes()
@@ -141,7 +192,7 @@ namespace CMS_2026.Services
         public List<PP_Category> GetCategoryMenu(string langId, string? nodeType = null)
         {
             var query = _context.PP_Categories.Where(c => c.LangId == langId);
-            
+
             if (!string.IsNullOrEmpty(nodeType))
             {
                 query = query.Where(c => c.NodeType == nodeType);
@@ -171,6 +222,88 @@ namespace CMS_2026.Services
             };
 
             return data;
+        }
+
+        /// <summary>
+        /// Lấy ID từ entity (nếu entity có property Id)
+        /// </summary>
+        private int? GetEntityId<T>(T entity) where T : class
+        {
+            if (entity == null) return null;
+
+            try
+            {
+                var idProperty = typeof(T).GetProperty("Id");
+                if (idProperty != null && idProperty.PropertyType == typeof(int))
+                {
+                    var value = idProperty.GetValue(entity);
+                    return value as int?;
+                }
+            }
+            catch
+            {
+                // Ignore errors
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Lưu log vào database về thao tác database
+        /// Lưu log bất đồng bộ để không ảnh hưởng đến performance
+        /// </summary>
+        private void SaveDatabaseLog(string action, string entityType, int? entityId, HttpContext? httpContext, string? description = null)
+        {
+            if (httpContext == null)
+                return;
+
+            var userId = AuthenticationService.GetUserId(httpContext);
+            var idUser = AuthenticationService.GetUserIdInt(httpContext);
+            var displayName = AuthenticationService.GetDisplayName(httpContext);
+            var ipAddress = httpContext.Request.Headers["CF-Connecting-IP"].FirstOrDefault()
+                ?? httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault()
+                ?? httpContext.Connection.RemoteIpAddress?.ToString()
+                ?? "Unknown";
+
+            var connectionString = _context.Database.GetDbConnection().ConnectionString;
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+                    optionsBuilder.UseSqlServer(connectionString);
+
+                    using (var logContext = new ApplicationDbContext(optionsBuilder.Options))
+                    {
+                        var log = new PP_DatabaseLog
+                        {
+                            Action = action,
+                            EntityType = entityType,
+                            EntityId = entityId,
+                            UserId = userId,
+                            IdUser = idUser,
+                            DisplayName = displayName,
+                            IpAddress = ipAddress,
+                            Description = description,
+                            LogTime = DateTime.Now,
+                            CreatedTime = DateTime.Now,
+                            ModifiedTime = DateTime.Now,
+                            CreatedBy = userId ?? "System",
+                            ModifiedBy = userId ?? "System"
+                        };
+
+                        logContext.PP_DatabaseLog.Add(log);
+                        logContext.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi nhưng không throw để không ảnh hưởng đến flow chính
+                    _logger?.LogError(ex, "[DatabaseLog] Error saving database log: {Action} - {EntityType}", action, entityType);
+                    System.Diagnostics.Debug.WriteLine($"[DatabaseLog] Error: {ex.Message}");
+                }
+            });
         }
     }
 }

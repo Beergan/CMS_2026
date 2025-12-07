@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +23,9 @@ namespace CMS_2026.Services
         public static ConcurrentDictionary<string, PP_Config> Configs = new();
         public static ConcurrentDictionary<int, int[]> CategoryIndexes = new();
 
+        private static long _cacheVersion = DateTime.UtcNow.Ticks;
+        public static long CacheVersion => _cacheVersion;
+
         private static Dictionary<string, Config> _rootConfig = new();
 
         public RootService(IServiceScopeFactory serviceScopeFactory, IMemoryCache cache, IConfiguration configuration)
@@ -40,7 +43,7 @@ namespace CMS_2026.Services
                 var dataService = scope.ServiceProvider.GetRequiredService<IDataService>();
                 langs = dataService.GetList<PP_Lang>();
             }
-            
+
             foreach (var lang in langs)
             {
                 Langs.AddOrUpdate(lang.LangId, lang, (key, oldValue) => lang);
@@ -55,19 +58,15 @@ namespace CMS_2026.Services
                 var dataService = scope.ServiceProvider.GetRequiredService<IDataService>();
                 configs = dataService.GetList<PP_Config>();
             }
-            
+
             foreach (var config in configs)
             {
                 var key = $"{config.LangId}-{config.PageId}-{config.ConfigKey}";
                 Configs.AddOrUpdate(key, config, (k, oldValue) => config);
             }
 
-            // Clear cache
-            foreach (var key in CacheTable.Keys)
-            {
-                _cache.Remove(key);
-            }
 
+            IncrementCacheVersion();
             _rootConfig.Clear();
         }
 
@@ -76,7 +75,7 @@ namespace CMS_2026.Services
             if (_rootConfig == null || !_rootConfig.ContainsKey(langId))
             {
                 _rootConfig ??= new Dictionary<string, Config>();
-                
+
                 var configKey = $"{langId}-0-root";
                 if (Configs.TryGetValue(configKey, out var config) && !string.IsNullOrEmpty(config.JsonContent))
                 {
@@ -104,22 +103,34 @@ namespace CMS_2026.Services
                 CategoryIndexes.AddOrUpdate(index.RootId, array, (key, oldValue) => array);
             }
         }
-
-        public void ClearCache()
+        /// <summary>
+        /// Tăng cache version để invalidate tất cả cache cũ
+        /// Khi version thay đổi, tất cả cache key cũ sẽ không match và tự động invalidate
+        /// </summary>
+        public void IncrementCacheVersion()
         {
-            foreach (var key in CacheTable.Keys)
+            var oldVersion = _cacheVersion;
+            _cacheVersion = DateTime.UtcNow.Ticks;
+            var cacheCount = CacheTable.Count;
+            foreach (var key in CacheTable.Keys.ToList())
             {
                 _cache.Remove(key);
                 CacheTable.TryRemove(key, out _);
             }
+
+            System.Diagnostics.Debug.WriteLine($"[Cache] Version incremented: {oldVersion} -> {_cacheVersion} | Cleared {cacheCount} cache entries");
+            Console.WriteLine($"[Cache] Version incremented: {oldVersion} -> {_cacheVersion} | Cleared {cacheCount} cache entries");
+        }
+
+        public void ClearCache()
+        {
+             IncrementCacheVersion();
         }
 
         public string ShortId()
         {
-            // Implementation for short ID generation
             return Guid.NewGuid().ToString("N")[..8];
         }
-
         public string CurrentWebsiteUrl => _configuration["Website"] ?? string.Empty;
         public string LayoutId => _configuration["LayoutId"] ?? string.Empty;
 

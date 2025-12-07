@@ -81,19 +81,11 @@
               "target": "Package",
               "version": "[3.1.12, )"
             },
-            "System.Linq": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            },
             "System.Memory.Data": {
               "target": "Package",
               "version": "[10.0.0, )"
             },
             "System.Runtime.Caching": {
-              "target": "Package",
-              "version": "[10.0.0, )"
-            },
-            "System.Text.Json": {
               "target": "Package",
               "version": "[10.0.0, )"
             }

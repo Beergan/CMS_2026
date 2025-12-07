@@ -50,7 +50,7 @@ namespace CMS_2026.Data
         public DbSet<PP_Subscribe> PP_Subscribes { get; set; }
         public DbSet<PP_Feedback> PP_Feedbacks { get; set; }
         public DbSet<PP_Evaluation> PP_Evaluations { get; set; }
-
+        public DbSet<PP_DatabaseLog> PP_DatabaseLog { get; set; } 
         // Category Details
         public DbSet<PP_Category_details> PP_Category_Details { get; set; }
 
@@ -89,7 +89,7 @@ namespace CMS_2026.Data
             modelBuilder.Entity<PP_Feedback>().ToTable("pp_feedback");
             modelBuilder.Entity<PP_Evaluation>().ToTable("pp_evaluation");
             modelBuilder.Entity<PP_Category_details>().ToTable("pp_category_details");
-
+            modelBuilder.Entity<PP_DatabaseLog>().ToTable("pp_database_log");
             // Configure indexes
             modelBuilder.Entity<PP_Config>()
                 .HasIndex(c => new { c.LangId, c.PageId, c.ConfigKey })

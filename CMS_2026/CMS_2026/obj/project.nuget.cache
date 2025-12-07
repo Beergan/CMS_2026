@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QYUfwC4uS0I=",
+  "dgSpecHash": "WuxGXt+H2sc=",
   "success": true,
   "projectFilePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
   "expectedPackageFiles": [
@@ -53,7 +53,6 @@
     "C:\\Users\\dh519\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.0\\system.configuration.configurationmanager.10.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.formats.nrbf\\9.0.0\\system.formats.nrbf.9.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.7.1\\system.identitymodel.tokens.jwt.7.7.1.nupkg.sha512",
-    "C:\\Users\\dh519\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.memory.data\\10.0.0\\system.memory.data.10.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.reflection.metadataloadcontext\\7.0.0\\system.reflection.metadataloadcontext.7.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.resources.extensions\\9.0.0\\system.resources.extensions.9.0.0.nupkg.sha512",
@@ -61,33 +60,7 @@
     "C:\\Users\\dh519\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.0\\system.security.cryptography.protecteddata.10.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.security.permissions\\9.0.0\\system.security.permissions.9.0.0.nupkg.sha512",
-    "C:\\Users\\dh519\\.nuget\\packages\\system.text.json\\10.0.0\\system.text.json.10.0.0.nupkg.sha512",
     "C:\\Users\\dh519\\.nuget\\packages\\system.windows.extensions\\9.0.0\\system.windows.extensions.9.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference System.Text.Json will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-      "libraryId": "System.Text.Json",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    },
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "message": "PackageReference System.Linq will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-      "libraryId": "System.Linq",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }

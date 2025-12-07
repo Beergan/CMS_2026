@@ -13,9 +13,7 @@
     var langId = Context.Request.Cookies["LangId"] ?? "vi";
     var config = Root.GetConfig(langId);
     var pageId = (int)(Context.Items["PageId"] ?? 0);
-    
-    // Load HomeViewModel from config
-    var data = ViewHelper.LoadData<HomeViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-Home", setup: (model) =>
+    var data = ViewHelper.LoadData<HomeViewModel>(Context, Root, Cache,key: $"{langId}-{pageId}-Home", setup: (model) =>
     {
         if (model == null)
         {
@@ -34,7 +32,6 @@
             };
         }
 
-        // Load products into _modelVMProduct (similar to old structure)
         if (model._Product != null && !string.IsNullOrEmpty(model._Product.Link))
         {
             var link = model._Product.Link.TrimStart('/');

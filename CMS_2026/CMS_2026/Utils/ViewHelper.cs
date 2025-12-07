@@ -1,10 +1,12 @@
-using System;
-using System.Linq;
+﻿using CMS_2026.Common;
+using CMS_2026.Data.Entities;
+using CMS_2026.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
-using CMS_2026.Services;
-using CMS_2026.Common;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace CMS_2026.Utils
 {
@@ -23,12 +25,10 @@ namespace CMS_2026.Utils
             string key,
             Func<T?, T?>? setup = null) where T : class
         {
-            // Try to get from cache first (20 minutes expiration)
             if (cache.TryGetValue(key, out T? cached))
             {
                 return cached;
             }
-
             // Get LangId and PageId from context
             var langId = context.Request.Cookies["LangId"] ?? "vi";
             var pageId = context.Items.TryGetValue("PageId", out var pageIdObj) && pageIdObj is int id ? id : 0;
@@ -45,8 +45,6 @@ namespace CMS_2026.Utils
                 fileName = path.Split('/').LastOrDefault()?.Split('.').FirstOrDefault() ?? string.Empty;
             }
 
-            // Try to load from config (same logic as BasePageModel)
-            // Priority: PageId-specific config > Root config (PageId = 0)
             T? data = null;
             var config = Root.Configs.Values
                 .FirstOrDefault(t => t.LangId == langId && 
@@ -61,27 +59,31 @@ namespace CMS_2026.Utils
                 }
                 catch (Exception ex)
                 {
-                    // Log error but don't throw
                     System.Diagnostics.Debug.WriteLine($"LoadData deserialization error: {ex.Message}");
                 }
             }
 
-            // Run setup function if provided
             if (setup != null)
             {
                 data = setup(data);
             }
 
-            // Cache the result (20 minutes)
             if (data != null)
             {
                 using (var entry = cache.CreateEntry(key))
                 {
-                    entry.Value = data;
-                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(20);
+                    entry.Value = new
+                    {
+                        Data = data,
+                        CachedTime = DateTime.Now
+                    };
+                    entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30);
                 }
             }
-
+            //var json = JsonConvert.SerializeObject(data);
+            //long bytes = Encoding.UTF8.GetByteCount(json);
+            //double mb = bytes / 1024.0 / 1024.0;
+            //Console.WriteLine($"REAL Cache Size ≈ {mb} MB");
             return data;
         }
     }

@@ -36,7 +36,7 @@ namespace CMS_2026.Pages.Admin.Page
                 return Redirect("/admin/page");
             }
 
-            PageTemplates = Db.GetList<PP_Compt>(t => t.ComptType == "page_template")
+            PageTemplates = Db.GetList<PP_Compt>(t => t.ComptType ==  "page_template")
                 .OrderBy(t => t.ComptKey)
                 .ToDictionary(t => t.ComptKey, t => t.ComptName ?? "");
 
