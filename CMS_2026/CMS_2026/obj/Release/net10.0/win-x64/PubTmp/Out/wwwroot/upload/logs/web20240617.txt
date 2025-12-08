@@ -1,0 +1,264 @@
+2024-06-17 00:10:40.446 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-17 00:30:25.636 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-17 00:30:25.757 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '1bcj0h4ehzmvarnksdxcgt5k' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-17 09:11:45.169 +07:00 [ERR] /
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\layout_header.cshtml(92): error CS1002: ; expected
+   at System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageBase.CreatePageFromVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, DisplayModeProvider displayModeProvider, IDisplayMode displayMode)
+   at System.Web.WebPages.WebPageBase.<>c__DisplayClass40_0.<RenderPageCore>b__0(TextWriter writer)
+   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   at ASP._Page__Layouts__LayoutWeb_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_Layouts\_LayoutWeb.cshtml:line 69
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageBase.<>c__DisplayClass40_0.<RenderPageCore>b__0(TextWriter writer)
+   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   at System.Web.WebPages.WebPageBase.PopContext()
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 10:28:43.770 +07:00 [ERR] /gio-hang?add
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\cart.cshtml(98): error CS7036: There is no argument given that corresponds to the required formal parameter 'quantity' of 'ShoppingCart.AddToCart(PP_Product, string, int)'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 10:29:24.950 +07:00 [ERR] /gio-hang?add
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\cart.cshtml(98): error CS7036: There is no argument given that corresponds to the required formal parameter 'quantity' of 'ShoppingCart.AddToCart(PP_Product, string, int)'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 10:29:51.691 +07:00 [ERR] /gio-hang?add
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\cart.cshtml(98): error CS7036: There is no argument given that corresponds to the required formal parameter 'quantity' of 'ShoppingCart.AddToCart(PP_Product, string, int)'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 10:30:12.364 +07:00 [ERR] /gio-hang?add
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\cart.cshtml(98): error CS7036: There is no argument given that corresponds to the required formal parameter 'quantity' of 'ShoppingCart.AddToCart(PP_Product, string, int)'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at WebPagesRouteHandler.GetHttpHandler(RequestContext requestContext) in D:\SLK\web_winlink\web_winlink\App_Code\Routing\WebPageRouteHandler.cs:line 36
+   at System.Web.Routing.UrlRoutingModule.PostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 10:33:05.568 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'dbgvteqrqqegiw3fewjczneq' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-17 10:33:18.828 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-17 10:33:38.433 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-17 10:52:37.022 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'dbgvteqrqqegiw3fewjczneq' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-17 10:58:42.841 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-17 11:15:40.598 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '11uobr55ia1zedqobcrjyfnj' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-17 13:15:36.389 +07:00 [ERR] /san-pham/dau-hap-dac-tri-toc-hu-ton-everflor.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\_compt\product_item_related.cshtml(54): error CS1061: '_Page__compt_product_item_related_cshtml.ViewModel' does not contain a definition for 'Title' and no extension method 'Title' accepting a first argument of type '_Page__compt_product_item_related_cshtml.ViewModel' could be found (are you missing a using directive or an assembly reference?)
+   at System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageBase.CreatePageFromVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, DisplayModeProvider displayModeProvider, IDisplayMode displayMode)
+   at System.Web.WebPages.WebPageBase.<>c__DisplayClass40_0.<RenderPageCore>b__0(TextWriter writer)
+   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   at ASP._Page__compt_product_item_cshtml.Execute() in D:\SLK\web_winlink\web_winlink\_compt\product_item.cshtml:line 343
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 13:32:20.107 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'puuwzlxlrlcww5iowjaj4l2e' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-17 14:23:15.921 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'puuwzlxlrlcww5iowjaj4l2e' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125
+2024-06-17 14:24:20.711 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 92
+2024-06-17 14:30:11.142 +07:00 [ERR] /ho-tro
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_page_item_cshtml.Execute() in C:\IIS\overlof\_compt\page_item.cshtml:line 70
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 14:30:15.821 +07:00 [ERR] /hoi-dap
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_page_item_cshtml.Execute() in C:\IIS\overlof\_compt\page_item.cshtml:line 70
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-17 15:35:02.839 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'puuwzlxlrlcww5iowjaj4l2e' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in C:\IIS\overlof\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in C:\IIS\overlof\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in C:\IIS\overlof\App_Code\Global.asax.cs:line 125

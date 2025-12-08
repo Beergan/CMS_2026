@@ -50,7 +50,7 @@ namespace CMS_2026.Pages.Admin.Database
                 if (Result.Success)
                 {
                     var startupService = HttpContext.RequestServices.GetRequiredService<StartupService>();
-                    startupService.Initialize();
+                    startupService.InitializeAsync().GetAwaiter().GetResult();
                 }
 
                 return Page();

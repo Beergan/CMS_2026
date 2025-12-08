@@ -18,7 +18,7 @@ namespace CMS_2026.Pages.Register
             _rootService = rootService;
         }
 
-        public IActionResult OnPost([FromForm] string FullName, [FromForm] string Email, [FromForm] string Password, [FromForm] string ConfirmPassword, [FromForm] string? Phone)
+        public async Task<IActionResult> OnPostAsync([FromForm] string FullName, [FromForm] string Email, [FromForm] string Password, [FromForm] string ConfirmPassword, [FromForm] string? Phone)
         {
             var referer = Request.Headers["Referer"].ToString();
             var fallback = string.IsNullOrEmpty(referer) ? "/register" : referer;
@@ -42,7 +42,7 @@ namespace CMS_2026.Pages.Register
                 return Redirect(fallback);
             }
 
-            var existing = _dataService.GetOne<PP_Register>(x => x.Email == Email);
+            var existing = await _dataService.GetOneAsync<PP_Register>(x => x.Email == Email);
             if (existing != null)
             {
                 TempData["RegisterError"] = "Email đã tồn tại.";
@@ -59,7 +59,7 @@ namespace CMS_2026.Pages.Register
                 Active = true
             };
 
-            _dataService.Insert(customer);
+            await _dataService.InsertAsync(customer);
             HttpContext.Session.SignInCustomer(customer);
             TempData["RegisterSuccess"] = "Đăng ký tài khoản thành công!";
 

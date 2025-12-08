@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,24 +19,25 @@ namespace CMS_2026.Pages.Admin.Register
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Registers = Db.GetList<PP_Register>()
+            var registers = await Db.GetListAsync<PP_Register>();
+            Registers = registers
                 .OrderByDescending(t => t.CreatedTime)
                 .ToList();
         }
 
-        public IActionResult OnPostDelete([FromForm] int Id)
+        public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
         {
             try
             {
-                var item = Db.GetOne<PP_Register>(Id);
+                var item = await Db.GetOneAsync<PP_Register>(Id);
                 if (item == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy đăng ký!" });
                 }
 
-                Db.Delete<PP_Register>(item.Id);
+                await Db.DeleteAsync<PP_Register>(item.Id);
                 return new JsonResult(new { success = true, message = "Đã xóa thành công!" });
             }
             catch (Exception ex)

@@ -1,0 +1,105 @@
+2024-09-10 09:13:40.130 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 09:31:08.259 +07:00 [ERR] /san-pham/tinh-dau-duong-toc-cao-cap-procerin-70ml.html?buynow
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Web.Mvc.HttpAntiForgeryException (0x80004005): The required anti-forgery cookie "__RequestVerificationToken" is not present.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at ASP._Page__compt_product_item_cshtml.Execute()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-09-10 10:29:47.760 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'roaiucdegp54oz2cu0fcgyr3' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd)
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName)
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco)
+   at PetaPoco.Database.Insert(Object poco)
+   at MysqlDataService.Insert[T](T model)
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 10:31:40.052 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 14:09:00.037 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 14:10:20.059 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 16:38:25.659 +07:00 [ERR] /linh-vuc/gia-cong-hoa-san-xuat.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_field_item_cshtml.<Execute>b__9_0(ViewModel model)
+   at MyWebPage.LoadData[T](String key, Func`2 setup)
+   at ASP._Page__compt_field_item_cshtml.Execute()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-09-10 17:02:40.181 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 17:09:57.395 +07:00 [ERR] /tin-tuc/top-mau-toc-dep-ca-tinh-noi-bat-hot-nhat-123.html
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page__compt_post_item_cshtml.<Execute>b__9_0(ViewModel model)
+   at MyWebPage.LoadData[T](String key, Func`2 setup)
+   at ASP._Page__compt_post_item_cshtml.Execute()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy(IEnumerable`1 executors)
+   at System.Web.WebPages.WebPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.WebPages.WebPageHttpHandler.HandleError(Exception e)
+   at System.Web.WebPages.WebPageHttpHandler.ProcessRequestInternal(HttpContextBase httpContext)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-09-10 17:11:00.406 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 17:50:20.283 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '5cqvnew1nyj5usvhip2pywgd' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd)
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName)
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco)
+   at PetaPoco.Database.Insert(Object poco)
+   at MysqlDataService.Insert[T](T model)
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 18:53:40.241 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2024-09-10 22:37:24.383 +07:00 [ERR] /Android_/QUJmWgow.aspx
+System.Web.HttpException (0x80004005): The file '/Android_/QUJmWgow.aspx' does not exist.
+   at System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   at System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

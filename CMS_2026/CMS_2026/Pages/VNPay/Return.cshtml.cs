@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data;
@@ -22,7 +23,7 @@ namespace CMS_2026.Pages.VNPay
         public string? Message { get; set; }
         public bool IsSuccess { get; set; }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             var langId = Request.Cookies["LangId"] ?? "vi";
             var config = _rootService.GetConfig(langId);
@@ -65,13 +66,12 @@ namespace CMS_2026.Pages.VNPay
             if (responseCode == "00" && !string.IsNullOrEmpty(OrderCode))
             {
                 // Payment successful
-                var order = _dataService.GetOne<PP_Order>(o => o.OrderCode == OrderCode);
+                var order = await _dataService.GetOneAsync<PP_Order>(o => o.OrderCode == OrderCode);
                 if (order != null)
                 {
                     order.OrderStatus = "PAID";
                     order.PayMethod = "VNPay";
-                    _dataService.Update(order);
-                    _dataService.SaveChanges();
+                    await _dataService.UpdateAsync(order);
 
                     // Store order info in session for success page
                     var serializedOrder = System.Text.Json.JsonSerializer.Serialize(order);

@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -29,7 +31,7 @@ namespace CMS_2026.Pages.Admin
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (string.IsNullOrWhiteSpace(CurrentPassword) || string.IsNullOrWhiteSpace(NewPassword) 
                 || string.IsNullOrWhiteSpace(ConfirmationPassword))
@@ -59,7 +61,7 @@ namespace CMS_2026.Pages.Admin
             try
             {
                 var currentPasswordHash = CryptographyHelper.HashSHA256(CurrentPassword);
-                var checkUser = Db.GetOne<PP_User>(t => t.Id == IdUser.Value && t.Password == currentPasswordHash);
+                var checkUser = await Db.GetOneAsync<PP_User>(t => t.Id == IdUser.Value && t.Password == currentPasswordHash);
 
                 if (checkUser == null)
                 {
@@ -68,7 +70,7 @@ namespace CMS_2026.Pages.Admin
                 }
 
                 checkUser.Password = CryptographyHelper.HashSHA256(NewPassword);
-                Db.Update(checkUser);
+                await Db.UpdateAsync(checkUser);
 
                 AuthenticationService.Logout(HttpContext);
                 return Redirect("/admin/login");

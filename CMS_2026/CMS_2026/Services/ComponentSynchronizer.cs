@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using CMS_2026.Attributes;
 using CMS_2026.Data.Entities;
 using CMS_2026.Models;
@@ -18,7 +19,7 @@ namespace CMS_2026.Services
         /// Run synchronization: Scan ViewModels and create component schemas
         /// Similar to everflorcom_new ComponentSynchronizer.Run()
         /// </summary>
-        public static List<PP_Compt> Run(IDataService dataService)
+        public static async Task<List<PP_Compt>> RunAsync(IDataService dataService)
         {
             var syncedComponents = new List<PP_Compt>();
 
@@ -66,7 +67,7 @@ namespace CMS_2026.Services
                     var jsonDefaultValue = GetJsonDefaultValue(viewModelType);
 
                     // Check if component exists
-                    var compt = dataService.GetOne<PP_Compt>(t => t.ComptKey == finalComptKey);
+                    var compt = await dataService.GetOneAsync<PP_Compt>(t => t.ComptKey == finalComptKey);
 
                     // Auto-detect component type if not specified
                     var comptType = comptAttrb?.Type;
@@ -101,7 +102,7 @@ namespace CMS_2026.Services
                         compt.NodeType = comptAttrb?.NodeType;
                         compt.PageType = pageType;
 
-                        dataService.Update(compt);
+                        await dataService.UpdateAsync(compt);
                     }
                     else
                     {
@@ -118,7 +119,7 @@ namespace CMS_2026.Services
                             PageType = pageType
                         };
 
-                        dataService.Insert(compt);
+                        await dataService.InsertAsync(compt);
                     }
 
                     syncedComponents.Add(compt);

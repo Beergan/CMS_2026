@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,14 +19,14 @@ namespace CMS_2026.Pages.Admin.User
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/user");
             }
 
-            User = Db.GetOne<PP_User>(id.Value);
+            User = await Db.GetOneAsync<PP_User>(id.Value);
             if (User == null)
             {
                 return Redirect("/admin/user");
@@ -33,7 +35,7 @@ namespace CMS_2026.Pages.Admin.User
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] string DisplayName,
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] string DisplayName,
             [FromForm] string Email, [FromForm] string? Password, [FromForm] bool Enabled)
         {
             try
@@ -43,7 +45,7 @@ namespace CMS_2026.Pages.Admin.User
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var user = Db.GetOne<PP_User>(Id);
+                var user = await Db.GetOneAsync<PP_User>(Id);
                 if (user == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy tài khoản!" });
@@ -67,7 +69,7 @@ namespace CMS_2026.Pages.Admin.User
                     user.Password = CryptographyHelper.HashSHA256(Password);
                 }
 
-                Db.Update(user);
+                await Db.UpdateAsync(user);
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!", redirect = "/admin/user" });
             }

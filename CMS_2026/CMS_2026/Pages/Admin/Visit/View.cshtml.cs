@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -15,14 +16,14 @@ namespace CMS_2026.Pages.Admin.Visit
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/visit");
             }
 
-            Visit = Db.GetOne<PP_Visit>(id.Value);
+            Visit = await Db.GetOneAsync<PP_Visit>(id.Value);
             if (Visit == null)
             {
                 return Redirect("/admin/visit");

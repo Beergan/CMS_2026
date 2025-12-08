@@ -87,9 +87,9 @@ namespace CMS_2026.Pages.Admin
         public int? IdUser => AuthenticationService.GetUserIdInt(HttpContext);
         public string? DisplayName => AuthenticationService.GetDisplayName(HttpContext);
 
-        protected Dictionary<string, string> GetGroupSelector(string langId, string? nodeType = null)
+        protected async Task<Dictionary<string, string>> GetGroupSelectorAsync(string langId, string? nodeType = null)
         {
-            var query = Db.GetList<PP_Category>(t => t.LangId == langId);
+            var query = await Db.GetListAsync<PP_Category>(t => t.LangId == langId);
 
             if (!string.IsNullOrEmpty(nodeType))
             {

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -23,31 +25,32 @@ namespace CMS_2026.Pages.Admin.Page
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/page");
             }
 
-            Page = Db.GetOne<PP_Page>(id.Value);
+            Page = await Db.GetOneAsync<PP_Page>(id.Value);
             if (Page == null)
             {
                 return Redirect("/admin/page");
             }
 
-            PageTemplates = Db.GetList<PP_Compt>(t => t.ComptType ==  "page_template")
+            var pageTemplatesList = await Db.GetListAsync<PP_Compt>(t => t.ComptType ==  "page_template");
+            PageTemplates = pageTemplatesList
                 .OrderBy(t => t.ComptKey)
                 .ToDictionary(t => t.ComptKey, t => t.ComptName ?? "");
 
-            Components = Db.GetList<PP_Compt>(t => t.ComptKey != null && t.ComptKey.StartsWith(Page.ComptKey ?? ""));
-            Configs = Db.GetList<PP_Config>(t => t.LangId == LangIdCompose && t.PageId == Page.Id);
-            LinkOptions = Db.GetLinks(LangIdCompose);
+            Components = await Db.GetListAsync<PP_Compt>(t => t.ComptKey != null && t.ComptKey.StartsWith(Page.ComptKey ?? ""));
+            Configs = await Db.GetListAsync<PP_Config>(t => t.LangId == LangIdCompose && t.PageId == Page.Id);
+            LinkOptions = await Db.GetLinksAsync(LangIdCompose);
 
             return Page();
         }
 
-        public IActionResult OnPostUpdatePage([FromForm] int Id, [FromForm] string Title, 
+        public async Task<IActionResult> OnPostUpdatePageAsync([FromForm] int Id, [FromForm] string Title, 
             [FromForm] string PathPattern, [FromForm] string? MetaDescription, 
             [FromForm] string? MetaKeywords, [FromForm] string? ComptKey)
         {
@@ -58,20 +61,21 @@ namespace CMS_2026.Pages.Admin.Page
                     return new JsonResult(new { success = false, message = "Tiêu đề và đường dẫn không được để trống!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(Id);
+                var page = await Db.GetOneAsync<PP_Page>(Id);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy trang!" });
                 }
 
-                var compt = Db.GetOne<PP_Compt>(t => t.ComptKey == (ComptKey ?? page.ComptKey));
+                var compt = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == (ComptKey ?? page.ComptKey));
                 if (compt == null)
                 {
                     return new JsonResult(new { success = false, message = "Component không tồn tại!" });
                 }
 
                 var tempAlias = StringHelper.GetBeforeLast(PathPattern, "/") + compt.PathPostfix;
-                if (tempAlias != page.PathPattern && Db.GetList<PP_Page>(t => t.PathPattern == tempAlias).Any())
+                var existingPages = await Db.GetListAsync<PP_Page>(t => t.PathPattern == tempAlias);
+                if (tempAlias != page.PathPattern && existingPages.Any())
                 {
                     return new JsonResult(new { success = false, message = $"Đường dẫn [{tempAlias}] đã tồn tại!" });
                 }
@@ -86,7 +90,7 @@ namespace CMS_2026.Pages.Admin.Page
                     page.ComptKey = ComptKey;
                 }
 
-                Db.Update(page);
+                await Db.UpdateAsync(page);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!", redirect = "/admin/page" });
@@ -97,7 +101,7 @@ namespace CMS_2026.Pages.Admin.Page
             }
         }
 
-        public IActionResult OnPostUpdateCompt([FromForm] string? action, [FromForm] string? langId,
+        public async Task<IActionResult> OnPostUpdateComptAsync([FromForm] string? action, [FromForm] string? langId,
             [FromForm] int? id, [FromForm] string? comptKey, [FromForm] string? jsonData)
         {
             try
@@ -107,7 +111,7 @@ namespace CMS_2026.Pages.Admin.Page
                     return new JsonResult(new { success = false, message = "Không tìm thấy trang!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(id.Value);
+                var page = await Db.GetOneAsync<PP_Page>(id.Value);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy trang!" });
@@ -116,7 +120,7 @@ namespace CMS_2026.Pages.Admin.Page
                 // Validate JSON
                 JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData ?? "{}");
 
-                var config = Db.GetOne<PP_Config>(t => t.LangId == (langId ?? LangIdCompose)
+                var config = await Db.GetOneAsync<PP_Config>(t => t.LangId == (langId ?? LangIdCompose)
                     && t.PageId == page.Id
                     && t.ConfigKey == comptKey);
 
@@ -124,19 +128,19 @@ namespace CMS_2026.Pages.Admin.Page
                 {
                     if (action == "reset")
                     {
-                        var component = Db.GetOne<PP_Compt>(t => t.ComptKey == comptKey);
+                        var component = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == comptKey);
                         if (component != null)
                         {
                             config.JsonContent = component.JsonDefault;
-                            Db.Update(config);
+                            await Db.UpdateAsync(config);
                         }
                     }
                     else
                     {
                         config.JsonContent = jsonData;
-                        Db.Update(config);
+                        await Db.UpdateAsync(config);
                     }
-                    Root.RefreshConfigs();
+                    await Root.RefreshConfigsAsync();
                 }
                 else
                 {
@@ -148,8 +152,8 @@ namespace CMS_2026.Pages.Admin.Page
                         JsonContent = jsonData
                     };
 
-                    Db.Insert(config);
-                    Root.RefreshConfigs();
+                    await Db.InsertAsync(config);
+                    await Root.RefreshConfigsAsync();
                 }
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!" });

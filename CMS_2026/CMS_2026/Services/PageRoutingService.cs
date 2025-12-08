@@ -25,11 +25,20 @@ namespace CMS_2026.Services
         /// <summary>
         /// Refresh routes from database (similar to MyRouteTable.RefreshRoutes in 4.8)
         /// </summary>
-        public void RefreshRoutes()
+        public async Task RefreshRoutesAsync()
         {
-            _cachedPages = _dataService.GetList<PP_Page>()
+            var pages = await _dataService.GetListAsync<PP_Page>();
+            _cachedPages = pages
                 .OrderByDescending(t => t.PathPattern)
                 .ToList();
+        }
+
+        /// <summary>
+        /// Refresh routes from database (sync version for backward compatibility)
+        /// </summary>
+        public void RefreshRoutes()
+        {
+            RefreshRoutesAsync().GetAwaiter().GetResult();
         }
 
         /// <summary>

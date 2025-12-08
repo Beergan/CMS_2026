@@ -6,6 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace CMS_2026.Utils
@@ -25,9 +26,26 @@ namespace CMS_2026.Utils
             string key,
             Func<T?, T?>? setup = null) where T : class
         {
-            if (cache.TryGetValue(key, out T? cached))
+            if (cache.TryGetValue(key, out object? cachedObj))
             {
-                return cached;
+                if (cachedObj != null)
+                {
+                    var cachedType = cachedObj.GetType();
+                    var dataProperty = cachedType.GetProperty("Data");
+                    if (dataProperty != null)
+                    {
+                        var dataValue = dataProperty.GetValue(cachedObj);
+                        if (dataValue is T cachedData)
+                        {
+                            return cachedData;
+                        }
+                    }
+                    // If it's already T (new format), return directly
+                    else if (cachedObj is T directCached)
+                    {
+                        return directCached;
+                    }
+                }
             }
             // Get LangId and PageId from context
             var langId = context.Request.Cookies["LangId"] ?? "vi";
@@ -72,12 +90,12 @@ namespace CMS_2026.Utils
             {
                 using (var entry = cache.CreateEntry(key))
                 {
-                    entry.Value = new
-                    {
-                        Data = data,
-                        CachedTime = DateTime.Now
-                    };
+                    // Store data directly (not wrapped) to match TryGetValue<T> behavior
+                    entry.Value = data;
                     entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30);
+                    
+                    // Track cache entry in CacheTable for IncrementCacheVersion to work
+                    RootService.CacheTable.TryAdd(key, DateTime.Now);
                 }
             }
             //var json = JsonConvert.SerializeObject(data);

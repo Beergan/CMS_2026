@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace CMS_2026.Pages.Contact
             _dataService = dataService;
         }
 
-        public IActionResult OnPost([FromForm] string Name, [FromForm] string Email, [FromForm] string Message, [FromForm] string? Phone)
+        public async Task<IActionResult> OnPostAsync([FromForm] string Name, [FromForm] string Email, [FromForm] string Message, [FromForm] string? Phone)
         {
             var referer = Request.Headers["Referer"].ToString();
             var fallback = string.IsNullOrEmpty(referer) ? "/contact" : referer;
@@ -34,7 +35,7 @@ namespace CMS_2026.Pages.Contact
                 Status = "NEW"
             };
 
-            _dataService.Insert(contact);
+            await _dataService.InsertAsync(contact);
             TempData["ContactSuccess"] = "Cảm ơn bạn! Chúng tôi sẽ sớm liên hệ.";
             return Redirect(fallback);
         }

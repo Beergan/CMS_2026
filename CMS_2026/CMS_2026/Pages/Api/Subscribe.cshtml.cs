@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data;
@@ -16,7 +18,7 @@ namespace CMS_2026.Pages.Api
             _dataService = dataService;
         }
 
-        public IActionResult OnPost([FromForm] string emailRegister)
+        public async Task<IActionResult> OnPostAsync([FromForm] string emailRegister)
         {
             try
             {
@@ -34,7 +36,7 @@ namespace CMS_2026.Pages.Api
                 }
 
                 // Check if email already exists
-                var existing = _dataService.GetOne<PP_Subscribe>(s => s.Email == emailRegister);
+                var existing = await _dataService.GetOneAsync<PP_Subscribe>(s => s.Email == emailRegister);
                 if (existing != null)
                 {
                     return new JsonResult(new { 
@@ -51,7 +53,7 @@ namespace CMS_2026.Pages.Api
                     Status = "ACTIVE"
                 };
 
-                _dataService.Insert(subscribe);
+                await _dataService.InsertAsync(subscribe);
 
                 return new JsonResult(new
                 {

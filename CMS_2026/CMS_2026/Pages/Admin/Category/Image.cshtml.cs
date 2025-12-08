@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,14 +19,14 @@ namespace CMS_2026.Pages.Admin.Category
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/category");
             }
 
-            Category = Db.GetOne<PP_Category>(id.Value);
+            Category = await Db.GetOneAsync<PP_Category>(id.Value);
             if (Category == null)
             {
                 return Redirect("/admin/category");
@@ -33,19 +35,18 @@ namespace CMS_2026.Pages.Admin.Category
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] string ImageUrl)
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] string ImageUrl)
         {
             try
             {
-                var category = Db.GetOne<PP_Category>(Id);
+                var category = await Db.GetOneAsync<PP_Category>(Id);
                 if (category == null)
                 {
                     return new JsonResult(new { success = false, message = "Chuyên mục không tồn tại!" });
                 }
 
                 category.ImageUrl = ImageUrl.NullIfWhiteSpace();
-                Db.Update(category);
-                Db.SaveChanges();
+                await Db.UpdateAsync(category);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Cập nhật hình ảnh thành công!" });

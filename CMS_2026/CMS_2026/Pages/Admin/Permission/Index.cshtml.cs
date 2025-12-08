@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -22,7 +24,7 @@ namespace CMS_2026.Pages.Admin.Permission
         {
         }
 
-        public IActionResult OnGet(int? roleid)
+        public async Task<IActionResult> OnGetAsync(int? roleid)
         {
             if (!roleid.HasValue)
             {
@@ -32,10 +34,11 @@ namespace CMS_2026.Pages.Admin.Permission
             RoleId = roleid.Value;
             Permissions = GlobalPermissions.Dictionary;
 
-            var role = Db.GetOne<PP_Roles>(RoleId);
+            var role = await Db.GetOneAsync<PP_Roles>(RoleId);
             RoleName = role?.RoleName ?? "Unknown";
 
-            var roleClaims = Db.GetList<PP_RoleClaims>(x => x.RoleId == RoleId)
+            var roleClaimsList = await Db.GetListAsync<PP_RoleClaims>(x => x.RoleId == RoleId);
+            var roleClaims = roleClaimsList
                 .Where(x => !string.IsNullOrEmpty(x.ClaimType))
                 .ToDictionary(x => x.ClaimType!, x => x.ClaimValue);
 
@@ -62,7 +65,7 @@ namespace CMS_2026.Pages.Admin.Permission
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int roleid, [FromForm] string? data)
+        public async Task<IActionResult> OnPostAsync([FromForm] int roleid, [FromForm] string? data)
         {
             try
             {
@@ -71,10 +74,10 @@ namespace CMS_2026.Pages.Admin.Permission
                     return new JsonResult(new { success = false, message = "Dữ liệu không hợp lệ!" });
                 }
 
-                var roleClaims = Db.GetList<PP_RoleClaims>(x => x.RoleId == roleid);
+                var roleClaims = await Db.GetListAsync<PP_RoleClaims>(x => x.RoleId == roleid);
                 foreach (var claim in roleClaims)
                 {
-                    Db.Delete<PP_RoleClaims>(claim.Id);
+                    await Db.DeleteAsync<PP_RoleClaims>(claim.Id);
                 }
 
                 var obj = JObject.Parse(data);
@@ -95,7 +98,7 @@ namespace CMS_2026.Pages.Admin.Permission
                             ClaimType = groupId,
                             ClaimValue = totalValue
                         };
-                        Db.Insert(roleClaim);
+                        await Db.InsertAsync(roleClaim);
                     }
                 }
 

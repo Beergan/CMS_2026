@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Services;
@@ -17,11 +19,11 @@ namespace CMS_2026.Pages.Api.Cart
             _dataService = dataService;
         }
 
-        public IActionResult OnPost([FromForm] int productId, [FromForm] string? variation = null, [FromForm] int quantity = 1)
+        public async Task<IActionResult> OnPostAsync([FromForm] int productId, [FromForm] string? variation = null, [FromForm] int quantity = 1)
         {
             try
             {
-                var product = _dataService.GetOne<PP_Product>(productId);
+                var product = await _dataService.GetOneAsync<PP_Product>(productId);
                 if (product == null)
                 {
                     return new JsonResult(new { success = false, message = "Sản phẩm không tồn tại!" });

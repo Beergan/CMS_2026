@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
@@ -16,9 +17,10 @@ namespace CMS_2026.Pages.Admin.Subscribe
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Subscribes = Db.GetList<PP_Subscribe>()
+            var subscribes = await Db.GetListAsync<PP_Subscribe>();
+            Subscribes = subscribes
                 .OrderByDescending(t => t.CreatedTime)
                 .ToList();
         }

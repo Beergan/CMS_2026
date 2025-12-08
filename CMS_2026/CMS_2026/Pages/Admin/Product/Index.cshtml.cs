@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,14 +21,14 @@ namespace CMS_2026.Pages.Admin.Product
         {
         }
 
-        public void OnGet(int? catId = null)
+        public async Task OnGetAsync(int? catId = null)
         {
             CatId = catId ?? 0;
-            var query = Db.GetList<PP_Product>(t => t.LangId == LangIdCompose);
+            var query = await Db.GetListAsync<PP_Product>(t => t.LangId == LangIdCompose);
 
             if (catId.HasValue && catId.Value > 0)
             {
-                Category = Db.GetOne<PP_Category>(catId.Value);
+                Category = await Db.GetOneAsync<PP_Category>(catId.Value);
                 query = query.Where(t => t.CategoryId == catId.Value).ToList();
             }
 
@@ -35,43 +37,43 @@ namespace CMS_2026.Pages.Admin.Product
                 .ToList();
         }
 
-        public IActionResult OnPostDelete([FromForm] int Id)
+        public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
         {
             try
             {
-                var item = Db.GetOne<PP_Product>(Id);
+                var item = await Db.GetOneAsync<PP_Product>(Id);
                 if (item == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy sản phẩm!" });
                 }
 
                 // Delete related variants
-                var productVariantValues = Db.GetList<PP_productVariantValues>(x => x.Idproduct == Id);
-                var productVariants = Db.GetList<PP_productvariants>(x => x.ProductIP == Id);
-                var variantValues = Db.GetList<PP_variantValues>(x => x.Idproduct == Id);
-                var variants = Db.GetList<PP_Variants>(x => x.Idproduct == Id);
+                var productVariantValues = await Db.GetListAsync<PP_productVariantValues>(x => x.Idproduct == Id);
+                var productVariants = await Db.GetListAsync<PP_productvariants>(x => x.ProductIP == Id);
+                var variantValues = await Db.GetListAsync<PP_variantValues>(x => x.Idproduct == Id);
+                var variants = await Db.GetListAsync<PP_Variants>(x => x.Idproduct == Id);
 
                 foreach (var pvv in productVariantValues)
                 {
-                    Db.Delete<PP_productVariantValues>(pvv.Id);
+                    await Db.DeleteAsync<PP_productVariantValues>(pvv.Id);
                 }
 
                 foreach (var pv in productVariants)
                 {
-                    Db.Delete<PP_productvariants>(pv.Id);
+                    await Db.DeleteAsync<PP_productvariants>(pv.Id);
                 }
 
                 foreach (var vv in variantValues)
                 {
-                    Db.Delete<PP_variantValues>(vv.Id);
+                    await Db.DeleteAsync<PP_variantValues>(vv.Id);
                 }
 
                 foreach (var v in variants)
                 {
-                    Db.Delete<PP_Variants>(v.Id);
+                    await Db.DeleteAsync<PP_Variants>(v.Id);
                 }
 
-                Db.Delete<PP_Product>(item.Id);
+                await Db.DeleteAsync<PP_Product>(item.Id);
                 return new JsonResult(new { success = true, message = $"Mục [{item.Title}] đã được xóa!" });
             }
             catch (Exception ex)

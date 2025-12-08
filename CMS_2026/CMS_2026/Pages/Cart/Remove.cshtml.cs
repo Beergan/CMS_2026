@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CMS_2026.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,12 +16,12 @@ namespace CMS_2026.Pages.Cart
             _cartService = cartService;
         }
 
-        public IActionResult OnPost([FromForm] int ProductId, [FromForm] string? Variation)
+        public async Task<IActionResult> OnPostAsync([FromForm] int ProductId, [FromForm] string? Variation)
         {
             var referer = Request.Headers["Referer"].ToString();
             var fallback = string.IsNullOrEmpty(referer) ? "/cart" : referer;
 
-            var product = _dataService.GetOne<Data.Entities.PP_Product>(ProductId);
+            var product = await _dataService.GetOneAsync<Data.Entities.PP_Product>(ProductId);
             if (product == null)
             {
                 TempData["CartError"] = "Sản phẩm không tồn tại.";

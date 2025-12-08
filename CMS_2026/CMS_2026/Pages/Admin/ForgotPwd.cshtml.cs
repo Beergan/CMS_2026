@@ -44,7 +44,7 @@ namespace CMS_2026.Pages.Admin
                 return Page();
             }
 
-            var user = _dataService.GetOne<PP_User>(t => t.UserId == UserId);
+            var user = await _dataService.GetOneAsync<PP_User>(t => t.UserId == UserId);
             if (user == null)
             {
                 ModelState.AddModelError("UserId", "Tài khoản không tồn tại!");

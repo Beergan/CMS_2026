@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -18,9 +20,9 @@ namespace CMS_2026.Pages.Admin.Comment
         {
         }
 
-        public void OnGet(string? newStatus, string? processing, string? cancelled, string? success)
+        public async Task OnGetAsync(string? newStatus, string? processing, string? cancelled, string? success)
         {
-            var query = Db.GetList<PP_Comment>();
+            var query = await Db.GetListAsync<PP_Comment>();
 
             if (!string.IsNullOrEmpty(newStatus))
             {
@@ -53,11 +55,11 @@ namespace CMS_2026.Pages.Admin.Comment
                 .ToList();
         }
 
-        public IActionResult OnPostUpdateStatus([FromForm] int id, [FromForm] string status, [FromForm] string? note)
+        public async Task<IActionResult> OnPostUpdateStatusAsync([FromForm] int id, [FromForm] string status, [FromForm] string? note)
         {
             try
             {
-                var comment = Db.GetOne<PP_Comment>(id);
+                var comment = await Db.GetOneAsync<PP_Comment>(id);
                 if (comment == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy comment!" });
@@ -68,7 +70,7 @@ namespace CMS_2026.Pages.Admin.Comment
                 {
                     comment.ProcessNote = note;
                 }
-                Db.Update(comment);
+                await Db.UpdateAsync(comment);
 
                 return new JsonResult(new { success = true, message = "Thông tin đã được ghi nhận!" });
             }

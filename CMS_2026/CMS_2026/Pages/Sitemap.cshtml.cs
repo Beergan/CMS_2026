@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CMS_2026.Data;
 using CMS_2026.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,7 +20,7 @@ namespace CMS_2026.Pages
 
         public List<SitemapUrl> Urls { get; set; } = new();
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             var baseUrl = $"{Request.Scheme}://{Request.Host}";
             var now = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss+00:00");
@@ -31,14 +34,14 @@ namespace CMS_2026.Pages
             });
 
             // Get all languages
-            var languages = _dataService.GetList<CMS_2026.Data.Entities.PP_Lang>(l => l.Status == "ACTIVE");
+            var languages = await _dataService.GetListAsync<CMS_2026.Data.Entities.PP_Lang>(l => l.Status == "ACTIVE");
 
             foreach (var lang in languages)
             {
                 var config = _rootService.GetConfig(lang.LangId);
 
                 // Pages
-                var pages = _dataService.GetList<CMS_2026.Data.Entities.PP_Page>(
+                var pages = await _dataService.GetListAsync<CMS_2026.Data.Entities.PP_Page>(
                     p => p.LangId == lang.LangId && p.Status == "ACTIVE");
 
                 foreach (var page in pages)
@@ -52,7 +55,7 @@ namespace CMS_2026.Pages
                 }
 
                 // Products
-                var products = _dataService.GetList<CMS_2026.Data.Entities.PP_Product>(
+                var products = await _dataService.GetListAsync<CMS_2026.Data.Entities.PP_Product>(
                     p => p.LangId == lang.LangId && p.Status == "ACTIVE");
 
                 foreach (var product in products)
@@ -66,7 +69,7 @@ namespace CMS_2026.Pages
                 }
 
                 // Posts/Blogs
-                var posts = _dataService.GetList<CMS_2026.Data.Entities.PP_Node>(
+                var posts = await _dataService.GetListAsync<CMS_2026.Data.Entities.PP_Node>(
                     p => p.LangId == lang.LangId && p.NodeType == "post" && p.Status == "ACTIVE");
 
                 foreach (var post in posts)

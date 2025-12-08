@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 using CMS_2026.Pages.Admin;
-using System.Text.Json;
 
 namespace CMS_2026.Pages.Admin.Product
 {
@@ -18,14 +22,14 @@ namespace CMS_2026.Pages.Admin.Product
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/product");
             }
 
-            Product = Db.GetOne<PP_Product>(id.Value);
+            Product = await Db.GetOneAsync<PP_Product>(id.Value);
             if (Product == null)
             {
                 return Redirect("/admin/product");
@@ -47,11 +51,11 @@ namespace CMS_2026.Pages.Admin.Product
             return Page();
         }
 
-        public IActionResult OnPostAppend([FromForm] int Id, [FromForm] string ImageUrl)
+        public async Task<IActionResult> OnPostAppendAsync([FromForm] int Id, [FromForm] string ImageUrl)
         {
             try
             {
-                var product = Db.GetOne<PP_Product>(Id);
+                var product = await Db.GetOneAsync<PP_Product>(Id);
                 if (product == null)
                 {
                     return new JsonResult(new { success = false, message = "Sản phẩm không tồn tại!" });
@@ -76,8 +80,7 @@ namespace CMS_2026.Pages.Admin.Product
                 {
                     imageUrls.Add(ImageUrl);
                     product.ImagesJson = JsonSerializer.Serialize(imageUrls);
-                    Db.Update(product);
-                    Db.SaveChanges();
+                    await Db.UpdateAsync(product);
                     Root.ClearCache();
                 }
 
@@ -89,11 +92,11 @@ namespace CMS_2026.Pages.Admin.Product
             }
         }
 
-        public IActionResult OnPostRemove([FromForm] int Id, [FromForm] string ImageUrl)
+        public async Task<IActionResult> OnPostRemoveAsync([FromForm] int Id, [FromForm] string ImageUrl)
         {
             try
             {
-                var product = Db.GetOne<PP_Product>(Id);
+                var product = await Db.GetOneAsync<PP_Product>(Id);
                 if (product == null)
                 {
                     return new JsonResult(new { success = false, message = "Sản phẩm không tồn tại!" });
@@ -120,8 +123,7 @@ namespace CMS_2026.Pages.Admin.Product
                         product.ImageUrl = imageUrls[0];
                     }
 
-                    Db.Update(product);
-                    Db.SaveChanges();
+                    await Db.UpdateAsync(product);
                     Root.ClearCache();
                 }
 

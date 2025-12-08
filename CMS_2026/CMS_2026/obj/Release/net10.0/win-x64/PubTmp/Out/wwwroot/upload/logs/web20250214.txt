@@ -1,0 +1,48 @@
+2025-02-14 01:58:47.155 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-02-14 08:08:01.561 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-02-14 08:49:22.904 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-02-14 13:08:34.029 +07:00 [ERR] /
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Root.<>c__DisplayClass23_0.<GetDeviceName>b__0(String t)
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Root.GetDeviceName(String agent)
+   at Global.Application_AcquireRequestState(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2025-02-14 13:08:34.060 +07:00 [ERR] /
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Root.<>c__DisplayClass23_0.<GetDeviceName>b__0(String t)
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Root.GetDeviceName(String agent)
+   at Global.Application_AcquireRequestState(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2025-02-14 13:08:34.087 +07:00 [ERR] /
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Root.<>c__DisplayClass23_0.<GetDeviceName>b__0(String t)
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Root.GetDeviceName(String agent)
+   at Global.Application_AcquireRequestState(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2025-02-14 13:08:34.113 +07:00 [ERR] /
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Root.<>c__DisplayClass23_0.<GetDeviceName>b__0(String t)
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Root.GetDeviceName(String agent)
+   at Global.Application_AcquireRequestState(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2025-02-14 15:40:41.239 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)

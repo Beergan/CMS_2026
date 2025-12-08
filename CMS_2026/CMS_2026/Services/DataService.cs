@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -31,43 +32,44 @@ namespace CMS_2026.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public bool Exists<T>(object key) where T : class
+        public async Task<bool> ExistsAsync<T>(object key) where T : class
         {
-            var entity = _context.Set<T>().Find(key);
+            var entity = await _context.Set<T>().FindAsync(key);
             return entity != null;
         }
 
-        public bool Exists<T>(Expression<Func<T, bool>> query) where T : class
+        public async Task<bool> ExistsAsync<T>(Expression<Func<T, bool>> query) where T : class
         {
-            return _context.Set<T>().Any(query);
+            return await _context.Set<T>().AnyAsync(query);
         }
 
-        public T? GetOne<T>(object key) where T : class
+        public async Task<T?> GetOneAsync<T>(object key) where T : class
         {
-            return _context.Set<T>().Find(key);
+            return await _context.Set<T>().FindAsync(key);
         }
 
-        public T? GetOne<T>(Expression<Func<T, bool>> query) where T : class
+        public async Task<T?> GetOneAsync<T>(Expression<Func<T, bool>> query) where T : class
         {
-            return _context.Set<T>().AsNoTracking().FirstOrDefault(query);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(query);
         }
 
-        public List<T> GetList<T>(string query) where T : class
+        public async Task<List<T>> GetListAsync<T>(string query) where T : class
         {
             // For raw SQL queries, we'll need to implement this differently
             // For now, return empty list - can be enhanced later
+            await Task.CompletedTask;
             return new List<T>();
         }
 
-        public List<T> GetList<T>(Expression<Func<T, bool>>? query = null) where T : class
+        public async Task<List<T>> GetListAsync<T>(Expression<Func<T, bool>>? query = null) where T : class
         {
             if (query != null)
             {
-                return _context.Set<T>().AsNoTracking().Where(query).ToList();
+                return await _context.Set<T>().AsNoTracking().Where(query).ToListAsync();
             }
             else
             {
-                return _context.Set<T>().AsNoTracking().ToList();
+                return await _context.Set<T>().AsNoTracking().ToListAsync();
             }
         }
 
@@ -83,102 +85,124 @@ namespace CMS_2026.Services
             }
         }
 
-        public T? Insert<T>(T model) where T : class
+        public async Task<T?> InsertAsync<T>(T model) where T : class
         {
             var entityType = typeof(T).Name;
             _context.Set<T>().Add(model);
-            var result = _context.SaveChanges();
+            var result = await _context.SaveChangesAsync();
 
             if (result > 0)
             {
                 _logger?.LogInformation("[Cache] Database INSERT: {EntityType} - Cache version will be incremented", entityType);
 
-                SaveDatabaseLog("INSERT", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
+                await SaveDatabaseLogAsync("INSERT", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
+                
+                // Only increment cache version for content-related entities, not for logs or stats
+                if (!IsSystemEntity(entityType))
+                {
+                    _rootService?.IncrementCacheVersion();
+                }
             }
 
             return model;
         }
 
-        public T? Update<T>(T model) where T : class
+        public async Task<T?> UpdateAsync<T>(T model) where T : class
         {
             var entityType = typeof(T).Name;
             _context.Set<T>().Update(model);
-            var result = _context.SaveChanges();
+            var result = await _context.SaveChangesAsync();
 
             if (result > 0)
             {
                 _logger?.LogInformation("[Cache] Database UPDATE: {EntityType} - Cache version will be incremented", entityType);
 
-                SaveDatabaseLog("UPDATE", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
-
+                await SaveDatabaseLogAsync("UPDATE", entityType, GetEntityId(model), _httpContextAccessor?.HttpContext);
+                
+                // Only increment cache version for content-related entities, not for logs or stats
+                if (!IsSystemEntity(entityType))
+                {
+                    _rootService?.IncrementCacheVersion();
+                }
             }
 
             return model;
         }
 
-        public bool Delete<T>(object key) where T : class
+        public async Task<bool> DeleteAsync<T>(object key) where T : class
         {
-            var entity = _context.Set<T>().Find(key);
+            var entity = await _context.Set<T>().FindAsync(key);
             if (entity == null)
                 return false;
 
             var entityType = typeof(T).Name;
             var entityId = GetEntityId(entity);
             _context.Set<T>().Remove(entity);
-            var result = _context.SaveChanges();
+            var result = await _context.SaveChangesAsync();
 
             if (result > 0)
             {
                 _logger?.LogInformation("[Cache] Database DELETE: {EntityType} (Key: {Key}) - Cache version will be incremented", entityType, key);
 
-                SaveDatabaseLog("DELETE", entityType, entityId, _httpContextAccessor?.HttpContext);
+                await SaveDatabaseLogAsync("DELETE", entityType, entityId, _httpContextAccessor?.HttpContext);
+                
+                // Only increment cache version for content-related entities, not for logs or stats
+                if (!IsSystemEntity(entityType))
+                {
+                    _rootService?.IncrementCacheVersion();
+                }
             }
 
             return result > 0;
         }
 
-        public int SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
-            var result = _context.SaveChanges();
+            var result = await _context.SaveChangesAsync();
 
             if (result > 0)
             {
                 _logger?.LogInformation("[Cache] Database SaveChanges: {Count} changes - Cache version will be incremented", result);
-                SaveDatabaseLog("SAVECHANGES", "Multiple", null, _httpContextAccessor?.HttpContext, $"Total changes: {result}");
+                await SaveDatabaseLogAsync("SAVECHANGES", "Multiple", null, _httpContextAccessor?.HttpContext, $"Total changes: {result}");
+                
+                // Note: SaveChangesAsync is typically called directly for batch operations
+                // Only increment cache if it's not already incremented by InsertAsync/UpdateAsync/DeleteAsync
+                // This method should be used carefully to avoid double incrementing
                 _rootService?.IncrementCacheVersion();
             }
 
             return result;
         }
 
-        public List<CategoryIndexer> GetCategoryIndexes()
+        public async Task<List<CategoryIndexer>> GetCategoryIndexesAsync()
         {
             // This will need to be implemented with raw SQL or a stored procedure
-            // For now, return empty list
+            // For now, return empty list - can be enhanced later
+            await Task.CompletedTask;
             return new List<CategoryIndexer>();
         }
 
-        public List<Tuple<string, string>> GetLinks(string langId)
+        public async Task<List<Tuple<string, string>>> GetLinksAsync(string langId)
         {
-            var pages = _context.PP_Pages
+            var pages = await _context.PP_Pages
                 .Where(p => p.LangId == langId && (p.PageType == null || !new[] { "item", "list" }.Contains(p.PageType)))
                 .Select(p => new Tuple<string, string>(p.Title, "/" + p.PathPattern))
-                .ToList();
+                .ToListAsync();
 
-            var categories = _context.PP_Categories
+            var categories = await _context.PP_Categories
                 .Where(c => c.LangId == langId)
                 .Select(c => new Tuple<string, string>(c.Title, "/" + c.CategoryPath))
-                .ToList();
+                .ToListAsync();
 
-            var nodes = _context.PP_Nodes
+            var nodes = await _context.PP_Nodes
                 .Where(n => n.LangId == langId)
                 .Select(n => new Tuple<string, string>(n.Title, "/" + n.NodePath))
-                .ToList();
+                .ToListAsync();
 
-            var products = _context.PP_Products
+            var products = await _context.PP_Products
                 .Where(p => p.LangId == langId)
                 .Select(p => new Tuple<string, string>(p.Title, "/" + p.NodePath))
-                .ToList();
+                .ToListAsync();
 
             var result = new List<Tuple<string, string>>();
             result.AddRange(pages);
@@ -189,7 +213,7 @@ namespace CMS_2026.Services
             return result;
         }
 
-        public List<PP_Category> GetCategoryMenu(string langId, string? nodeType = null)
+        public async Task<List<PP_Category>> GetCategoryMenuAsync(string langId, string? nodeType = null)
         {
             var query = _context.PP_Categories.Where(c => c.LangId == langId);
 
@@ -198,27 +222,28 @@ namespace CMS_2026.Services
                 query = query.Where(c => c.NodeType == nodeType);
             }
 
-            return query.OrderBy(c => c.CategoryPath).ToList();
+            return await query.OrderBy(c => c.CategoryPath).ToListAsync();
         }
 
-        public void RefreshVisitStats(DateTime now)
+        public async Task RefreshVisitStatsAsync(DateTime now)
         {
             // Implementation for refreshing visit stats
             // This will need to be implemented with raw SQL or a stored procedure
+            await Task.CompletedTask;
         }
 
-        public DashboardData GetDashboardData()
+        public async Task<DashboardData> GetDashboardDataAsync()
         {
             var data = new DashboardData
             {
-                RecentVisits = _context.PP_Visits
+                RecentVisits = await _context.PP_Visits
                     .OrderByDescending(v => v.Date)
                     .Take(5)
-                    .ToList(),
-                RecentOrders = _context.PP_Orders
+                    .ToListAsync(),
+                RecentOrders = await _context.PP_Orders
                     .OrderByDescending(o => o.CreatedTime)
                     .Take(5)
-                    .ToList()
+                    .ToListAsync()
             };
 
             return data;
@@ -249,10 +274,26 @@ namespace CMS_2026.Services
         }
 
         /// <summary>
+        /// Kiểm tra xem entity có phải là system entity (không cần invalidate cache) không
+        /// System entities: DatabaseLog, Visit, Stats_Daily, etc.
+        /// </summary>
+        private bool IsSystemEntity(string entityType)
+        {
+            var systemEntities = new[] { 
+                "PP_DatabaseLog", 
+                "PP_Visit", 
+                "PP_Stats_Daily",
+                "PP_Json" // JSON data thường là system data
+            };
+            
+            return systemEntities.Contains(entityType);
+        }
+
+        /// <summary>
         /// Lưu log vào database về thao tác database
         /// Lưu log bất đồng bộ để không ảnh hưởng đến performance
         /// </summary>
-        private void SaveDatabaseLog(string action, string entityType, int? entityId, HttpContext? httpContext, string? description = null)
+        private async Task SaveDatabaseLogAsync(string action, string entityType, int? entityId, HttpContext? httpContext, string? description = null)
         {
             if (httpContext == null)
                 return;
@@ -267,7 +308,8 @@ namespace CMS_2026.Services
 
             var connectionString = _context.Database.GetDbConnection().ConnectionString;
 
-            Task.Run(async () =>
+            // Fire and forget - không chờ kết quả
+            _ = Task.Run(async () =>
             {
                 try
                 {
@@ -294,7 +336,7 @@ namespace CMS_2026.Services
                         };
 
                         logContext.PP_DatabaseLog.Add(log);
-                        logContext.SaveChanges();
+                        await logContext.SaveChangesAsync();
                     }
                 }
                 catch (Exception ex)
@@ -304,7 +346,59 @@ namespace CMS_2026.Services
                     System.Diagnostics.Debug.WriteLine($"[DatabaseLog] Error: {ex.Message}");
                 }
             });
+
+            await Task.CompletedTask;
+        }
+
+        // =================================================================
+        // Sync wrapper methods for Razor Views compatibility
+        // WARNING: These methods block the thread. Only use in Razor views where await is not available.
+        // In C# code files, always use the Async versions instead.
+        // =================================================================
+
+        public T? GetOne<T>(object key) where T : class
+        {
+            return GetOneAsync<T>(key).GetAwaiter().GetResult();
+        }
+
+        public T? GetOne<T>(Expression<Func<T, bool>> query) where T : class
+        {
+            return GetOneAsync<T>(query).GetAwaiter().GetResult();
+        }
+
+        public List<T> GetList<T>(string query) where T : class
+        {
+            return GetListAsync<T>(query).GetAwaiter().GetResult();
+        }
+
+        public List<T> GetList<T>(Expression<Func<T, bool>>? query = null) where T : class
+        {
+            return GetListAsync<T>(query).GetAwaiter().GetResult();
+        }
+
+        public T? Insert<T>(T model) where T : class
+        {
+            return InsertAsync(model).GetAwaiter().GetResult();
+        }
+
+        public T? Update<T>(T model) where T : class
+        {
+            return UpdateAsync(model).GetAwaiter().GetResult();
+        }
+
+        public bool Delete<T>(object key) where T : class
+        {
+            return DeleteAsync<T>(key).GetAwaiter().GetResult();
+        }
+
+        public int SaveChanges()
+        {
+            return SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public List<Tuple<string, string>> GetLinks(string langId)
+        {
+            return GetLinksAsync(langId).GetAwaiter().GetResult();
         }
     }
 }
-

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -22,33 +24,33 @@ namespace CMS_2026.Pages.Admin.Category
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/category");
             }
 
-            Category = Db.GetOne<PP_Category>(id.Value);
+            Category = await Db.GetOneAsync<PP_Category>(id.Value);
             if (Category == null)
             {
                 return Redirect("/admin/category");
             }
 
-            GroupSelector = GetGroupSelector(LangIdCompose, Category.NodeType);
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, Category.NodeType);
             
-            PageSelections = Db.GetList<PP_Page>(t => t.LangId == LangIdCompose 
+            var pages = await Db.GetListAsync<PP_Page>(t => t.LangId == LangIdCompose 
                 && t.PageType == "list" 
-                && t.NodeType == Category.NodeType)
-                .ToDictionary(t => t.Id.ToString(), t => t.Title);
+                && t.NodeType == Category.NodeType);
+            PageSelections = pages.ToDictionary(t => t.Id.ToString(), t => t.Title);
 
-            PageItemSelections = Db.GetList<PP_Page>(t => t.LangId == LangIdCompose && t.PageType == "item")
-                .ToDictionary(t => t.Id.ToString(), t => t.Title);
+            var pageItems = await Db.GetListAsync<PP_Page>(t => t.LangId == LangIdCompose && t.PageType == "item");
+            PageItemSelections = pageItems.ToDictionary(t => t.Id.ToString(), t => t.Title);
 
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] int? ParentId, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] int? ParentId, 
             [FromForm] string Title, [FromForm] string CategoryPath, [FromForm] int PageId, 
             [FromForm] int PageIdItem, [FromForm] string? ImageUrl, 
             [FromForm] string? MetaDescription, [FromForm] string? MetaKeywords)
@@ -60,13 +62,13 @@ namespace CMS_2026.Pages.Admin.Category
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var category = Db.GetOne<PP_Category>(Id);
+                var category = await Db.GetOneAsync<PP_Category>(Id);
                 if (category == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy chuyên mục!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(PageId);
+                var page = await Db.GetOneAsync<PP_Page>(PageId);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Trang không tồn tại!" });
@@ -81,7 +83,7 @@ namespace CMS_2026.Pages.Admin.Category
                         return new JsonResult(new { success = false, message = "Thao tác không hợp lệ!" });
                     }
 
-                    var parentCategory = Db.GetOne<PP_Category>(ParentId.Value);
+                    var parentCategory = await Db.GetOneAsync<PP_Category>(ParentId.Value);
                     if (parentCategory == null)
                     {
                         return new JsonResult(new { success = false, message = "Chuyên mục cha không tồn tại!" });
@@ -99,8 +101,8 @@ namespace CMS_2026.Pages.Admin.Category
                     category.CategoryPath = string.Format(page.PathPattern.GetBeforeLast("/"), CategoryPath.Trim());
                 }
 
-                if (category.CategoryPath != CategoryPath && 
-                    Db.GetList<PP_Category>(t => t.LangId == LangIdCompose && t.CategoryPath == category.CategoryPath && t.Id != Id).Any())
+                var existingCategories = await Db.GetListAsync<PP_Category>(t => t.LangId == LangIdCompose && t.CategoryPath == category.CategoryPath && t.Id != Id);
+                if (category.CategoryPath != CategoryPath && existingCategories.Any())
                 {
                     return new JsonResult(new { success = false, message = "Đường dẫn đã tồn tại!" });
                 }
@@ -115,8 +117,8 @@ namespace CMS_2026.Pages.Admin.Category
                 breadcrumbs.Add(new KeyValuePair<string, string>(category.CategoryPath, category.Title));
                 category.Breadcrumb = JsonConvert.SerializeObject(breadcrumbs);
 
-                Db.Update(category);
-                Root.RefreshCategoryIndexes();
+                await Db.UpdateAsync(category);
+                await Root.RefreshCategoryIndexesAsync();
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!", redirect = "/admin/category" });

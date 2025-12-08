@@ -1,0 +1,18 @@
+2025-01-29 09:02:00.304 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-01-29 10:59:20.082 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-01-29 11:30:01.061 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-01-29 12:56:20.054 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-01-29 12:59:40.139 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)
+2025-01-29 15:37:00.084 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e)

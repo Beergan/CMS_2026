@@ -1,0 +1,78 @@
+2024-06-12 16:46:36.059 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 16:51:11.058 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 16:53:25.444 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 16:54:14.172 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 16:56:55.101 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'suwyla3ykkpunv2jciydkcbt' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125
+2024-06-12 16:59:05.060 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 17:01:51.284 +07:00 [ERR] /admin/config
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\admin\config\index.cshtml(122): error CS1061: 'PP_Page' does not contain a definition for 'PageId' and no extension method 'PageId' accepting a first argument of type 'PP_Page' could be found (are you missing a using directive or an assembly reference?)
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-12 17:02:01.427 +07:00 [ERR] /admin/config
+System.Web.HttpCompileException (0x80004005): D:\SLK\web_winlink\web_winlink\admin\config\index.cshtml(141): error CS1061: 'PP_Page' does not contain a definition for 'Item1' and no extension method 'Item1' accepting a first argument of type 'PP_Page' could be found (are you missing a using directive or an assembly reference?)
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageHttpHandler.CreateFromVirtualPath(String virtualPath, IVirtualPathFactory virtualPathFactory)
+   at System.Web.WebPages.WebPageRoute.DoPostResolveRequestCache(HttpContextBase context)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2024-06-12 17:04:00.196 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-06-12 18:38:00.682 +07:00 [ERR] [internal]
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry 'uiqexaopoxs5hjmlvt1o2kyq' for key 'SessionId'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   at PetaPoco.DatabaseProvider.ExecuteScalarHelper(Database db, IDbCommand cmd) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 5137
+   at PetaPoco.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 4959
+   at PetaPoco.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1380
+   at PetaPoco.Database.Insert(Object poco) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\PetaPoco.cs:line 1290
+   at MysqlDataService.Insert[T](T model) in D:\SLK\web_winlink\web_winlink\App_Code\DbConnect\MysqlDataService.cs:line 77
+   at Global.Session_End(Object sender, EventArgs e) in D:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 125

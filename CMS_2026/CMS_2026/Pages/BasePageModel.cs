@@ -186,6 +186,9 @@ namespace CMS_2026.Pages
                 {
                     entry.Value = data;
                     entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(20);
+                    
+                    // Track cache entry in CacheTable for IncrementCacheVersion to work
+                    RootService.CacheTable.TryAdd(key, DateTime.Now);
                 }
             }
 

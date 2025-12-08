@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 using CMS_2026.Pages.Admin;
-using System.Text.Json;
 
 namespace CMS_2026.Pages.Admin.Variant
 {
@@ -18,14 +20,14 @@ namespace CMS_2026.Pages.Admin.Variant
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/product");
             }
 
-            Variant = Db.GetOne<PP_productvariants>(id.Value);
+            Variant = await Db.GetOneAsync<PP_productvariants>(id.Value);
             if (Variant == null)
             {
                 return Redirect("/admin/product");
@@ -40,11 +42,11 @@ namespace CMS_2026.Pages.Admin.Variant
             return Page();
         }
 
-        public IActionResult OnPostAppend([FromForm] int Id, [FromForm] string ImageUrl)
+        public async Task<IActionResult> OnPostAppendAsync([FromForm] int Id, [FromForm] string ImageUrl)
         {
             try
             {
-                var variant = Db.GetOne<PP_productvariants>(Id);
+                var variant = await Db.GetOneAsync<PP_productvariants>(Id);
                 if (variant == null)
                 {
                     return new JsonResult(new { success = false, message = "Biến thể không tồn tại!" });
@@ -56,8 +58,7 @@ namespace CMS_2026.Pages.Admin.Variant
                 }
 
                 variant.Image = ImageUrl;
-                Db.Update(variant);
-                Db.SaveChanges();
+                await Db.UpdateAsync(variant);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Thêm hình thành công!" });
@@ -68,19 +69,18 @@ namespace CMS_2026.Pages.Admin.Variant
             }
         }
 
-        public IActionResult OnPostRemove([FromForm] int Id)
+        public async Task<IActionResult> OnPostRemoveAsync([FromForm] int Id)
         {
             try
             {
-                var variant = Db.GetOne<PP_productvariants>(Id);
+                var variant = await Db.GetOneAsync<PP_productvariants>(Id);
                 if (variant == null)
                 {
                     return new JsonResult(new { success = false, message = "Biến thể không tồn tại!" });
                 }
 
                 variant.Image = null;
-                Db.Update(variant);
-                Db.SaveChanges();
+                await Db.UpdateAsync(variant);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Xóa hình thành công!" });

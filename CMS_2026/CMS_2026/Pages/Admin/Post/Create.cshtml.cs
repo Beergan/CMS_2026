@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,12 +21,12 @@ namespace CMS_2026.Pages.Admin.Post
         {
         }
 
-        public void OnGet(int? categoryId = null)
+        public async Task OnGetAsync(int? categoryId = null)
         {
-            GroupSelector = GetGroupSelector(LangIdCompose, "post");
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, "post");
         }
 
-        public IActionResult OnPost([FromForm] int CategoryId, [FromForm] string Title, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int CategoryId, [FromForm] string Title, 
             [FromForm] string NodePath, [FromForm] string? Summary, [FromForm] string? Content,
             [FromForm] string? ImageUrl, [FromForm] bool Featured, 
             [FromForm] string? MetaDescription, [FromForm] string? MetaKeywords)
@@ -36,13 +38,13 @@ namespace CMS_2026.Pages.Admin.Post
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var category = Db.GetOne<PP_Category>(CategoryId);
+                var category = await Db.GetOneAsync<PP_Category>(CategoryId);
                 if (category == null)
                 {
                     return new JsonResult(new { success = false, message = "Chuyên mục không tồn tại!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(category.PageIdItem);
+                var page = await Db.GetOneAsync<PP_Page>(category.PageIdItem);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Trang chi tiết không tồn tại!" });
@@ -51,7 +53,8 @@ namespace CMS_2026.Pages.Admin.Post
                 var slug = EncodeHelper.SanitizeString(NodePath);
                 var tempAlias = string.Format(page.PathPattern, slug);
 
-                if (Db.GetList<PP_Node>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose).Any())
+                var existingNodes = await Db.GetListAsync<PP_Node>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose);
+                if (existingNodes.Any())
                 {
                     return new JsonResult(new { success = false, message = $"Đường dẫn [{tempAlias}] đã tồn tại!" });
                 }
@@ -74,7 +77,7 @@ namespace CMS_2026.Pages.Admin.Post
                     PageIdItem = category.PageIdItem
                 };
 
-                Db.Insert(post);
+                await Db.InsertAsync(post);
 
                 // Create category details
                 var catDetails = new PP_Category_details
@@ -86,7 +89,7 @@ namespace CMS_2026.Pages.Admin.Post
                     PageIdItem = category.PageIdItem,
                     Idproduct = post.Id
                 };
-                Db.Insert(catDetails);
+                await Db.InsertAsync(catDetails);
 
                 Root.ClearCache(); 
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
@@ -16,9 +17,10 @@ namespace CMS_2026.Pages.Admin.Group
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Groups = Db.GetList<PP_Roles>()
+            var groups = await Db.GetListAsync<PP_Roles>();
+            Groups = groups
                 .OrderBy(t => t.RoleName)
                 .ToList();
         }

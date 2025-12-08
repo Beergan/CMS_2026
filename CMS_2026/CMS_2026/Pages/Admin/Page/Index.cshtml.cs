@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,24 +19,24 @@ namespace CMS_2026.Pages.Admin.Page
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Pages = Db.GetList<PP_Page>(t => t.LangId == LangIdCompose)
+            Pages = (await Db.GetListAsync<PP_Page>(t => t.LangId == LangIdCompose))
                 .OrderBy(t => t.CreatedTime)
                 .ToList();
         }
 
-        public IActionResult OnPostDelete([FromForm] int Id)
+        public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
         {
             try
             {
-                var item = Db.GetOne<PP_Page>(Id);
+                var item = await Db.GetOneAsync<PP_Page>(Id);
                 if (item == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy trang!" });
                 }
 
-                Db.Delete<PP_Page>(item.Id);
+                await Db.DeleteAsync<PP_Page>(item.Id);
                 return new JsonResult(new { success = true, message = $"Mục [{item.Title}] đã được xóa!" });
             }
             catch (Exception ex)

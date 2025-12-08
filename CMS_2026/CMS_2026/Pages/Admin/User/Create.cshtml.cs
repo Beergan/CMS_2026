@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,7 +22,7 @@ namespace CMS_2026.Pages.Admin.User
         {
         }
 
-        public IActionResult OnPost([FromForm] string UserId, [FromForm] string DisplayName,
+        public async Task<IActionResult> OnPostAsync([FromForm] string UserId, [FromForm] string DisplayName,
             [FromForm] string Email, [FromForm] string Password, [FromForm] bool Enabled)
         {
             try
@@ -30,7 +33,8 @@ namespace CMS_2026.Pages.Admin.User
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                if (Db.GetList<PP_User>(t => t.UserId == UserId).Any())
+                var existingUsers = await Db.GetListAsync<PP_User>(t => t.UserId == UserId);
+                if (existingUsers.Any())
                 {
                     return new JsonResult(new { success = false, message = "Tên đăng nhập đã tồn tại!" });
                 }
@@ -54,7 +58,7 @@ namespace CMS_2026.Pages.Admin.User
                     Enabled = Enabled
                 };
 
-                Db.Insert(user);
+                await Db.InsertAsync(user);
 
                 return new JsonResult(new { success = true, message = "Tạo tài khoản thành công!", redirect = "/admin/user" });
             }

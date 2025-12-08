@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,7 +19,7 @@ namespace CMS_2026.Pages.Admin.Group
         {
         }
 
-        public IActionResult OnPost([FromForm] string Name, [FromForm] string? Description)
+        public async Task<IActionResult> OnPostAsync([FromForm] string Name, [FromForm] string? Description)
         {
             try
             {
@@ -33,7 +35,7 @@ namespace CMS_2026.Pages.Admin.Group
                     Description = Description
                 };
 
-                Db.Insert(role);
+                await Db.InsertAsync(role);
 
                 return new JsonResult(new { success = true, message = "Tạo nhóm thành công!", redirect = "/admin/group" });
             }

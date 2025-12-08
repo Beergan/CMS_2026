@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -99,9 +101,9 @@ namespace CMS_2026.Pages.Admin.Config
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            RootConfig = Db.GetOne<PP_Config>(t => t.LangId == LangIdCompose && t.ConfigKey == "root");
+            RootConfig = await Db.GetOneAsync<PP_Config>(t => t.LangId == LangIdCompose && t.ConfigKey == "root");
             if (RootConfig != null && !string.IsNullOrEmpty(RootConfig.JsonContent))
             {
                 ConfigJson = RootConfig.JsonContent;
@@ -114,14 +116,14 @@ namespace CMS_2026.Pages.Admin.Config
 
             // Query layout components: có thể dựa trên PageType = "layout" hoặc ComptKey LIKE 'layout_%'
             var layoutIdPrefix = string.IsNullOrEmpty(Root.LayoutId) ? "layout_" : $"layout{Root.LayoutId}_";
-            LayoutCompts = Db.GetList<PP_Compt>(t => 
+            LayoutCompts = await Db.GetListAsync<PP_Compt>(t => 
                 (t.PageType != null && t.PageType == "layout") || 
                 (t.ComptKey != null && t.ComptKey.StartsWith(layoutIdPrefix)));
-            LayoutConfigs = Db.GetList<PP_Config>(t => t.LangId == LangIdCompose && t.PageId == 0);
-            LinkOptions = Db.GetLinks(LangIdCompose);
+            LayoutConfigs = await Db.GetListAsync<PP_Config>(t => t.LangId == LangIdCompose && t.PageId == 0);
+            LinkOptions = await Db.GetLinksAsync(LangIdCompose);
         }
 
-        public IActionResult OnPostUpdateConfig([FromForm] string JsonData)
+        public async Task<IActionResult> OnPostUpdateConfigAsync([FromForm] string JsonData)
         {
             try
             {
@@ -132,7 +134,7 @@ namespace CMS_2026.Pages.Admin.Config
                     return new JsonResult(new { success = false, message = "Dữ liệu JSON không hợp lệ!" });
                 }
 
-                var rootConfig = Db.GetOne<PP_Config>(t => t.LangId == LangIdCompose && t.ConfigKey == "root");
+                var rootConfig = await Db.GetOneAsync<PP_Config>(t => t.LangId == LangIdCompose && t.ConfigKey == "root");
                 
                 if (rootConfig != null && !string.IsNullOrEmpty(rootConfig.JsonContent))
                 {
@@ -149,7 +151,7 @@ namespace CMS_2026.Pages.Admin.Config
                     }
                     
                     rootConfig.JsonContent = JsonConvert.SerializeObject(newData);
-                    Db.Update(rootConfig);
+                    await Db.UpdateAsync(rootConfig);
                 }
                 else
                 {
@@ -159,10 +161,10 @@ namespace CMS_2026.Pages.Admin.Config
                         ConfigKey = "root",
                         JsonContent = JsonConvert.SerializeObject(newData)
                     };
-                    Db.Insert(rootConfig);
+                    await Db.InsertAsync(rootConfig);
                 }
 
-                Root.RefreshConfigs();
+                await Root.RefreshConfigsAsync();
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!" });
             }
@@ -172,7 +174,7 @@ namespace CMS_2026.Pages.Admin.Config
             }
         }
 
-        public IActionResult OnPostUpdateCompt([FromForm] string? action, [FromForm] string? langId, 
+        public async Task<IActionResult> OnPostUpdateComptAsync([FromForm] string? action, [FromForm] string? langId, 
             [FromForm] string? comptKey, [FromForm] string? jsonData)
         {
             try
@@ -181,27 +183,27 @@ namespace CMS_2026.Pages.Admin.Config
                 JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonData ?? "{}");
 
                 // Tìm config: có thể là ComptKey hoặc layout_ComptKey
-                var comptConfig = Db.GetOne<PP_Config>(t => t.LangId == langId
+                var comptConfig = await Db.GetOneAsync<PP_Config>(t => t.LangId == langId
                     && t.PageId == 0
                     && (t.ConfigKey == comptKey || t.ConfigKey == $"layout_{comptKey}"));
 
                 // Nếu không tìm thấy, thử tìm theo ComptKey trong bảng Compt
                 if (comptConfig == null && !string.IsNullOrEmpty(comptKey))
                 {
-                    var component = Db.GetOne<PP_Compt>(t => t.ComptKey == comptKey);
+                    var component = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == comptKey);
                     if (component != null && component.PageType == "layout")
                     {
                         // Với layout components, có thể cần prefix layout_
                         var layoutIdPrefix = string.IsNullOrEmpty(Root.LayoutId) ? "layout_" : $"layout{Root.LayoutId}_";
                         var possibleConfigKey = $"{layoutIdPrefix}{comptKey}";
-                        comptConfig = Db.GetOne<PP_Config>(t => t.LangId == langId
+                        comptConfig = await Db.GetOneAsync<PP_Config>(t => t.LangId == langId
                             && t.PageId == 0
                             && t.ConfigKey == possibleConfigKey);
                         
                         // Nếu vẫn không tìm thấy, dùng ComptKey trực tiếp
                         if (comptConfig == null)
                         {
-                            comptConfig = Db.GetOne<PP_Config>(t => t.LangId == langId
+                            comptConfig = await Db.GetOneAsync<PP_Config>(t => t.LangId == langId
                                 && t.PageId == 0
                                 && t.ConfigKey == comptKey);
                         }
@@ -212,11 +214,11 @@ namespace CMS_2026.Pages.Admin.Config
                 {
                     if (action == "reset")
                     {
-                        var component = Db.GetOne<PP_Compt>(t => t.ComptKey == comptKey);
+                        var component = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == comptKey);
                         if (component != null)
                         {
                             comptConfig.JsonContent = component.JsonDefault;
-                            Db.Update(comptConfig);
+                            await Db.UpdateAsync(comptConfig);
                         }
                     }
                     else
@@ -238,10 +240,10 @@ namespace CMS_2026.Pages.Admin.Config
                         }
                         
                         comptConfig.JsonContent = JsonConvert.SerializeObject(newData);
-                        Db.Update(comptConfig);
+                        await Db.UpdateAsync(comptConfig);
                     }
 
-                    Root.RefreshConfigs();
+                    await Root.RefreshConfigsAsync();
                 }
                 else
                 {
@@ -249,12 +251,12 @@ namespace CMS_2026.Pages.Admin.Config
                     string configKey = comptKey ?? "";
                     if (!string.IsNullOrEmpty(comptKey))
                     {
-                        var component = Db.GetOne<PP_Compt>(t => t.ComptKey == comptKey);
+                        var component = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == comptKey);
                         if (component != null && component.PageType == "layout")
                         {
                             // Kiểm tra xem trong DB có config nào với layout_ prefix không
                             var layoutIdPrefix = string.IsNullOrEmpty(Root.LayoutId) ? "layout_" : $"layout{Root.LayoutId}_";
-                            var existingWithPrefix = Db.GetOne<PP_Config>(t => t.LangId == (langId ?? LangIdCompose)
+                            var existingWithPrefix = await Db.GetOneAsync<PP_Config>(t => t.LangId == (langId ?? LangIdCompose)
                                 && t.PageId == 0
                                 && t.ConfigKey.StartsWith($"{layoutIdPrefix}{comptKey}"));
                             
@@ -282,8 +284,8 @@ namespace CMS_2026.Pages.Admin.Config
                         JsonContent = jsonData
                     };
 
-                    Db.Insert(comptConfig);
-                    Root.RefreshConfigs();
+                    await Db.InsertAsync(comptConfig);
+                    await Root.RefreshConfigsAsync();
                 }
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!" });

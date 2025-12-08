@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,25 +21,25 @@ namespace CMS_2026.Pages.Admin.Product
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/product");
             }
 
-            Product = Db.GetOne<PP_Product>(id.Value);
+            Product = await Db.GetOneAsync<PP_Product>(id.Value);
             if (Product == null)
             {
                 return Redirect("/admin/product");
             }
 
-            GroupSelector = GetGroupSelector(LangIdCompose, "product");
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, "product");
 
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] int CategoryId, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] int CategoryId, 
             [FromForm] string Title, [FromForm] string NodePath, [FromForm] string? Des, 
             [FromForm] string? Content, [FromForm] string? ImageUrl, [FromForm] string? ProductCode,
             [FromForm] decimal Price, [FromForm] decimal? PromotionPrice, 
@@ -52,19 +54,19 @@ namespace CMS_2026.Pages.Admin.Product
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var product = Db.GetOne<PP_Product>(Id);
+                var product = await Db.GetOneAsync<PP_Product>(Id);
                 if (product == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy sản phẩm!" });
                 }
 
-                var category = Db.GetOne<PP_Category>(CategoryId);
+                var category = await Db.GetOneAsync<PP_Category>(CategoryId);
                 if (category == null)
                 {
                     return new JsonResult(new { success = false, message = "Chuyên mục không tồn tại!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(category.PageIdItem);
+                var page = await Db.GetOneAsync<PP_Page>(category.PageIdItem);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Trang chi tiết không tồn tại!" });
@@ -73,8 +75,8 @@ namespace CMS_2026.Pages.Admin.Product
                 var slug = EncodeHelper.SanitizeString(NodePath);
                 var tempAlias = string.Format(page.PathPattern, slug);
 
-                if (tempAlias != product.NodePath && 
-                    Db.GetList<PP_Product>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose && t.Id != Id).Any())
+                var existingProducts = await Db.GetListAsync<PP_Product>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose && t.Id != Id);
+                if (tempAlias != product.NodePath && existingProducts.Any())
                 {
                     return new JsonResult(new { success = false, message = $"Đường dẫn [{tempAlias}] đã tồn tại!" });
                 }
@@ -95,14 +97,14 @@ namespace CMS_2026.Pages.Admin.Product
                 product.MetaDescription = MetaDescription;
                 product.MetaKeywords = MetaKeywords;
 
-                Db.Update(product);
+                await Db.UpdateAsync(product);
 
                 // Update category details
-                var catDetails = Db.GetOne<PP_Category_details>(t => t.Idproduct == Id && t.NodeType == "product");
+                var catDetails = await Db.GetOneAsync<PP_Category_details>(t => t.Idproduct == Id && t.NodeType == "product");
                 if (catDetails != null)
                 {
                     catDetails.Idcat = CategoryId;
-                    Db.Update(catDetails);
+                    await Db.UpdateAsync(catDetails);
                 }
                 else
                 {
@@ -115,7 +117,7 @@ namespace CMS_2026.Pages.Admin.Product
                         PageIdItem = category.PageIdItem,
                         Idproduct = product.Id
                     };
-                    Db.Insert(catDetails);
+                    await Db.InsertAsync(catDetails);
                 }
 
                 Root.ClearCache();

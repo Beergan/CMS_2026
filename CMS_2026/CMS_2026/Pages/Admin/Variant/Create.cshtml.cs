@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -18,30 +21,30 @@ namespace CMS_2026.Pages.Admin.Variant
         {
         }
 
-        public IActionResult OnGet(int? productId)
+        public async Task<IActionResult> OnGetAsync(int? productId)
         {
             if (!productId.HasValue)
             {
                 return Redirect("/admin/product");
             }
 
-            Product = Db.GetOne<PP_Product>(productId.Value);
+            Product = await Db.GetOneAsync<PP_Product>(productId.Value);
             if (Product == null)
             {
                 return Redirect("/admin/product");
             }
 
-            GroupSelector = GetGroupSelector(LangIdCompose, "product");
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, "product");
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int ProductId, [FromForm] string? IDSKD,
+        public async Task<IActionResult> OnPostAsync([FromForm] int ProductId, [FromForm] string? IDSKD,
             [FromForm] decimal Price, [FromForm] decimal Discount, [FromForm] int Stock,
             [FromForm] string? Image)
         {
             try
             {
-                var product = Db.GetOne<PP_Product>(ProductId);
+                var product = await Db.GetOneAsync<PP_Product>(ProductId);
                 if (product == null)
                 {
                     return new JsonResult(new { success = false, message = "Sản phẩm không tồn tại!" });
@@ -64,8 +67,7 @@ namespace CMS_2026.Pages.Admin.Variant
                     CreatedTime = DateTime.Now
                 };
 
-                Db.Insert(variant);
-                Db.SaveChanges();
+                await Db.InsertAsync(variant);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Tạo biến thể thành công!", redirect = "/admin/product" });

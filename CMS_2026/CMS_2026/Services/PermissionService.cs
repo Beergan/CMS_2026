@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Models;
 using CMS_2026.Services;
@@ -15,12 +16,12 @@ namespace CMS_2026.Services
             _dataService = dataService;
         }
 
-        public bool CheckPermission<T>(T requiredClaim, int userId) where T : Enum
+        public async Task<bool> CheckPermissionAsync<T>(T requiredClaim, int userId) where T : Enum
         {
-            var userRole = _dataService.GetOne<PP_UserRoles>(x => x.UserId == userId);
+            var userRole = await _dataService.GetOneAsync<PP_UserRoles>(x => x.UserId == userId);
             if (userRole == null) return false;
 
-            var roleClaims = _dataService.GetList<PP_RoleClaims>(x => x.RoleId == userRole.RoleId);
+            var roleClaims = await _dataService.GetListAsync<PP_RoleClaims>(x => x.RoleId == userRole.RoleId);
             
             var featureAttrb = typeof(T).GetCustomAttributes(typeof(Attributes.FeatureAttribute), false)
                 .FirstOrDefault() as Attributes.FeatureAttribute;
@@ -38,17 +39,27 @@ namespace CMS_2026.Services
             return (availablePermission & requiredPermission) == requiredPermission;
         }
 
-        public bool HasPermission(int userId, string featureName, long permissionValue)
+        public bool CheckPermission<T>(T requiredClaim, int userId) where T : Enum
         {
-            var userRole = _dataService.GetOne<PP_UserRoles>(x => x.UserId == userId);
+            return CheckPermissionAsync(requiredClaim, userId).GetAwaiter().GetResult();
+        }
+
+        public async Task<bool> HasPermissionAsync(int userId, string featureName, long permissionValue)
+        {
+            var userRole = await _dataService.GetOneAsync<PP_UserRoles>(x => x.UserId == userId);
             if (userRole == null) return false;
 
-            var roleClaim = _dataService.GetOne<PP_RoleClaims>(x => 
+            var roleClaim = await _dataService.GetOneAsync<PP_RoleClaims>(x => 
                 x.RoleId == userRole.RoleId && x.ClaimType == featureName);
 
             if (roleClaim == null) return false;
 
             return (roleClaim.ClaimValue & permissionValue) == permissionValue;
+        }
+
+        public bool HasPermission(int userId, string featureName, long permissionValue)
+        {
+            return HasPermissionAsync(userId, featureName, permissionValue).GetAwaiter().GetResult();
         }
     }
 }

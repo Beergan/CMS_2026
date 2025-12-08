@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CMS_2026.Data;
 using CMS_2026.Data.Entities;
 using CMS_2026.Models;
@@ -28,29 +29,29 @@ namespace CMS_2026.Services
             _routingService = routingService;
         }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
             try
             {
                 // Load languages
-                var langs = _dataService.GetList<PP_Lang>();
+                var langs = await _dataService.GetListAsync<PP_Lang>();
                 _rootService.ReloadLangs(langs);
 
                 // Load configs
-                var configs = _dataService.GetList<PP_Config>();
+                var configs = await _dataService.GetListAsync<PP_Config>();
                 _rootService.RefreshConfigs(configs);
 
                 // Load pages and refresh routes
-                var pages = _dataService.GetList<PP_Page>()
+                var pages = (await _dataService.GetListAsync<PP_Page>())
                     .OrderByDescending(t => t.PathPattern)
                     .ToList();
-                _routingService.RefreshRoutes();
+                await _routingService.RefreshRoutesAsync();
 
                 // Load category indexes
                 _rootService.RefreshCategoryIndexes();
 
                 // Load JSON data (like VisitCounter.UrlStats)
-                var jsons = _dataService.GetList<PP_Json>();
+                var jsons = await _dataService.GetListAsync<PP_Json>();
                 foreach (var json in jsons)
                 {
                     if (json.JsonKey == "UrlStats")
@@ -66,7 +67,7 @@ namespace CMS_2026.Services
                 }
 
                 // Initialize default admin user if not exists
-                var users = _dataService.GetList<PP_User>();
+                var users = await _dataService.GetListAsync<PP_User>();
                 if (!users.Any())
                 {
                     var adminUser = new PP_User
@@ -79,7 +80,7 @@ namespace CMS_2026.Services
                         CreatedTime = DateTime.Now,
                         ModifiedTime = DateTime.Now
                     };
-                    _dataService.Insert(adminUser);
+                    await _dataService.InsertAsync(adminUser);
 
                     var adminRole = new PP_Roles
                     {
@@ -87,14 +88,14 @@ namespace CMS_2026.Services
                         NormalizedName = "ADMIN",
                         ConcurrencyStamp = 1
                     };
-                    _dataService.Insert(adminRole);
+                    await _dataService.InsertAsync(adminRole);
 
                     var userRole = new PP_UserRoles
                     {
                         UserId = adminUser.Id,
                         RoleId = adminRole.Id
                     };
-                    _dataService.Insert(userRole);
+                    await _dataService.InsertAsync(userRole);
 
                     // Assign all permissions to admin role
                     var listPermissions = GlobalPermissions.Dictionary;
@@ -106,7 +107,7 @@ namespace CMS_2026.Services
                             ClaimType = item.Key.Name ?? string.Empty,
                             ClaimValue = item.Value.Sum(x => x.Item1)
                         };
-                        _dataService.Insert(roleClaim);
+                        await _dataService.InsertAsync(roleClaim);
                     }
                 }
             }

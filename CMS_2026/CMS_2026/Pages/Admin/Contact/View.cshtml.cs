@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -15,14 +16,14 @@ namespace CMS_2026.Pages.Admin.Contact
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/contact");
             }
 
-            Contact = Db.GetOne<PP_Contact>(id.Value);
+            Contact = await Db.GetOneAsync<PP_Contact>(id.Value);
             if (Contact == null)
             {
                 return Redirect("/admin/contact");

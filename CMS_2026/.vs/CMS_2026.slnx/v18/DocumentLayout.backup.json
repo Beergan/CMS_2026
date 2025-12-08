@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "C:\\SLK\\CMS_2026\\CMS_2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\services\\rootservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\services\\rootservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\middleware\\dynamicpagemiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\middleware\\dynamicpagemiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\utils\\viewhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\utils\\viewhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\components\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\services\\dataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\services\\rootservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\services\\rootservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\services\\idataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\cms_2026.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\controllers\\elfindercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,14 +91,6 @@
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\migrations\\20251207035638_20251207105554_autoupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\attributes\\componentattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\attributes\\componentattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -113,10 +121,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\migrations\\20251125035357_20251125105349_autoupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\migrations\\20251125035357_20251125105349_autoupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\middleware\\dynamicpagemiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|solutionrelative:cms_2026\\middleware\\dynamicpagemiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8953DDB5-6963-00C2-213A-EB5ED9CAB266}|CMS_2026\\CMS_2026.csproj|c:\\slk\\cms_2026\\cms_2026\\cms_2026\\pages\\dynamicpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -348,241 +352,33 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HomeViewModel.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\HomeViewModel.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
-              "RelativeToolTip": "CMS_2026\\ViewModels\\HomeViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUBAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T07:25:39.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Home.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\Home.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\Home.cshtml",
               "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\Home.cshtml",
               "RelativeToolTip": "CMS_2026\\Pages\\Components\\Home.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAMwBUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-01T07:26:02.386Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IDataService.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\IDataService.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Services\\IDataService.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\IDataService.cs",
-              "RelativeToolTip": "CMS_2026\\Services\\IDataService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAcwA0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T03:48:02.278Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RootService.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\RootService.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Services\\RootService.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\RootService.cs",
-              "RelativeToolTip": "CMS_2026\\Services\\RootService.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAIA5wG0AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T03:50:55.019Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DataService.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\DataService.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Services\\DataService.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\DataService.cs",
-              "RelativeToolTip": "CMS_2026\\Services\\DataService.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAcwJMAAAAlAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Program.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
+              "RelativeToolTip": "CMS_2026\\Program.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAFUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T03:48:52.756Z",
+              "WhenOpened": "2025-11-26T04:42:06.726Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ViewHelper.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Utils\\ViewHelper.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Utils\\ViewHelper.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Utils\\ViewHelper.cs",
-              "RelativeToolTip": "CMS_2026\\Utils\\ViewHelper.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAvwBoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T07:26:43.973Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PP_DatabaseLog.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
-              "RelativeToolTip": "CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBsAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T03:55:11.841Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "CMS_2026\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAuwFsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T09:46:06.316Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CMS_2026.csproj",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-              "RelativeDocumentMoniker": "CMS_2026\\CMS_2026.csproj",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
-              "RelativeToolTip": "CMS_2026\\CMS_2026.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-26T05:17:55.322Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ElFinderController.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\ElFinderController.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
-              "RelativeToolTip": "CMS_2026\\Controllers\\ElFinderController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGkBAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T05:10:31.005Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CKFinderController.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\CKFinderController.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
-              "RelativeToolTip": "CMS_2026\\Controllers\\CKFinderController.cs",
-              "ViewState": "AgIAAIsBAAAAAAAAAAA7wJ0AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T03:21:51.247Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Root.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Root.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Common\\Root.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Root.cs",
-              "RelativeToolTip": "CMS_2026\\Common\\Root.cs",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:04:59.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FieldExtractor.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\FieldExtractor.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Common\\FieldExtractor.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\FieldExtractor.cs",
-              "RelativeToolTip": "CMS_2026\\Common\\FieldExtractor.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:04:52.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Constants.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Constants.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Common\\Constants.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Constants.cs",
-              "RelativeToolTip": "CMS_2026\\Common\\Constants.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:04:48.883Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "FieldAttribute.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FieldAttribute.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FieldAttribute.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FieldAttribute.cs",
-              "RelativeToolTip": "CMS_2026\\Attributes\\FieldAttribute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T10:39:45.968Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FeatureAttribute.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FeatureAttribute.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FeatureAttribute.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FeatureAttribute.cs",
-              "RelativeToolTip": "CMS_2026\\Attributes\\FeatureAttribute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T10:39:45.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "FunctionAttribute.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FunctionAttribute.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FunctionAttribute.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FunctionAttribute.cs",
-              "RelativeToolTip": "CMS_2026\\Attributes\\FunctionAttribute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T10:39:46.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "20251207035638_20251207105554_AutoUpdate.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
-              "RelativeToolTip": "CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T04:04:11.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\appsettings.json",
               "RelativeDocumentMoniker": "CMS_2026\\appsettings.json",
@@ -595,20 +391,243 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Program.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Program.cs",
-              "RelativeToolTip": "CMS_2026\\Program.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAADMAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "DynamicPageMiddleware.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
+              "RelativeToolTip": "CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T04:42:06.726Z",
+              "WhenOpened": "2025-12-05T09:46:18.38Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DataService.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\DataService.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Services\\DataService.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\DataService.cs",
+              "RelativeToolTip": "CMS_2026\\Services\\DataService.cs",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAiwJ4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T03:48:52.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RootService.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\RootService.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Services\\RootService.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\RootService.cs",
+              "RelativeToolTip": "CMS_2026\\Services\\RootService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAwIgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T03:50:55.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IDataService.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\IDataService.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Services\\IDataService.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Services\\IDataService.cs",
+              "RelativeToolTip": "CMS_2026\\Services\\IDataService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T03:48:02.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ViewHelper.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Utils\\ViewHelper.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Utils\\ViewHelper.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Utils\\ViewHelper.cs",
+              "RelativeToolTip": "CMS_2026\\Utils\\ViewHelper.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAD4vxwAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T07:26:43.973Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Error.cshtml.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Pages\\Error.cshtml.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml.cs",
+              "RelativeToolTip": "CMS_2026\\Pages\\Error.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T06:14:23.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CMS_2026.csproj",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+              "RelativeDocumentMoniker": "CMS_2026\\CMS_2026.csproj",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\CMS_2026.csproj",
+              "RelativeToolTip": "CMS_2026\\CMS_2026.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-26T05:17:55.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HomeViewModel.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "RelativeToolTip": "CMS_2026\\ViewModels\\HomeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUBAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T07:25:39.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PP_DatabaseLog.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
+              "RelativeToolTip": "CMS_2026\\Data\\Entities\\PP_DatabaseLog.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T03:55:11.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "CMS_2026\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAuwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T09:46:06.316Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ElFinderController.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\ElFinderController.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\ElFinderController.cs",
+              "RelativeToolTip": "CMS_2026\\Controllers\\ElFinderController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGkBAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T05:10:31.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CKFinderController.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Controllers\\CKFinderController.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Controllers\\CKFinderController.cs",
+              "RelativeToolTip": "CMS_2026\\Controllers\\CKFinderController.cs",
+              "ViewState": "AgIAAIsBAAAAAAAAAAA7wJ0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T03:21:51.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Root.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Root.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Common\\Root.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Root.cs",
+              "RelativeToolTip": "CMS_2026\\Common\\Root.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T04:04:59.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FieldExtractor.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\FieldExtractor.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Common\\FieldExtractor.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\FieldExtractor.cs",
+              "RelativeToolTip": "CMS_2026\\Common\\FieldExtractor.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T04:04:52.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Constants.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Common\\Constants.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Common\\Constants.cs",
+              "RelativeToolTip": "CMS_2026\\Common\\Constants.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T04:04:48.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FieldAttribute.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FieldAttribute.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FieldAttribute.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FieldAttribute.cs",
+              "RelativeToolTip": "CMS_2026\\Attributes\\FieldAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T10:39:45.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "FeatureAttribute.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FeatureAttribute.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FeatureAttribute.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FeatureAttribute.cs",
+              "RelativeToolTip": "CMS_2026\\Attributes\\FeatureAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T10:39:45.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FunctionAttribute.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FunctionAttribute.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Attributes\\FunctionAttribute.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\FunctionAttribute.cs",
+              "RelativeToolTip": "CMS_2026\\Attributes\\FunctionAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T10:39:46.765Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 21,
+              "Title": "20251207035638_20251207105554_AutoUpdate.cs",
+              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
+              "RelativeDocumentMoniker": "CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
+              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
+              "RelativeToolTip": "CMS_2026\\Migrations\\20251207035638_20251207105554_AutoUpdate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T04:04:11.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "EntityBase.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Data\\EntityBase.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Data\\EntityBase.cs",
@@ -620,7 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "ComponentAttribute.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Attributes\\ComponentAttribute.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Attributes\\ComponentAttribute.cs",
@@ -632,7 +651,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "About.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\About.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\About.cshtml",
@@ -644,7 +663,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "20251125062727_20251125132709_AutoUpdate.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251125062727_20251125132709_AutoUpdate.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Migrations\\20251125062727_20251125132709_AutoUpdate.cs",
@@ -656,7 +675,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -668,7 +687,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "ComponentField.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Models\\ComponentField.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Models\\ComponentField.cs",
@@ -680,7 +699,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "20251125035357_20251125105349_AutoUpdate.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\20251125035357_20251125105349_AutoUpdate.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Migrations\\20251125035357_20251125105349_AutoUpdate.cs",
@@ -692,19 +711,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "DynamicPageMiddleware.cs",
-              "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
-              "RelativeDocumentMoniker": "CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
-              "ToolTip": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
-              "RelativeToolTip": "CMS_2026\\Middleware\\DynamicPageMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T09:46:18.38Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "AddDescriptionToPP_Roles.sql",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Migrations\\AddDescriptionToPP_Roles.sql",
               "RelativeDocumentMoniker": "CMS_2026\\Migrations\\AddDescriptionToPP_Roles.sql",
@@ -715,7 +722,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Page\\Edit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Page\\Edit.cshtml",
@@ -727,7 +734,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "DynamicPage.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\DynamicPage.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\DynamicPage.cshtml",
@@ -739,7 +746,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Page\\Create.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Page\\Create.cshtml",
@@ -751,7 +758,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "contact.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\contact.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\contact.cshtml",
@@ -763,7 +770,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "Create.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Page\\Create.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Page\\Create.cshtml.cs",
@@ -775,7 +782,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "Edit.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Page\\Edit.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Page\\Edit.cshtml.cs",
@@ -783,11 +790,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Page\\Edit.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T06:44:22.343Z"
+              "WhenOpened": "2025-12-05T06:44:22.343Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "Create.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml.cs",
@@ -799,7 +807,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\User\\Create.cshtml",
@@ -811,7 +819,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
@@ -819,11 +827,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml",
               "ViewState": "AgIAAGMAAAAAAAAAAIBJwF8AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T09:49:02.555Z"
+              "WhenOpened": "2025-11-25T09:49:02.555Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
@@ -831,11 +840,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Edit.cshtml",
               "ViewState": "AgIAAJEAAAAAAAAAAAAYwLUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-25T09:49:09.072Z"
+              "WhenOpened": "2025-11-25T09:49:09.072Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "Create.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
@@ -843,11 +853,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Post\\Create.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T10:21:30.319Z"
+              "WhenOpened": "2025-11-26T10:21:30.319Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "AboutViewModel.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\AboutViewModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\AboutViewModel.cs",
@@ -859,7 +870,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewStart.cshtml",
@@ -871,7 +882,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_ViewImports.cshtml",
@@ -883,7 +894,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "_Footer.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Footer.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Footer.cshtml",
@@ -895,7 +906,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "Process.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Login\\Process.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Login\\Process.cshtml",
@@ -907,7 +918,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Layout.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Layout.cshtml",
@@ -919,7 +930,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "_Header.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\_Header.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\_Header.cshtml",
@@ -927,11 +938,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\_Header.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-27T06:44:34.478Z"
+              "WhenOpened": "2025-11-27T06:44:34.478Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "MyHtml.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\MyHtml.cshtml",
@@ -943,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "BasePageModel.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\BasePageModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\BasePageModel.cs",
@@ -955,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "_ListCombobox.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_ListCombobox.cshtml",
@@ -967,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Error.cshtml",
@@ -979,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "_PostListRow.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_PostListRow.cshtml",
@@ -991,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\HUONG_DAN_TAI_SU_DUNG_BO_CUC.md",
@@ -1003,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "_FormHelpers.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_Shared\\_FormHelpers.cshtml",
@@ -1015,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "doc.min.js",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\assets\\js\\doc.min.js",
@@ -1027,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "Subscribe.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Subscribe.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Subscribe.cshtml",
@@ -1039,7 +1051,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "Add.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Cart\\Add.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Cart\\Add.cshtml",
@@ -1051,7 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "Process.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Checkout\\Process.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Checkout\\Process.cshtml",
@@ -1063,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "Submit.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml",
@@ -1075,7 +1087,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "Submit.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Contact\\Submit.cshtml.cs",
@@ -1087,7 +1099,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "UpdateInfo.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\UpdateInfo.cshtml",
@@ -1099,7 +1111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\MyAccount\\ChangePassword.cshtml",
@@ -1111,7 +1123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "Process.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Register\\Process.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Register\\Process.cshtml",
@@ -1123,7 +1135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -1135,7 +1147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Shared\\_Layout.cshtml",
@@ -1147,7 +1159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 67,
               "Title": "Sitemap.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Sitemap.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Sitemap.cshtml",
@@ -1159,7 +1171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 68,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Privacy.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Privacy.cshtml",
@@ -1171,7 +1183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Index.cshtml",
@@ -1183,7 +1195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": "BaseAdminPageModel.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\BaseAdminPageModel.cs",
@@ -1195,7 +1207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 71,
               "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\dotnet\\sdk\\10.0.100\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
@@ -1207,7 +1219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 72,
               "Title": "_LeftSideBar.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\_LeftSideBar.cshtml",
@@ -1219,7 +1231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
@@ -1227,11 +1239,12 @@
               "RelativeToolTip": "CMS_2026\\Pages\\Admin\\Product\\Edit.cshtml",
               "ViewState": "AgIAAHIAAAAAAAAAAIBJwKMAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T08:11:27.95Z"
+              "WhenOpened": "2025-11-26T08:11:27.95Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 84,
               "Title": "BAO_CAO_CAU_HINH_PAGE.md",
               "DocumentMoniker": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
               "ToolTip": "D:\\Iambee\\update\\CMS_2026\\CMS_2026\\CMS_2026\\BAO_CAO_CAU_HINH_PAGE.md",
@@ -1240,7 +1253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 74,
               "Title": "product-single.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Components\\product-single.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Components\\product-single.cshtml",
@@ -1252,7 +1265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 73,
               "Title": "ProductListViewModel.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\ViewModels\\ProductListViewModel.cs",
               "RelativeDocumentMoniker": "CMS_2026\\ViewModels\\ProductListViewModel.cs",
@@ -1264,7 +1277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 75,
               "Title": "config.js",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckfinder\\config.js",
@@ -1276,7 +1289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 76,
               "Title": "ckeditor5.css.map",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.css.map",
@@ -1288,7 +1301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 77,
               "Title": "ckeditor5-init.js",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-init.js",
@@ -1300,7 +1313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 78,
               "Title": "ckeditor5-wrapper.js",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\assets\\js\\ckeditor5-wrapper.js",
@@ -1312,7 +1325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 79,
               "Title": "ckeditor5-content.css",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-content.css",
@@ -1324,7 +1337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 80,
               "Title": "ckeditor5-editor.css",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5-editor.css",
@@ -1336,7 +1349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 81,
               "Title": "ckeditor5.js",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
               "RelativeDocumentMoniker": "CMS_2026\\wwwroot\\admin\\ckeditor5\\ckeditor5.js",
@@ -1348,7 +1361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 82,
               "Title": "Add.cshtml.cs",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml.cs",
@@ -1360,7 +1373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 83,
               "Title": "Add.cshtml",
               "DocumentMoniker": "C:\\SLK\\CMS_2026\\CMS_2026\\CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",
               "RelativeDocumentMoniker": "CMS_2026\\Pages\\Api\\Cart\\Add.cshtml",

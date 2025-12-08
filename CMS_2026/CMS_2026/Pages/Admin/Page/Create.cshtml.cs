@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -18,14 +20,15 @@ namespace CMS_2026.Pages.Admin.Page
         {
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            PageTemplates = Db.GetList<PP_Compt>(t => t.ComptType == "page_template")
+            var templates = await Db.GetListAsync<PP_Compt>(t => t.ComptType == "page_template");
+            PageTemplates = templates
                 .OrderBy(t => t.ComptKey)
-                .ToDictionary(t => t.ComptKey, t => t.ComptName);
+                .ToDictionary(t => t.ComptKey ?? "", t => t.ComptName ?? "");
         }
 
-        public IActionResult OnPost([FromForm] string Title, [FromForm] string PathPattern,
+        public async Task<IActionResult> OnPostAsync([FromForm] string Title, [FromForm] string PathPattern,
             [FromForm] string? MetaDescription, [FromForm] string? MetaKeywords, [FromForm] string ComptKey)
         {
             try
@@ -35,14 +38,15 @@ namespace CMS_2026.Pages.Admin.Page
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var compt = Db.GetOne<PP_Compt>(t => t.ComptKey == ComptKey);
+                var compt = await Db.GetOneAsync<PP_Compt>(t => t.ComptKey == ComptKey);
                 if (compt == null)
                 {
                     return new JsonResult(new { success = false, message = "Component không tồn tại!" });
                 }
 
                 var tempAlias = PathPattern.TrimStart('/').TrimEnd('/') + compt.PathPostfix;
-                if (Db.GetList<PP_Page>(t => t.PathPattern == tempAlias && t.LangId == LangIdCompose).Any())
+                var existingPages = await Db.GetListAsync<PP_Page>(t => t.PathPattern == tempAlias && t.LangId == LangIdCompose);
+                if (existingPages.Any())
                 {
                     return new JsonResult(new { success = false, message = $"Đường dẫn [{tempAlias}] đã tồn tại!" });
                 }
@@ -60,7 +64,7 @@ namespace CMS_2026.Pages.Admin.Page
                     NodeType = compt.NodeType
                 };
 
-                Db.Insert(page);
+                await Db.InsertAsync(page);
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Tạo trang thành công!", redirect = "/admin/page" });

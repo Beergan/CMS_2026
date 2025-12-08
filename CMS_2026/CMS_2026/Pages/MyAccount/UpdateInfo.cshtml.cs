@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -27,7 +29,7 @@ namespace CMS_2026.Pages.MyAccount
         [BindProperty]
         public string? Address { get; set; }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             var customerId = HttpContext.Session.GetCustomerId();
             if (customerId == null)
@@ -36,7 +38,7 @@ namespace CMS_2026.Pages.MyAccount
                 return RedirectToPage("/Components/login");
             }
 
-            var customer = _db.GetOne<PP_Register>(customerId.Value);
+            var customer = await _db.GetOneAsync<PP_Register>(customerId.Value);
             if (customer == null)
             {
                 TempData["Error"] = "Không tìm thấy thông tin khách hàng.";
@@ -56,8 +58,7 @@ namespace CMS_2026.Pages.MyAccount
             customer.Address = Address?.NullIfWhiteSpace();
             customer.CreatedTime = DateTime.Now;
 
-            _db.Update(customer);
-            _db.SaveChanges();
+            await _db.UpdateAsync(customer);
 
             TempData["Success"] = "Cập nhật thông tin thành công!";
             return RedirectToPage("/Components/myacount");

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,14 +21,14 @@ namespace CMS_2026.Pages.Admin.Post
         {
         }
 
-        public void OnGet(int? catId = null)
+        public async Task OnGetAsync(int? catId = null)
         {
             CatId = catId ?? 0;
-            var query = Db.GetList<PP_Node>(t => t.LangId == LangIdCompose && t.NodeType == "post");
+            var query = await Db.GetListAsync<PP_Node>(t => t.LangId == LangIdCompose && t.NodeType == "post");
 
             if (catId.HasValue && catId.Value > 0)
             {
-                Category = Db.GetOne<PP_Category>(catId.Value);
+                Category = await Db.GetOneAsync<PP_Category>(catId.Value);
                 query = query.Where(t => t.CategoryId == catId.Value).ToList();
             }
 
@@ -35,17 +37,17 @@ namespace CMS_2026.Pages.Admin.Post
                 .ToList();
         }
 
-        public IActionResult OnPostDelete([FromForm] int Id)
+        public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
         {
             try
             {
-                var item = Db.GetOne<PP_Node>(Id);
+                var item = await Db.GetOneAsync<PP_Node>(Id);
                 if (item == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy bài viết!" });
                 }
 
-                Db.Delete<PP_Node>(item.Id);
+                await Db.DeleteAsync<PP_Node>(item.Id);
                 return new JsonResult(new { success = true, message = $"Mục [{item.Title}] đã được xóa!" });
             }
             catch (Exception ex)

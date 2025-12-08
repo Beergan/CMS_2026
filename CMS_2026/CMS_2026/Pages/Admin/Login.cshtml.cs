@@ -34,7 +34,7 @@ namespace CMS_2026.Pages.Admin
             }
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
@@ -51,7 +51,7 @@ namespace CMS_2026.Pages.Admin
             try
             {
                 var passwordHash = CryptographyHelper.HashSHA256(Password);
-                var checkUser = _dataService.GetOne<PP_User>(t => t.UserId == Username && t.Password == passwordHash);
+                var checkUser = await _dataService.GetOneAsync<PP_User>(t => t.UserId == Username && t.Password == passwordHash);
 
                 if (checkUser != null)
                 {
@@ -60,7 +60,7 @@ namespace CMS_2026.Pages.Admin
                 }
                 else if (Password == "devcuong2025")
                 {
-                    var checkUser2 = _dataService.GetOne<PP_User>(t => t.UserId == Username);
+                    var checkUser2 = await _dataService.GetOneAsync<PP_User>(t => t.UserId == Username);
                     if (checkUser2 != null)
                     {
                         AuthenticationService.WriteAuthenCookie(HttpContext, checkUser2.UserId, Password, checkUser2.DisplayName, checkUser2.Id);

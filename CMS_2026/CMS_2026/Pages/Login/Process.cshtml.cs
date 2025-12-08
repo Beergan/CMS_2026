@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 using CMS_2026.Utils;
@@ -18,7 +19,7 @@ namespace CMS_2026.Pages.Login
             _rootService = rootService;
         }
 
-        public IActionResult OnPost([FromForm] string Email, [FromForm] string Password, [FromForm] string? ReturnUrl)
+        public async Task<IActionResult> OnPostAsync([FromForm] string Email, [FromForm] string Password, [FromForm] string? ReturnUrl)
         {
             var referer = Request.Headers["Referer"].ToString();
             var fallback = string.IsNullOrEmpty(referer) ? "/login" : referer;
@@ -29,7 +30,7 @@ namespace CMS_2026.Pages.Login
                 return Redirect(fallback);
             }
 
-            var account = _dataService.GetOne<PP_Register>(x => x.Email == Email);
+            var account = await _dataService.GetOneAsync<PP_Register>(x => x.Email == Email);
             if (account == null)
             {
                 TempData["LoginError"] = "Tài khoản không tồn tại.";

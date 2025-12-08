@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace CMS_2026.Controllers
         [HttpGet]
         [HttpPost]
         [Route("aspx/connector.aspx")]
-        public IActionResult Connector()
+        public async Task<IActionResult> ConnectorAsync()
         {
             // Debug logging
             System.Diagnostics.Debug.WriteLine($"[CKFinder] Request: {Request.Method} {Request.Path}{Request.QueryString}");
@@ -63,8 +64,8 @@ namespace CMS_2026.Controllers
                     case "Init": HandleInit(xml, connector, baseUrl, baseDir); break;
                     case "GetFolders": HandleGetFolders(xml, connector, baseDir, currentFolder); break;
                     case "GetFiles": HandleGetFiles(xml, connector, baseDir, currentFolder); break;
-                    case "FileUpload": return HandleFileUpload(xml, connector, baseDir, baseUrl, currentFolder);
-                    case "QuickUpload": return HandleQuickUpload(baseDir, baseUrl, currentFolder);
+                    case "FileUpload": return await HandleFileUploadAsync(xml, connector, baseDir, baseUrl, currentFolder);
+                    case "QuickUpload": return await HandleQuickUploadAsync(baseDir, baseUrl, currentFolder);
                     case "CreateFolder": return HandleCreateFolder(xml, connector, baseDir, currentFolder);
                     case "RenameFolder": return HandleRenameFolder(xml, connector, baseDir, currentFolder);
                     case "DeleteFolder": return HandleDeleteFolder(xml, connector, baseDir, currentFolder);
@@ -255,14 +256,14 @@ namespace CMS_2026.Controllers
                 : NotFound();
         }
 
-        private IActionResult HandleQuickUpload(string baseDir, string baseUrl, string folder)
+        private async Task<IActionResult> HandleQuickUploadAsync(string baseDir, string baseUrl, string folder)
         {
             if (Request.Form.Files.Count == 0) return BadRequest();
-            var url = UploadFile(Request.Form.Files[0], baseDir, baseUrl, folder);
+            var url = await UploadFileAsync(Request.Form.Files[0], baseDir, baseUrl, folder);
             return Content($"<script>window.parent.CKFinder.tools.callFunction(1, '{url}', '');</script>", "text/html");
         }
 
-        private IActionResult HandleFileUpload(XmlDocument xml, XmlElement c, string baseDir, string baseUrl, string folder)
+        private async Task<IActionResult> HandleFileUploadAsync(XmlDocument xml, XmlElement c, string baseDir, string baseUrl, string folder)
         {
             var file = Request.Form.Files["NewFile"] ?? Request.Form.Files.FirstOrDefault();
             if (file == null)
@@ -271,14 +272,14 @@ namespace CMS_2026.Controllers
                 return Content(xml.OuterXml, "text/xml");
             }
 
-            var url = UploadFile(file, baseDir, baseUrl, folder);
+            var url = await UploadFileAsync(file, baseDir, baseUrl, folder);
             var uploaded = xml.CreateElement("Uploaded");
             uploaded.SetAttribute("name", Path.GetFileName(url));
             c.AppendChild(uploaded);
             return Content(xml.OuterXml, "text/xml");
         }
 
-        private string UploadFile(IFormFile file, string baseDir, string baseUrl, string folder)
+        private async Task<string> UploadFileAsync(IFormFile file, string baseDir, string baseUrl, string folder)
         {
             var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
             if (!_allowedExtensions.Contains(ext))
@@ -297,7 +298,7 @@ namespace CMS_2026.Controllers
             }
 
             using (var stream = new FileStream(fullPath, FileMode.Create))
-                file.CopyTo(stream);
+                await file.CopyToAsync(stream);
 
             return $"{baseUrl}{folder.TrimStart('/')}{safeName}";
         }

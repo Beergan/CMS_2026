@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -20,14 +22,14 @@ namespace CMS_2026.Pages.Admin.Group
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/group");
             }
 
-            Group = Db.GetOne<PP_Roles>(id.Value);
+            Group = await Db.GetOneAsync<PP_Roles>(id.Value);
             if (Group == null)
             {
                 return Redirect("/admin/group");
@@ -36,7 +38,7 @@ namespace CMS_2026.Pages.Admin.Group
             Permissions = GlobalPermissions.Dictionary;
 
             // Load selected permissions
-            var roleClaims = Db.GetList<PP_RoleClaims>(x => x.RoleId == Group.Id);
+            var roleClaims = await Db.GetListAsync<PP_RoleClaims>(x => x.RoleId == Group.Id);
             foreach (var claim in roleClaims)
             {
                 if (string.IsNullOrEmpty(claim.ClaimType)) continue;
@@ -57,7 +59,7 @@ namespace CMS_2026.Pages.Admin.Group
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] string Name, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] string Name, 
             [FromForm] string? Description, [FromForm] long[]? Permissions)
         {
             try
@@ -67,7 +69,7 @@ namespace CMS_2026.Pages.Admin.Group
                     return new JsonResult(new { success = false, message = "Tên nhóm không được để trống!" });
                 }
 
-                var role = Db.GetOne<PP_Roles>(Id);
+                var role = await Db.GetOneAsync<PP_Roles>(Id);
                 if (role == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy nhóm!" });
@@ -76,13 +78,13 @@ namespace CMS_2026.Pages.Admin.Group
                 role.Name = Name;
                 role.Description = Description;
 
-                Db.Update(role);
+                await Db.UpdateAsync(role);
 
                 // Update permissions
-                var existingClaims = Db.GetList<PP_RoleClaims>(t => t.RoleId == Id);
+                var existingClaims = await Db.GetListAsync<PP_RoleClaims>(t => t.RoleId == Id);
                 foreach (var claim in existingClaims)
                 {
-                    Db.Delete<PP_RoleClaims>(claim.Id);
+                    await Db.DeleteAsync<PP_RoleClaims>(claim.Id);
                 }
 
                 if (Permissions != null && Permissions.Length > 0)
@@ -101,7 +103,7 @@ namespace CMS_2026.Pages.Admin.Group
                             ClaimType = group.Key,
                             ClaimValue = totalValue
                         };
-                        Db.Insert(roleClaim);
+                        await Db.InsertAsync(roleClaim);
                     }
                 }
 

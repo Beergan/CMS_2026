@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -22,22 +24,22 @@ namespace CMS_2026.Pages.Admin.Category
         {
         }
 
-        public void OnGet(string? type)
+        public async Task OnGetAsync(string? type)
         {
             NodeType = type ?? string.Empty;
             
-            GroupSelector = GetGroupSelector(LangIdCompose, NodeType);
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, NodeType);
             
-            PageSelections = Db.GetList<PP_Page>(t => t.LangId == LangIdCompose 
+            var pages = await Db.GetListAsync<PP_Page>(t => t.LangId == LangIdCompose 
                 && t.PageType == "list" 
-                && (string.IsNullOrEmpty(NodeType) || t.NodeType == NodeType))
-                .ToDictionary(t => t.Id.ToString(), t => t.Title);
+                && (string.IsNullOrEmpty(NodeType) || t.NodeType == NodeType));
+            PageSelections = pages.ToDictionary(t => t.Id.ToString(), t => t.Title);
 
-            PageItemSelections = Db.GetList<PP_Page>(t => t.LangId == LangIdCompose && t.PageType == "item")
-                .ToDictionary(t => t.Id.ToString(), t => t.Title);
+            var pageItems = await Db.GetListAsync<PP_Page>(t => t.LangId == LangIdCompose && t.PageType == "item");
+            PageItemSelections = pageItems.ToDictionary(t => t.Id.ToString(), t => t.Title);
         }
 
-        public IActionResult OnPost([FromForm] int? ParentId, [FromForm] string Title, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int? ParentId, [FromForm] string Title, 
             [FromForm] string CategoryPath, [FromForm] int PageId, [FromForm] int PageIdItem,
             [FromForm] string? ImageUrl, [FromForm] string? MetaDescription, 
             [FromForm] string? MetaKeywords, [FromForm] string? NodeType)
@@ -49,7 +51,7 @@ namespace CMS_2026.Pages.Admin.Category
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(PageId);
+                var page = await Db.GetOneAsync<PP_Page>(PageId);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Trang không tồn tại!" });
@@ -71,7 +73,7 @@ namespace CMS_2026.Pages.Admin.Category
 
                 if (ParentId.HasValue && ParentId.Value > 0)
                 {
-                    var parentCategory = Db.GetOne<PP_Category>(ParentId.Value);
+                    var parentCategory = await Db.GetOneAsync<PP_Category>(ParentId.Value);
                     if (parentCategory == null)
                     {
                         return new JsonResult(new { success = false, message = "Chuyên mục cha không tồn tại!" });
@@ -88,7 +90,8 @@ namespace CMS_2026.Pages.Admin.Category
                     category.CategoryLevel = 1;
                 }
 
-                if (Db.GetList<PP_Category>(t => t.LangId == LangIdCompose && t.CategoryPath == category.CategoryPath).Any())
+                var existingCategories = await Db.GetListAsync<PP_Category>(t => t.LangId == LangIdCompose && t.CategoryPath == category.CategoryPath);
+                if (existingCategories.Any())
                 {
                     return new JsonResult(new { success = false, message = "Đường dẫn đã tồn tại!" });
                 }
@@ -96,8 +99,8 @@ namespace CMS_2026.Pages.Admin.Category
                 breadcrumbs.Add(new KeyValuePair<string, string>(category.CategoryPath, category.Title));
                 category.Breadcrumb = JsonConvert.SerializeObject(breadcrumbs);
 
-                Db.Insert(category);
-                Root.RefreshCategoryIndexes();
+                await Db.InsertAsync(category);
+                await Root.RefreshCategoryIndexesAsync();
                 Root.ClearCache();
 
                 return new JsonResult(new { success = true, message = "Tạo chuyên mục thành công!", redirect = $"/admin/category?type={NodeType}" });

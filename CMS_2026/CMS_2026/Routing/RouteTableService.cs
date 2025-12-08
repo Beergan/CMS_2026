@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 using CMS_2026.Common;
@@ -25,11 +26,27 @@ namespace CMS_2026.Routing
         /// <summary>
         /// Refresh routes from database (compatible with MyRouteTable.RefreshRoutes in 4.8)
         /// </summary>
+        public async Task RefreshRoutesAsync(List<PP_Page>? pages = null)
+        {
+            if (pages != null)
+            {
+                _cachedPages = pages;
+            }
+            else
+            {
+                var pageList = await _dataService.GetListAsync<PP_Page>();
+                _cachedPages = pageList
+                    .OrderByDescending(t => t.PathPattern)
+                    .ToList();
+            }
+        }
+
+        /// <summary>
+        /// Refresh routes from database (sync version for backward compatibility)
+        /// </summary>
         public void RefreshRoutes(List<PP_Page>? pages = null)
         {
-            _cachedPages = pages ?? _dataService.GetList<PP_Page>()
-                .OrderByDescending(t => t.PathPattern)
-                .ToList();
+            RefreshRoutesAsync(pages).GetAwaiter().GetResult();
         }
 
         /// <summary>

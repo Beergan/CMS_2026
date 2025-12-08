@@ -1406,8 +1406,8 @@ D:\Iambee\update\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\compressed\4l0mi5i
 D:\Iambee\update\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\compressed\9yrwh4r1pb-{0}-5ipweew5fc-5ipweew5fc.gz
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\appsettings.Development.json
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\appsettings.json
-C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.staticwebassets.endpoints.json
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.staticwebassets.runtime.json
+C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.staticwebassets.endpoints.json
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.exe
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.deps.json
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\bin\Debug\net10.0\CMS_2026.runtimeconfig.json
@@ -2810,4 +2810,3 @@ C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\refint\CMS_2026.dll
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\CMS_2026.pdb
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\CMS_2026.genruntimeconfig.cache
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\ref\CMS_2026.dll
-C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

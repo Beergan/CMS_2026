@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,7 +21,7 @@ namespace CMS_2026.Pages.Admin.Category
         {
         }
 
-        public void OnGet(string? type)
+        public async Task OnGetAsync(string? type)
         {
             NodeType = type ?? string.Empty;
             
@@ -28,7 +30,7 @@ namespace CMS_2026.Pages.Admin.Category
                 NodeType = string.Empty;
             }
 
-            var query = Db.GetList<PP_Category>(t => t.LangId == LangIdCompose);
+            var query = await Db.GetListAsync<PP_Category>(t => t.LangId == LangIdCompose);
 
             if (!string.IsNullOrEmpty(NodeType))
             {
@@ -40,27 +42,29 @@ namespace CMS_2026.Pages.Admin.Category
                 .ToList();
         }
 
-        public IActionResult OnPostDelete([FromForm] int Id)
+        public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
         {
             try
             {
-                var item = Db.GetOne<PP_Category>(Id);
+                var item = await Db.GetOneAsync<PP_Category>(Id);
                 if (item == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy chuyên mục!" });
                 }
 
-                if (Db.GetList<PP_Category>(t => t.ParentId == item.Id).Any())
+                var childCategories = await Db.GetListAsync<PP_Category>(t => t.ParentId == item.Id);
+                if (childCategories.Any())
                 {
                     return new JsonResult(new { success = false, message = "Không thể xóa, vẫn còn nội dung tham chiếu đến mục này!" });
                 }
 
-                if (Db.GetList<PP_Node>(t => t.CategoryId == item.Id).Any())
+                var nodes = await Db.GetListAsync<PP_Node>(t => t.CategoryId == item.Id);
+                if (nodes.Any())
                 {
                     return new JsonResult(new { success = false, message = "Không thể xóa, vẫn còn nội dung tham chiếu đến mục này!" });
                 }
 
-                Db.Delete<PP_Category>(item.Id);
+                await Db.DeleteAsync<PP_Category>(item.Id);
                 Root.ClearCache();
                 return new JsonResult(new { success = true, message = $"Mục [{item.Title}] đã được xóa!" });
             }

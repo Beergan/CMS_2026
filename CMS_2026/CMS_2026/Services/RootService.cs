@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,13 +36,13 @@ namespace CMS_2026.Services
             _configuration = configuration;
         }
 
-        public void ReloadLangs(List<PP_Lang>? langs = null)
+        public async Task ReloadLangsAsync(List<PP_Lang>? langs = null)
         {
             if (langs == null)
             {
                 using var scope = _serviceScopeFactory.CreateScope();
                 var dataService = scope.ServiceProvider.GetRequiredService<IDataService>();
-                langs = dataService.GetList<PP_Lang>();
+                langs = await dataService.GetListAsync<PP_Lang>();
             }
 
             foreach (var lang in langs)
@@ -50,13 +51,18 @@ namespace CMS_2026.Services
             }
         }
 
-        public void RefreshConfigs(List<PP_Config>? configs = null)
+        public void ReloadLangs(List<PP_Lang>? langs = null)
+        {
+            ReloadLangsAsync(langs).GetAwaiter().GetResult();
+        }
+
+        public async Task RefreshConfigsAsync(List<PP_Config>? configs = null)
         {
             if (configs == null)
             {
                 using var scope = _serviceScopeFactory.CreateScope();
                 var dataService = scope.ServiceProvider.GetRequiredService<IDataService>();
-                configs = dataService.GetList<PP_Config>();
+                configs = await dataService.GetListAsync<PP_Config>();
             }
 
             foreach (var config in configs)
@@ -64,10 +70,11 @@ namespace CMS_2026.Services
                 var key = $"{config.LangId}-{config.PageId}-{config.ConfigKey}";
                 Configs.AddOrUpdate(key, config, (k, oldValue) => config);
             }
+        }
 
-
-            IncrementCacheVersion();
-            _rootConfig.Clear();
+        public void RefreshConfigs(List<PP_Config>? configs = null)
+        {
+            RefreshConfigsAsync(configs).GetAwaiter().GetResult();
         }
 
         public Config GetConfig(string langId = "vi")
@@ -90,11 +97,11 @@ namespace CMS_2026.Services
             return _rootConfig[langId];
         }
 
-        public void RefreshCategoryIndexes()
+        public async Task RefreshCategoryIndexesAsync()
         {
             using var scope = _serviceScopeFactory.CreateScope();
             var dataService = scope.ServiceProvider.GetRequiredService<IDataService>();
-            var indexes = dataService.GetCategoryIndexes();
+            var indexes = await dataService.GetCategoryIndexesAsync();
             foreach (var index in indexes)
             {
                 var array = index.Array.Split(',', StringSplitOptions.RemoveEmptyEntries)
@@ -102,6 +109,11 @@ namespace CMS_2026.Services
                     .ToArray();
                 CategoryIndexes.AddOrUpdate(index.RootId, array, (key, oldValue) => array);
             }
+        }
+
+        public void RefreshCategoryIndexes()
+        {
+            RefreshCategoryIndexesAsync().GetAwaiter().GetResult();
         }
         /// <summary>
         /// Tăng cache version để invalidate tất cả cache cũ

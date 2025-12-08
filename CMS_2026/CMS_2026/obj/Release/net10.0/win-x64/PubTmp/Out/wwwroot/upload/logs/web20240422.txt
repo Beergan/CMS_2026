@@ -1,0 +1,15 @@
+2024-04-22 14:50:26.915 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-04-22 14:51:45.262 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-04-22 14:51:45.262 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-04-22 15:07:06.537 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92
+2024-04-22 15:08:06.555 +07:00 [ERR] [internal]
+System.InvalidCastException: Specified cast is not valid.
+   at Global.Session_End(Object sender, EventArgs e) in C:\SLK\web_winlink\web_winlink\App_Code\Global.asax.cs:line 92

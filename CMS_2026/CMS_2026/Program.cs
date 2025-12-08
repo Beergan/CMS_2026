@@ -4,6 +4,14 @@ using CMS_2026.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Kestrel to use port from launchSettings.json or environment
+// This prevents binding to default port 5000 when launchSettings.json is not used
+if (builder.Environment.IsDevelopment())
+{
+    // In development, use port from launchSettings.json (5050)
+    builder.WebHost.UseUrls("http://localhost:5050");
+}
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
@@ -144,7 +152,7 @@ using (var scope = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     var startupService = scope.ServiceProvider.GetRequiredService<StartupService>();
-    startupService.Initialize();
+    startupService.InitializeAsync().GetAwaiter().GetResult();
 }
 app.UseDeveloperExceptionPage();
 app.MapStaticAssets();

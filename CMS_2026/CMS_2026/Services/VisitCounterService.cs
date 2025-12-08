@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Services;
 
@@ -99,7 +100,7 @@ namespace CMS_2026.Services
             }
         }
 
-        public void OnSessionEnd(string sessionId)
+        public async Task OnSessionEndAsync(string sessionId)
         {
             if (!OnlineSessions.TryRemove(sessionId, out var visitData))
                 return;
@@ -129,14 +130,14 @@ namespace CMS_2026.Services
                         .ForEach(url => UrlStats.AddOrUpdate(url, 1, (u, counter) => counter + 1));
                 }
 
-                _dataService.Insert(visitData);
+                await _dataService.InsertAsync(visitData);
 
                 // Update daily stats
-                var daily = _dataService.GetOne<PP_Stats_Daily>(visitData.Date);
+                var daily = await _dataService.GetOneAsync<PP_Stats_Daily>(visitData.Date);
                 if (daily != null)
                 {
                     daily.VisitCount++;
-                    _dataService.Update(daily);
+                    await _dataService.UpdateAsync(daily);
                 }
                 else
                 {
@@ -146,7 +147,7 @@ namespace CMS_2026.Services
                         VisitCount = 1,
                         OrderCount = 0
                     };
-                    _dataService.Insert(newDaily);
+                    await _dataService.InsertAsync(newDaily);
                 }
             }
             catch (Exception ex)
@@ -156,33 +157,37 @@ namespace CMS_2026.Services
             }
         }
 
-        public void RefreshVisitStats(DateTime now)
+        public async Task RefreshVisitStatsAsync(DateTime now)
         {
             int sevenDaysAgo = int.Parse(now.AddDays(-7).ToString("yyyyMMdd"));
-            var oldStats = _dataService.GetList<PP_Stats_Daily>(x => x.Date < sevenDaysAgo);
+            var oldStats = await _dataService.GetListAsync<PP_Stats_Daily>(x => x.Date < sevenDaysAgo);
             foreach (var stat in oldStats)
             {
-                _dataService.Delete<PP_Stats_Daily>(stat.Date);
+                await _dataService.DeleteAsync<PP_Stats_Daily>(stat.Date);
             }
 
             int today = int.Parse(now.ToString("yyyyMMdd"));
-            var todayStats = _dataService.GetOne<PP_Stats_Daily>(today);
+            var todayStats = await _dataService.GetOneAsync<PP_Stats_Daily>(today);
             
             if (todayStats == null)
             {
+                var todayVisits = await _dataService.GetListAsync<PP_Visit>(x => x.Date == today);
+                var todayOrders = await _dataService.GetListAsync<PP_Order>(x => x.CreatedTime.Date == now.Date);
                 todayStats = new PP_Stats_Daily
                 {
                     Date = today,
-                    VisitCount = _dataService.GetList<PP_Visit>(x => x.Date == today).Count,
-                    OrderCount = _dataService.GetList<PP_Order>(x => x.CreatedTime.Date == now.Date).Count
+                    VisitCount = todayVisits.Count,
+                    OrderCount = todayOrders.Count
                 };
-                _dataService.Insert(todayStats);
+                await _dataService.InsertAsync(todayStats);
             }
             else
             {
-                todayStats.VisitCount = _dataService.GetList<PP_Visit>(x => x.Date == today).Count;
-                todayStats.OrderCount = _dataService.GetList<PP_Order>(x => x.CreatedTime.Date == now.Date).Count;
-                _dataService.Update(todayStats);
+                var todayVisits = await _dataService.GetListAsync<PP_Visit>(x => x.Date == today);
+                var todayOrders = await _dataService.GetListAsync<PP_Order>(x => x.CreatedTime.Date == now.Date);
+                todayStats.VisitCount = todayVisits.Count;
+                todayStats.OrderCount = todayOrders.Count;
+                await _dataService.UpdateAsync(todayStats);
             }
         }
     }

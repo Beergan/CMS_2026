@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Services;
@@ -30,22 +31,22 @@ namespace CMS_2026.Pages.Admin
             // Display sync page
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             try
             {
                 // Delete all existing components
-                var allCompts = Db.GetList<PP_Compt>();
+                var allCompts = await Db.GetListAsync<PP_Compt>();
                 foreach (var compt in allCompts)
                 {
-                    Db.Delete<PP_Compt>(compt.Id);
+                    await Db.DeleteAsync<PP_Compt>(compt.Id);
                 }
 
                 // Run component synchronizer
-                var syncedCompts = ComponentSynchronizer.Run(Db);
+                var syncedCompts = await ComponentSynchronizer.RunAsync(Db);
 
                 Root.ClearCache();
-                Root.RefreshConfigs();
+                await Root.RefreshConfigsAsync();
 
                 SyncedComponents = syncedCompts;
                 Success = true;

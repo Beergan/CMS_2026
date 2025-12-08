@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using CMS_2026.Data.Entities;
 using CMS_2026.Models;
 using CMS_2026.Services;
@@ -25,7 +26,7 @@ namespace CMS_2026.Pages.Checkout
             _vietQrService = vietQrService;
         }
 
-        public IActionResult OnPost([FromForm] string CustomerName, [FromForm] string Email, [FromForm] string Phone,
+        public async Task<IActionResult> OnPostAsync([FromForm] string CustomerName, [FromForm] string Email, [FromForm] string Phone,
             [FromForm] string Address, [FromForm] string PaymentMethod, [FromForm] string? Note)
         {
             var referer = Request.Headers["Referer"].ToString();
@@ -67,7 +68,7 @@ namespace CMS_2026.Pages.Checkout
                 IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString()
             };
 
-            _dataService.Insert(order);
+            await _dataService.InsertAsync(order);
 
             var serializedOrder = JsonSerializer.Serialize(order);
             HttpContext.Session.SetString("pendingOrder", serializedOrder);

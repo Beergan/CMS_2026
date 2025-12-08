@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -17,7 +20,7 @@ namespace CMS_2026.Pages.Admin.Lang
         {
         }
 
-        public IActionResult OnPost([FromForm] string LangId, [FromForm] string Title,
+        public async Task<IActionResult> OnPostAsync([FromForm] string LangId, [FromForm] string Title,
             [FromForm] string? DateFormat, [FromForm] string? TimeFormat, [FromForm] bool Enabled)
         {
             try
@@ -27,7 +30,8 @@ namespace CMS_2026.Pages.Admin.Lang
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                if (Db.GetList<PP_Lang>(t => t.LangId == LangId).Any())
+                var existingLangs = await Db.GetListAsync<PP_Lang>(t => t.LangId == LangId);
+                if (existingLangs.Any())
                 {
                     return new JsonResult(new { success = false, message = "Mã ngôn ngữ đã tồn tại!" });
                 }
@@ -41,8 +45,8 @@ namespace CMS_2026.Pages.Admin.Lang
                     Enabled = Enabled
                 };
 
-                Db.Insert(lang);
-                Root.ReloadLangs();
+                await Db.InsertAsync(lang);
+                await Root.ReloadLangsAsync();
 
                 return new JsonResult(new { success = true, message = "Tạo ngôn ngữ thành công!", redirect = "/admin/lang" });
             }

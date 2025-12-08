@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data;
@@ -39,7 +40,7 @@ namespace CMS_2026.Pages.Admin
             }
         }
 
-        public IActionResult OnPost(string? token, string? userid)
+        public async Task<IActionResult> OnPostAsync(string? token, string? userid)
         {
             if (string.IsNullOrWhiteSpace(NewPassword))
             {
@@ -72,7 +73,7 @@ namespace CMS_2026.Pages.Admin
                 return Page();
             }
 
-            var user = _dataService.GetOne<PP_User>(t => t.UserId == userid);
+            var user = await _dataService.GetOneAsync<PP_User>(t => t.UserId == userid);
             if (user == null)
             {
                 ModelState.AddModelError("", "Tài khoản không tồn tại!");
@@ -88,8 +89,7 @@ namespace CMS_2026.Pages.Admin
 
             // Update password
             user.Password = CryptographyHelper.HashSHA256(NewPassword);
-            _dataService.Update(user);
-            _dataService.SaveChanges();
+            await _dataService.UpdateAsync(user);
 
             return RedirectToPage("/Admin/ResetPwd", new { success = "success" });
         }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -18,9 +20,9 @@ namespace CMS_2026.Pages.Admin.Advise
         {
         }
 
-        public void OnGet(string? newStatus, string? processing, string? cancelled, string? success)
+        public async Task OnGetAsync(string? newStatus, string? processing, string? cancelled, string? success)
         {
-            var query = Db.GetList<PP_Advise>();
+            var query = await Db.GetListAsync<PP_Advise>();
 
             if (!string.IsNullOrEmpty(newStatus))
             {
@@ -53,11 +55,11 @@ namespace CMS_2026.Pages.Admin.Advise
                 .ToList();
         }
 
-        public IActionResult OnPostUpdateStatus([FromForm] int id, [FromForm] string status, [FromForm] string? note)
+        public async Task<IActionResult> OnPostUpdateStatusAsync([FromForm] int id, [FromForm] string status, [FromForm] string? note)
         {
             try
             {
-                var advise = Db.GetOne<PP_Advise>(id);
+                var advise = await Db.GetOneAsync<PP_Advise>(id);
                 if (advise == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy tư vấn!" });
@@ -68,7 +70,7 @@ namespace CMS_2026.Pages.Admin.Advise
                 {
                     advise.ProcessNote = note;
                 }
-                Db.Update(advise);
+                await Db.UpdateAsync(advise);
 
                 return new JsonResult(new { success = true, message = "Thông tin đã được ghi nhận!" });
             }

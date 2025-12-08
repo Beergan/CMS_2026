@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -15,14 +17,14 @@ namespace CMS_2026.Pages.Admin.Lang
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/lang");
             }
 
-            Lang = Db.GetOne<PP_Lang>(id.Value);
+            Lang = await Db.GetOneAsync<PP_Lang>(id.Value);
             if (Lang == null)
             {
                 return Redirect("/admin/lang");
@@ -31,7 +33,7 @@ namespace CMS_2026.Pages.Admin.Lang
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] string Title,
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] string Title,
             [FromForm] string? DateFormat, [FromForm] string? TimeFormat, [FromForm] bool Enabled)
         {
             try
@@ -41,7 +43,7 @@ namespace CMS_2026.Pages.Admin.Lang
                     return new JsonResult(new { success = false, message = "Tên ngôn ngữ không được để trống!" });
                 }
 
-                var lang = Db.GetOne<PP_Lang>(Id);
+                var lang = await Db.GetOneAsync<PP_Lang>(Id);
                 if (lang == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy ngôn ngữ!" });
@@ -52,8 +54,8 @@ namespace CMS_2026.Pages.Admin.Lang
                 lang.TimeFormat = TimeFormat ?? "HH:mm";
                 lang.Enabled = Enabled;
 
-                Db.Update(lang);
-                Root.ReloadLangs();
+                await Db.UpdateAsync(lang);
+                await Root.ReloadLangsAsync();
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!", redirect = "/admin/lang" });
             }

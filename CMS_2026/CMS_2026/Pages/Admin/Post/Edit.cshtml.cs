@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -19,25 +21,25 @@ namespace CMS_2026.Pages.Admin.Post
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/post");
             }
 
-            Post = Db.GetOne<PP_Node>(id.Value);
+            Post = await Db.GetOneAsync<PP_Node>(id.Value);
             if (Post == null)
             {
                 return Redirect("/admin/post");
             }
 
-            GroupSelector = GetGroupSelector(LangIdCompose, "post");
+            GroupSelector = await GetGroupSelectorAsync(LangIdCompose, "post");
 
             return Page();
         }
 
-        public IActionResult OnPost([FromForm] int Id, [FromForm] int CategoryId, 
+        public async Task<IActionResult> OnPostAsync([FromForm] int Id, [FromForm] int CategoryId, 
             [FromForm] string Title, [FromForm] string NodePath, [FromForm] string? Summary, 
             [FromForm] string? Content, [FromForm] string? ImageUrl, [FromForm] bool Featured,
             [FromForm] string? MetaDescription, [FromForm] string? MetaKeywords)
@@ -49,19 +51,19 @@ namespace CMS_2026.Pages.Admin.Post
                     return new JsonResult(new { success = false, message = "Vui lòng điền đầy đủ thông tin!" });
                 }
 
-                var post = Db.GetOne<PP_Node>(Id);
+                var post = await Db.GetOneAsync<PP_Node>(Id);
                 if (post == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy bài viết!" });
                 }
 
-                var category = Db.GetOne<PP_Category>(CategoryId);
+                var category = await Db.GetOneAsync<PP_Category>(CategoryId);
                 if (category == null)
                 {
                     return new JsonResult(new { success = false, message = "Chuyên mục không tồn tại!" });
                 }
 
-                var page = Db.GetOne<PP_Page>(category.PageIdItem);
+                var page = await Db.GetOneAsync<PP_Page>(category.PageIdItem);
                 if (page == null)
                 {
                     return new JsonResult(new { success = false, message = "Trang chi tiết không tồn tại!" });
@@ -70,8 +72,8 @@ namespace CMS_2026.Pages.Admin.Post
                 var slug = EncodeHelper.SanitizeString(NodePath);
                 var tempAlias = string.Format(page.PathPattern, slug);
 
-                if (tempAlias != post.NodePath && 
-                    Db.GetList<PP_Node>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose && t.Id != Id).Any())
+                var existingNodes = await Db.GetListAsync<PP_Node>(t => t.NodePath == tempAlias && t.LangId == LangIdCompose && t.Id != Id);
+                if (tempAlias != post.NodePath && existingNodes.Any())
                 {
                     return new JsonResult(new { success = false, message = $"Đường dẫn [{tempAlias}] đã tồn tại!" });
                 }
@@ -86,14 +88,14 @@ namespace CMS_2026.Pages.Admin.Post
                 post.MetaDescription = MetaDescription;
                 post.MetaKeywords = MetaKeywords;
 
-                Db.Update(post);
+                await Db.UpdateAsync(post);
 
                 // Update category details
-                var catDetails = Db.GetOne<PP_Category_details>(t => t.Idproduct == Id && t.NodeType == "post");
+                var catDetails = await Db.GetOneAsync<PP_Category_details>(t => t.Idproduct == Id && t.NodeType == "post");
                 if (catDetails != null)
                 {
                     catDetails.Idcat = CategoryId;
-                    Db.Update(catDetails);
+                    await Db.UpdateAsync(catDetails);
                 }
                 else
                 {
@@ -106,7 +108,7 @@ namespace CMS_2026.Pages.Admin.Post
                         PageIdItem = category.PageIdItem,
                         Idproduct = post.Id
                     };
-                    Db.Insert(catDetails);
+                    await Db.InsertAsync(catDetails);
                 }
 
                 Root.ClearCache();

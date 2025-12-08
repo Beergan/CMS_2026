@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMS_2026.Data.Entities;
@@ -15,14 +17,14 @@ namespace CMS_2026.Pages.Admin.Order
         {
         }
 
-        public IActionResult OnGet(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (!id.HasValue)
             {
                 return Redirect("/admin/order");
             }
 
-            Order = Db.GetOne<PP_Order>(id.Value);
+            Order = await Db.GetOneAsync<PP_Order>(id.Value);
             if (Order == null)
             {
                 return Redirect("/admin/order");
@@ -31,11 +33,11 @@ namespace CMS_2026.Pages.Admin.Order
             return Page();
         }
 
-        public IActionResult OnPostUpdateStatus([FromForm] int id, [FromForm] string status, [FromForm] string? note)
+        public async Task<IActionResult> OnPostUpdateStatusAsync([FromForm] int id, [FromForm] string status, [FromForm] string? note)
         {
             try
             {
-                var order = Db.GetOne<PP_Order>(id);
+                var order = await Db.GetOneAsync<PP_Order>(id);
                 if (order == null)
                 {
                     return new JsonResult(new { success = false, message = "Không tìm thấy đơn hàng!" });
@@ -46,7 +48,7 @@ namespace CMS_2026.Pages.Admin.Order
                 {
                     order.Note = note;
                 }
-                Db.Update(order);
+                await Db.UpdateAsync(order);
 
                 return new JsonResult(new { success = true, message = "Cập nhật thành công!", redirect = "/admin/order" });
             }
