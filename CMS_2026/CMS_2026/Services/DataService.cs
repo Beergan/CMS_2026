@@ -173,13 +173,44 @@ namespace CMS_2026.Services
 
             return result;
         }
+        private List<int> GetAllDescendantIds(int parentId, List<PP_Category> allCategories)
+{
+            var result = new List<int>();
 
+            var children = allCategories.Where(c => c.ParentId == parentId).ToList();
+
+            foreach (var child in children)
+            {
+                result.Add(child.Id);
+
+                var descendants = GetAllDescendantIds(child.Id, allCategories);
+                result.AddRange(descendants);
+            }
+
+            return result;
+        }
         public async Task<List<CategoryIndexer>> GetCategoryIndexesAsync()
         {
-            // This will need to be implemented with raw SQL or a stored procedure
-            // For now, return empty list - can be enhanced later
-            await Task.CompletedTask;
-            return new List<CategoryIndexer>();
+            var categories = await _context.PP_Categories
+                .ToListAsync(); 
+
+            var result = new List<CategoryIndexer>();
+
+            foreach (var category in categories) 
+            {
+                var descendantIds = GetAllDescendantIds(category.Id, categories);
+
+                if (descendantIds.Any())
+                {
+                    result.Add(new CategoryIndexer
+                    {
+                        RootId = category.Id,
+                        Array = string.Join(",", descendantIds)
+                    });
+                }
+            }
+
+            return result; 
         }
 
         public async Task<List<Tuple<string, string>>> GetLinksAsync(string langId)

@@ -14,12 +14,11 @@
     var langId = Context.Request.Cookies["LangId"] ?? "vi";
     var config = Root.GetConfig(langId);
     var pageId = (int)(Context.Items["PageId"] ?? 0);
-    var nodeSlug = Context.Items["NodeSlug"]?.ToString() ?? Context.Request.Query["slug"].FirstOrDefault() ?? "";
+    var nodeSlug = Context.Items["NodeSlug"]?.ToString() ;
     var currentPage = int.TryParse(Context.Request.Query["page"].FirstOrDefault(), out var p) ? p : 1;
     var pageSize = 12;
     var sortby = Context.Request.Query["sortby"].FirstOrDefault();
-
-    // Load ProductListViewModel from config
+   Cache.Remove($"{langId}-{pageId}-ProductList-{nodeSlug}-{currentPage}-{sortby}");
     var data = ViewHelper.LoadData<ProductListViewModel>(Context, Root, Cache, key: $"{langId}-{pageId}-ProductList-{nodeSlug}-{currentPage}-{sortby}", setup: (model) =>
     {
         if (model == null)
@@ -47,33 +46,45 @@
             model.MetaKeywords = page.MetaKeywords;
         }
 
-    var category = Db.GetOne<PP_Category>(t => t.CategoryPath == nodeSlug && t.LangId == langId);
-        if (category == null)
-        {
-            return model;
-        }
+            var category = Db.GetOne<PP_Category>(t => t.CategoryPath == nodeSlug && t.LangId == langId);
+                if (category == null)
+                {
+                    return model;
+                }
 
         model.BannerProduct = category.ImageUrl;
         model.CategoryPath = category.CategoryPath;
+        var query = new List<VM_Product>();
+        if (category != null && RootService.CategoryIndexes.TryGetValue(category.Id, out var categoryIds))
+        {
+            var arrCategory = categoryIds.Prepend(category.Id).ToList();
+             query  = Db.Query<PP_Product>(p => arrCategory.Contains(p.CategoryId ?? 0))
+                                .Join(Db.Query<PP_Category>(), product => product.CategoryId,
+                                cat => cat.Id, (product, cat) => new { product, cat }).Select(x => new VM_Product
+                                {
+                                    JsonContent = x.product.Content,
+                                    Title = x.product.Title,
+                                    Path = x.product.NodePath,
+                                    Summary = x.product.Content,
+                                    ImageUrl = x.product.ImageUrl,
+                                    CreatedTime = x.product.CreatedTime,
+                                    CategoryId = x.cat.Id,
+                                    CategoryName = x.cat.Title,
+                                    CategoryPath = x.cat.CategoryPath,
+                                    BestSeller = x.product.BestSeller,
+                                    Price = x.product.Price,
+                                    idnode = x.product.Id,
+                                    NodePath = x.product.NodePath,
+                                    PromotionPrice = x.product.PromotionPrice,
+                                    PromotionEnabled = x.product.PromotionEnabled,
+                                    AttrbValues = x.product.AttrbValues,
+                                    AttrbEnabled = x.product.AttrbEnabled,
+                                })
+                .OrderByDescending(b => b.CreatedTime)
+                .ToList();
+        }
+    
 
-        var arrCategory = RootService.CategoryIndexes.ContainsKey(category.Id)
-            ? RootService.CategoryIndexes[category.Id].ToList() 
-            : new List<int> { category.Id };
-
-        // Load categories
-        model.Categories = Db.GetList<PP_Category>(t => t.NodeType == "product" && t.LangId == langId).ToList();
-
-        // Load comments
-        model.Comments = Db.GetList<PP_Comment>(t => t.Status == "SUCCESS").ToList();
-
-        // Load products
-        var query = Db.GetList<PP_Product>(t => 
-            t.LangId == langId && 
-            arrCategory.Contains(t.CategoryId ?? 0))
-            .OrderByDescending(b => b.CreatedTime)
-            .ToList();
-
-        // Apply sorting
         if (!string.IsNullOrEmpty(sortby))
         {
             switch (sortby.ToLower())
@@ -273,7 +284,7 @@
                                                     @foreach (var v in att)
                                                     {
                                                         <li>
-                                                            <a class="dropdown-item action-cart-add" href="javascript:void(0)" data-product-id="@item.Id" data-variation="@v">@v</a>
+                                                            <a class="dropdown-item action-cart-add" href="javascript:void(0)" data-product-id="@item.idnode" data-variation="@v">@v</a>
                                                         </li>
                                                     }
                                                 </ul>
@@ -282,7 +293,7 @@
                                     }
                                     else
                                     {
-                                        <a data-product-id="@item.Id" data-product-title="@item.Title"
+                                        <a data-product-id="@item.idnode" data-product-title="@item.Title"
                                            class="action-cart-add text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm"
                                            href="javascript:void(0)"
                                            data-bs-title="Add To Cart">

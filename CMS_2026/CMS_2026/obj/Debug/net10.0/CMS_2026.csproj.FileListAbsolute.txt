@@ -2810,3 +2810,4 @@ C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\refint\CMS_2026.dll
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\CMS_2026.pdb
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\CMS_2026.genruntimeconfig.cache
 C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\ref\CMS_2026.dll
+C:\SLK\CMS_2026\CMS_2026\CMS_2026\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

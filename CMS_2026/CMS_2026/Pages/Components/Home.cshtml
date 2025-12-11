@@ -13,6 +13,7 @@
     var langId = Context.Request.Cookies["LangId"] ?? "vi";
     var config = Root.GetConfig(langId);
     var pageId = (int)(Context.Items["PageId"] ?? 0);
+   // Cache.Remove($"{langId}-{pageId}-Home");
     var data = ViewHelper.LoadData<HomeViewModel>(Context, Root, Cache,key: $"{langId}-{pageId}-Home", setup: (model) =>
     {
         if (model == null)
@@ -40,39 +41,31 @@
             if (category != null && RootService.CategoryIndexes.TryGetValue(category.Id, out var categoryIds))
             {
                 model.CategoryPath = category.CategoryPath;
-                var arrCategory = categoryIds.ToList();
-                
-                // Get all products
-                var allProducts = Db.GetList<PP_Product>(t => t.LangId == langId);
-                var allCategories = Db.GetList<PP_Category>(t => t.NodeType == "product" && t.LangId == langId);
-                
-                var queryproduct = (
-                    from product in allProducts
-                    join cat in allCategories on product.CategoryId equals cat.Id
-                    where arrCategory.Contains(product.CategoryId ?? 0)
-                    select new VM_Product
-                    {
-                        JsonContent = product.Content,
-                        Title = product.Title,
-                        Path = product.NodePath,
-                        Summary = product.Content,
-                        ImageUrl = product.ImageUrl,
-                        CreatedTime = product.CreatedTime,
-                        CategoryId = cat.Id,
-                        CategoryName = cat.Title,
-                        CategoryPath = cat.CategoryPath,
-                        BestSeller = product.BestSeller,
-                        Price = product.Price,
-                        idnode = product.Id,
-                        NodePath = product.NodePath,
-                        PromotionPrice = product.PromotionPrice,
-                        PromotionEnabled = product.PromotionEnabled,
-                        AttrbValues = product.AttrbValues,
-                        AttrbEnabled = product.AttrbEnabled,
-                    })
+                var arrCategory = categoryIds.Prepend(category.Id).ToList();
+                var queryproduct = Db.Query<PP_Product>(p => arrCategory.Contains(p.CategoryId ?? 0))
+                                    .Join(Db.Query<PP_Category>(), product => product.CategoryId,
+                                    cat => cat.Id, (product, cat) => new { product, cat }).Select(x => new VM_Product
+                                    {
+                                        JsonContent = x.product.Content,
+                                        Title = x.product.Title,
+                                        Path = x.product.NodePath,
+                                        Summary = x.product.Content,
+                                        ImageUrl = x.product.ImageUrl,
+                                        CreatedTime = x.product.CreatedTime,
+                                        CategoryId = x.cat.Id,
+                                        CategoryName = x.cat.Title,
+                                        CategoryPath = x.cat.CategoryPath,
+                                        BestSeller = x.product.BestSeller,
+                                        Price = x.product.Price,
+                                        idnode = x.product.Id,
+                                        NodePath = x.product.NodePath,
+                                        PromotionPrice = x.product.PromotionPrice,
+                                        PromotionEnabled = x.product.PromotionEnabled,
+                                        AttrbValues = x.product.AttrbValues,
+                                        AttrbEnabled = x.product.AttrbEnabled,
+                                    })
                     .OrderByDescending(b => b.CreatedTime)
                     .ToArray();
-                
                 model._modelVMProduct = queryproduct;
             }
         }

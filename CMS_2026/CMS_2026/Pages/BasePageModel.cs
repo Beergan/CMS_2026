@@ -57,15 +57,24 @@ namespace CMS_2026.Pages
         {
             get
             {
-                // Try to get from HttpContext (set by middleware for dynamic routes)
-                if (HttpContext.Items.TryGetValue("NodeSlug", out var slug) && 
+                // Try to get from HttpContext (set by middleware)
+                if (HttpContext.Items.TryGetValue("NodeSlug", out var slug) &&
                     slug is string slugValue && !string.IsNullOrEmpty(slugValue))
                 {
                     return slugValue;
                 }
 
-                // Fallback: extract from path (similar to 4.8 logic)
-                var path = Request.Path.Value ?? string.Empty;
+                string? path = null;
+                if (HttpContext.Items.TryGetValue("OriginalPath", out var originalPath) &&
+                    originalPath is string originalPathValue)
+                {
+                    path = originalPathValue;
+                }
+                else
+                {
+                    path = Request.Path.Value ?? string.Empty;
+                }
+
                 return path.TrimStart('/').Split('?').FirstOrDefault();
             }
         }

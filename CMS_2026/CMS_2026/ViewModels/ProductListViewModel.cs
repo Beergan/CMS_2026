@@ -20,8 +20,8 @@ namespace CMS_2026.ViewModels
         public long TotalPages { get; set; } = 1;
 
         // These are runtime data, not from config
-        public List<PP_Product> Items { get; set; } = new();
-        public List<PP_Product> Count { get; set; } = new();
+        public List<VM_Product> Items { get; set; } = new();
+        public List<VM_Product> Count { get; set; } = new();
         public List<PP_Category> Categories { get; set; } = new();
         public List<PP_Comment> Comments { get; set; } = new();
 

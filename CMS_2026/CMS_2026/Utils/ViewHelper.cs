@@ -62,7 +62,6 @@ namespace CMS_2026.Utils
                 var path = context.Request.Path.Value ?? string.Empty;
                 fileName = path.Split('/').LastOrDefault()?.Split('.').FirstOrDefault() ?? string.Empty;
             }
-
             T? data = null;
             var config = Root.Configs.Values
                 .FirstOrDefault(t => t.LangId == langId && 

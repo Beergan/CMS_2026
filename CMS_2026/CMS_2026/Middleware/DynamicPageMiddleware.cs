@@ -21,9 +21,8 @@ namespace CMS_2026.Middleware
         {
             var path = context.Request.Path.Value ?? string.Empty;
 
-            // Skip if it's already a Razor Page or static file
-            if (path.StartsWith("/admin") || 
-                path.StartsWith("/Error") || 
+            if (path.StartsWith("/admin") ||
+                path.StartsWith("/Error") ||
                 path.StartsWith("/_") ||
                 path.Contains(".") && !path.EndsWith(".cshtml"))
             {
@@ -31,44 +30,54 @@ namespace CMS_2026.Middleware
                 return;
             }
 
-            // Create scope to resolve scoped service
             using var scope = _serviceScopeFactory.CreateScope();
             var routingService = scope.ServiceProvider.GetRequiredService<PageRoutingService>();
 
-            // Try to find page by path
-            // Get langId from cookie, query string, or default to "vi" (similar to MyRouteTable logic)
-            var langId = context.Request.Cookies["LangId"] 
-                ?? context.Request.Query["lang"].FirstOrDefault() 
+            var langId = context.Request.Cookies["LangId"]
+                ?? context.Request.Query["lang"].FirstOrDefault()
                 ?? "vi";
             var page = routingService.FindPageByPath(path, langId);
 
             if (page != null)
             {
-                // Check if language is enabled (similar to MyRouteTable logic)
-                if (!RootService.Langs.ContainsKey(page.LangId) || 
+                if (!RootService.Langs.ContainsKey(page.LangId) ||
                     !RootService.Langs[page.LangId].Enabled)
                 {
                     await _next(context);
                     return;
                 }
 
-                // Store page info in context for use in Razor Pages
+                context.Items["OriginalPath"] = path;
+
                 context.Items["PageId"] = page.Id;
                 context.Items["LangId"] = page.LangId;
                 context.Items["ComptKey"] = page.ComptKey;
                 context.Items["PP_Page"] = page;
 
-                // Extract slug if pattern has {0} (for dynamic routes like /san-pham/{0})
+                string? nodeSlug = null;
+
                 if (page.PathPattern.Contains("{0}"))
                 {
                     var slug = routingService.ExtractSlug(page.PathPattern, path);
                     if (!string.IsNullOrEmpty(slug))
                     {
-                        context.Items["NodeSlug"] = slug;
+                        nodeSlug = slug;
+                    }
+                    else
+                    {
+                        nodeSlug = path.TrimStart('/').Split('?').FirstOrDefault();
                     }
                 }
+                else
+                {
+                    nodeSlug = path.TrimStart('/').Split('?').FirstOrDefault();
+                }
 
-                // Rewrite path to DynamicPage route
+                if (!string.IsNullOrEmpty(nodeSlug))
+                {
+                    context.Items["NodeSlug"] = nodeSlug;
+                }
+
                 context.Request.Path = new PathString("/DynamicPage");
             }
 
