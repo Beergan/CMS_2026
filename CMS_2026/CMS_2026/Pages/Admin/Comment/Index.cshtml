@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -53,7 +57,7 @@
                                 @foreach (var comment in Model.Comments)
                                 {
                                     <tr>
-                                        <td>@comment.CreatedTime.ToString("yyyy-MM-dd")</td>
+                                        <td data-order="@comment.CreatedTime.ToString("yyyy-MM-dd")">@comment.CreatedTime.ToString("dd/MM/yyyy")</td>
                                         <td>
                                             <h5 class="mt-0">@comment.Name</h5>
                                             <div><u>Email:</u> @comment.Email</div>
@@ -78,3 +82,11 @@
     </div>
 </div>
 
+@section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 0 },
+        { "OrderDir", "desc" }
+    }' />
+}

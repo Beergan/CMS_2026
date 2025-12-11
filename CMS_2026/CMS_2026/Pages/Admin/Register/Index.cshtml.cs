@@ -21,8 +21,7 @@ namespace CMS_2026.Pages.Admin.Register
 
         public async Task OnGetAsync()
         {
-            var registers = await Db.GetListAsync<PP_Register>();
-            Registers = registers
+            Registers = (await Db.GetListAsync<PP_Register>())
                 .OrderByDescending(t => t.CreatedTime)
                 .ToList();
         }
@@ -47,4 +46,3 @@ namespace CMS_2026.Pages.Admin.Register
         }
     }
 }
-

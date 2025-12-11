@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -27,7 +31,7 @@
                         @foreach (var subscribe in Model.Subscribes)
                         {
                             <tr>
-                                <td>@subscribe.CreatedTime.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td data-order="@subscribe.CreatedTime.ToString("yyyy-MM-dd HH:mm")">@subscribe.CreatedTime.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>@subscribe.Email</td>
                                 <td>@subscribe.Ip</td>
                             </tr>
@@ -39,3 +43,11 @@
     </div>
 </div>
 
+@section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 0 },
+        { "OrderDir", "desc" }
+    }' />
+}

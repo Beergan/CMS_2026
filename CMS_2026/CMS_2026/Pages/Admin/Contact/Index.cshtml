@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -36,7 +40,7 @@
                                 <td>@contact.Phone</td>
                                 <td>@(contact.Message?.Length > 50 ? contact.Message.Substring(0, 50) + "..." : contact.Message)</td>
                                 <td>@contact.Status</td>
-                                <td>@contact.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                <td data-order="@contact.CreatedTime.ToString("yyyy-MM-dd")">@contact.CreatedTime.ToString("dd/MM/yyyy")</td>
                                 <td align="center">
                                     <div class="btn-group btn-group-sm">
                                         <a title="Xem" href="/admin/contact/view?id=@contact.Id" type="button" class="btn btn-info">
@@ -53,3 +57,11 @@
     </div>
 </div>
 
+@section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 5 },
+        { "OrderDir", "desc" }
+    }' />
+}

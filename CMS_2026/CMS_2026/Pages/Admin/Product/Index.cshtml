@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -44,15 +48,15 @@
                                 {
                                     <tr>
                                         <td>@product.Title</td>
-                                        <td>@product.Price.ToString("#,##0") đ</td>
+                                        <td data-order="@product.Price">@product.Price.ToString("#,##0") đ</td>
                                         <td>@product.CategoryName</td>
-                                        <td>@product.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                        <td data-order="@product.CreatedTime.ToString("yyyy-MM-dd")">@product.CreatedTime.ToString("dd/MM/yyyy")</td>
                                         <td align="center">
                                             <div class="btn-group btn-group-sm">
                                                 <a title="Hiệu chỉnh" href="/admin/product/edit?id=@product.Id" type="button" class="btn btn-warning">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </a>
-                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteProduct(@product.Id, '@product.Title')">
+                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteProduct(@product.Id, '@product.Title.Replace("'", "\\'")') ">
                                                     <span class="mdi mdi-delete"></span>
                                                 </button>
                                             </div>
@@ -69,6 +73,12 @@
 </div>
 
 @section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 10 },
+        { "OrderColumn", 3 },
+        { "OrderDir", "desc" }
+    }' />
     <script>
         function deleteProduct(id, title) {
             if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm "' + title + '"?')) {
@@ -97,4 +107,3 @@
         }
     </script>
 }
-

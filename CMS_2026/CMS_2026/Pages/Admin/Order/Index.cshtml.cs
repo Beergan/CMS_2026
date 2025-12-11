@@ -54,9 +54,7 @@ namespace CMS_2026.Pages.Admin.Order
                 query = query.Where(t => t.OrderStatus == "NEW").ToList();
             }
 
-            Orders = query
-                .OrderByDescending(t => t.CreatedTime)
-                .ToList();
+            Orders = query.OrderByDescending(t => t.CreatedTime).ToList();
         }
 
         public async Task<IActionResult> OnPostUpdateStatusAsync([FromForm] int id, [FromForm] string status, [FromForm] string? note)
@@ -85,4 +83,3 @@ namespace CMS_2026.Pages.Admin.Order
         }
     }
 }
-

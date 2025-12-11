@@ -19,11 +19,9 @@ namespace CMS_2026.Pages.Admin.Contact
 
         public async Task OnGetAsync()
         {
-            var contacts = await Db.GetListAsync<PP_Contact>();
-            Contacts = contacts
+            Contacts = (await Db.GetListAsync<PP_Contact>())
                 .OrderByDescending(t => t.CreatedTime)
                 .ToList();
         }
     }
 }
-

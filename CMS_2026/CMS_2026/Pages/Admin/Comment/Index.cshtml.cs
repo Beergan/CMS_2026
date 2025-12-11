@@ -50,9 +50,7 @@ namespace CMS_2026.Pages.Admin.Comment
                 query = query.Where(t => t.Status == "NEW").ToList();
             }
 
-            Comments = query
-                .OrderByDescending(t => t.CreatedTime)
-                .ToList();
+            Comments = query.OrderByDescending(t => t.CreatedTime).ToList();
         }
 
         public async Task<IActionResult> OnPostUpdateStatusAsync([FromForm] int id, [FromForm] string status, [FromForm] string? note)
@@ -81,4 +79,3 @@ namespace CMS_2026.Pages.Admin.Comment
         }
     }
 }
-

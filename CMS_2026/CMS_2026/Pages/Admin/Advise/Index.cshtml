@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -53,7 +57,7 @@
                                 @foreach (var advise in Model.Advises)
                                 {
                                     <tr>
-                                        <td>@advise.CreatedTime.ToString("yyyy-MM-dd")</td>
+                                        <td data-order="@advise.CreatedTime.ToString("yyyy-MM-dd")">@advise.CreatedTime.ToString("dd/MM/yyyy")</td>
                                         <td>
                                             <h5 class="mt-0">@advise.Name</h5>
                                             <div><u>Điện thoại:</u> @advise.Phone</div>
@@ -78,3 +82,11 @@
     </div>
 </div>
 
+@section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 0 },
+        { "OrderDir", "desc" }
+    }' />
+}

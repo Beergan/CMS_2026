@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -50,7 +54,7 @@
                                                 <a title="Hiệu chỉnh" href="/admin/category/edit?id=@category.Id" type="button" class="btn btn-warning">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </a>
-                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteCategory(@category.Id, '@category.Title')">
+                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteCategory(@category.Id, '@category.Title.Replace("'", "\\'")') ">
                                                     <span class="mdi mdi-delete"></span>
                                                 </button>
                                             </div>
@@ -67,6 +71,10 @@
 </div>
 
 @section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 }
+    }' />
     <script>
         function deleteCategory(id, title) {
             if (!confirm('Bạn có chắc chắn muốn xóa chuyên mục "' + title + '"?')) {
@@ -95,4 +103,3 @@
         }
     </script>
 }
-

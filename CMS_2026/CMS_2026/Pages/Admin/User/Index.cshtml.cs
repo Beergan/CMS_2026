@@ -19,11 +19,9 @@ namespace CMS_2026.Pages.Admin.User
 
         public async Task OnGetAsync()
         {
-            var users = await Db.GetListAsync<PP_User>();
-            Users = users
+            Users = (await Db.GetListAsync<PP_User>())
                 .OrderBy(t => t.CreatedTime)
                 .ToList();
         }
     }
 }
-

@@ -37,9 +37,7 @@ namespace CMS_2026.Pages.Admin.Category
                 query = query.Where(t => t.NodeType == NodeType).ToList();
             }
 
-            Categories = query
-                .OrderBy(t => t.Breadcrumb)
-                .ToList();
+            Categories = query.OrderBy(t => t.Breadcrumb).ToList();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
@@ -75,4 +73,3 @@ namespace CMS_2026.Pages.Admin.Category
         }
     }
 }
-

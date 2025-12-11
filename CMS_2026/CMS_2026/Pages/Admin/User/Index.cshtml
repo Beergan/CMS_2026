@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -46,7 +50,7 @@
                                         <td>@user.UserId</td>
                                         <td>@user.DisplayName</td>
                                         <td>@user.Email</td>
-                                        <td>@user.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                        <td data-order="@user.CreatedTime.ToString("yyyy-MM-dd")">@user.CreatedTime.ToString("dd/MM/yyyy")</td>
                                         <td align="center">
                                             <div class="btn-group btn-group-sm">
                                                 <a title="Hiệu chỉnh" href="/admin/user/edit?id=@user.Id" type="button" class="btn btn-warning">
@@ -65,3 +69,11 @@
     </div>
 </div>
 
+@section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 3 },
+        { "OrderDir", "desc" }
+    }' />
+}

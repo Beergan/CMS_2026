@@ -24,6 +24,7 @@ namespace CMS_2026.Pages.Admin.Product
         public async Task OnGetAsync(int? catId = null)
         {
             CatId = catId ?? 0;
+            
             var query = await Db.GetListAsync<PP_Product>(t => t.LangId == LangIdCompose);
 
             if (catId.HasValue && catId.Value > 0)
@@ -32,9 +33,7 @@ namespace CMS_2026.Pages.Admin.Product
                 query = query.Where(t => t.CategoryId == catId.Value).ToList();
             }
 
-            Products = query
-                .OrderByDescending(t => t.CreatedTime)
-                .ToList();
+            Products = query.OrderByDescending(t => t.CreatedTime).ToList();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
@@ -83,4 +82,3 @@ namespace CMS_2026.Pages.Admin.Product
         }
     }
 }
-

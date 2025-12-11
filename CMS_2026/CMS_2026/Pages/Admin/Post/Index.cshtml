@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -44,13 +48,13 @@
                                     <tr>
                                         <td>@post.Title</td>
                                         <td>@post.CategoryName</td>
-                                        <td>@post.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                        <td data-order="@post.CreatedTime.ToString("yyyy-MM-dd")">@post.CreatedTime.ToString("dd/MM/yyyy")</td>
                                         <td align="center">
                                             <div class="btn-group btn-group-sm">
                                                 <a title="Hiệu chỉnh" href="/admin/post/edit?id=@post.Id" type="button" class="btn btn-warning">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </a>
-                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deletePost(@post.Id, '@post.Title')">
+                                                <button title="Xóa" type="button" class="btn btn-danger" onclick="deletePost(@post.Id, '@post.Title.Replace("'", "\\'")') ">
                                                     <span class="mdi mdi-delete"></span>
                                                 </button>
                                             </div>
@@ -67,6 +71,12 @@
 </div>
 
 @section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 2 },
+        { "OrderDir", "desc" }
+    }' />
     <script>
         function deletePost(id, title) {
             if (!confirm('Bạn có chắc chắn muốn xóa bài viết "' + title + '"?')) {
@@ -95,4 +105,3 @@
         }
     </script>
 }
-

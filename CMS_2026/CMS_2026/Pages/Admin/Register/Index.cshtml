@@ -5,6 +5,10 @@
     Layout = "_Layout";
 }
 
+@section head {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -34,7 +38,7 @@
                                 <td>@register.Email</td>
                                 <td>@register.Phone</td>
                                 <td>@register.Status</td>
-                                <td>@register.CreatedTime.ToString("dd/MM/yyyy")</td>
+                                <td data-order="@register.CreatedTime.ToString("yyyy-MM-dd")">@register.CreatedTime.ToString("dd/MM/yyyy")</td>
                                 <td align="center">
                                     <div class="btn-group btn-group-sm">
                                         <button title="Xóa" type="button" class="btn btn-danger" onclick="deleteRegister(@register.Id)">
@@ -52,6 +56,12 @@
 </div>
 
 @section scripts {
+    <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+        { "TableId", "datatable" },
+        { "PageLength", 20 },
+        { "OrderColumn", 4 },
+        { "OrderDir", "desc" }
+    }' />
     <script>
         function deleteRegister(id) {
             if (!confirm('Bạn có chắc chắn muốn xóa đăng ký này?')) {
@@ -80,4 +90,3 @@
         }
     </script>
 }
-

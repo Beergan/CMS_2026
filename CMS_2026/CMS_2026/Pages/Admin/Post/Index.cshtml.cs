@@ -24,6 +24,7 @@ namespace CMS_2026.Pages.Admin.Post
         public async Task OnGetAsync(int? catId = null)
         {
             CatId = catId ?? 0;
+            
             var query = await Db.GetListAsync<PP_Node>(t => t.LangId == LangIdCompose && t.NodeType == "post");
 
             if (catId.HasValue && catId.Value > 0)
@@ -32,9 +33,7 @@ namespace CMS_2026.Pages.Admin.Post
                 query = query.Where(t => t.CategoryId == catId.Value).ToList();
             }
 
-            Posts = query
-                .OrderByDescending(t => t.CreatedTime)
-                .ToList();
+            Posts = query.OrderByDescending(t => t.CreatedTime).ToList();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync([FromForm] int Id)
@@ -57,4 +56,3 @@ namespace CMS_2026.Pages.Admin.Post
         }
     }
 }
-

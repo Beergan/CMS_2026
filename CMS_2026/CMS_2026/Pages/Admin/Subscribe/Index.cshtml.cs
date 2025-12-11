@@ -19,11 +19,9 @@ namespace CMS_2026.Pages.Admin.Subscribe
 
         public async Task OnGetAsync()
         {
-            var subscribes = await Db.GetListAsync<PP_Subscribe>();
-            Subscribes = subscribes
+            Subscribes = (await Db.GetListAsync<PP_Subscribe>())
                 .OrderByDescending(t => t.CreatedTime)
                 .ToList();
         }
     }
 }
-

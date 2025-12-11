@@ -1,36 +1,74 @@
 @* 
-    Partial view cho DataTable có thể tái sử dụng
-    Usage: @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", Columns = columns, Data = data })
+    Partial view cho DataTable - phân trang mượt mà không reload page
+    
+    CÁCH SỬ DỤNG:
+    1. Trong @section head: (tùy chọn - CSS)
+        <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { { "IsHead", true } }' />
+    
+    2. Trong @section scripts: (bắt buộc - JS + khởi tạo)
+        <partial name="_Shared/_DataTable" view-data='@new ViewDataDictionary(ViewData) { 
+            { "TableId", "datatable" },
+            { "PageLength", 20 }
+        }' />
+    
+    CÁC THAM SỐ:
+    - TableId: ID của bảng (mặc định: "datatable")
+    - PageLength: Số dòng mỗi trang (mặc định: 20)
+    - LengthChange: Cho phép thay đổi số dòng (mặc định: true)
+    - ShowSearch: Hiển thị ô tìm kiếm (mặc định: true)
+    - ShowPaging: Hiển thị phân trang (mặc định: true)
+    - ShowInfo: Hiển thị thông tin (mặc định: true)
+    - OrderColumn: Cột để sắp xếp mặc định (mặc định: không sắp xếp)
+    - OrderDir: Hướng sắp xếp "asc" hoặc "desc" (mặc định: "desc")
 *@
 @using CMS_2026.Common
 
 @{
-    var tableId = ViewData["TableId"] as string ?? "datatable";
-    var columns = ViewData["Columns"] as List<object> ?? new List<object>();
-    var pageLength = (int)(ViewData["PageLength"] ?? 100);
-    var lengthChange = (bool)(ViewData["LengthChange"] ?? false);
-    var showSearch = (bool)(ViewData["ShowSearch"] ?? true);
-    var showPaging = (bool)(ViewData["ShowPaging"] ?? true);
-    var showInfo = (bool)(ViewData["ShowInfo"] ?? true);
-}
-
-@* 
-    LƯU Ý: Partial view này cần được đặt trong @section head và @section scripts
-    Usage trong @section head:
-        @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", IsHead = true })
-    Usage trong @section scripts:
-        @await Html.PartialAsync("_Shared/_DataTable", new { TableId = "datatable", IsHead = false })
-*@
-@{
     var isHead = (bool)(ViewData["IsHead"] ?? false);
+    var tableId = ViewData["TableId"] as string ?? "datatable";
+    var pageLength = ViewData["PageLength"] != null ? (int)ViewData["PageLength"] : 20;
+    var lengthChange = ViewData["LengthChange"] != null ? (bool)ViewData["LengthChange"] : true;
+    var showSearch = ViewData["ShowSearch"] != null ? (bool)ViewData["ShowSearch"] : true;
+    var showPaging = ViewData["ShowPaging"] != null ? (bool)ViewData["ShowPaging"] : true;
+    var showInfo = ViewData["ShowInfo"] != null ? (bool)ViewData["ShowInfo"] : true;
+    var orderColumn = ViewData["OrderColumn"] as int?;
+    var orderDir = ViewData["OrderDir"] as string ?? "desc";
 }
 
 @if (isHead)
 {
     <!-- DataTables CSS -->
     <link href="@Constants.Admin_Url/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
-    <link href="@Constants.Admin_Url/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
     <link href="@Constants.Admin_Url/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <style>
+        /* Smooth pagination styling */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            transition: all 0.2s ease;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: linear-gradient(to bottom, #585858 0%, #111 100%) !important;
+            color: white !important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: linear-gradient(to bottom, #6b8cce 0%, #4a6eb5 100%) !important;
+            color: white !important;
+            border-color: #4a6eb5 !important;
+        }
+        .dataTables_wrapper .dataTables_filter input {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            padding: 5px 10px;
+        }
+        .dataTables_wrapper .dataTables_length select {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            padding: 5px;
+        }
+        /* Smooth table row transitions */
+        table.dataTable tbody tr {
+            transition: background-color 0.15s ease;
+        }
+    </style>
 }
 else
 {
@@ -41,29 +79,67 @@ else
     <script src="@Constants.Admin_Url/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Custom sort for formatted numbers
-            jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-                "formatted-num-pre": function (a) {
-                    a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
-                    return parseFloat(a);
-                },
-                "formatted-num-asc": function (a, b) {
-                    return a - b;
-                },
-                "formatted-num-desc": function (a, b) {
-                    return b - a;
-                }
-            });
+            // Custom sort for formatted numbers (Vietnamese currency format)
+            if (!$.fn.dataTableExt.oSort["formatted-num-pre"]) {
+                jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+                    "formatted-num-pre": function (a) {
+                        a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                        return parseFloat(a);
+                    },
+                    "formatted-num-asc": function (a, b) {
+                        return a - b;
+                    },
+                    "formatted-num-desc": function (a, b) {
+                        return b - a;
+                    }
+                });
+            }
 
-            $('#@tableId').DataTable({
-                "aaSorting": [],
-                "pageLength": @pageLength,
-                "lengthChange": @lengthChange.ToString().ToLower(),
-                "searching": @showSearch.ToString().ToLower(),
-                "paging": @showPaging.ToString().ToLower(),
-                "info": @showInfo.ToString().ToLower(),
-                "responsive": true
-            });
+            // Vietnamese language for DataTables
+            var vietnameseLanguage = {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Hiển thị _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dữ liệu",
+                "sEmptyTable": "Không có dữ liệu trong bảng",
+                "sInfo": "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Hiển thị 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sSearch": "Tìm kiếm:",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Sau",
+                    "sLast": "Cuối"
+                }
+            };
+
+            var tableConfig = {
+                "language": vietnameseLanguage,
+                "pageLength": @Html.Raw(pageLength),
+                "lengthChange": @Html.Raw(lengthChange.ToString().ToLower()),
+                "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "Tất cả"]],
+                "searching": @Html.Raw(showSearch.ToString().ToLower()),
+                "paging": @Html.Raw(showPaging.ToString().ToLower()),
+                "info": @Html.Raw(showInfo.ToString().ToLower()),
+                "responsive": true,
+                "autoWidth": false,
+                "stateSave": true,
+                "stateDuration": 60 * 60 * 24, // 1 day
+                "order": @Html.Raw(orderColumn.HasValue ? $"[[{orderColumn.Value}, \"{orderDir}\"]]" : "[]"),
+                "drawCallback": function(settings) {
+                    // Smooth scroll to top when page changes
+                    if (settings._iDisplayStart !== 0) {
+                        $('html, body').animate({
+                            scrollTop: $('#@tableId').offset().top - 100
+                        }, 300);
+                    }
+                }
+            };
+
+            // Initialize DataTable
+            if (!$.fn.DataTable.isDataTable('#@tableId')) {
+                $('#@tableId').DataTable(tableConfig);
+            }
         });
     </script>
 }
