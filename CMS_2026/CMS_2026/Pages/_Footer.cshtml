@@ -144,25 +144,25 @@
                     @if (!string.IsNullOrEmpty(config.LinkTwitter) && config.LinkTwitter != "#")
                     {
                         <li class="list-inline-item me-8">
-                            <a href="@config.LinkTwitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="@config.LinkTwitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         </li>
                     }
                     @if (!string.IsNullOrEmpty(config.LinkFacebook))
                     {
                         <li class="list-inline-item me-8">
-                            <a href="@config.LinkFacebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="@config.LinkFacebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         </li>
                     }
                     @if (!string.IsNullOrEmpty(config.LinkInstagram))
                     {
                         <li class="list-inline-item me-8">
-                            <a href="@config.LinkInstagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="@config.LinkInstagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </li>
                     }
                     @if (!string.IsNullOrEmpty(config.LinkYoutube))
                     {
                         <li class="list-inline-item">
-                            <a href="@config.LinkYoutube" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="@config.LinkYoutube" target="_blank" rel="noopener noreferrer" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
                         </li>
                     }
                 </ul>
@@ -184,6 +184,33 @@
         </div>
     </div>
 </footer>
+
+@* Organization Schema JSON-LD — giúp Google hiểu thông tin doanh nghiệp *@
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "Organization",
+  "name": "@config.WebTitle",
+  "url": "@(Context.Request.Scheme)://@(Context.Request.Host)",
+  "logo": "@config.Logo",
+  "description": "@config.WebDescription"
+  @if (!string.IsNullOrEmpty(config.Company?.Phone))
+  {
+      @Html.Raw($",\n  \"telephone\": \"{config.Company.Phone}\"")
+  }
+  @if (!string.IsNullOrEmpty(config.Company?.Address))
+  {
+      @Html.Raw($",\n  \"address\": {{\n    \"@@type\": \"PostalAddress\",\n    \"streetAddress\": \"{config.Company.Address}\"\n  }}")
+  }
+  @{
+      var sameAs = new System.Collections.Generic.List<string>();
+      if (!string.IsNullOrEmpty(config.LinkFacebook)) sameAs.Add($"\"{config.LinkFacebook}\"");
+      if (!string.IsNullOrEmpty(config.LinkInstagram)) sameAs.Add($"\"{config.LinkInstagram}\"");
+      if (!string.IsNullOrEmpty(config.LinkYoutube)) sameAs.Add($"\"{config.LinkYoutube}\"");
+      if (sameAs.Any()) { @Html.Raw($",\n  \"sameAs\": [{string.Join(",", sameAs)}]") }
+  }
+}
+</script>
 
 <!-- Back to Top Button -->
 <div class="position-fixed z-index-10 bottom-0 end-0 p-10">

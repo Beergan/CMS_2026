@@ -14,7 +14,11 @@ namespace CMS_2026.Services
     {
         private readonly IDataService _dataService;
         private readonly RootService _rootService;
-        private List<PP_Page>? _cachedPages;
+
+        // Static cache — chia sẻ giữa tất cả request (PageRoutingService là Scoped, nếu dùng instance field thì mỗi request query DB một lần)
+        private static List<PP_Page>? _cachedPages;
+        private static long _cachedAtVersion = -1;
+        private static readonly object _cacheLock = new object();
 
         public PageRoutingService(IDataService dataService, RootService rootService)
         {
@@ -28,9 +32,15 @@ namespace CMS_2026.Services
         public async Task RefreshRoutesAsync()
         {
             var pages = await _dataService.GetListAsync<PP_Page>();
-            _cachedPages = pages
+            var sorted = pages
                 .OrderByDescending(t => t.PathPattern)
                 .ToList();
+
+            lock (_cacheLock)
+            {
+                _cachedPages = sorted;
+                _cachedAtVersion = RootService.CacheVersion;
+            }
         }
 
         /// <summary>
@@ -46,9 +56,13 @@ namespace CMS_2026.Services
         /// </summary>
         public PP_Page? FindPageByPath(string path, string? langId = null)
         {
-            if (_cachedPages == null)
+            // Kết hợp cache với cache version từ RootService — tự invalidate khi admin cập nhật nội dung
+            lock (_cacheLock)
             {
-                RefreshRoutes();
+                if (_cachedPages == null || _cachedAtVersion != RootService.CacheVersion)
+                {
+                    RefreshRoutes();
+                }
             }
 
             if (_cachedPages == null) return null;

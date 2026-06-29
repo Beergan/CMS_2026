@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 using CMS_2026.Data;
 using CMS_2026.Services;
 
@@ -20,9 +22,14 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// Add Entity Framework
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+// Add Entity Framework — dùng AddDbContextPool thay vì AddDbContext cho 10k+ users
+// Pool tái sử dụng DbContext instances, giảm áp lực GC đáng kể
+builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString, sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure(maxRetryCount: 3, maxRetryDelay: TimeSpan.FromSeconds(5), errorNumbersToAdd: null);
+        sqlOptions.CommandTimeout(30);
+    }), poolSize: 256);
 
 // Add Data Service
 builder.Services.AddScoped<IDataService, DataService>();
@@ -62,6 +69,31 @@ builder.Services.AddScoped<DatabaseMigrationService>();
 // Add Memory Cache
 builder.Services.AddMemoryCache();
 
+// Add Response Compression (Brotli + Gzip)
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+    {
+        "application/json",
+        "application/xml",
+        "text/xml",
+        "image/svg+xml",
+        "application/javascript",
+        "text/javascript",
+    });
+});
+builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.Fastest;
+});
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.Fastest;
+});
+
 // Add Session
 builder.Services.AddSession(options =>
 {
@@ -79,16 +111,24 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else
+{
+    // Chỉ bật DeveloperExceptionPage trong Development — KHÔNG bao giờ để ngoài block này!
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseHttpsRedirection();
+
+// Response Compression MUST be before static files and routing
+app.UseResponseCompression();
+
+// Static files MUST be before routing (avoids unnecessary routing overhead)
+app.UseStaticFiles();
 
 // Add Dynamic Page Middleware (MUST be before UseRouting to rewrite path correctly)
 app.UseMiddleware<CMS_2026.Middleware.DynamicPageMiddleware>();
 
 app.UseRouting();
-
-// Static files should be after routing to allow controllers to handle requests first
-app.UseStaticFiles();
 
 app.UseSession();
 
@@ -154,7 +194,6 @@ using (var scope = app.Services.CreateScope())
     var startupService = scope.ServiceProvider.GetRequiredService<StartupService>();
     startupService.InitializeAsync().GetAwaiter().GetResult();
 }
-app.UseDeveloperExceptionPage();
 app.MapStaticAssets();
 app.MapControllers();
 app.MapRazorPages()

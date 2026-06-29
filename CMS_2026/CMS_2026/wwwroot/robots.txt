@@ -1,3 +1,8 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /Api/
+Disallow: /Error
+Allow: /
 
+# Sitemap
+Sitemap: /sitemap.xml
